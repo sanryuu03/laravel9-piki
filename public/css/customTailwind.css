@@ -1,0 +1,48 @@
+:root {
+    --piki-1: #9db6c4;
+    --piki-2: #001bca;
+    --piki-3: #6167ff;
+    --piki-4: #0d8aff;
+    --piki-5: #61c7ff;
+    --piki-6: #041941;
+    --piki-white: #fff;
+}
+
+.bg-piki-1 {
+    background-color: var(--piki-1);
+}
+
+.bg-piki-2 {
+    background-color: var(--piki-2);
+}
+
+.bg-piki-3 {
+    background-color: var(--piki-3);
+}
+
+.bg-piki-4 {
+    background-color: var(--piki-4);
+}
+
+.bg-piki-5 {
+    background-color: var(--piki-5);
+}
+
+.bg-piki-6 {
+    background-color: var(--piki-6);
+}
+
+.bg-piki-white {
+    background-color: var(--piki-white);
+}
+
+.bg-piki-white-pucat {
+    background-color: #f7f7f7;
+}
+
+@media (max-width: 480px) {
+
+    .content-3-2 .card-berita {
+        min-width: 380px !important;
+    }
+}
