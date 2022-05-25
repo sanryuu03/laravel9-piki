@@ -31,6 +31,11 @@ Route::get('/bersihkan', function () {
     return response()->json('optimize');
 });
 
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+    return response()->json('storage');
+});
+
 Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
 Route::get('/admin', [BackendPikiController::class, 'index'])->name('index.admin');
 
