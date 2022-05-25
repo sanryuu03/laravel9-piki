@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsPiki;
-use App\Models\FrontEndPiki;
+use App\Models\AnggotaPiki;
 use Illuminate\Http\Request;
 
-class FrontEndPikiController extends Controller
+class AnggotaPikiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,14 @@ class FrontEndPikiController extends Controller
      */
     public function index()
     {
-        $berita = NewsPiki::take(1)->get();
-        return view('/index', [
+        $anggota = AnggotaPiki::take(7)->get();
+        return view('admin/landingpageanggota', [
             "title" => "PIKI - Sangrid",
+            "menu" => "Anggota",
             "creator" => "San",
-            "berita" => $berita,
+            "anggota" => $anggota,
         ]);
+
     }
 
     /**
@@ -47,10 +48,10 @@ class FrontEndPikiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FrontEndPiki  $frontEndPiki
+     * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
-    public function show(FrontEndPiki $frontEndPiki)
+    public function show(AnggotaPiki $anggotaPiki)
     {
         //
     }
@@ -58,10 +59,10 @@ class FrontEndPikiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FrontEndPiki  $frontEndPiki
+     * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
-    public function edit(FrontEndPiki $frontEndPiki)
+    public function edit(AnggotaPiki $anggotaPiki)
     {
         //
     }
@@ -70,10 +71,10 @@ class FrontEndPikiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FrontEndPiki  $frontEndPiki
+     * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FrontEndPiki $frontEndPiki)
+    public function update(Request $request, AnggotaPiki $anggotaPiki)
     {
         //
     }
@@ -81,10 +82,10 @@ class FrontEndPikiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FrontEndPiki  $frontEndPiki
+     * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FrontEndPiki $frontEndPiki)
+    public function destroy(AnggotaPiki $anggotaPiki)
     {
         //
     }

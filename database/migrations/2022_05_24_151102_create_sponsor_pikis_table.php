@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('front_end_pikis', function (Blueprint $table) {
+        Schema::create('sponsor_pikis', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('picture_path')->nullable();
+            $table->text('konten_sponsor');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('front_end_pikis');
+        Schema::dropIfExists('sponsor_pikis');
     }
 };

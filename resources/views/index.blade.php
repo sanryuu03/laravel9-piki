@@ -197,7 +197,7 @@
               <div class="col-12">
                   <div class="button-header">
                       <button class="btn btn-listing" onClick="window.open('{{ route('register') }}','_blank')">Daftar</button>
-                      <button class="btn btn-listing" onClick="window.open('{{ route('login') }}','_blank')">Log in</button>
+                      <button class="btn btn-listing" onClick="window.open('{{ route('admin.login') }}','_blank')">Log in</button>
                   </div>
               </div>
           </div>
@@ -232,7 +232,6 @@
               margin-top: -2.5rem;
               margin-bottom: 2.5rem;
               letter-spacing: -0.025em;
-              color: #121212;
           }
 
           .content-3-2 .title-caption {
@@ -277,12 +276,8 @@
                   margin-top: -30px !important;
               }
 
-              .content-3-2 .card-isi-berita {
-                  margin-top: -40px !important;
-              }
-
               .content-3-2 .isi-berita {
-                  margin-top: 0px !important;
+                  margin-top: -40px !important;
               }
           }
 
@@ -292,7 +287,12 @@
               }
 
               .content-3-2 .isi-berita {
-                  min-height: 210px !important;
+                  min-height: 350px !important;
+                  min-width: 550px !important;
+              }
+              .content-3-2 .card-berita {
+                  margin-top: -30px !important;
+                  min-height: 350px !important;
               }
           }
 
@@ -303,28 +303,32 @@
               }
 
               .content-3-2 .right-column {
-                  width: 50%;
-                  margin-right: 3.25rem;
+                  margin-left: 1rem;
+                  margin-right: 0rem;
               }
 
               .content-3-2 .circle {
                   margin-right: 1.25rem;
                   margin-bottom: 0;
               }
+              .content-3-2 .read-more {
+                  bottom: 0px !important;
+                  	left: 0px !important;
+                      position: absolute;
+              }
           }
 
       </style>
+      @foreach($berita as $item)
       <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center">Berita Terbaru</h2>
+          <h2 class="title-text text-center text-slate-300">Berita Terbaru</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
-              <div class="img-hero text-center justify-content-center d-flex">
-                  <div class="card card-berita" style="width: 24rem;">
-                      <img src="/images/mountains-1.jpg" class="card-img-top" alt="...">
+              <div class="img-hero justify-content-center d-flex">
+                  <div class="card card-berita">
+                      <img src="{{ url('/storage/assets/news/'.$item->picture_path) }}" class="card-img-top" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Keterangan Foto</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <p class="card-text text-muted">{{ $item->keterangan_foto }}.</p>
                       </div>
                   </div>
               </div>
@@ -333,17 +337,17 @@
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
                   <ul style="padding: 0; margin: 0">
                       <div class="card-berita">
-                          <div class="card card-isi-berita bg-dark text-white">
-                              <img src="/images/kede.jpeg" class="card-img object-fill" alt="...">
-                          </div>
                           <div class="card card-body mt-3 isi-berita">
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                              {{ Str::limit($item->isi_berita, 1100) }}.
+                          <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
                   </ul>
               </div>
           </div>
       </div>
+                  @endforeach
+
   </section>
 
   <!-- Program-->
@@ -945,7 +949,7 @@
 
       </style>
       <div class="content-sponsor container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center text-slate-500">Ruang Sponsor</h2>
+          <h2 class="title-text text-center text-slate-500">Community Partners</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="container-fluid left-column text-center d-flex">

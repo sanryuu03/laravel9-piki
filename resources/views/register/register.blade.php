@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>NIK <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="phone_number" placeholder="Masukkan NIK Anda" />
+                                        <input class="form-control" type="text" name="nik" placeholder="Masukkan NIK Anda" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Alamat Sesuai KTP <span class="text-danger">*</span></label>
@@ -121,6 +121,14 @@
                                     <div class="mb-3">
                                         <label>Foto Profil <span class="text-danger">*</span></label>
                                         <input class="form-control" type="file" name="photo_profile" placeholder="Masukkan Photo Profile Anda" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Bidang Usaha <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="business_fields" placeholder="Masukkan Bidang Usaha Anda" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Deskripsi Kehalihan <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="description_of_skills" placeholder="Masukkan Kehalihan Anda" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Password <span class="text-danger">*</span></label>
