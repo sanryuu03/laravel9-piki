@@ -106,23 +106,28 @@ class NewsPikiController extends Controller
      */
     public function update(Request $request, NewsPiki $newsPiki)
     {
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('picture_path');
-        // dd($request->file('picture_path'));
-        $nama_file = time() . "_" . $file->getClientOriginalName();
+        if ($request->file('picture_path')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path');
+            // dd($request->file('picture_path'));
+            $nama_file = time() . "_" . $file->getClientOriginalName();
 
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'storage/assets/news/';
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/news/';
 
-        // upload file
-        $file->move($tujuan_upload, $nama_file);
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
 
-        NewsPiki::where('id', $request->id)
-            ->update([
-                'picture_path' => $nama_file,
-                'keterangan_foto' => $request->keterangan_foto,
-                'isi_berita' => $request->isi_berita,
-            ]);
+            NewsPiki::where('id', $request->id)
+                ->update([
+                    'picture_path' => $nama_file,
+                ]);
+            }
+            NewsPiki::where('id', $request->id)
+                ->update([
+                    'keterangan_foto' => $request->keterangan_foto,
+                    'isi_berita' => $request->isi_berita,
+                ]);
 
 
         // return response()->json($newsPiki);
