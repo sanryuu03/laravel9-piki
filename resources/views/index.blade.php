@@ -277,7 +277,7 @@
 
           @media (max-width: 480px) {
               .content-3-2 {
-                  margin-top: -350px !important;
+                  margin-top: -600px !important;
                   padding-top: -550px !important;
                   padding-bottom: -70px !important;
               }
@@ -1002,8 +1002,9 @@
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
-                      <div class="invisible container-fluid justify-content-center d-flex">
-                          <div class="sm:visible card card-body isi-konten-partner">
+              <!-- tampilan web -->
+                      <div class="container-fluid justify-content-center d-flex">
+                          <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
                               {{ Str::limit($item->konten_sponsor, 1250) }}.
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
