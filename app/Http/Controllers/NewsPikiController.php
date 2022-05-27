@@ -122,12 +122,12 @@ class NewsPikiController extends Controller
                 ->update([
                     'picture_path' => $nama_file,
                 ]);
-            }
-            NewsPiki::where('id', $request->id)
-                ->update([
-                    'keterangan_foto' => $request->keterangan_foto,
-                    'isi_berita' => $request->isi_berita,
-                ]);
+        }
+        NewsPiki::where('id', $request->id)
+            ->update([
+                'keterangan_foto' => $request->keterangan_foto,
+                'isi_berita' => $request->isi_berita,
+            ]);
 
 
         // return response()->json($newsPiki);

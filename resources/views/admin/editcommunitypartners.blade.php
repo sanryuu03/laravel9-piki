@@ -31,6 +31,7 @@
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Update</button>
+                  <button href="{{ route('communitypartners') }}" type="submit" class="btn btn-danger mt-3 block">Back</button>
               </form>
           </div>
       </div>

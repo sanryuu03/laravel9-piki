@@ -119,14 +119,14 @@ class SponsorPikiController extends Controller
                 ->update([
                     'picture_path' => $nama_file,
                 ]);
-            }
-            SponsorPiki::where('id', $request->id)
-                ->update([
-                    'konten_sponsor' => $request->konten_sponsor,
-                ]);
+        }
+        SponsorPiki::where('id', $request->id)
+            ->update([
+                'konten_sponsor' => $request->konten_sponsor,
+            ]);
 
 
-                return redirect()->route('communitypartners');
+        return redirect()->route('communitypartners');
     }
 
     /**
