@@ -566,9 +566,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ml-auto {
   margin-left: auto;
 }
-.mt-5 {
-  margin-top: 1.25rem;
-}
 .block {
   display: block;
 }
@@ -785,9 +782,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .text-center {
   text-align: center;
-}
-.text-right {
-  text-align: right;
 }
 .text-5xl {
   font-size: 3rem;

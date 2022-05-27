@@ -65,7 +65,7 @@ Route::get('/admin/landingpageagenda', [AgendaPikiController::class, 'index'])->
 Route::post('/admin/landingpageagenda', [AgendaPikiController::class, 'store'])->name('agenda.post');
 Route::get('/admin/editagenda/{id}', [AgendaPikiController::class, 'edit'])->name('agenda.edit');
 Route::put('/admin/updateagenda/{id}', [AgendaPikiController::class, 'update'])->name('agenda.update');
-Route::post('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
+Route::delete('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
 
 
 Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])->name('anggota.index');

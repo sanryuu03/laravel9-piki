@@ -17,14 +17,17 @@
   <div class="card mx-3 my-3">
       <div class="card-body">
           <div class="container-fluid">
-
               <form method="post" action="{{ route('agenda.update', $item->id) }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
-
                   <div class="form-group">
                       <label>Foto Agenda</label>
-                      <input type="file" name="picture_path" class="form-control" value="{{ url('/storage/assets/agenda/'.$item->picture_path) }}">
+                      @if($item->picture_path)
+                      <td><img class="d-block mb-3" width="150px" src="{{ asset('/storage/assets/agenda/'.$item->picture_path) }}"></td>
+                      @else
+                      <td><img width="150px" src=""></td>
+                      @endif
+                      <input type="file" name="picture_path" class="form-control" value="{{ asset('/storage/assets/agenda/'.$item->picture_path) }}">
                   </div>
                   <div class="form-group">
                       <label>Nama Agenda</label>

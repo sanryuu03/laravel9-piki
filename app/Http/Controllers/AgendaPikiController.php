@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgendaPiki;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AgendaPikiController extends Controller
 {
@@ -14,7 +15,7 @@ class AgendaPikiController extends Controller
      */
     public function index()
     {
-        $agenda = AgendaPiki::take(7)->get();
+        $agenda = AgendaPiki::get();
         return view('admin/landingpageagenda', [
             "title" => "PIKI - Sangrid",
             "menu" => "Agenda",
@@ -105,16 +106,22 @@ class AgendaPikiController extends Controller
      */
     public function update(Request $request, AgendaPiki $agendaPiki)
     {
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('picture_path');
-        // dd($request->file('picture_path'));
-        $nama_file = time() . "_" . $file->getClientOriginalName();
+        if ($request->file('picture_path')) {
+            // jika gambar lama ada, maka hapus gambar lama
+            if ($request->old_picture_path) {
+                Storage::delete($request->old_picture_path);
+            }
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path');
+            // dd($request->file('picture_path'));
+            $nama_file = time() . "_" . $file->getClientOriginalName();
 
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'storage/assets/agenda/';
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/agenda/';
 
-        // upload file
-        $file->move($tujuan_upload, $nama_file);
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+        }
 
         AgendaPiki::where('id', $request->id)
             ->update([
@@ -136,7 +143,10 @@ class AgendaPikiController extends Controller
     public function destroy(AgendaPiki $agendaPiki, $id)
     {
         $agendaPiki = AgendaPiki::find($id);
+        if ($agendaPiki->picture_path) {
+            Storage::delete($agendaPiki->picture_path);
+        }
         $agendaPiki->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data has been deleted !');
     }
 }

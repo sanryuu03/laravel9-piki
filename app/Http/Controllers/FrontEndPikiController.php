@@ -22,7 +22,7 @@ class FrontEndPikiController extends Controller
     public function index()
     {
         $header = HeaderPiki::get();
-        $berita = NewsPiki::take(1)->get();
+        $berita = NewsPiki::latest()->get();
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
         $anggota = AnggotaPiki::take(7)->get();

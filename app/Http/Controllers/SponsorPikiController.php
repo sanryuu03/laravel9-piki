@@ -91,7 +91,6 @@ class SponsorPikiController extends Controller
             "menu" => "Community Partners",
             "creator" => "San",
             "item" => $sponsorPiki,
-            'action' => 'edit'
         ]);
     }
 
