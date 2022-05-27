@@ -121,11 +121,14 @@ class AgendaPikiController extends Controller
 
             // upload file
             $file->move($tujuan_upload, $nama_file);
+            AgendaPiki::where('id', $request->id)
+                ->update([
+                    'picture_path' => $nama_file,
+                ]);
         }
 
         AgendaPiki::where('id', $request->id)
             ->update([
-                'picture_path' => $nama_file,
                 'nama_agenda' => $request->nama_agenda,
                 'keterangan_agenda' => $request->keterangan_agenda,
             ]);
