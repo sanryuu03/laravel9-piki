@@ -124,7 +124,7 @@ class AgendaPikiController extends Controller
             ]);
 
 
-        return redirect()->route('berita');
+        return redirect()->route('agenda.index');
     }
 
     /**
