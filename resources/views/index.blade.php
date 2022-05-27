@@ -30,10 +30,11 @@
 
               body .header .w-px400-desktop {
                   background-image: url("images/mobile-device-cover.jpg");
-                  min-height: 100vh !important;
-                  background-size: contain;
+                  min-height: 3000px !important;
+                  max-width: 500px !important;
+                  background-size: 100% 20%;
                   margin-top: 70px !important;
-                  margin-bottom: -90px !important;
+                  margin-bottom: -2400px !important;
                   background-repeat: no-repeat;
                   border-bottom: none !important;
                   border-style: hidden !important;
@@ -189,23 +190,31 @@
       </style>
       <header>
           <div class="img-hero text-center justify-content-center d-flex">
-              <img id="hero" class="header w-px400-desktop" src="" alt="" onClick="window.open('https://play.google.com/store/apps/details?id=id.pt.rpn.kede','_blank')">
+              <img id="hero" class="header w-px400-desktop" src="" alt="" onClick="window.open('#','_blank')">
           </div>
       </header>
       <div class="container text-center">
           <div class="row content">
               <div class="col-12">
-                  <div class="button-header">
-                      <button class="btn btn-listing" onClick="window.open('{{ route('register') }}','_blank')">Daftar</button>
-                      <button class="btn btn-listing" onClick="window.open('{{ route('admin.login') }}','_blank')">Log in</button>
+                  <div class="invisible button-header">
+                      <button class="sm:visible btn btn-listing" onClick="window.open('{{ route('register') }}','_blank')">Daftar</button>
+                      <button class="sm:visible btn btn-listing" onClick="window.open('{{ route('admin.login') }}','_blank')">Log in</button>
                   </div>
               </div>
           </div>
       </div>
   </section>
+  <div class="flex -mt-3 my-96 py-20">
+      <div class="flex-initial w-64 ...">
+          <button class="btn btn-primary btn-listing" href="{{ route('register') }}">Daftar</button>
+      </div>
+      <div class="flex-initial w-32 ...">
+          <button class="btn btn-warning btn-listing" href="{{ route('admin.login') }}">Login</button>
+      </div>
+  </div>
 
   <!-- Berita Terbaru-->
-  <section class="h-100 w-100" style="box-sizing: border-box">
+  <section id="berita" class="h-100 w-100" style="box-sizing: border-box">
       <style>
           @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -290,6 +299,7 @@
                   min-height: 350px !important;
                   min-width: 550px !important;
               }
+
               .content-3-2 .card-berita {
                   margin-top: -30px !important;
                   min-height: 350px !important;
@@ -311,17 +321,18 @@
                   margin-right: 1.25rem;
                   margin-bottom: 0;
               }
+
               .content-3-2 .read-more {
                   bottom: 0px !important;
-                  	left: 0px !important;
-                      position: absolute;
+                  left: 0px !important;
+                  position: absolute;
               }
           }
 
       </style>
       @foreach($berita as $item)
       <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center text-slate-300">Berita Terbaru</h2>
+          <h2 class="title-text text-center text-blue-800 lg:text-slate-300">Berita Terbaru</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="img-hero justify-content-center d-flex">
@@ -334,24 +345,24 @@
               </div>
 
               <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
+              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
                   <ul style="padding: 0; margin: 0">
                       <div class="card-berita">
                           <div class="card card-body mt-3 isi-berita">
                               {{ Str::limit($item->isi_berita, 1100) }}.
-                          <a href="#" class="read-more text-sky-400">Read More...</a>
+                              <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
                   </ul>
               </div>
           </div>
       </div>
-                  @endforeach
+      @endforeach
 
   </section>
 
   <!-- Program-->
-  <section class="program bg-piki-white-pucat">
+  <section id="program" class="program bg-piki-white-pucat">
       <style>
           @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
@@ -447,7 +458,13 @@
           </div>
           <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 mt-12 md:gap-10 md:mt-12 pb-12 isi-program">
               <div class="row-span-1">
-                  <img src="/images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+                  @if(count($program) > 0)
+                  @foreach($program as $item)
+                  <img src="{{ url('/storage/assets/program/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+                  @endforeach
+                  @else
+                  <img src="images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+                  @endif
               </div>
               <div class="row-span-1">
                   <img src="/images/jurnal.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
@@ -455,6 +472,7 @@
               <div class="row-span-1">
                   <img src="images/hrd.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
+
           </div>
           <div id="carouselExampleControls" class="d-lg-none carousel slide w-px400" data-bs-ride="carousel">
               <div class="carousel-inner isi-program-carousel">
@@ -477,6 +495,7 @@
                   <span class="visually-hidden">Next</span>
               </button>
           </div>
+
       </main>
   </section>
   <!-- END: Program -->
@@ -546,6 +565,12 @@
           }
 
           @media (max-width: 480px) {
+              .title-text-h1 {
+                  margin-top: -40px !important;
+                  margin-bottom: -230px !important;
+                  text-align: center !important;
+              }
+
               .content-3-2-agenda .title-text {
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
               }
@@ -564,6 +589,10 @@
           @media (min-width: 768px) {
               .content-3-2-agenda .title-text {
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
+              }
+
+              .title-text-h1 {
+                  margin-bottom: 30px !important;
               }
 
               .content-3-2-agenda .w-px400-desktop {
@@ -590,46 +619,35 @@
           }
 
       </style>
+      <?php $no = 0;?>
+      @foreach($agenda as $item)
+      <?php $no++ ;?>
+      <h1 class="title-text-h1 text-5xl font-bold">Agenda</h1>
       <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="container-fluid d-flex w-px400 w-px400-desktop">
                   <div class="card-berita">
                       <div class="card bg-dark text-white">
-                          <img src="/images/kede.jpeg" class="card-img object-fill" alt="...">
+                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="card-img object-fill" alt="...">
                       </div>
                       <div class="card card-body mt-3 isi-berita">
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                          {{ $item->keterangan_agenda }}.
                       </div>
                   </div>
               </div>
 
               <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
-                  <h2 class="title-text">Agenda Lainnya</h2>
+              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start text-center">
+                  <h6 class="title-text">Agenda Lainnya</h6>
                   <ul style="padding: 0; margin: 0">
                       <li class="list-unstyled" style="margin-bottom: 2rem">
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                               <span class="circle text-white d-flex align-items-center justify-content-center">
-                                  1
+                                  {{ $no }}
+
                               </span>
-                              Trusted Mentor
-                          </h4>
-                      </li>
-                      <li class="list-unstyled" style="margin-bottom: 2rem">
-                          <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                              <span class="circle text-white d-flex align-items-center justify-content-center">
-                                  2
-                              </span>
-                              Access Forever
-                          </h4>
-                      </li>
-                      <li class="list-unstyled" style="margin-bottom: 4rem">
-                          <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                              <span class="circle text-white d-flex align-items-center justify-content-center">
-                                  3
-                              </span>
-                              Halfpenny
+                              {{ $item->nama_agenda }}.
                           </h4>
                       </li>
                   </ul>
@@ -638,6 +656,8 @@
           </div>
       </div>
   </section>
+  @endforeach
+
   <!-- Anggota-->
   <section class="h1-00 w-100 bg-white-pucat" style="box-sizing: border-box">
       <style>
@@ -732,6 +752,7 @@
       <div class="content-3-2-anggota container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
           <h2 class="title-text text-center">Anggota</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
+              @foreach($user as $item)
               <!-- Left Column -->
               <div class="img-hero left-column text-center justify-content-center d-flex">
                   <div class="container-fluid">
@@ -742,13 +763,14 @@
                               </div>
                               <div class="col-md-8">
                                   <div class="card-body">
-                                      <h5 class="card-title">Prof Dr.xxx PhD</h5>
-                                      <p class="card-text">Konsultan Pengembangan SDM.</p>
+                                      <h5 class="card-title">{{ $item->name }}.</h5>
+                                      <p class="card-text">{{ $item->job }}.</p>
                                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                   </div>
                               </div>
                           </div>
                       </div>
+
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
@@ -829,6 +851,8 @@
                       </div>
                   </ul>
               </div>
+              @endforeach
+
           </div>
       </div>
   </section>
@@ -913,6 +937,10 @@
                   min-width: 410px !important;
                   margin-top: 0px !important;
               }
+
+              .content-sponsor .isi-konten-partner {
+                  margin-bottom: -500px !important;
+              }
           }
 
           @media (min-width: 768px) {
@@ -951,6 +979,8 @@
       <div class="content-sponsor container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
           <h2 class="title-text text-center text-slate-500">Community Partners</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
+              @foreach($sponsor as $item)
+
               <!-- Left Column -->
               <div class="container-fluid left-column text-center d-flex">
                   <div class="">
@@ -961,15 +991,24 @@
               </div>
 
               <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
+              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
                   <ul style="padding: 0; margin: 0">
-                      <div class="container-fluid text-center justify-content-center d-flex">
-                          <div class="card card-body isi-konten-sponsor">
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                      <div class="container-fluid justify-content-center d-flex">
+                          <div class="card card-body d-lg-none isi-konten-sponsor">
+                              {{ Str::limit($item->konten_sponsor, 250) }}.
+                              <a href="#" class="read-more text-sky-400">Read More...</a>
+                          </div>
+                      </div>
+                      <div class="invisible container-fluid justify-content-center d-flex">
+                          <div class="sm:visible card card-body isi-konten-partner">
+                              {{ Str::limit($item->konten_sponsor, 1250) }}.
+                              <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
                   </ul>
               </div>
+              @endforeach
+
           </div>
       </div>
   </section>
@@ -1053,6 +1092,10 @@
           }
 
           @media only screen and (max-width: 480px) {
+              .faq-card {
+                  margin-top: -3000px !important;
+              }
+
               /* Style the faq-page panel. Note: hidden by default */
               .faq-page {
                   margin-top: -30px !important;
@@ -1080,7 +1123,7 @@
                       FAQ's
                   </a>
               </div>
-              <div id="collapseOne" class="accordion-collapse collapse faq-card" data-bs-parent="#accordion">
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
                   <div class="faq-one">
 
                       <!-- faq question -->

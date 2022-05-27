@@ -61,9 +61,15 @@ class AgendaPikiController extends Controller
      * @param  \App\Models\AgendaPiki  $agendaPiki
      * @return \Illuminate\Http\Response
      */
-    public function edit(AgendaPiki $agendaPiki)
+    public function edit(AgendaPiki $agendaPiki, $id)
     {
-        //
+        $agendaPiki = AgendaPiki::find($id);
+        return view('admin/editagenda', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Agenda",
+            "creator" => "San",
+            "item" => $agendaPiki,
+        ]);
     }
 
     /**
@@ -75,7 +81,26 @@ class AgendaPikiController extends Controller
      */
     public function update(Request $request, AgendaPiki $agendaPiki)
     {
-        //
+        // menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('picture_path');
+        // dd($request->file('picture_path'));
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'storage/assets/agenda/';
+
+        // upload file
+        $file->move($tujuan_upload, $nama_file);
+
+        AgendaPiki::where('id', $request->id)
+            ->update([
+                'picture_path' => $nama_file,
+                'nama_agenda' => $request->nama_agenda,
+                'keterangan_agenda' => $request->keterangan_agenda,
+            ]);
+
+
+        return redirect()->route('berita');
     }
 
     /**
@@ -84,8 +109,10 @@ class AgendaPikiController extends Controller
      * @param  \App\Models\AgendaPiki  $agendaPiki
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AgendaPiki $agendaPiki)
+    public function destroy(AgendaPiki $agendaPiki, $id)
     {
-        //
+        $agendaPiki = AgendaPiki::find($id);
+        $agendaPiki->delete();
+        return redirect()->back();
     }
 }

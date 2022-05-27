@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\NewsPiki;
+use App\Models\AgendaPiki;
+use App\Models\HeaderPiki;
+use App\Models\AnggotaPiki;
+use App\Models\ProgramPiki;
+use App\Models\SponsorPiki;
 use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 
@@ -15,11 +21,23 @@ class FrontEndPikiController extends Controller
      */
     public function index()
     {
+        $header = HeaderPiki::get();
         $berita = NewsPiki::take(1)->get();
+        $program = ProgramPiki::take(7)->get();
+        $agenda = AgendaPiki::take(7)->get();
+        $anggota = AnggotaPiki::take(7)->get();
+        $user = User::take(7)->get();
+        $sponsor = SponsorPiki::take(7)->get();
         return view('/index', [
             "title" => "PIKI - Sangrid",
             "creator" => "San",
+            'header' => $header,
             "berita" => $berita,
+            "program" => $program,
+            "agenda" => $agenda,
+            "anggota" => $anggota,
+            "user" => $user,
+            "sponsor" => $sponsor,
         ]);
     }
 

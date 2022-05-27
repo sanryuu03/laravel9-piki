@@ -42,7 +42,7 @@
                           <tbody>
                               @foreach($program as $item)
                               <tr>
-                                  <td><img width="150px" src="{{ url('/storage/'.$item->picture_path) }}"></td>
+                                  <td><img width="150px" src="{{ url('/storage/assets/program/'.$item->picture_path) }}"></td>
                                   <td>
                                       <form action="{{ route('program.destroy', $item->id) }}" method="POST" class="inline-block">
                                           {!! method_field('post') . csrf_field() !!}

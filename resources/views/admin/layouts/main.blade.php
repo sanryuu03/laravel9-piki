@@ -71,11 +71,7 @@
                         <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
-                        <a class="collapse-item" href="{{  url('/admin/tutorialwallet') }}">Wallet</a>
-                        <a class="collapse-item" href="{{  url('/admin/tutorialmendaftar') }}">Tutorial Mendaftar</a>
-                        <a class="collapse-item" href="{{  url('/admin/testimoni') }}">Testimoni</a>
-                        <a class="collapse-item" href="{{  url('/admin/faqs') }}">FAQ's</a>
-                        <a class="collapse-item" href="{{  url('/admin/kedeid') }}">#KeDe.ID</a>
+                        <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
                     </div>
                 </div>
             </li>

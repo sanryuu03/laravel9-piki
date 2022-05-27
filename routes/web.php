@@ -9,6 +9,7 @@ use App\Http\Controllers\HeaderPikiController;
 use App\Http\Controllers\AnggotaPikiController;
 use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\ProgramPikiController;
+use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\FrontEndPikiController;
 
 /*
@@ -62,6 +63,8 @@ Route::post('/admin/landingpagejenisprogram/hapus/{id}', [ProgramPikiController:
 
 Route::get('/admin/landingpageagenda', [AgendaPikiController::class, 'index'])->name('agenda.index');
 Route::post('/admin/landingpageagenda', [AgendaPikiController::class, 'store'])->name('agenda.post');
+Route::get('/admin/editagenda/{id}', [AgendaPikiController::class, 'edit'])->name('agenda.edit');
+Route::put('/admin/updateagenda/{id}', [AgendaPikiController::class, 'update'])->name('agenda.update');
 Route::post('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
 
 
@@ -69,36 +72,8 @@ Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])
 Route::post('/admin/landingpageanggota', [AnggotaPikiController::class, 'store'])->name('anggota.post');
 Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
 
-Route::get('/admin/formlandingpageaplikasikede', [AplikasiKedeController::class, 'formCreate']);
-
-Route::post('/admin/formlandingpageaplikasikedeheader', [AplikasiKedeHeaderController::class, 'store'])->name('aplikasikedeheader.post');
-Route::post('/admin/formlandingpageaplikasikedepicture', [AplikasiKedePicture670x560Controller::class, 'store'])->name('aplikasikedepicture.post');
-Route::post('/admin/formlandingpageaplikasikede', [AplikasiKedeController::class, 'store'])->name('aplikasikede.post');
-
-Route::get('/admin/tutorialbelanja', [TutorialBelanjaController::class, 'index'] )->name('tutorialbelanja');
-Route::post('/admin/tutorialbelanja', [TutorialBelanjaController::class, 'store'])->name('tutorialbelanja.post');
-Route::post('/admin/tutorialbelanja/hapus/{id}', [TutorialBelanjaController::class, 'destroy'])->name('tutorialbelanja.destroy');
-
-Route::get('/admin/tutorialwallet', [WalletController::class, 'index'])->name('tutorialwallet');
-Route::post('/admin/tutorialwallet', [WalletController::class, 'store'])->name('tutorialwallet.post');
-Route::post('/admin/tutorialwallet/hapus/{id}', [WalletController::class, 'destroy'])->name('tutorialwallet.destroy');
-
-Route::get('/admin/tutorialmendaftar', [TutorialMendaftarController::class, 'index'])->name('tutorialmendaftar');
-Route::post('/admin/tutorialmendaftar', [TutorialMendaftarController::class, 'store'])->name('tutorialmendaftar.post');
-Route::post('/admin/tutorialmendaftar/hapus/{id}', [TutorialMendaftarController::class, 'destroy'])->name('tutorialmendaftar.destroy');
-
-Route::get('/admin/testimoni', [TestimoniController::class, 'index'])->name('testimoni');
-Route::post('/admin/testimoni', [TestimoniController::class, 'store'])->name('testimoni.post');
-Route::post('/admin/testimoni/hapus/{id}', [TestimoniController::class, 'destroy'])->name('testimoni.destroy');
-
-Route::get('/admin/faqs', [FaqsController::class, 'index'])->name('faq');
-Route::post('/admin/faqs/hapus/{id}', [FaqsController::class, 'destroy'])->name('faq.destroy');
-
-Route::get('/admin/formfaqs', [FaqsController::class, 'formCreate']);
-Route::post('/admin/formfaqs', [FaqsController::class, 'store'])->name('faq.post');
-
-Route::get('/admin/kedeid', [KedeIdController::class, 'index'])->name('kedeid');
-Route::post('/admin/kedeid/hapus/{id}', [KedeIdController::class, 'destroy'])->name('kedeid.destroy');
-
-Route::get('/admin/formkedeid', [KedeIdController::class, 'formCreate']);
-Route::post('/admin/formkedeid', [KedeIdController::class, 'store'])->name('kedeid.post');
+Route::get('/admin/communitypartners', [SponsorPikiController::class, 'index'] )->name('communitypartners');
+Route::post('/admin/communitypartners', [SponsorPikiController::class, 'store'])->name('communitypartners.post');
+Route::get('/admin/editcommunitypartners/{id}', [SponsorPikiController::class, 'edit'])->name('communitypartners.edit');
+Route::put('/admin/updatecommunitypartners/{id}', [SponsorPikiController::class, 'update'])->name('communitypartners.update');
+Route::post('/admin/communitypartners/hapus/{id}', [SponsorPikiController::class, 'destroy'])->name('communitypartners.destroy');

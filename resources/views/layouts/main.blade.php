@@ -164,7 +164,7 @@
                 <input class="hidden" type="checkbox" id="menu-toggle" />
                 <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center" id="menu">
                     <nav class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
-                        <a href="" class="block nav-link active font-medium text-white">Home</a>
+                        <a href="{{ route('index') }}" class="block nav-link active font-medium text-white">Home</a>
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tentang
                         </a>
@@ -185,8 +185,8 @@
                                 </div>
                             </li>
                         </ul>
-                        <a href="" class="block nav-link text-white">Program</a>
-                        <a href="" class="block nav-link text-white">Berita</a>
+                        <a href="{{ route('index') }}#program" class="block nav-link text-white">Program</a>
+                        <a href="{{ route('index') }}#berita" class="block nav-link text-white">Berita</a>
                         <a href="" class="block nav-link text-white">Donasi</a>
                     </nav>
                 </div>

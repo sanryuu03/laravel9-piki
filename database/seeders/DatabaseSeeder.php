@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\NewsPiki;
 use App\Models\AgendaPiki;
+use App\Models\SponsorPiki;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -66,6 +67,24 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Dr. Naslindo Sirait',
             'job' => 'Ketua DPD PIKI SUMUT',
+        ]);
+
+        SponsorPiki::create([
+            'konten_sponsor' => 'Komitmen Pertamina terhadap Program Keberlanjutan.
+
+            JAKARTA – Pertamina berkomitmen untuk program keberlanjutan atau sustainability. Hal ini disampaikan oleh Vice President Investor Relation Juferson Mangempis dalam forum Malaysia Technology Expo (MTE) 2022.
+
+            Ia mengatakan ambisi Pertamina adalah menjadi perusahaan Energi Global yang terkemuka dan bereputasi baik serta diakui sebagai Perusahaan Ramah Lingkungan, Perusahaan yang Bertanggung Jawab Sosial, dan Perusahaan Tata Kelola yang Baik.
+
+            “Strategi keberlanjutan kami diterjemahkan ke dalam 10 Fokus Keberlanjutan, masing-masing selaras dengan SDGs dan memiliki target utamanya. Perubahan iklim tidak. Satu prioritas dalam fokus kami. Strategi kami dijalankan melalui inisiatif prioritas, antara lain mengembangkan Net Zero Roadmap, Dekarbonisasi, dan Meningkatkan Kapasitas EBT,” ujarnya.
+
+            Pertamina mengalokasikan CAPEX sebesar 14% untuk Energi Bersih, Baru, dan Terbarukan. Komitmen Pertamina ini sejalan dengan upaya pemanfaatan sumber daya dalam negeri untuk memasok energi dalam negeri menuju pembangunan hijau dan dekarbonisasi.
+
+            “Mendukung Decarbonization Roadmap 2030,  Pertamina telah menetapkan target pengurangan emisi 30% pada tahun 2030, dibandingkan dengan baseline 2010 kami (lingkup 1 + 2). Kami saat ini mengevaluasi target pengurangan emisi yang lebih ambisius, mungkin sekitar 38% vs baseline 2010. Ke depan, kami sedang mengembangkan Strategi Net Zero kami,” tambahnya.
+
+            Pertamina telah mengurangi 27% emisi pada 2010-2020 untuk mendukung Kontribusi Nasional Indonesia. Pertamina juga melibatkan mitra nasional maupun internasional untuk mengeksplorasi kemitraan untuk dekarbonisasi dan mempercepat pertumbuhan EBT.
+
+            “Kita melakukan kolaborasi dan melibatkan mitra nasional dan internasional untuk mempercepat net zero emission. Semoga kerja keras ini bisa berjalan dengan baik,” tutupnya',
         ]);
     }
 }

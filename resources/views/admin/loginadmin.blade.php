@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-primary">Login</button>
-                                            <a class="btn btn-danger" href="{{ route('login') }}">Back</a>
+                                            <a class="btn btn-danger" href="{{ route('register') }}">Back</a>
                                         </div>
                                     </form>
                                     <hr>

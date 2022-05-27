@@ -49,23 +49,21 @@
                       <th width="1%">Nama Agenda</th>
                       <th width="1%">Keterangan Agenda</th>
                       <th width="1%">Created At</th>
+                      <th width="1%">Updated At</th>
                       <th width="1%">OPSI</th>
                   </tr>
               </thead>
               <tbody>
                   @foreach($agenda as $item)
                   <tr>
-                      <td><img width="150px" src="{{ url('/storage/'.$item->picture_path) }}"></td>
+                      <td><img width="150px" src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}"></td>
                       <td>{{ $item->nama_agenda }}</td>
                       <td>{{ $item->keterangan_agenda }}</td>
                       <td>{{ $item->created_at }}</td>
+                      <td>{{ $item->updated_at }}</td>
                       <td>
-                          <form action="{{ route('agenda.destroy', $item->id) }}" method="POST" class="inline-block">
-                              {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger">
-                                  Delete
-                              </button>
-                          </form>
+                          <a href="{{ route('agenda.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                          <a href="{{ route('agenda.destroy', $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                   </tr>
                   @endforeach

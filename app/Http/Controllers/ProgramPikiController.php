@@ -42,7 +42,6 @@ class ProgramPikiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'link_program' => 'required',
             'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
 
         ]);
@@ -53,13 +52,12 @@ class ProgramPikiController extends Controller
         $nama_file = time() . "_" . $file->getClientOriginalName();
 
         // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'storage';
+        $tujuan_upload = 'storage/assets/program/';
 
         // upload file
         $file->move($tujuan_upload, $nama_file);
 
         ProgramPiki::create([
-            "link_program" => $data['link_program'],
             'picture_path' => $nama_file,
         ]);
 

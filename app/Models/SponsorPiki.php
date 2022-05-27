@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class SponsorPiki extends Model
 {
     use HasFactory;
+    protected $fillable = ['picture_path','konten_sponsor'];
 }
