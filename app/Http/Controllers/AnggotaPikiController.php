@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\AnggotaPiki;
 use Illuminate\Http\Request;
 
@@ -15,11 +16,13 @@ class AnggotaPikiController extends Controller
     public function index()
     {
         $anggota = AnggotaPiki::take(7)->get();
+        $user = User::get();
         return view('admin/landingpageanggota', [
             "title" => "PIKI - Sangrid",
             "menu" => "Anggota",
             "creator" => "San",
             "anggota" => $anggota,
+            "user" => $user,
         ]);
 
     }
@@ -51,9 +54,17 @@ class AnggotaPikiController extends Controller
      * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
-    public function show(AnggotaPiki $anggotaPiki)
+    public function show(AnggotaPiki $anggotaPiki, $id)
     {
-        //
+        $anggotaPiki = AnggotaPiki::find($id);
+        $user = User::get();
+        return view('admin/anggotacv', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "CV Anggota",
+            "creator" => "San",
+            "anggotaPiki" => $anggotaPiki,
+            "user" => $user,
+        ]);
     }
 
     /**

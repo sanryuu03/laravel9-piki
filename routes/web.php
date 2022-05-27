@@ -73,6 +73,7 @@ Route::delete('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::clas
 
 
 Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])->name('anggota.index');
+Route::get('/admin/anggota/cv/{id}', [AnggotaPikiController::class, 'show'])->name('anggota.cv');
 Route::post('/admin/landingpageanggota', [AnggotaPikiController::class, 'store'])->name('anggota.post');
 Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
 

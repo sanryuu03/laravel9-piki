@@ -34,7 +34,7 @@
 
 </style>
 <div class="container">
-    <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
+    {{-- <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a> --}}
 </div>
 @endguest
 {{-- @auth --}}

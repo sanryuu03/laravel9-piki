@@ -26,16 +26,18 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach($anggota as $item)
+                  @foreach($user as $item)
                   <tr>
-                      <td><img width="150px" src="{{ url('/storage/'.$item->picture_path) }}"></td>
-                      <td>{{ $item->nama_agenda }}</td>
-                      <td>{{ $item->keterangan_agenda }}</td>
+                      <td>{{ $item->name }}</td>
+                      <td>{{ $item->address }}</td>
+                      <td>{{ $item->phone_number }}</td>
+                      <td>{{ $item->email }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>
-                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="inline-block">
+                      <a href="{{ route('anggota.cv', $item->id) }}" class="btn btn-primary btn-sm">View</a>
+                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger">
+                              <button type="submit" class="btn btn-danger btn-sm">
                                   Delete
                               </button>
                           </form>
