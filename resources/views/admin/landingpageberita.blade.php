@@ -63,9 +63,9 @@
                       <td>{{ $item->updated_at }}</td>
                       <td>
                       <a href="{{ route('berita.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                          <form action="{{ route('berita.destroy', $item->id) }}" method="POST" class="inline-block">
+                          <form action="{{ route('berita.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger">
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   Delete
                               </button>
                           </form>
