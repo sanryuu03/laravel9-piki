@@ -46,7 +46,7 @@
                                   <td>
                                       <form action="{{ route('program.destroy', $item->id) }}" method="POST" class="inline-block">
                                           {!! method_field('post') . csrf_field() !!}
-                                          <button type="submit" class="btn btn-danger">
+                                          <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                               Delete
                                           </button>
                                       </form>

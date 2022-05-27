@@ -11,6 +11,7 @@ use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\HeaderPikiMobileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,9 @@ Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 Route::get('/admin/landingpageheader', [HeaderPikiController::class, 'index'])->name('header');
 Route::post('/admin/upload/proses', [HeaderPikiController::class, 'proses_upload'])->name('upload.header');
 Route::post('/admin/upload/hapus/{id}', [HeaderPikiController::class, 'destroy'])->name('header.destroy');
+
+Route::post('/admin/upload/headermobile', [HeaderPikiMobileController::class, 'store'])->name('upload.header.mobile');
+Route::post('/admin/upload/headermobile/hapus/{id}', [HeaderPikiMobileController::class, 'destroy'])->name('header.mobile.destroy');
 
 Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
 Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');

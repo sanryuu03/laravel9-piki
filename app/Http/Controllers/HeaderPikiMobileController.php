@@ -35,7 +35,27 @@ class HeaderPikiMobileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('picture_path');
+        // dd($request->file('picture_path'));
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+        // return response()->json($nama_file);
+
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'storage/assets/header/mobile/';
+
+        // upload file
+        $file->move($tujuan_upload, $nama_file);
+
+        HeaderPikiMobile::create([
+            'picture_path' => $nama_file,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +98,10 @@ class HeaderPikiMobileController extends Controller
      * @param  \App\Models\HeaderPikiMobile  $headerPikiMobile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HeaderPikiMobile $headerPikiMobile)
+    public function destroy(HeaderPikiMobile $headerPikiMobile, $id)
     {
-        //
+        $headerPikiMobile = HeaderPikiMobile::find($id);
+        $headerPikiMobile->delete();
+        return redirect()->back();
     }
 }

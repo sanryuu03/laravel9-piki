@@ -42,11 +42,11 @@
                           <tbody>
                               @foreach($header as $item)
                               <tr>
-                                  <td><img width="150px" src="{{ url('/storage/'.$item->picture_path) }}"></td>
+                                  <td><img width="150px" src="{{ url('/storage/assets/header/web/'.$item->picture_path) }}"></td>
                                   <td>
                                       <form action="{{ route('header.destroy', $item->id) }}" method="POST" class="inline-block">
                                           {!! method_field('post') . csrf_field() !!}
-                                          <button type="submit" class="btn btn-danger">
+                                          <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                               Delete
                                           </button>
                                       </form>
@@ -90,7 +90,7 @@
 
       <div class="row mb-3">
 
-          <!-- Area Chart -->
+          <!-- Header Mobile -->
           <div class="col">
               <div class="card mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -117,13 +117,13 @@
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach($header as $item)
+                              @foreach($headerMobile as $item)
                               <tr>
-                                  <td><img width="150px" src="{{ url('/storage/'.$item->picture_path) }}"></td>
+                                  <td><img width="150px" src="{{ url('/storage/assets/header/mobile/'.$item->picture_path) }}"></td>
                                   <td>
-                                      <form action="{{ route('header.destroy', $item->id) }}" method="POST" class="inline-block">
+                                      <form action="{{ route('header.mobile.destroy', $item->id) }}" method="POST" class="inline-block">
                                           {!! method_field('post') . csrf_field() !!}
-                                          <button type="submit" class="btn btn-danger">
+                                          <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                               Delete
                                           </button>
                                       </form>
@@ -148,7 +148,7 @@
                       </div>
                       @endif
 
-                      <form action="{{ route('upload.header') }}" method="POST" enctype="multipart/form-data">
+                      <form action="{{ route('upload.header.mobile') }}" method="POST" enctype="multipart/form-data">
                           {{ csrf_field() }}
 
                           <div class="form-group">
@@ -163,7 +163,7 @@
               </div>
           </div>
       </div>
-      <!--Row-->
+      <!--Header Mobile End-->
   </div>
   <!---Container Fluid-->
   @endsection

@@ -28,24 +28,18 @@
                   border-collapse: collapse !important;
               }
 
-              body .header .w-px400-desktop {
-                  background-image: url("images/mobile-device-cover.jpg");
-                  min-height: 3000px !important;
+              body .header .w-px400-mobile {
+                  min-height: 300px !important;
                   max-width: 500px !important;
-                  background-size: 100% 20%;
+                  background-size: cover !important;
                   margin-top: 70px !important;
-                  margin-bottom: -2400px !important;
+                  margin-bottom: -50px !important;
                   background-repeat: no-repeat;
                   border-bottom: none !important;
                   border-style: hidden !important;
                   border: none !important;
                   outline: none !important;
                   border-collapse: collapse !important;
-              }
-
-              body .header .content .button-header {
-                  margin-top: -15px !important;
-                  margin-bottom: -500px !important;
               }
           }
 
@@ -62,7 +56,6 @@
               }
 
               body .header .w-px400-desktop {
-                  background-image: url("images/pikiheader.jpg");
                   min-height: 100vh !important;
                   margin-bottom: 100px !important
               }
@@ -190,7 +183,20 @@
       </style>
       <header>
           <div class="img-hero text-center justify-content-center d-flex">
-              <img id="hero" class="header w-px400-desktop" src="" alt="" onClick="window.open('#','_blank')">
+              @if(count($header) > 0)
+              @foreach($header as $item)
+              <img src="{{ url('/storage/assets/header/web/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400 invisible d-sm-inline" />
+              @endforeach
+              @else
+              <img id="hero" class="header w-px400-desktop d-none d-sm-block d-block" src="images/pikiheader.jpg" alt="" onClick="window.open('#','_blank')">
+              @endif
+              @if (count($headerMobile) > 0)
+              @foreach($headerMobile as $item)
+              <img class="object-cover h-full rounded-lg md:rounded-xl w-px400 lg:hidden" src="{{ url('/storage/assets/header/mobile/'.$item->picture_path) }}" alt="workly" />
+              @endforeach
+              @else
+              <img id="hero" class="header w-px400-mobile lg:hidden" src="images/mobile-device-cover.png" alt="" onClick="window.open('#','_blank')">
+              @endif
           </div>
       </header>
       <div class="container text-center">
@@ -204,12 +210,12 @@
           </div>
       </div>
   </section>
-  <div class="flex -mt-3 my-96 py-20">
-      <div class="flex-initial w-64 ...">
-          <button class="btn btn-primary btn-listing" href="{{ route('register') }}">Daftar</button>
+  <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
+      <div class="flex-initial w-full ml-[100px]">
+          <a href="{{ route('register') }}" class="btn btn-secondary btn-md mx-auto">Daftar</a>
       </div>
-      <div class="flex-initial w-32 ...">
-          <button class="btn btn-warning btn-listing" href="{{ route('admin.login') }}">Login</button>
+      <div class="flex-initial w-full mr-[70px]">
+          <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">Login</a>
       </div>
   </div>
 
@@ -457,21 +463,21 @@
               </div>
           </div>
           <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 mt-12 md:gap-10 md:mt-12 pb-12 isi-program">
-              <div class="row-span-1">
                   @if(count($program) > 0)
                   @foreach($program as $item)
+              <div class="row-span-1">
                   <img src="{{ url('/storage/assets/program/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+              </div>
                   @endforeach
                   @else
                   <img src="images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
-                  @endif
-              </div>
               <div class="row-span-1">
                   <img src="/images/jurnal.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
               <div class="row-span-1">
                   <img src="images/hrd.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
+                  @endif
 
           </div>
           <div id="carouselExampleControls" class="d-lg-none carousel slide w-px400" data-bs-ride="carousel">
@@ -985,7 +991,7 @@
               <div class="container-fluid left-column text-center d-flex">
                   <div class="">
                       <div class="card bg-dark">
-                          <img src="/images/danau.jpg" class="card-img object-fill" alt="...">
+                          <img src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}" class="card-img object-fill" alt="...">
                       </div>
                   </div>
               </div>
