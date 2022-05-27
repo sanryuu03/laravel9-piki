@@ -336,16 +336,15 @@
           }
 
       </style>
-      @foreach($berita as $item)
       <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
           <h2 class="title-text text-center text-blue-800 lg:text-slate-300">Berita Terbaru</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="img-hero justify-content-center d-flex">
                   <div class="card card-berita">
-                      <img src="{{ url('/storage/assets/news/'.$item->picture_path) }}" class="card-img-top" alt="...">
+                      <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="...">
                       <div class="card-body">
-                          <p class="card-text text-muted">{{ $item->keterangan_foto }}.</p>
+                          <p class="card-text text-muted">{{ $berita->keterangan_foto }}.</p>
                       </div>
                   </div>
               </div>
@@ -355,7 +354,7 @@
                   <ul style="padding: 0; margin: 0">
                       <div class="card-berita">
                           <div class="card card-body mt-3 isi-berita">
-                              {{ Str::limit($item->isi_berita, 1100) }}.
+                              {{ Str::limit($berita->isi_berita, 1100) }}.
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
@@ -363,8 +362,6 @@
               </div>
           </div>
       </div>
-      @endforeach
-
   </section>
 
   <!-- Program-->
@@ -467,7 +464,7 @@
                   @foreach($program as $item)
               <div class="row-span-1">
                   <img src="{{ url('/storage/assets/program/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
-              </div>
+            </div>
                   @endforeach
                   @else
                   <img src="images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
