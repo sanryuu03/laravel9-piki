@@ -57,9 +57,9 @@
                       <td>{{ $item->updated_at }}</td>
                       <td>
                           <a href="{{ route('communitypartners.edit', $item->id) }}" class="btn btn-warning inline-block">Edit</a>
-                          <form action="{{ route('communitypartners.destroy', $item->id) }}" method="POST" class="inline-block">
+                          <form action="{{ route('communitypartners.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger">
+                              <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   Delete
                               </button>
                           </form>

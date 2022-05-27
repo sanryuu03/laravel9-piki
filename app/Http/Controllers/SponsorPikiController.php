@@ -103,22 +103,27 @@ class SponsorPikiController extends Controller
      */
     public function update(Request $request, SponsorPiki $sponsorPiki)
     {
-                // menyimpan data file yang diupload ke variabel $file
-                $file = $request->file('picture_path');
-                // dd($request->file('picture_path'));
-                $nama_file = time() . "_" . $file->getClientOriginalName();
+        if ($request->file('picture_path')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path');
+            // dd($request->file('picture_path'));
+            $nama_file = time() . "_" . $file->getClientOriginalName();
 
-                // isi dengan nama folder tempat kemana file diupload
-                $tujuan_upload = 'storage/assets/sponsor/';
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/sponsor/';
 
-                // upload file
-                $file->move($tujuan_upload, $nama_file);
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
 
-                SponsorPiki::where('id', $request->id)
-                    ->update([
-                        'picture_path' => $nama_file,
-                        'konten_sponsor' => $request->konten_sponsor,
-                    ]);
+            SponsorPiki::where('id', $request->id)
+                ->update([
+                    'picture_path' => $nama_file,
+                ]);
+            }
+            SponsorPiki::where('id', $request->id)
+                ->update([
+                    'konten_sponsor' => $request->konten_sponsor,
+                ]);
 
 
                 return redirect()->route('communitypartners');
