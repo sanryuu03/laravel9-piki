@@ -41,7 +41,31 @@ class AgendaPikiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'nama_agenda' => 'required',
+            'keterangan_agenda' => 'required',
+
+        ]);
+
+        // menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('picture_path');
+        // dd($request->file('picture_path'));
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'storage/assets/agenda/';
+
+        // upload file
+        $file->move($tujuan_upload, $nama_file);
+
+        AgendaPiki::create([
+            "nama_agenda" => $data['nama_agenda'],
+            "keterangan_agenda" => $data['keterangan_agenda'],
+            'picture_path' => $nama_file,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

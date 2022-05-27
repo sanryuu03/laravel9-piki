@@ -12,7 +12,6 @@
       </div>
   </div>
 
-
   <!-- Header Start-->
   <div class="card mx-3 my-3">
       <div class="card-body">
@@ -63,7 +62,7 @@
                       <td>{{ $item->updated_at }}</td>
                       <td>
                           <a href="{{ route('agenda.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                          <a href="{{ route('agenda.destroy', $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                          <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</a>
                       </td>
                   </tr>
                   @endforeach
@@ -71,5 +70,28 @@
           </table>
       </div>
   </div>
-  <!---Container Fluid-->
+
+  <!---Form Modal Delete-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  Yakin ingin Hapus Data ?
+
+                  <form method="post" action="{{ route('agenda.destroy', $item->id) }}" class="mt-5 text-right" id="formdelete">
+                      {!! method_field('post') . csrf_field() !!}
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-danger">Hapus</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!---Form Modal End-->
   @endsection
