@@ -57,17 +57,29 @@
                                     <p class="alert alert-danger">{{ $err }}</p>
                                     @endforeach
                                     @endif
-                                    <form action="" method="POST">
-                                        @foreach($user as $item)
+
+                                    <form action="{{ route('anggota.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
-                                                <div class="mb-3">
-                                                    <img width="150px" src="{{ url('/storage/assets/anggota/profile/'.$item->picture_path) }}">
+                                                <div class="">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/anggota/profile/'.$item->photo_profile) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="mb-3">
+                                                <div class="">
                                                     <input disabled class="form-control" type="name" name="name" value="{{ $item->name }}" placeholder="Nama" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mt-n5">
+                                                <div class="mb-3">
+                                                    <input id="upload" disabled type="hidden" name="picture_path" class="form-control" value="{{ asset('/storage/assets/anggota/profile'.$item->photo_profile) }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 mt-n5">
+                                                <div class="mb-3">
+                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
                                                 </div>
                                             </div>
 
@@ -78,22 +90,12 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="mb-3">
                                                     <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 mb-3">
+                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
@@ -143,9 +145,12 @@
                                         </div>
                                         <div class="mb-3">
                                             <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
+                                            @if($action == 'print')
                                             <a class="btn btn-success" href="{{ route('anggota.index') }}">Print</a>
+                                            @else
+                                            <button type="submit" class="btn btn-info">Update</button>
+                                            @endif
                                         </div>
-                                        @endforeach
                                     </form>
                                     <hr>
 
@@ -170,6 +175,22 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
+    <script>
+        let action = "{{ $action }}";
+        let elems = document.querySelectorAll("input");
+        let i = 0;
+        console.log(action);
+        console.log(`jumlah input ${elems.length}`);
+        if (action == 'edit') {
+            for (i = 0; i < elems.length; i++) {
+                elems[i].removeAttribute('disabled');
+                console.log('hapus disabled input');
+            }
+            document.getElementById('upload').type = 'file';
+            console.log('type input dirubah');
+        }
+
+    </script>
 
 </body>
 

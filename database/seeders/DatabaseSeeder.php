@@ -69,6 +69,21 @@ class DatabaseSeeder extends Seeder
             'job' => 'Ketua DPD PIKI SUMUT',
         ]);
 
+        User::create([
+            'name' => 'dummy',
+            'phone_number' => '+6281234567890',
+            'email' => 'dummy@dummy.com',
+            'nik' => 'nik dummy',
+            'address' => 'alamat dummy',
+            'province' => 'sumut dummy',
+            'city' => 'kota dummy',
+            'districts' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+        ]);
+
         SponsorPiki::create([
             'konten_sponsor' => 'Komitmen Pertamina terhadap Program Keberlanjutan.
 
