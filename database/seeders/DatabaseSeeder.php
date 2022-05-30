@@ -83,6 +83,20 @@ class DatabaseSeeder extends Seeder
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
         ]);
+        User::create([
+            'name' => 'dummy2',
+            'phone_number' => '+6281234567890',
+            'email' => 'dummy2@2dummy.com',
+            'nik' => 'nik dummy2',
+            'address' => 'alamat2 dummy',
+            'province' => 'sumut2 dummy',
+            'city' => 'kota dummy2',
+            'districts' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+        ]);
 
         SponsorPiki::create([
             'konten_sponsor' => 'Komitmen Pertamina terhadap Program Keberlanjutan.

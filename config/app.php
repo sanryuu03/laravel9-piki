@@ -212,9 +212,10 @@ return [
     |
     */
 
-    // 'aliases' => Facade::defaultAliases()->merge([
+    'aliases' => Facade::defaultAliases()->merge([
     // 'ExampleClass' => App\Example\ExampleClass::class,
-    // ])->toArray(),
+    'Str'       => Illuminate\Support\Str::class,
+    ])->toArray(),
     'aliases' => [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,

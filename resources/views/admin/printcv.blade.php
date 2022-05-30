@@ -27,6 +27,15 @@
             background-color: rgba(255, 255, 255, 0.4);
         }
 
+        img {
+            min-height: 50mm;
+            min-width: 50mm;
+        }
+
+        .nama {
+            margin-top: 80px;
+        }
+
         .keahlian {
             min-height: 100mm;
         }
@@ -36,20 +45,21 @@
             html,
             body {
                 width: 110mm;
-                height: 397mm;
+                height: 387mm;
                 size: A4;
-                margin: 0;
             }
 
             /* ... the rest of the rules ... */
             .card {
-                width: 210mm;
-                max-height: 370mm;
+                width: 260mm;
+                max-height: 300mm;
+                margin-left: -105px
             }
 
             .keahlian {
-                max-height: 200mm;
-            max-width: 125mm;
+                max-height: 50mm;
+                max-width: 155mm;
+                margin-left: 5px
 
             }
         }
@@ -96,7 +106,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="">
-                                                    <input disabled class="form-control" type="name" name="name" value="{{ $item->name }}" placeholder="Nama" />
+                                                    <input disabled class="form-control nama" type="name" name="name" value="{{ $item->name }}" placeholder="Nama" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4 mt-n5">

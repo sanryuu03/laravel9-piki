@@ -354,7 +354,7 @@
                   <ul style="padding: 0; margin: 0">
                       <div class="card-berita">
                           <div class="card card-body mt-3 isi-berita">
-                              {{ Str::limit($berita->isi_berita, 1100) }}.
+                              {{ $isiBerita }}.
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
@@ -755,10 +755,10 @@
       <div class="content-3-2-anggota container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
           <h2 class="title-text text-center">Anggota</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
-              @foreach($user as $item)
               <!-- Left Column -->
               <div class="img-hero left-column text-center justify-content-center d-flex">
                   <div class="container-fluid">
+              @foreach($user as $item)
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
@@ -773,37 +773,10 @@
                               </div>
                           </div>
                       </div>
-
-                      <div class="card mb-3" style="max-width: 540px;">
-                          <div class="row g-0">
-                              <div class="col-md-4">
-                                  <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
-                              </div>
-                              <div class="col-md-8">
-                                  <div class="card-body">
-                                      <h5 class="card-title">Prof Dr.xxx PhD</h5>
-                                      <p class="card-text">Konsultan Pengembangan SDM.</p>
-                                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card mb-3" style="max-width: 540px;">
-                          <div class="row g-0">
-                              <div class="col-md-4">
-                                  <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
-                              </div>
-                              <div class="col-md-8">
-                                  <div class="card-body">
-                                      <h5 class="card-title">Prof Dr.xxx PhD</h5>
-                                      <p class="card-text">Konsultan Pengembangan SDM.</p>
-                                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+              @endforeach
                   </div>
               </div>
+
 
               <!-- Right Column -->
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
@@ -854,7 +827,6 @@
                       </div>
                   </ul>
               </div>
-              @endforeach
 
           </div>
       </div>
@@ -998,14 +970,14 @@
                   <ul style="padding: 0; margin: 0">
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="card card-body d-lg-none isi-konten-sponsor">
-                              {{ Str::limit($item->konten_sponsor, 250) }}.
+                              {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 250) }}.
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
               <!-- tampilan web -->
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
-                              {{ Str::limit($item->konten_sponsor, 1250) }}.
+                              {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 1250) }}.
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>

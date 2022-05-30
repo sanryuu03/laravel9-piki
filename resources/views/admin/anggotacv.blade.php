@@ -149,11 +149,12 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
                                             @if($action == 'print')
                                             <a class="btn btn-success" href="{{ route('anggota.export', $item->id) }}">Print</a>
-                                            @else
+                                            @elseif($action == 'edit')
                                             <button type="submit" class="btn btn-info">Update</button>
+                                            @else
+                                            <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
                                             @endif
                                         </div>
                                     </form>

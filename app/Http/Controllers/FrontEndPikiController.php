@@ -12,6 +12,7 @@ use App\Models\SponsorPiki;
 use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
+use Illuminate\Support\Str;
 
 class FrontEndPikiController extends Controller
 {
@@ -25,6 +26,7 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->first();
+        $isiBerita = Str::limit($berita->isi_berita, 1100);
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
         $anggota = AnggotaPiki::take(7)->get();
@@ -35,6 +37,7 @@ class FrontEndPikiController extends Controller
             "creator" => "San",
             'header' => $header,
             "berita" => $berita,
+            "isiBerita" => $isiBerita,
             'headerMobile' => $headerMobile,
             "program" => $program,
             "agenda" => $agenda,

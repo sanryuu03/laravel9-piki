@@ -67,7 +67,7 @@ class AnggotaPikiController extends Controller
             "creator" => "San",
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
-            "action" => "print",
+            "action" => "view",
         ]);
     }
 
@@ -165,7 +165,7 @@ class AnggotaPikiController extends Controller
 
         return view('admin/printcv', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Edit CV Anggota",
+            "menu" => "Print CV Anggota",
             "creator" => "San",
             "item" => $user,
             "id" => $id,
