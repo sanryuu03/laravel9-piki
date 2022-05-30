@@ -27,9 +27,32 @@
             background-color: rgba(255, 255, 255, 0.4);
         }
 
-                    .keahlian {
-                height: 100mm;
+        .keahlian {
+            min-height: 100mm;
+        }
+
+        @media print {
+
+            html,
+            body {
+                width: 110mm;
+                height: 397mm;
+                size: A4;
+                margin: 0;
             }
+
+            /* ... the rest of the rules ... */
+            .card {
+                width: 210mm;
+                max-height: 370mm;
+            }
+
+            .keahlian {
+                max-height: 200mm;
+            max-width: 125mm;
+
+            }
+        }
 
     </style>
 </head>
@@ -141,17 +164,18 @@
 
                                             <div class="col-md-4">
                                             </div>
-                                            <div class="col-md-8">
-                                                <div class="mb-3">
-                                                    {{-- <input disabled class="form-control keahlian" type="text" name="description_of_skills" value="{{ $item->description_of_skills }}" placeholder="Deskripsi Keahlian" /> --}}
-                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="25" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
+                                            <div class="col-md-8" min-height="1000px">
+                                                <div class="mb-3" min-height="1000px">
+                                                    {{-- <input min-height="1000px" disabled class="form-control keahlian" type="text" name="description_of_skills" value="{{ $item->description_of_skills }}" placeholder="Deskripsi Keahlian" /> --}}
+                                                                          <div class="card card-body mt-3 isi-berita keahlian">
+                          {{ $item->description_of_skills }}.
+                      </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
                                             @if($action == 'print')
-                                            <a class="btn btn-success" href="{{ route('anggota.export', $item->id) }}">Print</a>
+                                            <a class="btn btn-success" href="" onclick="window.print()">Print</a>
                                             @else
                                             <button type="submit" class="btn btn-info">Update</button>
                                             @endif
@@ -182,7 +206,6 @@
     <script>
         let action = "{{ $action }}";
         let elems = document.querySelectorAll("input");
-        let textarea = document.querySelector(".keahlian");
         let i = 0;
         console.log(action);
         console.log(`jumlah input ${elems.length}`);
@@ -191,7 +214,6 @@
                 elems[i].removeAttribute('disabled');
                 console.log('hapus disabled input');
             }
-            textarea.removeAttribute('disabled');
             document.getElementById('upload').type = 'file';
             console.log('type input dirubah');
         }

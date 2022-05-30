@@ -78,6 +78,9 @@ Route::get('/admin/landingpageanggota/edit/{id}', [AnggotaPikiController::class,
 Route::put('/admin/landingpageanggota/update/{id}', [AnggotaPikiController::class, 'update'])->name('anggota.update');
 Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
 
+// print cv
+Route::get('/admin/landingpageanggota/export/{id}', [AnggotaPikiController::class, 'export'])->name('anggota.export');
+
 Route::get('/admin/communitypartners', [SponsorPikiController::class, 'index'] )->name('communitypartners');
 Route::post('/admin/communitypartners', [SponsorPikiController::class, 'store'])->name('communitypartners.post');
 Route::get('/admin/editcommunitypartners/{id}', [SponsorPikiController::class, 'edit'])->name('communitypartners.edit');

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\AnggotaPiki;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\Snappy\Facades\SnappyPdf; //import Fungsi PDF
+use Spatie\Browsershot\Browsershot;
 
 class AnggotaPikiController extends Controller
 {
@@ -59,14 +61,12 @@ class AnggotaPikiController extends Controller
     {
         $anggotaPiki = AnggotaPiki::find($id);
         $user = User::find($id);
-        $id = $request->value;
         return view('admin/anggotacv', [
             "title" => "PIKI - Sangrid",
             "menu" => "CV Anggota",
             "creator" => "San",
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
-            "id" => $id,
             "action" => "print",
         ]);
     }
@@ -157,5 +157,30 @@ class AnggotaPikiController extends Controller
         }
         $user->delete();
         return redirect()->back()->with('success', 'Data has been deleted !');
+    }
+
+    public function export($id)
+    {
+        $user = User::find($id);
+
+        return view('admin/printcv', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Edit CV Anggota",
+            "creator" => "San",
+            "item" => $user,
+            "id" => $id,
+            "action" => "print",
+        ]);
+
+        // $pdf = SnappyPdf::loadView('admin/printcv', $data);
+
+        //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
+        // $pdf->setOption('enable-local-file-access', true);
+
+        // Stream untuk menampilkan tampilan PDF pada browser
+        // return $pdf->stream('anggotacv.pdf');
+
+        // Jika ingin langsung download (tanpai melihat tampilannya terlebih dahulu) kalian bisa pakai fungsi download
+        // return $pdf->download('anggotacv.pdf');
     }
 }

@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE','UTC'),
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,6 +194,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        /*
+         * wkhtmltopdf...
+         */
+        Barryvdh\Snappy\ServiceProvider::class,
 
     ],
 
@@ -208,8 +212,12 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
+    // 'aliases' => Facade::defaultAliases()->merge([
+    // 'ExampleClass' => App\Example\ExampleClass::class,
+    // ])->toArray(),
+    'aliases' => [
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+    ],
 
 ];
