@@ -52,6 +52,9 @@
                                     @if(session('success'))
                                     <p class="alert alert-success">{{ session('success') }}</p>
                                     @endif
+                                    @if(session('loginError'))
+                                    <p class="alert alert-danger">{{ session('loginError') }}</p>
+                                    @endif
                                     @if($errors->any())
                                     @foreach($errors->all() as $err)
                                     <p class="alert alert-danger">{{ $err }}</p>
@@ -61,7 +64,12 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label>name <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="name" name="name" value="{{ old('name') }}" />
+                                            <input class="form-control" type="name" name="name" @error('name') is-invalid @enderror autofocus value="{{ old('name') }}" />
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label>Password <span class="text-danger">*</span></label>

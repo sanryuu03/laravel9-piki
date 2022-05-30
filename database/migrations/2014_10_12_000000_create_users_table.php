@@ -29,6 +29,7 @@ return new class extends Migration
             $table->text('photo_profile')->nullable();
             $table->text('business_fields')->nullable();
             $table->text('description_of_skills')->nullable();
+            $table->enum('level', ['super-admin', 'admin', 'bendahara', 'organisasi', 'infokom', 'media', 'anggota'])->default('anggota');
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamp('created_at')->useCurrent();

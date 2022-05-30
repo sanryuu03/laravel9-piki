@@ -34,10 +34,10 @@
 
 </style>
 <div class="container">
-    {{-- <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a> --}}
+    <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
 </div>
 @endguest
-{{-- @auth --}}
+@auth
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
@@ -66,12 +66,42 @@
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Landing Page</h6>
+                        @if(auth()->user()->level=='super-admin')
                         <a class="collapse-item" href="{{  url('/admin/landingpageheader') }}">Header</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
                         <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
+                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">keuangan</a>
+                        @endif
+
+                        @if(auth()->user()->level=='admin')
+                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
+                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
+                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
+                        <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
+                        @endif
+
+                        @if(auth()->user()->level=='bendahara')
+                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
+                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">keuangan</a>
+                        @endif
+
+                        @if(auth()->user()->level=='organisasi')
+                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
+                        <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
+                        @endif
+
+                        @if(auth()->user()->level=='infokom')
+                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
+                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
+                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
+                        @endif
+
+                        @if(auth()->user()->level=='media')
+                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
+                        @endif
                     </div>
                 </div>
             </li>
@@ -91,10 +121,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="{{ asset('img/boy.png') }}" style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">{{ $creator }}</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">{{ auth()->user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                {{-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -105,7 +135,7 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -176,7 +206,7 @@
 
         </script>
 
-        {{-- @endauth --}}
+        @endauth
 </body>
 
 </html>

@@ -82,9 +82,12 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'level' => 'media', //baru'
+            'password' => bcrypt('halo123'),
         ]);
+
         User::create([
-            'name' => 'dummy2',
+            'name' => 'san',
             'phone_number' => '+6281234567890',
             'email' => 'dummy2@2dummy.com',
             'nik' => 'nik dummy2',
@@ -96,6 +99,8 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'level' => 'super-admin', //baru'
+            'password' => bcrypt('halo123'),
         ]);
 
         SponsorPiki::create([

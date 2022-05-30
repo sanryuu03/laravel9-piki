@@ -198,6 +198,10 @@ return [
          * wkhtmltopdf...
          */
         Barryvdh\Snappy\ServiceProvider::class,
+        /*
+         * spatie...
+         */
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

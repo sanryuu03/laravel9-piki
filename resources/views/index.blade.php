@@ -762,7 +762,7 @@
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
-                                  <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
+                                  <img src="{{ url('/storage/assets/anggota/profile/'.$item->photo_profile) }}" class="img-fluid rounded-start" alt="...">
                               </div>
                               <div class="col-md-8">
                                   <div class="card-body">
@@ -913,7 +913,7 @@
                   margin-top: 0px !important;
               }
 
-              .content-sponsor .isi-konten-partner {
+              .content-sponsor .isi-konten-sponsor {
                   margin-bottom: -500px !important;
               }
           }
@@ -932,7 +932,7 @@
                   margin-left: -40px !important;
               }
 
-              .content-sponsor .isi-konten-sponsor {
+              .content-sponsor .isi-konten-partner {
                   height: 350px;
                   width: 50%;
                   margin-left: -10px !important;
@@ -971,6 +971,7 @@
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="card card-body d-lg-none isi-konten-sponsor">
                               {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 250) }}.
+                              <br/>
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
@@ -978,6 +979,7 @@
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
                               {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 1250) }}.
+                              <br/>
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>

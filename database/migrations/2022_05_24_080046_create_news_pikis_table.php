@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('news_pikis', function (Blueprint $table) {
             $table->increments('id');
             $table->text('picture_path')->nullable();
+            $table->text('judul_berita');
             $table->text('keterangan_foto');
             $table->text('isi_berita');
             $table->text('link_berita')->nullable();

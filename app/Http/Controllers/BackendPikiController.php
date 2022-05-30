@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\BackendPiki;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,11 @@ class BackendPikiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
+        $user = User::find(3);
         return view('admin/index', [
             "title" => "PIKI - Sangrid CRUD",
             "creator" => "San"
