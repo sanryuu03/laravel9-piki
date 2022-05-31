@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news_pikis', function (Blueprint $table) {
+        Schema::create('category_news', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('category_news_id');
-            $table->text('judul_berita')->nullable();
-            $table->text('slug')->unique();
-            $table->text('picture_path')->nullable();
-            $table->text('keterangan_foto');
-            $table->text('excerpt');
-            $table->text('isi_berita');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_pikis');
+        Schema::dropIfExists('category_news');
     }
 };

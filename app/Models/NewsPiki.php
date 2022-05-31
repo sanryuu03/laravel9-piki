@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CategoryNews;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NewsPiki extends Model
 {
     use HasFactory;
-    protected $fillable = ['picture_path','keterangan_foto','isi_berita','link_berita'];
+    protected $guarded =['id'];
+
+    public function categoryNews()
+    {
+        return $this->belongsTo(CategoryNews::class);
+    }
+
 }

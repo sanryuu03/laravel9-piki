@@ -186,7 +186,7 @@
                             </li>
                         </ul>
                         <a href="{{ route('index') }}#program" class="block nav-link text-white">Program</a>
-                        <a href="{{ route('index') }}#berita" class="block nav-link text-white">Berita</a>
+                        <a href="{{ route('kategori.berita') }}" class="block nav-link text-white">Berita</a>
                         <a href="" class="block nav-link text-white">Donasi</a>
                     </nav>
                 </div>

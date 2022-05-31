@@ -44,6 +44,7 @@ class NewsPikiController extends Controller
         $data = $request->validate([
             'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'keterangan_foto' => 'required',
+            'judul_berita' => 'required',
             'isi_berita' => 'required',
 
         ]);
@@ -61,6 +62,7 @@ class NewsPikiController extends Controller
 
         NewsPiki::create([
             "keterangan_foto" => $data['keterangan_foto'],
+            "judul_berita" => $data['judul_berita'],
             "isi_berita" => $data['isi_berita'],
             'picture_path' => $nama_file,
         ]);
@@ -126,12 +128,13 @@ class NewsPikiController extends Controller
         NewsPiki::where('id', $request->id)
             ->update([
                 'keterangan_foto' => $request->keterangan_foto,
+                'judul_berita' => $request->judul_berita,
                 'isi_berita' => $request->isi_berita,
             ]);
 
 
         // return response()->json($newsPiki);
-        return redirect()->route('berita');
+        return redirect()->route('admin.berita');
     }
 
     /**

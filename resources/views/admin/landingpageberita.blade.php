@@ -21,6 +21,10 @@
                   {{ csrf_field() }}
 
                   <div class="form-group">
+                      <label>Judul Berita</label>
+                      <input type="text" name="judul_berita" class="form-control">
+                  </div>
+                  <div class="form-group">
                       <label>Foto Berita</label>
                       <input type="file" name="picture_path" class="form-control">
                   </div>
@@ -31,6 +35,10 @@
                   <div class="form-group">
                       <label>Isi Berita</label>
                       <input type="text" name="isi_berita" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Kategori Berita</label>
+                      <input type="text" name="category_news_id" class="form-control">
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -45,9 +53,11 @@
           <table class="table table-bordered table-striped">
               <thead>
                   <tr>
+                      <th width="1%">Judul Berita</th>
                       <th width="1%">Foto Berita</th>
                       <th width="1%">Keterangan Foto</th>
                       <th width="1%">Isi Berita</th>
+                      <th width="1%">Kategori Berita</th>
                       <th width="1%">Created At</th>
                       <th width="1%">Updated At</th>
                       <th width="0.1%">OPSI</th>
@@ -56,9 +66,11 @@
               <tbody>
                   @foreach($berita as $item)
                   <tr>
+                      <td>{{ $item->judul_berita }}</td>
                       <td><img width="150px" src="{{ url('/storage/assets/news/'.$item->picture_path) }}"></td>
-                      <td>{{ $item->keterangan_foto }}</td>
-                      <td>{{ $item->isi_berita }}</td>
+                      <td>{!! $item->keterangan_foto !!}</td>
+                      <td>{!! $item->isi_berita !!}</td>
+                      <td>{{ $item->category_news_id }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->updated_at }}</td>
                       <td>

@@ -344,7 +344,7 @@
                   <div class="card card-berita">
                       <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="...">
                       <div class="card-body">
-                          <p class="card-text text-muted">{{ $berita->keterangan_foto }}.</p>
+                          <p class="card-text text-muted">{!! $berita->keterangan_foto !!}.</p>
                       </div>
                   </div>
               </div>
@@ -354,8 +354,11 @@
                   <ul style="padding: 0; margin: 0">
                       <div class="card-berita">
                           <div class="card card-body mt-3 isi-berita">
-                              {{ $isiBerita }}.
-                              <a href="#" class="read-more text-sky-400">Read More...</a>
+                          <h5 class="card-title text-primary">
+                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400">{{ $berita->judul_berita }}</a>
+                          </h5>
+                              {{ $berita->excerpt }}.......
+                              <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
                   </ul>
@@ -758,7 +761,7 @@
               <!-- Left Column -->
               <div class="img-hero left-column text-center justify-content-center d-flex">
                   <div class="container-fluid">
-              @foreach($user as $item)
+              @foreach($user->skip(6) as $item)
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
@@ -980,7 +983,7 @@
                           <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
                               {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 1250) }}.
                               <br/>
-                              <a href="#" class="read-more text-sky-400">Read More...</a>
+                              <a href="" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
                   </ul>

@@ -17,7 +17,7 @@
           <div class="col">
               <div class="card mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">gambar header</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">gambar header Web</h6>
                       <div class="dropdown no-arrow">
                           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -61,7 +61,7 @@
           <div class="col-xl-8 col-lg-7 mb-4">
               <div class="card">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Upload Gambar Header</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">Upload Gambar Header Web</h6>
 
                       @if(count($errors) > 0)
                       <div class="alert alert-danger">

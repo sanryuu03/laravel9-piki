@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CekLevel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\NewsPikiController;
@@ -10,9 +11,9 @@ use App\Http\Controllers\AnggotaPikiController;
 use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
+use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
 use App\Http\Controllers\HeaderPikiMobileController;
-use App\Http\Middleware\CekLevel;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/foo', function () {
 
 
 Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
-Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,media')->name('index.admin');
+Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');
 
 Route::get('/daftar', [RegisterController::class, 'index'])->middleware('guest')->name('register');
 Route::post('/daftar', [RegisterController::class, 'index'])->name('register.action');
@@ -49,6 +50,11 @@ Route::post('/daftar', [RegisterController::class, 'index'])->name('register.act
 Route::get('/login', [RegisterController::class, 'login'])->middleware('guest')->name('admin.login');
 Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
+// halaman single berita
+Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->name('read.more.berita');
+
+Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
+Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
 Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::get('/admin/landingpageheader', [HeaderPikiController::class, 'index'])->name('header');
@@ -91,7 +97,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::post('/admin/communitypartners/hapus/{id}', [SponsorPikiController::class, 'destroy'])->name('communitypartners.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:admin']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');
@@ -115,7 +121,7 @@ Route::group(['middleware' => ['CekLevel:admin']], function () {
     Route::post('/admin/communitypartners/hapus/{id}', [SponsorPikiController::class, 'destroy'])->name('communitypartners.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:bendahara']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
     Route::get('/admin/landingpageagenda', [AgendaPikiController::class, 'index'])->name('agenda.index');
     Route::post('/admin/landingpageagenda', [AgendaPikiController::class, 'store'])->name('agenda.post');
     Route::get('/admin/editagenda/{id}', [AgendaPikiController::class, 'edit'])->name('agenda.edit');
@@ -125,7 +131,7 @@ Route::group(['middleware' => ['CekLevel:bendahara']], function () {
     // keuangan
 });
 
-Route::group(['middleware' => ['CekLevel:organisasi']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () {
     Route::get('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'index'])->name('program');
     Route::post('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'store'])->name('upload.program');
     Route::post('/admin/landingpagejenisprogram/hapus/{id}', [ProgramPikiController::class, 'destroy'])->name('program.destroy');
@@ -137,7 +143,7 @@ Route::group(['middleware' => ['CekLevel:organisasi']], function () {
     Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:infokom']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,infokom']], function () {
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');
@@ -155,7 +161,7 @@ Route::group(['middleware' => ['CekLevel:infokom']], function () {
     Route::delete('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:media']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,media']], function () {
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');

@@ -73,7 +73,7 @@
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
                         <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
-                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">keuangan</a>
+                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">Keuangan</a>
                         @endif
 
                         @if(auth()->user()->level=='admin')
@@ -85,7 +85,7 @@
 
                         @if(auth()->user()->level=='bendahara')
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">keuangan</a>
+                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">Keuangan</a>
                         @endif
 
                         @if(auth()->user()->level=='organisasi')
