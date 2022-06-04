@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -76,38 +77,29 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Provinsi <span class="text-danger">*</span></label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="provinsi" id="provinsi">
                                             <option selected>Pilih Provinsi Anda</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($provinces as $provinsi)
+                                            <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Kabupaten / Kota <span class="text-danger">*</span></label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="kota" id="kota">
                                             <option selected>Pilih Kabupaten / Kota Anda</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Kecamatan <span class="text-danger">*</span></label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="kecamatan" id="kecamatan">
                                             <option selected>Pilih Kecamatan Anda</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Desa / Kelurahan <span class="text-danger">*</span></label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="desa" id="desa">
                                             <option selected>Pilih Desa / Kelurahan Anda</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -163,6 +155,76 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
+    <script>
+        $(function() {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+
+            $(function() {
+                $('#provinsi').on('change', function() {
+                    let id_provinsi = $('#provinsi').val();
+                    console.log(`ini provinsi id ${id_provinsi}`);
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route("cities") }}',
+                        data: {id_provinsi: id_provinsi},
+                        cache:false,
+                        success: function(msg){
+                            $('#kota').html(msg);
+                            $('#kecamatan').html('<option>==Pilih Kabupaten==</option>');
+                            $('#desa').html('<option>==Pilih Desa==</option>');
+                        },
+                        error: function(data){
+                            console.log(`errornya ${data}`);
+                        },
+                    });
+                });
+            });
+
+            $(function() {
+                $('#kota').on('change', function() {
+                    let id_kota = $('#kota').val();
+                    console.log(`ini kota id ${id_kota}`);
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route("districts") }}',
+                        data: {id_kota},
+                        cache:false,
+                        success: function(msg){
+                            $('#kecamatan').html(msg);
+                            $('#desa').html('<option>==Pilih Desa==</option>');
+                        },
+                        error: function(data){
+                            console.log(`errornya ${data}`);
+                        },
+                    });
+                });
+            });
+
+            $(function() {
+                $('#kecamatan').on('change', function() {
+                    let id_kecamatan = $('#kecamatan').val();
+                    console.log(`ini kecamatan id ${id_kecamatan}`);
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route("villages") }}',
+                        data: {id_kecamatan},
+                        cache:false,
+                        success: function(msg){
+                            $('#desa').html(msg);
+                        },
+                        error: function(data){
+                            console.log(`errornya ${data}`);
+                        },
+                    });
+                });
+            });
+
+        });
+    </script>
 
 </body>
 

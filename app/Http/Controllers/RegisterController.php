@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Province;
 
 class RegisterController extends Controller
 {
@@ -15,7 +16,8 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register/register');
+        $provinces = Province::all();
+        return view('register/register', compact('provinces'));
     }
 
     public function login() {

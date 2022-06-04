@@ -8,6 +8,10 @@ use App\Models\AgendaPiki;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use Illuminate\Database\Seeder;
+use Laravolt\Indonesia\Seeds\CitiesSeeder;
+use Laravolt\Indonesia\Seeds\VillagesSeeder;
+use Laravolt\Indonesia\Seeds\DistrictsSeeder;
+use Laravolt\Indonesia\Seeds\ProvincesSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -41,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'Naslindo-Sirait-Dilantik-Jadi-Ketua-PIKI-Sumut',
             'category_news_id' => 3,
             'keterangan_foto' => '<p>PIKI: Ketum DPP PIKI, Dr Badikenita Putri Sitepu MSi (tengah) diapit Ketua SU Dr Naslindo Sirait MM, Sekretaris Kamser M Sitanggang SAk dan Bendahara Dr Bertha M Silalahi MSi (di barisan depan) di HKBP Tanjung Sari Medan, Sabtu (19/3) dan unsur DPP Sekjen Pdt Audy MR Wuisang MTh, Waketum Iwan Butar-butar SE MSi serta Drs Anton Panggabean MM (dua dari kiri). Di barisan belakang cendikiawan Kristen Dr Chandra Situmeang MEAk, Drs Bantors Sihombing MSi, Dra Nurhawati Simamora MSi, Pdt Dr Rosiany Hutagalung SP MTh dan Dra Odorlin Sihite MPdK.</p>',
-            'excerpt'    => '<p>Ketua Umum Dewan Pimpinan Pusat (DPP) Persatuan Intelegensia Kristen (PIKI), Dr Badikenita Putri Sitepu MSi melantik Dewan Pimpinan Daerah (DPD) PIKI Sumatera Utara (SU) periode 2021-2026</p>',
+            'excerpt'    => 'Ketua Umum Dewan Pimpinan Pusat (DPP) Persatuan Intelegensia Kristen (PIKI), Dr Badikenita Putri Sitepu MSi melantik Dewan Pimpinan Daerah (DPD) PIKI Sumatera Utara (SU) periode 2021-2026',
             'isi_berita' => '<p>Ketua Umum Dewan Pimpinan Pusat (DPP) Persatuan Intelegensia Kristen (PIKI), Dr Badikenita Putri Sitepu MSi melantik Dewan Pimpinan Daerah (DPD) PIKI Sumatera Utara (SU) periode 2021-2026 yang dikomandoi Dr Naslindo Sirait MM di HKBP Tanjung Sari Medan, Jumat (18/3).</p>
             <p>
             Mendampingi mantan Dewan Pakar DPP PIKI itu sebagai ketua, Sekretaris Kamser M Sitanggang SAk dan Bendahara Dr Bertha M Silalahi MSi. Kepengurusan diisi sejumlah nama populer di antaranya Drs Anton Panggabean MM, cendikiawan Kristen Dr Chandra Situmeang MEAk, Drs Bantors Sihombing MSi, Dra Nurhawati Simamora MSi, Pdt Dr Rosiany Hutagalung SP MTh dan Dra Odorlin Sihite MPdK.
@@ -60,32 +64,32 @@ class DatabaseSeeder extends Seeder
 
         CategoryNews::create([
             'name' => 'Daerah',
-            'slug' => 'daerah'
+            'slug' => 'region'
         ]);
 
         CategoryNews::create([
             'name' => 'Ekonomi',
-            'slug' => 'ekonomi'
+            'slug' => 'economy'
         ]);
 
         CategoryNews::create([
             'name' => 'Kampus',
-            'slug' => 'kampus'
+            'slug' => 'campus'
         ]);
 
         CategoryNews::create([
             'name' => 'Nasional',
-            'slug' => 'nasional'
+            'slug' => 'indonesia flag'
         ]);
 
         CategoryNews::create([
             'name' => 'Politik',
-            'slug' => 'politik'
+            'slug' => 'bendera indonesia'
         ]);
 
         CategoryNews::create([
-            'name' => 'Tekonologi',
-            'slug' => 'tekonologi'
+            'name' => 'Teknologi',
+            'slug' => 'computer'
         ]);
 
         AgendaPiki::create([
@@ -216,6 +220,13 @@ class DatabaseSeeder extends Seeder
             Pertamina telah mengurangi 27% emisi pada 2010-2020 untuk mendukung Kontribusi Nasional Indonesia. Pertamina juga melibatkan mitra nasional maupun internasional untuk mengeksplorasi kemitraan untuk dekarbonisasi dan mempercepat pertumbuhan EBT.
 
             “Kita melakukan kolaborasi dan melibatkan mitra nasional dan internasional untuk mempercepat net zero emission. Semoga kerja keras ini bisa berjalan dengan baik,” tutupnya',
+        ]);
+
+        $this->call([
+            ProvincesSeeder::class,
+            CitiesSeeder::class,
+            DistrictsSeeder::class,
+            VillagesSeeder::class,
         ]);
     }
 }

@@ -2,6 +2,12 @@
 
   @section('menuContent')
   <!-- Container Fluid-->
+  <style>
+      trix-toolbar [data-trix-button-group="file-tools"] {
+          display: none;
+      }
+
+  </style>
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
@@ -35,7 +41,8 @@
                   </div>
                   <div class="form-group">
                       <label>Keterangan Agenda</label>
-                      <input type="text" name="keterangan_agenda" class="form-control" value="{{ $item->keterangan_agenda }}">
+                      <input id="body" type="hidden" name="keterangan_agenda" value={{ old('keterangan_agenda', $item->keterangan_agenda) }}>
+                      <trix-editor input="body"></trix-editor>
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Update</button>

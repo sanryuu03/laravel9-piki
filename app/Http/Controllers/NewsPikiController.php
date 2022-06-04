@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsPiki;
+use Illuminate\Support\Str;
+use App\Models\CategoryNews;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class NewsPikiController extends Controller
 {
@@ -15,11 +18,13 @@ class NewsPikiController extends Controller
     public function index()
     {
         $berita = NewsPiki::take(7)->get();
+        $categoryNews = CategoryNews::all();
         return view('admin/landingpageberita', [
             "title" => "PIKI - Sangrid",
             "menu" => "Berita",
             "creator" => "San",
             "berita" => $berita,
+            "categoryNews" => $categoryNews,
         ]);
     }
 
@@ -42,12 +47,17 @@ class NewsPikiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'judul_berita' => 'required',
+            'slug' => 'required',
+            'category_news_id' => 'required',
             'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'keterangan_foto' => 'required',
-            'judul_berita' => 'required',
             'isi_berita' => 'required',
 
         ]);
+
+        // ambil excerpt sekaligus hapus html menggunakan strip tags
+        $data['excerpt'] = Str::limit(strip_tags($request->isi_berita), 200);
 
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('picture_path');
@@ -60,12 +70,7 @@ class NewsPikiController extends Controller
         // upload file
         $file->move($tujuan_upload, $nama_file);
 
-        NewsPiki::create([
-            "keterangan_foto" => $data['keterangan_foto'],
-            "judul_berita" => $data['judul_berita'],
-            "isi_berita" => $data['isi_berita'],
-            'picture_path' => $nama_file,
-        ]);
+        NewsPiki::create($data);
 
         return redirect()->back();
     }
@@ -91,11 +96,13 @@ class NewsPikiController extends Controller
     {
         // $newsPiki = NewsPiki::where('id',$id)->get();
         $newsPiki = NewsPiki::find($id);
+        $categoryNews = CategoryNews::all();
         return view('admin/editberita', [
             "title" => "PIKI - Sangrid",
             "menu" => "Berita",
             "creator" => "San",
             "item" => $newsPiki,
+            "categoryNews" => $categoryNews,
         ]);
     }
 
@@ -108,6 +115,23 @@ class NewsPikiController extends Controller
      */
     public function update(Request $request, NewsPiki $newsPiki)
     {
+        // return $request;
+        $rules = [
+            'judul_berita' => 'required',
+            'category_news_id' => 'required',
+            'keterangan_foto' => 'required',
+            'isi_berita' => 'required',
+
+        ];
+
+        if($request->slug != $newsPiki->slug)
+        {
+            $rules['slug'] = 'required';
+        }
+
+        $data = $request->validate($rules);
+        $data['excerpt'] = Str::limit(strip_tags($request->isi_berita), 200);
+
         if ($request->file('picture_path')) {
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('picture_path');
@@ -125,16 +149,13 @@ class NewsPikiController extends Controller
                     'picture_path' => $nama_file,
                 ]);
         }
-        NewsPiki::where('id', $request->id)
-            ->update([
-                'keterangan_foto' => $request->keterangan_foto,
-                'judul_berita' => $request->judul_berita,
-                'isi_berita' => $request->isi_berita,
-            ]);
+
+        NewsPiki::where('id', $newsPiki->id)
+            ->update($data);
 
 
         // return response()->json($newsPiki);
-        return redirect()->route('admin.berita');
+        return redirect()->route('berita');
     }
 
     /**
@@ -148,5 +169,11 @@ class NewsPikiController extends Controller
         $newsPiki = NewsPiki::find($id);
         $newsPiki->delete();
         return redirect()->back();
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(NewsPiki::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

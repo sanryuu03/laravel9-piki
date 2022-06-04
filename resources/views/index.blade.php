@@ -377,7 +377,7 @@
           }
 
           .text-40 {
-              font-size: 40px;
+              font-size: 600 2.25rem/2.5rem;
           }
 
           .text-28 {
@@ -394,9 +394,14 @@
 
           @media only screen and (max-width: 480px) {
               h1 {
-                  margin-top: -100px !important;
+                  margin-top: -95px !important;
                   margin-bottom: -200px !important;
-                  padding-bottom: 270px !important;
+                  padding-bottom: 260px !important;
+                  text-align: center;
+                  font: 200 2.25rem/2.5rem Poppins, sans-serif;
+                  background-color: #f7f7f7;
+                  margin-left: -350px !important;
+                  min-width: 1024px !important;
               }
 
               .isi-program {
@@ -572,18 +577,24 @@
 
           @media (max-width: 480px) {
               .title-text-h1 {
-                  margin-top: -40px !important;
+                  margin-top: -50px !important;
                   margin-bottom: -230px !important;
                   text-align: center !important;
+                  font: 600 2.25rem/2.5rem Poppins, sans-serif;
+                  margin-left: -300px !important;
+                  min-width: 1024px !important;
               }
 
               .content-3-2-agenda .title-text {
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
+                                    background-color: #f7f7f7;
+                  margin-left: 0px !important;
+                  min-width: 1024px !important;
               }
 
               .content-3-2-agenda .w-px400 {
                   min-width: 412px !important;
-                  margin-top: -120px !important;
+                  margin-top: -100px !important;
                   margin-left: -43px !important;
               }
 
@@ -628,7 +639,7 @@
       <?php $no = 0;?>
       @foreach($agenda as $item)
       <?php $no++ ;?>
-      <h1 class="title-text-h1 text-5xl font-bold">Agenda</h1>
+      <h1 class="title-text-h1 text-5xl">Agenda</h1>
       <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
@@ -638,7 +649,7 @@
                           <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="card-img object-fill" alt="...">
                       </div>
                       <div class="card card-body mt-3 isi-berita">
-                          {{ $item->keterangan_agenda }}.
+                          {!! $item->keterangan_agenda !!}.
                       </div>
                   </div>
               </div>
@@ -709,7 +720,9 @@
           @media only screen and (max-width: 480px) {
               .content-3-2-anggota .title-text {
                   margin-top: -70px !important;
-
+background-color: #f7f7f7;
+    margin-left: -350px !important;
+                  min-width: 1024px !important;
               }
 
               .content-3-2-anggota .img-fluid {
@@ -901,7 +914,11 @@
 
           @media only screen and (max-width: 480px) {
               .content-sponsor .title-text {
-                  margin-top: -150px !important;
+                  margin-top: -175px !important;
+              font: 600 1.875rem/2.25rem Poppins, sans-serif;
+background-color: #f7f7f7;
+margin-left: -350px !important;
+                  min-width: 1024px !important;
               }
 
               .content-sponsor .left-column {
@@ -1074,7 +1091,7 @@
 
           @media only screen and (max-width: 480px) {
               .faq-card {
-                  margin-top: -3000px !important;
+                  margin-top: 200px !important;
               }
 
               /* Style the faq-page panel. Note: hidden by default */
@@ -1095,7 +1112,7 @@
       </style>
       <div id="accordion">
 
-          <div class="card">
+          <div class="card faq-card">
               <div class="card-header text-center">
                   {{-- <a class="card-link" data-bs-toggle="collapse" href="#collapseOne">
                         FAQ's

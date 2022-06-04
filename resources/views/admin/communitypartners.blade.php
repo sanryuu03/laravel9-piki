@@ -2,6 +2,11 @@
 
   @section('menuContent')
   <!-- Container Fluid-->
+  <style>
+      trix-toolbar [data-trix-button-group="file-tools"] {
+          display: none;
+      }
+  </style>
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
@@ -26,7 +31,9 @@
                   </div>
                   <div class="form-group">
                       <label>Keterangan Community Partners</label>
-                      <input type="text" name="konten_sponsor" class="form-control">
+                      <input id="body" type="hidden" name="konten_sponsor" value={{ old('konten_sponsor') }}>
+                      <trix-editor input="body"></trix-editor>
+
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Save</button>

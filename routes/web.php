@@ -14,6 +14,7 @@ use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
 use App\Http\Controllers\HeaderPikiMobileController;
+use App\Http\Controllers\DependantDropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,13 @@ Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
+Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
+// halaman wilayah
+Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
+Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
+Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
+
 Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::get('/admin/landingpageheader', [HeaderPikiController::class, 'index'])->name('header');
     Route::post('/admin/upload/proses', [HeaderPikiController::class, 'proses_upload'])->name('upload.header');
@@ -63,6 +71,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 
     Route::post('/admin/upload/headermobile', [HeaderPikiMobileController::class, 'store'])->name('upload.header.mobile');
     Route::post('/admin/upload/headermobile/hapus/{id}', [HeaderPikiMobileController::class, 'destroy'])->name('header.mobile.destroy');
+    // slug berita
+    Route::get('/admin/landingpageberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
 
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
@@ -98,6 +108,9 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 });
 
 Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
+    // slug berita
+    Route::get('/admin/landingpageberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
+
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');
@@ -144,6 +157,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
 });
 
 Route::group(['middleware' => ['CekLevel:super-admin,infokom']], function () {
+    // slug berita
+    Route::get('/admin/landingpageberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
+
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');
@@ -162,6 +178,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,infokom']], function () {
 });
 
 Route::group(['middleware' => ['CekLevel:super-admin,media']], function () {
+    // slug berita
+    Route::get('/admin/landingpageberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
+
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');

@@ -15,6 +15,10 @@
     <!-- DataTable -->
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css" rel="stylesheet">
 
+    {{-- trix editor --}}
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
+
 
 </head>
 @guest
@@ -31,7 +35,6 @@
         text-align: center;
         font-size: 18px;
     }
-
 </style>
 <div class="container">
     <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
@@ -204,6 +207,23 @@
                 $('#table_id').DataTable();
             });
 
+        </script>
+        <!-- fecth api slug-->
+        <script>
+            const title = document.querySelector('#title');
+            const slug = document.querySelector('#slug');
+            title.addEventListener('change', function() {
+                fecth('admin/landingpageberita/checkSlug?title=' + title.value)
+                    .then(response => response.json())
+                    .then(data => slug.value = data.slug)
+            });
+
+        </script>
+        <script>
+        {{-- hapus fungsi trix upload file --}}
+        document.addEventListener("trix-file-accept", function(e) => {
+        e.preventDefault();
+        })
         </script>
 
         @endauth

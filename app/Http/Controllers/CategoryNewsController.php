@@ -14,9 +14,9 @@ class CategoryNewsController extends Controller
      */
     public function index()
     {
-        $categoryNews = CategoryNews::get();
+        $categoryNews = CategoryNews::all();
         return view('categorynews', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - Kategori Berita",
             "menu" => "Kategori Berita",
             "creator" => "San",
             "categoryNews" => $categoryNews,

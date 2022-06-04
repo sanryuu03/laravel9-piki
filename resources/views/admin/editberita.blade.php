@@ -2,6 +2,12 @@
 
   @section('menuContent')
   <!-- Container Fluid-->
+  <style>
+      trix-toolbar [data-trix-button-group="file-tools"] {
+          display: none;
+      }
+
+  </style>
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
@@ -23,20 +29,42 @@
                   {{ method_field('PUT') }}
 
                   <div class="form-group">
+                      <label>Judul Berita</label>
+                      <input type="text" name="judul_berita" class="form-control" value="{{ $item->judul_berita }}">
+                  </div>
+                  <div class="form-group">
+                      <label>Slug</label>
+                      <input id="slug" type="text" name="slug" class="form-control" value={{ old('slug',$item->judul_berita) }}>
+                  </div>
+                  <div class="form-group">
                       <label>Foto Berita</label>
                       <input type="file" name="picture_path" class="form-control" value="{{ url('/storage/assets/news/'.$item->picture_path) }}">
                   </div>
                   <div class="form-group">
                       <label>Keterangan Poto</label>
-                      <input type="text" name="keterangan_foto" class="form-control" value="{{ $item->keterangan_foto }}">
+                      <input id="keterangan" type="hidden" name="keterangan_foto" value="{{ old('keterangan_foto',$item->keterangan_foto) }}">
+                      <trix-editor input="keterangan"></trix-editor>
                   </div>
                   <div class="form-group">
                       <label>Isi Berita</label>
-                      <input type="text" name="isi_berita" class="form-control" value="{{ $item->isi_berita }}">
+                      <input id="body" type="hidden" name="isi_berita" value="{{ old('isi_berita', $item->isi_berita) }}">
+                      <trix-editor input="body"></trix-editor>
+                  </div>
+                  <div class="mb-3">
+                      <label>Kategori Berita</label>
+                      <select class="custom-select" name="category_news_id">
+                          @foreach($categoryNews as $kategori)
+                          @if(old('category_news_id', $item->category_news_id) == $kategori->id)
+                          <option value="{{ $kategori->id }}" selected>{{ $kategori->name }}</option>
+                          @else
+                          <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
+                          @endif
+                          @endforeach
+                      </select>
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Update</button>
-                  <button href="{{ route('berita') }}" type="submit" class="btn btn-danger mt-3 block">Back</button>
+                  <a class="btn btn-danger mt-3" href="{{ route('berita') }}">Back</a>
               </form>
           </div>
       </div>

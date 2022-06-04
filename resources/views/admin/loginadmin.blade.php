@@ -66,9 +66,9 @@
                                             <label>name <span class="text-danger">*</span></label>
                                             <input class="form-control" type="name" name="name" @error('name') is-invalid @enderror autofocus value="{{ old('name') }}" />
                                             @error('name')
-                                                <div class="invalid-feedback">
+                                            <div class="invalid-feedback">
                                                 {{ $message }}
-                                                </div>
+                                            </div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
@@ -81,6 +81,7 @@
                                         </div>
                                     </form>
                                     <hr>
+                                    <a class="" href="{{ route('register') }}">Belum Punya Akun ?</a>
 
                                 </div>
                             </div>

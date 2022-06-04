@@ -203,6 +203,8 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
 
+        Laravolt\Indonesia\ServiceProvider::class,
+        AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
     ],
 
     /*
