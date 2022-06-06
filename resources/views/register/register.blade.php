@@ -135,6 +135,7 @@
                                         <button class="btn btn-primary">Register</button>
                                         <a class="btn btn-danger" href="{{  url('/admin') }}">Back</a>
                                     </div>
+                                        Sudah punya akun ? <a class="" href="{{  url('/admin') }}">Login !</a>
                                 </form>
                             </div>
                         </div>

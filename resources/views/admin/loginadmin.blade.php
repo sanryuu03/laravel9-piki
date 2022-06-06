@@ -81,7 +81,7 @@
                                         </div>
                                     </form>
                                     <hr>
-                                    <a class="" href="{{ route('register') }}">Belum Punya Akun ?</a>
+                                    Belum Punya Akun ? <a class="" href="{{ route('register') }}">Daftar !</a>
 
                                 </div>
                             </div>
