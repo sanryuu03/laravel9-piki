@@ -17,7 +17,7 @@ class NewsPikiController extends Controller
      */
     public function index()
     {
-        $berita = NewsPiki::take(7)->get();
+        $berita = NewsPiki::all();
         $categoryNews = CategoryNews::all();
         return view('admin/landingpageberita', [
             "title" => "PIKI - Sangrid",
@@ -46,9 +46,10 @@ class NewsPikiController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $data = $request->validate([
             'judul_berita' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:news_pikis',
             'category_news_id' => 'required',
             'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'keterangan_foto' => 'required',
@@ -72,7 +73,7 @@ class NewsPikiController extends Controller
 
         NewsPiki::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berita baru telah ditambahkan');
     }
 
     /**
@@ -96,6 +97,8 @@ class NewsPikiController extends Controller
     {
         // $newsPiki = NewsPiki::where('id',$id)->get();
         $newsPiki = NewsPiki::find($id);
+        // return $newsPiki;
+        // return $newsPiki->id;
         $categoryNews = CategoryNews::all();
         return view('admin/editberita', [
             "title" => "PIKI - Sangrid",
@@ -115,7 +118,7 @@ class NewsPikiController extends Controller
      */
     public function update(Request $request, NewsPiki $newsPiki)
     {
-        // return $request;
+        // return $request->slug;
         $rules = [
             'judul_berita' => 'required',
             'category_news_id' => 'required',
@@ -124,14 +127,14 @@ class NewsPikiController extends Controller
 
         ];
 
-        if($request->slug != $newsPiki->slug)
+        if($request->slug != $request->slug)
         {
-            $rules['slug'] = 'required';
+            $rules['slug'] = 'required|unique:news_pikis';
         }
 
+        // return $request->id;
         $data = $request->validate($rules);
         $data['excerpt'] = Str::limit(strip_tags($request->isi_berita), 200);
-
         if ($request->file('picture_path')) {
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('picture_path');
@@ -144,18 +147,17 @@ class NewsPikiController extends Controller
             // upload file
             $file->move($tujuan_upload, $nama_file);
 
-            NewsPiki::where('id', $request->id)
-                ->update([
-                    'picture_path' => $nama_file,
-                ]);
+            NewsPiki::where('id', $request->id)->update([
+                'picture_path' => $nama_file,
+            ]);
         }
 
-        NewsPiki::where('id', $newsPiki->id)
-            ->update($data);
+        NewsPiki::where('id', $request->id)
+                ->update($data);
 
 
         // return response()->json($newsPiki);
-        return redirect()->route('berita');
+        return redirect()->route('berita')->with('success', 'Berita berhasil di edit');
     }
 
     /**
@@ -168,7 +170,7 @@ class NewsPikiController extends Controller
     {
         $newsPiki = NewsPiki::find($id);
         $newsPiki->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berita berhasil di hapus');
     }
 
     public function checkSlug(Request $request)

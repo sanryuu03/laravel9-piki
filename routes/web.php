@@ -75,7 +75,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 
 Route::group(['middleware' => ['CekLevel:super-admin,admin,infokom,media']], function () {
     // slug berita
-    Route::get('/admin/landingpageberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
+    Route::get('/admin/checkSlug', [NewsPikiController::class, 'checkSlug']);
+    Route::get('/admin/editberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
 
     Route::get('/admin/landingpageberita', [NewsPikiController::class, 'index'])->name('berita');
     Route::post('/admin/landingpageberita', [NewsPikiController::class, 'store'])->name('berita.post');

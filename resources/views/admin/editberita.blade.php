@@ -18,7 +18,6 @@
       </div>
   </div>
 
-
   <!-- Header Start-->
   <div class="card mx-3 my-3">
       <div class="card-body">
@@ -26,15 +25,20 @@
 
               <form method="post" action="{{ route('berita.update', $item->id) }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
-                  {{ method_field('PUT') }}
+                  {{ method_field('put') }}
 
                   <div class="form-group">
                       <label>Judul Berita</label>
-                      <input type="text" name="judul_berita" class="form-control" value="{{ $item->judul_berita }}">
+                      <input id="title" type="text" name="judul_berita" class="form-control @error('judul_berita') is-invalid @enderror" value="{{ old('judul_berita', $item->judul_berita) }}">
+                      @error('judul_berita')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
                   </div>
                   <div class="form-group">
                       <label>Slug</label>
-                      <input id="slug" type="text" name="slug" class="form-control" value={{ old('slug',$item->judul_berita) }}>
+                      <input id="slug" type="text" name="slug" class="form-control" value="{{ old('slug', $item->slug) }}">
                   </div>
                   <div class="form-group">
                       <label>Foto Berita</label>

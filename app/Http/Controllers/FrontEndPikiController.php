@@ -27,6 +27,7 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->first();
+        // return $berita->slug;
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
         $anggota = AnggotaPiki::take(7)->get();
@@ -49,7 +50,7 @@ class FrontEndPikiController extends Controller
     public function news(NewsPiki $newsPiki)
     {
         // return $newsPiki;
-        return $newsPiki->categoryNews;
+        // return $newsPiki->categoryNews;
         // return $newsPiki->judul_berita;
         // return $newsPiki->categoryNews->name;
         return view('/news', [

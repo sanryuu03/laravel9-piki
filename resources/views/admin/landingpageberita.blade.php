@@ -2,10 +2,12 @@
 
   @section('menuContent')
   <!-- Container Fluid-->
+
   <style>
       trix-toolbar [data-trix-button-group="file-tools"] {
           display: none;
       }
+
   </style>
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,6 +18,11 @@
           </ol>
       </div>
   </div>
+  @if(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+      {{ session('success') }}
+  </div>
+  @endif
 
 
   <!-- Header Start-->
@@ -27,7 +34,7 @@
 
                   <div class="form-group">
                       <label>Judul Berita</label>
-                      <input id="title" type="text" name="judul_berita" class="form-control" @error('judul_berita') is-invalid @enderror required value={{ old('judul_berita') }}>
+                      <input id="title" type="text" name="judul_berita" class="form-control @error('judul_berita') is-invalid @enderror" value="{{ old('judul_berita') }}">
                       @error('judul_berita')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -36,20 +43,36 @@
                   </div>
                   <div class="form-group">
                       <label>Slug</label>
-                      <input id="slug" type="text" name="slug" class="form-control" value={{ old('slug') }}>
+                      <input id="slug" type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
+                      @error('slug')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
                   </div>
                   <div class="form-group">
                       <label>Foto Berita</label>
-                      <input type="file" name="picture_path" class="form-control" required>
+                      <input type="file" name="picture_path" class="form-control @error('picture_path') is-invalid @enderror">
+                      @error('picture_path')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
                   </div>
                   <div class="form-group">
                       <label>Keterangan Poto</label>
-                      <input id="keterangan" type="hidden" name="keterangan_foto" value={{ old('keterangan_foto') }}>
+                      @error('keterangan_foto')
+                      <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                      <input id="keterangan" type="hidden" name="keterangan_foto" value="{{ old('keterangan_foto') }}">
                       <trix-editor input="keterangan"></trix-editor>
                   </div>
                   <div class="form-group">
                       <label>Isi Berita</label>
-                      <input id="isi_berita" type="hidden" name="isi_berita" value={{ old('isi_berita') }}>
+                      @error('isi_berita')
+                      <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                      <input id="isi_berita" type="hidden" name="isi_berita" value="{{ old('isi_berita') }}">
                       <trix-editor input="isi_berita"></trix-editor>
                   </div>
                   <div class="mb-3">

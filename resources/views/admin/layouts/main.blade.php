@@ -213,17 +213,16 @@
             const title = document.querySelector('#title');
             const slug = document.querySelector('#slug');
             title.addEventListener('change', function() {
-                fecth('admin/landingpageberita/checkSlug?title=' + title.value)
+                fetch('checkSlug?title=' + title.value)
                     .then(response => response.json())
                     .then(data => slug.value = data.slug)
             });
 
         </script>
         <script>
-        {{-- hapus fungsi trix upload file --}}
-        document.addEventListener("trix-file-accept", function(e) => {
-        e.preventDefault();
-        })
+        document.addEventListener("trix-file-accept", event => {
+  event.preventDefault()
+        });
         </script>
 
         @endauth
