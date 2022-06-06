@@ -299,16 +299,25 @@
           @media (min-width: 768px) {
               .content-3-2 .title-text {
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
+                  min-height: 3rem !important;
+                  margin-top: -65px !important;
+                  margin-bottom: 5px !important;
+              }
+
+              .content-3-2 .judul-berita {
+                  font-size: 40px !important;
               }
 
               .content-3-2 .isi-berita {
-                  min-height: 350px !important;
+                  padding: 0px !important;
+                  min-height: 420px !important;
                   min-width: 550px !important;
+                  /*background-color: coral !important;*/
               }
 
-              .content-3-2 .card-berita {
-                  margin-top: -30px !important;
+              .content-3-2 .card-berita-kanan {
                   min-height: 350px !important;
+                  /*background-color: green !important;*/
               }
           }
 
@@ -351,24 +360,22 @@
 
               <!-- Right Column -->
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
-                  <ul style="padding: 0; margin: 0">
-                      <div class="card-berita">
-                          <div class="card card-body mt-3 isi-berita">
+                  <div class="card-berita-kanan d-inline">
+                      <div class="card card-body isi-berita">
                           <h5 class="card-title text-primary">
-                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400">{{ $berita->judul_berita }}</a>
+                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400 judul-berita">{{ $berita->judul_berita }}</a>
                           </h5>
-                              {{ $berita->excerpt }}.......
-                              <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400">Read More...</a>
-                          </div>
+                          {!! $berita->excerpt !!}
+                          <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400">Read More...</a>
                       </div>
-                  </ul>
+                  </div>
               </div>
           </div>
       </div>
   </section>
 
   <!-- Program-->
-  <section id="program" class="program bg-piki-white-pucat">
+  <section id="program" class="program bg-piki-1">
       <style>
           @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
@@ -378,6 +385,10 @@
 
           .text-40 {
               font-size: 600 2.25rem/2.5rem;
+              font-size: 3rem
+                  /* 48px */
+              ;
+              line-height: 1;
           }
 
           .text-28 {
@@ -421,6 +432,28 @@
           }
 
           @media (min-width: 768px) {
+              h1 {
+                  margin-top: -95px !important;
+                  padding-top: 10px !important;
+                  margin-bottom: 0px !important;
+                  padding-bottom: 150px !important;
+                  text-align: center;
+                  font: 200 2.25rem/2.5rem Poppins, sans-serif;
+                  background-color: #f7f7f7;
+                  margin-left: -50px !important;
+                  max-height: 3rem !important;
+                  min-width: 1260px !important;
+              }
+
+              .isi-program {
+                  margin-top: -85px !important;
+                  padding-bottom: 0px !important;
+              }
+
+              main{
+                  background-color: #041941 !important;
+              }
+
               .mt-px442 {
                   margin-top: 442px;
               }
@@ -460,7 +493,7 @@
 
       </style>
       <main class="relative z-30 px-4 pb-0 mx-auto md:pb-28 our-platform pt-3 max-w-screen-2xl lg:px-24">
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-12">
+          <div class="grid">
               <div class="md:col-span-10">
                   <h1 class="font-semibold leading-snug md:leading-9 text-40">
                       Program
@@ -468,21 +501,21 @@
               </div>
           </div>
           <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 mt-12 md:gap-10 md:mt-12 pb-12 isi-program">
-                  @if(count($program) > 0)
-                  @foreach($program as $item)
+              @if(count($program) > 0)
+              @foreach($program as $item)
               <div class="row-span-1">
                   <img src="{{ url('/storage/assets/program/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
-            </div>
-                  @endforeach
-                  @else
-                  <img src="images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+              </div>
+              @endforeach
+              @else
+              <img src="images/digital.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               <div class="row-span-1">
                   <img src="/images/jurnal.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
               <div class="row-span-1">
                   <img src="images/hrd.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
-                  @endif
+              @endif
 
           </div>
           <div id="carouselExampleControls" class="d-lg-none carousel slide w-px400" data-bs-ride="carousel">
@@ -587,7 +620,7 @@
 
               .content-3-2-agenda .title-text {
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
-                                    background-color: #f7f7f7;
+                  background-color: #f7f7f7;
                   margin-left: 0px !important;
                   min-width: 1024px !important;
               }
@@ -611,6 +644,8 @@
               .title-text-h1 {
                   margin-bottom: 30px !important;
               }
+
+
 
               .content-3-2-agenda .w-px400-desktop {
                   margin-top: -100px !important;
@@ -720,8 +755,8 @@
           @media only screen and (max-width: 480px) {
               .content-3-2-anggota .title-text {
                   margin-top: -70px !important;
-background-color: #f7f7f7;
-    margin-left: -350px !important;
+                  background-color: #f7f7f7;
+                  margin-left: -350px !important;
                   min-width: 1024px !important;
               }
 
@@ -774,7 +809,7 @@ background-color: #f7f7f7;
               <!-- Left Column -->
               <div class="img-hero left-column text-center justify-content-center d-flex">
                   <div class="container-fluid">
-              @foreach($user->skip(7) as $item)
+                      @foreach($user->skip(7) as $item)
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
@@ -789,7 +824,7 @@ background-color: #f7f7f7;
                               </div>
                           </div>
                       </div>
-              @endforeach
+                      @endforeach
                   </div>
               </div>
 
@@ -915,9 +950,9 @@ background-color: #f7f7f7;
           @media only screen and (max-width: 480px) {
               .content-sponsor .title-text {
                   margin-top: -175px !important;
-              font: 600 1.875rem/2.25rem Poppins, sans-serif;
-background-color: #f7f7f7;
-margin-left: -350px !important;
+                  font: 600 1.875rem/2.25rem Poppins, sans-serif;
+                  background-color: #f7f7f7;
+                  margin-left: -350px !important;
                   min-width: 1024px !important;
               }
 
@@ -991,15 +1026,15 @@ margin-left: -350px !important;
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="card card-body d-lg-none isi-konten-sponsor">
                               {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 250) }}.
-                              <br/>
+                              <br />
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>
-              <!-- tampilan web -->
+                      <!-- tampilan web -->
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
                               {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 1250) }}.
-                              <br/>
+                              <br />
                               <a href="" class="read-more text-sky-400">Read More...</a>
                           </div>
                       </div>

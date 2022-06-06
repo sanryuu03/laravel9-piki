@@ -50,6 +50,11 @@
                       <trix-editor input="keterangan"></trix-editor>
                   </div>
                   <div class="form-group">
+                      <label>Excerpt</label>
+                      <input id="excerpt" type="hidden" name="excerpt" value="{{ old('excerpt', $item->excerpt) }}">
+                      <trix-editor input="excerpt"></trix-editor>
+                  </div>
+                  <div class="form-group">
                       <label>Isi Berita</label>
                       <input id="body" type="hidden" name="isi_berita" value="{{ old('isi_berita', $item->isi_berita) }}">
                       <trix-editor input="body"></trix-editor>

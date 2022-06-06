@@ -41,6 +41,11 @@ Route::get('/foo', function () {
     return response()->json('storage');
 });
 
+Route::get('/indoregion', function () {
+    Artisan::call('db:seed --class=IndoRegionSeeder');
+    return response()->json('indoregion');
+});
+
 
 Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');

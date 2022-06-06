@@ -569,6 +569,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-1 {
   margin-bottom: 0.25rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -577,9 +580,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .ml-auto {
   margin-left: auto;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .block {
   display: block;
@@ -629,11 +629,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-auto {
   width: auto;
 }
-.w-6 {
-  width: 1.5rem;
-}
 .w-5\/6 {
   width: 83.333333%;
+}
+.w-6 {
+  width: 1.5rem;
 }
 .max-w-screen-2xl {
   max-width: 1536px;
@@ -884,6 +884,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.text-slate-700 {
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
