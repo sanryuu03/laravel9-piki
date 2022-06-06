@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\AnggotaPiki;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'address',
         'province',
         'city',
-        'districts',
+        'district',
         'village',
         'job',
         'photo_ktp',
@@ -58,4 +59,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function anggotaPiki()
+    {
+        return $this->hasMany(AnggotaPiki::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\NewsPiki;
 use App\Models\AgendaPiki;
+use App\Models\AnggotaPiki;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use Illuminate\Database\Seeder;
@@ -105,7 +106,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat dummy',
             'province' => 'sumut dummy',
             'city' => 'kota dummy',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
@@ -122,7 +123,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat dummy',
             'province' => 'sumut dummy',
             'city' => 'kota dummy',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
@@ -139,7 +140,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat dummy',
             'province' => 'sumut dummy',
             'city' => 'kota dummy',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
@@ -156,12 +157,29 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat dummy',
             'province' => 'sumut dummy',
             'city' => 'kota dummy',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
             'level' => 'infokom', //baru'
+            'password' => bcrypt('halo123'),
+        ]);
+
+        User::create([
+            'name' => 'media-dummy',
+            'phone_number' => '+6281234567890',
+            'email' => 'mediadummy@dummy.com',
+            'nik' => 'nik dummy',
+            'address' => 'alamat dummy',
+            'province' => 'sumut dummy',
+            'city' => 'kota dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+            'level' => 'media', //baru'
             'password' => bcrypt('halo123'),
         ]);
 
@@ -173,7 +191,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat2 dummy',
             'province' => 'sumut2 dummy',
             'city' => 'kota dummy2',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
@@ -190,7 +208,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'alamat dummy',
             'province' => 'sumut dummy',
             'city' => 'kota dummy',
-            'districts' => 'Kec. Medan Tuntungan dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
             'village' => 'simpang selayang dummy',
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
@@ -202,6 +220,12 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Dr. Naslindo Sirait',
             'job' => 'Ketua DPD PIKI SUMUT',
+        ]);
+
+        AnggotaPiki::create([
+            'name' => 'Dr. Naslindo Sirait',
+            'users_id' => 7,
+            'jabatan' => 'Ketua DPD PIKI SUMUT',
         ]);
 
         SponsorPiki::create([

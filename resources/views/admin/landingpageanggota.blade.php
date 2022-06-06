@@ -26,7 +26,7 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach($user->skip(6) as $item)
+                  @foreach($user->skip(7) as $item)
                   <tr>
                       <td>{{ $item->name }}</td>
                       <td>{{ $item->address }}</td>

@@ -18,7 +18,11 @@ class AnggotaPikiController extends Controller
      */
     public function index()
     {
-        $anggota = AnggotaPiki::take(7)->get();
+        $anggota = AnggotaPiki::all();
+        // return $anggota;
+        // return $anggota->name;
+        // return $anggota[0]->name;
+        // return $anggota->userPiki;
         $user = User::get();
         return view('admin/landingpageanggota', [
             "title" => "PIKI - Sangrid",
@@ -108,19 +112,10 @@ class AnggotaPikiController extends Controller
             if ($request->picture_path) {
                 Storage::delete($request->picture_path);
             }
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('picture_path');
-            // dd($request->file('picture_path'));
-            $nama_file = time() . "_" . $file->getClientOriginalName();
-
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'storage/assets/anggota/profile/';
-
-            // upload file
-            $file->move($tujuan_upload, $nama_file);
+            $data['photo_profile'] = $request->file('picture_path')->store('assets/user/profile');
             User::where('id', $request->id)
                 ->update([
-                    'photo_profile' => $nama_file,
+                    'photo_profile' => $data['photo_profile'],
                 ]);
         }
 
@@ -133,7 +128,7 @@ class AnggotaPikiController extends Controller
                 'address' => $request->address,
                 'province' => $request->province,
                 'city' => $request->city,
-                'districts' => $request->districts,
+                'district' => $request->district,
                 'village' => $request->village,
                 'job' => $request->job,
                 'description_of_skills' => $request->description_of_skills,

@@ -774,11 +774,11 @@ background-color: #f7f7f7;
               <!-- Left Column -->
               <div class="img-hero left-column text-center justify-content-center d-flex">
                   <div class="container-fluid">
-              @foreach($user->skip(6) as $item)
+              @foreach($user->skip(7) as $item)
                       <div class="card mb-3" style="max-width: 540px;">
                           <div class="row g-0">
                               <div class="col-md-4">
-                                  <img src="{{ url('/storage/assets/anggota/profile/'.$item->photo_profile) }}" class="img-fluid rounded-start" alt="...">
+                                  <img src="{{ url('/storage/'.$item->photo_profile) }}" class="img-fluid rounded-start" alt="...">
                               </div>
                               <div class="col-md-8">
                                   <div class="card-body">

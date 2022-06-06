@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('anggota_pikis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id');
+            $table->string('name')->nullable();
+            $table->text('jabatan')->nullable();
             $table->timestamps();
         });
     }

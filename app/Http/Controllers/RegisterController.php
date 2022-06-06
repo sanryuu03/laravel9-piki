@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 use App\Models\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Province;
 
 class RegisterController extends Controller
 {
@@ -66,7 +70,96 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return request()->input('desa');
+        // $regencies = request()->input('kota');
+        // if ($regencies) {
+        //     $kota = Regency::where('id', $regencies)->first();
+        //     $namaKota = $kota->name;
+        //     $data['kota'] = $namaKota;
+        // }
+        // return $namaKota;
+        // $data = $request->validate([
+        //     'name' => 'required',
+        //     'desa' => 'required',
+        //     'password' => 'required',
+        // ]);
+        // $districts = request()->input('kecamatan');
+        // if ($districts) {
+        //     $kecamatan = District::where('id', $districts)->first();
+        //     $namaKecamatan = $kecamatan->name;
+        //     $data['district'] = $namaKecamatan;
+        // }
+        // User::create($data);
+
+        // return $namaKecamatan;
+        // $villages = request()->input('desa');
+        // if ($villages) {
+        //     $desa = Village::where('id', $villages)->first();
+        //     $namaDesa = $desa->name;
+        // }
+        // return $namaDesa;
+        // return request()->all();
+        // return $request->file('photo_ktp')->store('storage/assets/user');
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'phone_number' => 'required',
+            'email' => 'required|email|unique:users',
+            'nik' => 'required',
+            'address' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
+            'job' => 'required',
+            'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'business_fields' => 'required',
+            'description_of_skills' => 'required',
+            'password' => 'required|min:5|max:255',
+        ]);
+
+        $province = request()->input('provinsi');
+        if ($province) {
+            $province = Province::where('id', $province)->first();
+            $namaProvince = $province->name;
+            $data['province'] = $namaProvince;
+        }
+
+        $regencies = request()->input('kota');
+        if ($regencies) {
+            $kota = Regency::where('id', $regencies)->first();
+            $namaKota = $kota->name;
+            $data['city'] = $namaKota;
+        }
+
+        $districts = request()->input('kecamatan');
+        if ($districts) {
+            $kecamatan = District::where('id', $districts)->first();
+            $namaKecamatan = $kecamatan->name;
+            $data['district'] = $namaKecamatan;
+        }
+
+        $villages = request()->input('desa');
+        if ($villages) {
+            $desa = Village::where('id', $villages)->first();
+            $namaDesa = $desa->name;
+            $data['village'] = $namaDesa;
+        }
+        // return $data;
+
+
+        if($request->file('photo_ktp')){
+            $data['photo_ktp'] = $request->file('photo_ktp')->store('assets/user/ktp');
+        }
+
+        if($request->file('photo_profile')){
+            $data['photo_profile'] = $request->file('photo_profile')->store('assets/user/profile');
+        }
+
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
+        return redirect('/login')->with('success', 'Registration successfull! Please login');
+        // dd('registrasi berhasil');
     }
 
     /**

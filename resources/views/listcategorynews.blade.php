@@ -9,7 +9,7 @@
           <h1>News Category: {{ $category }}</h1>
           <div class="col-md-10">
               @foreach($posts as $berita)
-              <h1 class="fs-1">
+              <h1 class="fs-1">$categoryNews->newsPiki[0]->judul_berita
                   {{ $berita->judul_berita }}
               </h1>
               <p>

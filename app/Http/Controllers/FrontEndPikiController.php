@@ -30,7 +30,7 @@ class FrontEndPikiController extends Controller
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
         $anggota = AnggotaPiki::take(7)->get();
-        $user = User::take(7)->get();
+        $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
         return view('/index', [
             "title" => "PIKI - Sangrid",
@@ -48,6 +48,10 @@ class FrontEndPikiController extends Controller
 
     public function news(NewsPiki $newsPiki)
     {
+        // return $newsPiki;
+        return $newsPiki->categoryNews;
+        // return $newsPiki->judul_berita;
+        // return $newsPiki->categoryNews->name;
         return view('/news', [
             "title" => "PIKI - Sangrid",
             "creator" => "San",

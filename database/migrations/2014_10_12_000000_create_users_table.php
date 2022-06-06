@@ -22,11 +22,11 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->text('province')->nullable();
             $table->text('city')->nullable();
-            $table->text('districts')->nullable();
+            $table->text('district')->nullable();
             $table->text('village')->nullable();
             $table->text('job')->nullable();
-            $table->text('photo_ktp')->nullable();
-            $table->text('photo_profile')->nullable();
+            $table->string('photo_ktp')->nullable();
+            $table->string('photo_profile')->nullable();
             $table->text('business_fields')->nullable();
             $table->text('description_of_skills')->nullable();
             $table->enum('level', ['super-admin', 'admin', 'bendahara', 'organisasi', 'infokom', 'media', 'anggota'])->default('anggota');

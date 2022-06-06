@@ -24,6 +24,14 @@ class BackendPikiController extends Controller
         ]);
     }
 
+    public function notFound()
+    {
+        return view('admin/notfound', [
+            "title" => "PIKI - Sangrid CRUD",
+            "creator" => "San"
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

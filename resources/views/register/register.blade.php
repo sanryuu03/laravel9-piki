@@ -53,27 +53,28 @@
                                 <p class="alert alert-danger">{{ $err }}</p>
                                 @endforeach
                                 @endif
-                                <form action="{{ route('register.action') }}" method="POST">
+                                <form action="{{ route('register.action') }}" method="POST" enctype="multipart/form-data">
+                                   {{ csrf_field() }}
                                     @csrf
                                     <div class="mb-3">
                                         <label>Name <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="name" placeholder="Nama Lengkap Sesuai KTP" />
+                                        <input class="form-control" type="text" name="name" placeholder="Nama Lengkap Sesuai KTP" value="{{ old('name') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Nomor HP / WA <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="phone_number" placeholder="+6281234567890" />
+                                        <input class="form-control" type="text" name="phone_number" placeholder="+6281234567890" value="{{ old('phone_number') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Email <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email" placeholder="Masukkan Email Anda" />
+                                        <input class="form-control" type="email" name="email" placeholder="Masukkan Email Anda" value="{{ old('email') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>NIK <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="nik" placeholder="Masukkan NIK Anda" />
+                                        <input class="form-control" type="text" name="nik" placeholder="Masukkan NIK Anda" value="{{ old('nik') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Alamat Sesuai KTP <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="address" placeholder="Masukkan Alamat Sesuai KTP" />
+                                        <input class="form-control" type="text" name="address" placeholder="Masukkan Alamat Sesuai KTP" value="{{ old('address') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Provinsi <span class="text-danger">*</span></label>
@@ -104,7 +105,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Pekerjaan <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="job" placeholder="Masukkan Pekerjaan Anda" />
+                                        <input class="form-control" type="text" name="job" placeholder="Masukkan Pekerjaan Anda" value="{{ old('job') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Foto KTP <span class="text-danger">*</span></label>
@@ -116,11 +117,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Bidang Usaha <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="business_fields" placeholder="Masukkan Bidang Usaha Anda" />
+                                        <input class="form-control" type="text" name="business_fields" placeholder="Masukkan Bidang Usaha Anda" value="{{ old('business_fields') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Deskripsi Kehalihan <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="description_of_skills" placeholder="Masukkan Kehalihan Anda" />
+                                        <input class="form-control" type="text" name="description_of_skills" placeholder="Masukkan Kehalihan Anda" value="{{ old('description_of_skills') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Password <span class="text-danger">*</span></label>
