@@ -14,6 +14,8 @@ use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+
 
 class FrontEndPikiController extends Controller
 {
@@ -27,9 +29,11 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->first();
-        // return $berita;
+        // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
+        $item = AgendaPiki::latest()->first();
+        // return $item;
         $anggota = AnggotaPiki::take(7)->get();
         $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
@@ -41,6 +45,7 @@ class FrontEndPikiController extends Controller
             "berita" => $berita,
             "program" => $program,
             "agenda" => $agenda,
+            "item" => $item,
             "anggota" => $anggota,
             "user" => $user,
             "sponsor" => $sponsor,

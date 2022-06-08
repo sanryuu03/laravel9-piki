@@ -434,13 +434,12 @@
           @media (min-width: 768px) {
               main{
                   background-color: #041941;
-                  margin-top: -10px !important;
               }
 
               h1 {
                   margin-top: -85px !important;
                   padding-top: 10px !important;
-                  margin-bottom: 0px !important;
+                  margin-bottom: 20px !important;
                   padding-bottom: 60px !important;
                   text-align: center;
                   font: 200 2.25rem/2.5rem Poppins, sans-serif;
@@ -453,7 +452,7 @@
               .isi-program {
                   margin-top: -15px !important;
                   margin-left: 25px !important;
-                  padding-bottom: 0px !important;
+                  padding-bottom: 5px !important;
               }
 
 
@@ -645,15 +644,15 @@
               }
 
               .title-text-h1 {
-                  margin-bottom: 30px !important;
+                  margin-top: 0px !important;
               }
 
 
 
               .content-3-2-agenda .w-px400-desktop {
-                  margin-top: -100px !important;
+                  margin-top: -80px !important;
                   padding-top: -220px !important;
-                  margin-left: -43px !important;
+                  margin-left: -35px !important;
               }
           }
 
@@ -675,7 +674,6 @@
 
       </style>
       <?php $no = 0;?>
-      @foreach($agenda as $item)
       <?php $no++ ;?>
       <h1 class="title-text-h1 text-5xl">Agenda</h1>
       <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
@@ -696,6 +694,7 @@
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start text-center">
                   <h6 class="title-text">Agenda Lainnya</h6>
                   <ul style="padding: 0; margin: 0">
+      @foreach($agenda as $item)
                       <li class="list-unstyled" style="margin-bottom: 2rem">
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                               <span class="circle text-white d-flex align-items-center justify-content-center">
@@ -705,13 +704,13 @@
                               {{ $item->nama_agenda }}.
                           </h4>
                       </li>
+  @endforeach
                   </ul>
                   <button class="btn btn-learn-agenda text-white">Lihat lebih banyak agenda</button>
               </div>
           </div>
       </div>
   </section>
-  @endforeach
 
   <!-- Anggota-->
   <section class="h1-00 w-100 bg-white-pucat" style="box-sizing: border-box">
