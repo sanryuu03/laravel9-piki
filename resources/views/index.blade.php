@@ -432,27 +432,30 @@
           }
 
           @media (min-width: 768px) {
+              main{
+                  background-color: #041941;
+                  margin-top: -10px !important;
+              }
+
               h1 {
-                  margin-top: -95px !important;
+                  margin-top: -85px !important;
                   padding-top: 10px !important;
                   margin-bottom: 0px !important;
-                  padding-bottom: 150px !important;
+                  padding-bottom: 60px !important;
                   text-align: center;
                   font: 200 2.25rem/2.5rem Poppins, sans-serif;
                   background-color: #f7f7f7;
-                  margin-left: -50px !important;
+                  margin-left: -25px !important;
                   max-height: 3rem !important;
-                  min-width: 1260px !important;
+                  min-width: 1264px !important;
               }
 
               .isi-program {
-                  margin-top: -85px !important;
+                  margin-top: -15px !important;
+                  margin-left: 25px !important;
                   padding-bottom: 0px !important;
               }
 
-              main{
-                  background-color: #041941 !important;
-              }
 
               .mt-px442 {
                   margin-top: 442px;

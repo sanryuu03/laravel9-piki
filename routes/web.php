@@ -41,6 +41,10 @@ Route::get('/foo', function () {
     return response()->json('storage');
 });
 
+Route::get('/storage', function () {
+    return view('storage');
+});
+
 Route::get('/indoregion', function () {
     Artisan::call('db:seed --class=IndoRegionSeeder');
     return response()->json('indoregion');

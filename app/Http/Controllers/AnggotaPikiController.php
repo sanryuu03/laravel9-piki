@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\Snappy\Facades\SnappyPdf; //import Fungsi PDF
 use Spatie\Browsershot\Browsershot;
+use App\Models\Regency;
+
+
 
 class AnggotaPikiController extends Controller
 {
@@ -24,12 +27,17 @@ class AnggotaPikiController extends Controller
         // return $anggota[0]->name;
         // return $anggota->userPiki;
         $user = User::get();
+        $cities = Regency::where('province_id', 12)->get();
+
+        // return $kota;
+
         return view('admin/landingpageanggota', [
             "title" => "PIKI - Sangrid",
             "menu" => "Anggota",
             "creator" => "San",
             "anggota" => $anggota,
             "user" => $user,
+            "cities" => $cities,
         ]);
 
     }

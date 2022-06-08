@@ -35,6 +35,7 @@
         text-align: center;
         font-size: 18px;
     }
+
 </style>
 <div class="container">
     <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
@@ -181,7 +182,7 @@
                                     document.write(new Date().getFullYear());
 
                                 </script> - developed by
-                                <b><a href="https://sanryuu03.github.io/" target="_blank">San</a></b>
+                                <b><a href="https://itdevacademy.com/" target="_blank">IT Dev Academy</a></b>
                             </span>
                         </div>
                     </div>
@@ -220,9 +221,24 @@
 
         </script>
         <script>
-        document.addEventListener("trix-file-accept", event => {
-  event.preventDefault()
-        });
+            document.addEventListener("trix-file-accept", event => {
+                event.preventDefault()
+            });
+
+        </script>
+        <script>
+            $(document).ready(function() {
+                var table = $('#table_id').DataTable();
+
+                $('.filter-kota').on('change', function() {
+                let kotaFilter = $("#table-filter").val();
+                let search = this.value
+                console.log(kotaFilter);
+                console.log(`ini search ${search}`);
+                table.search(this.value).draw();
+                table.search("");
+                });
+            });
         </script>
 
         @endauth

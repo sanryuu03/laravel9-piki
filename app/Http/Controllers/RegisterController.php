@@ -21,6 +21,7 @@ class RegisterController extends Controller
     public function index()
     {
         $provinces = Province::all();
+        // return $provinces;
         return view('register/register', compact('provinces'));
     }
 

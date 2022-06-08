@@ -27,7 +27,7 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->first();
-        // return $berita->slug;
+        // return $berita;
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::take(7)->get();
         $anggota = AnggotaPiki::take(7)->get();
