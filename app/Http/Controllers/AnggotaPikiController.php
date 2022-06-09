@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\Snappy\Facades\SnappyPdf; //import Fungsi PDF
 use Spatie\Browsershot\Browsershot;
+use App\Models\Province;
 use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 
 
@@ -73,6 +76,7 @@ class AnggotaPikiController extends Controller
     {
         $anggotaPiki = AnggotaPiki::find($id);
         $user = User::find($id);
+        $provinces = Province::all();
         return view('admin/anggotacv', [
             "title" => "PIKI - Sangrid",
             "menu" => "CV Anggota",
@@ -80,6 +84,7 @@ class AnggotaPikiController extends Controller
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
             "action" => "view",
+            "provinces" => $provinces,
         ]);
     }
 
@@ -94,6 +99,7 @@ class AnggotaPikiController extends Controller
         $anggotaPiki = AnggotaPiki::find($id);
         $user = User::find($id);
         $id = $request->value;
+        $provinces = Province::all();
         // penggunaan http://192.168.1.7:8000/admin/landingpageanggota/edit/1?value=heheh
         return view('admin/anggotacv', [
             "title" => "PIKI - Sangrid",
@@ -103,6 +109,7 @@ class AnggotaPikiController extends Controller
             "item" => $user,
             "id" => $id,
             "action" => "edit",
+            "provinces" => $provinces,
         ]);
     }
 
@@ -115,6 +122,56 @@ class AnggotaPikiController extends Controller
      */
     public function update(Request $request, AnggotaPiki $anggotaPiki)
     {
+        // return $request;
+        $rules = [
+            'name' => 'required|max:255',
+            'phone_number' => 'required',
+            'nik' => 'required',
+            'address' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'district' => 'required',
+            'village' => 'required',
+            'job' => 'required',
+            'description_of_skills' => 'required',
+        ];
+        $data = $request->validate($rules);
+
+        // $data = $request->validate([
+        //     'province' => 'required',
+        //     'city' => 'required',
+        //     'district' => 'required',
+        //     'village' => 'required',
+        // ]);
+
+        $province = request()->input('province');
+        if ($province) {
+            $province = Province::where('id', $province)->first();
+            $namaProvince = $province->name;
+            $data['province'] = $namaProvince;
+        }
+
+        $regencies = request()->input('city');
+        if ($regencies) {
+            $kota = Regency::where('id', $regencies)->first();
+            $namaKota = $kota->name;
+            $data['city'] = $namaKota;
+        }
+
+        $districts = request()->input('district');
+        if ($districts) {
+            $kecamatan = District::where('id', $districts)->first();
+            $namaKecamatan = $kecamatan->name;
+            $data['district'] = $namaKecamatan;
+        }
+
+        $villages = request()->input('village');
+        if ($villages) {
+            $desa = Village::where('id', $villages)->first();
+            $namaDesa = $desa->name;
+            $data['village'] = $namaDesa;
+        }
+
         if ($request->file('picture_path')) {
             // jika gambar lama ada, maka hapus gambar lama
             if ($request->picture_path) {
@@ -126,21 +183,9 @@ class AnggotaPikiController extends Controller
                     'photo_profile' => $data['photo_profile'],
                 ]);
         }
-
+// return $data;
         User::where('id', $request->id)
-            ->update([
-                'name' => $request->name,
-                'phone_number' => $request->phone_number,
-                'email' => $request->email,
-                'nik' => $request->nik,
-                'address' => $request->address,
-                'province' => $request->province,
-                'city' => $request->city,
-                'district' => $request->district,
-                'village' => $request->village,
-                'job' => $request->job,
-                'description_of_skills' => $request->description_of_skills,
-            ]);
+            ->update($data);
 
 
         return redirect()->route('anggota.index');

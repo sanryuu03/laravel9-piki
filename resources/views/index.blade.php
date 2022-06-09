@@ -409,7 +409,7 @@
                   margin-bottom: -200px !important;
                   padding-bottom: 260px !important;
                   text-align: center;
-                  font: 200 2.25rem/2.5rem Poppins, sans-serif;
+                  font-size: 30px !important;
                   background-color: #f7f7f7;
                   margin-left: -350px !important;
                   min-width: 1024px !important;
@@ -434,6 +434,7 @@
           @media (min-width: 768px) {
               main{
                   background-color: #041941;
+                  margin-top: -10px !important;
               }
 
               h1 {
@@ -616,7 +617,7 @@
                   margin-bottom: -230px !important;
                   text-align: center !important;
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
-                  margin-left: -300px !important;
+                  margin-left: -330px !important;
                   min-width: 1024px !important;
               }
 
@@ -636,6 +637,10 @@
               .content-3-2-agenda .isi-berita {
                   margin-top: 0px !important;
               }
+
+              .title-text-agenda-lainnya{
+                  font-size: 30px !important;
+              }
           }
 
           @media (min-width: 768px) {
@@ -650,9 +655,18 @@
 
 
               .content-3-2-agenda .w-px400-desktop {
-                  margin-top: -80px !important;
+                  margin-top: -100px !important;
                   padding-top: -220px !important;
                   margin-left: -35px !important;
+              }
+
+              .content-3-2-agenda .title-text-agenda-lainnya {
+                  margin-top: -100px !important;
+                  margin-bottom: 30px !important;
+              }
+
+              .btn-learn-agenda {
+                  margin-top: -10px !important;
               }
           }
 
@@ -673,8 +687,6 @@
           }
 
       </style>
-      <?php $no = 0;?>
-      <?php $no++ ;?>
       <h1 class="title-text-h1 text-5xl">Agenda</h1>
       <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
           <div class="d-flex flex-lg-row flex-column align-items-center">
@@ -692,10 +704,12 @@
 
               <!-- Right Column -->
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start text-center">
-                  <h6 class="title-text">Agenda Lainnya</h6>
+                  <h6 class="title-text title-text-agenda-lainnya">Agenda Lainnya</h6>
                   <ul style="padding: 0; margin: 0">
+      <?php $no = 0;?>
       @foreach($agenda as $item)
-                      <li class="list-unstyled" style="margin-bottom: 2rem">
+      <?php $no++ ;?>
+                      <li class="list-unstyled" style="margin-bottom: 1rem">
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                               <span class="circle text-white d-flex align-items-center justify-content-center">
                                   {{ $no }}

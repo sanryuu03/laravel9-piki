@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -27,9 +28,9 @@
             background-color: rgba(255, 255, 255, 0.4);
         }
 
-                    .keahlian {
-                height: 100mm;
-            }
+        .keahlian {
+            height: 100mm;
+        }
 
     </style>
 </head>
@@ -103,7 +104,16 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
+                                                    @if($action == 'edit')
+                                                    <select class="custom-select" name="province" id="provinsi">
+                                                        <option selected>Pilih Provinsi Anda</option>
+                                                        @foreach ($provinces as $provinsi)
+                                                        <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @else
                                                     <input disabled class="form-control" type="text" name="province" value="{{ $item->province }}" placeholder="Provinsi" />
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -111,7 +121,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="city" value="{{ $item->city }}" placeholder="Kabupaten/Kota" />
+                                                    <select class="custom-select" name="city" id="kota">
+                                                        <option selected>Pilih Kabupaten / Kota Anda</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -119,7 +131,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="districts" value="{{ $item->districts }}" placeholder="Kecamatan" />
+                                                    <select class="custom-select" name="district" id="kecamatan">
+                                                        <option selected>Pilih Kecamatan Anda</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -127,7 +141,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="village" value="{{ $item->village }}" placeholder="Desa/Kelurahan" />
+                                                    <select class="custom-select" name="village" id="desa">
+                                                        <option selected>Pilih Desa / Kelurahan Anda</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -178,6 +194,83 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(function() {
+                $('#provinsi').on('change', function() {
+                    let id_provinsi = $('#provinsi').val();
+                    console.log(`ini provinsi id ${id_provinsi}`);
+                    $.ajax({
+                        type: 'POST'
+                        , url: '{{ route("cities") }}'
+                        , data: {
+                            id_provinsi: id_provinsi
+                        }
+                        , cache: false
+                        , success: function(msg) {
+                            $('#kota').html(msg);
+                            $('#kecamatan').html('<option>==Pilih Kabupaten==</option>');
+                            $('#desa').html('<option>==Pilih Desa==</option>');
+                        }
+                        , error: function(data) {
+                            console.log(`errornya ${data}`);
+                        }
+                    , });
+                });
+            });
+
+            $(function() {
+                $('#kota').on('change', function() {
+                    let id_kota = $('#kota').val();
+                    console.log(`ini kota id ${id_kota}`);
+                    $.ajax({
+                        type: 'POST'
+                        , url: '{{ route("districts") }}'
+                        , data: {
+                            id_kota
+                        }
+                        , cache: false
+                        , success: function(msg) {
+                            $('#kecamatan').html(msg);
+                            $('#desa').html('<option>==Pilih Desa==</option>');
+                        }
+                        , error: function(data) {
+                            console.log(`errornya ${data}`);
+                        }
+                    , });
+                });
+            });
+
+            $(function() {
+                $('#kecamatan').on('change', function() {
+                    let id_kecamatan = $('#kecamatan').val();
+                    console.log(`ini kecamatan id ${id_kecamatan}`);
+                    $.ajax({
+                        type: 'POST'
+                        , url: '{{ route("villages") }}'
+                        , data: {
+                            id_kecamatan
+                        }
+                        , cache: false
+                        , success: function(msg) {
+                            $('#desa').html(msg);
+                        }
+                        , error: function(data) {
+                            console.log(`errornya ${data}`);
+                        }
+                    , });
+                });
+            });
+
+        });
+
+    </script>
 
     <!-- Custom scripts for all pages-->
     <script>

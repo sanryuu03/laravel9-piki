@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AgendaPiki;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class AgendaPikiController extends Controller
 {
@@ -106,6 +108,13 @@ class AgendaPikiController extends Controller
      */
     public function update(Request $request, AgendaPiki $agendaPiki)
     {
+        // return $request;
+        $data = $request->validate([
+            'nama_agenda' => 'required',
+            'keterangan_agenda' => 'required',
+
+        ]);
+
         if ($request->file('picture_path')) {
             // jika gambar lama ada, maka hapus gambar lama
             if ($request->old_picture_path) {
@@ -128,12 +137,10 @@ class AgendaPikiController extends Controller
         }
 
         AgendaPiki::where('id', $request->id)
-            ->update([
-                'nama_agenda' => $request->nama_agenda,
-                'keterangan_agenda' => $request->keterangan_agenda,
-            ]);
+            ->update($data);
 
 
+            // return $data;
         return redirect()->route('agenda.index');
     }
 

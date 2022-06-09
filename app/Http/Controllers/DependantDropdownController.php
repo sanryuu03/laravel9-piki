@@ -18,11 +18,6 @@ class DependantDropdownController extends Controller
 
     }
 
-    public function provinces()
-    {
-        return Indonesia::allProvinces();
-    }
-
     // public function cities(Request $request)
     // {
     //     return Indonesia::findProvince($request->id, ['cities'])->cities->pluck('name', 'id');
@@ -30,7 +25,9 @@ class DependantDropdownController extends Controller
     public function cities(Request $request)
     {
         $id_provinsi = $request->id_provinsi;
+        // return request()->input('provinsi');
         $cities = Regency::where('province_id', $id_provinsi)->get();
+        // return $cities;
         $option = "<option>==Pilih Kota==</option>";
         foreach($cities as $city){
             $option .= "<option value='$city->id'>$city->name</option>";

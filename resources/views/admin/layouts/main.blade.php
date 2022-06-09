@@ -233,7 +233,7 @@
                 $('.filter-kota').on('change', function() {
                 let kotaFilter = $("#table-filter").val();
                 let search = this.value
-                console.log(kotaFilter);
+                console.log(`filter ${kotaFilter}`);
                 console.log(`ini search ${search}`);
                 table.search(this.value).draw();
                 table.search("");

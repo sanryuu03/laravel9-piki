@@ -21,7 +21,7 @@
                   <option value="">All</option>
                   <option>Dr. Naslindo Sirait</option>
                   @foreach ($cities as $city)
-                  <option value="{{ $city->id }}">{{ $city->name }}</option>
+                  <option value="{{ $city->name }}">{{ $city->name }}</option>
                   @endforeach
               </select>
               </div>
@@ -31,6 +31,7 @@
                   <tr>
                       <th width="1%">Nama</th>
                       <th width="1%">Alamat Sesuai KTP</th>
+                      <th width="1%">Kabupaten/Kota</th>
                       <th width="1%">Telp / WA</th>
                       <th width="1%">Email</th>
                       <th width="1%">Created At</th>
@@ -42,6 +43,7 @@
                   <tr>
                       <td>{{ $item->name }}</td>
                       <td>{{ $item->address }}</td>
+                      <td>{{ $item->city }}</td>
                       <td>{{ $item->phone_number }}</td>
                       <td>{{ $item->email }}</td>
                       <td>{{ $item->created_at }}</td>

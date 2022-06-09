@@ -41,12 +41,12 @@
                   </div>
                   <div class="form-group">
                       <label>Keterangan Agenda</label>
-                      <input id="body" type="hidden" name="keterangan_agenda" value={{ old('keterangan_agenda', $item->keterangan_agenda) }}>
-                      <trix-editor input="body"></trix-editor>
+                      <input id="body-agenda" type="hidden" name="keterangan_agenda" value="{{ old('keterangan_agenda', $item->keterangan_agenda) }}">
+                      <trix-editor input="body-agenda"></trix-editor>
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Update</button>
-                  <button href="{{ route('agenda.index') }}" type="submit" class="btn btn-danger mt-3 block">Back</button>
+                  <button href="{{ route('agenda.index') }}" class="btn btn-danger mt-3 block">Back</button>
               </form>
           </div>
       </div>
