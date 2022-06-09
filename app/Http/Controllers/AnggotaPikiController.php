@@ -22,7 +22,7 @@ class AnggotaPikiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $anggota = AnggotaPiki::all();
         // return $anggota;
@@ -30,7 +30,9 @@ class AnggotaPikiController extends Controller
         // return $anggota[0]->name;
         // return $anggota->userPiki;
         $user = User::get();
-        $cities = Regency::where('province_id', 12)->get();
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
 
         // return $kota;
 
@@ -40,6 +42,7 @@ class AnggotaPikiController extends Controller
             "creator" => "San",
             "anggota" => $anggota,
             "user" => $user,
+            "provinces" => $provinces,
             "cities" => $cities,
         ]);
 

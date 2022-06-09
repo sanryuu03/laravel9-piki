@@ -15,15 +15,25 @@
   .<div class="container-fluid">
       <div class="card-body">
           <div class="row">
-          <div class="col-md-4">
-              Filter Kabupaten / Kota:
-              <select id="table-filter" class="filter-kota" name="kota">
-                  <option value="">All</option>
-                  <option>Dr. Naslindo Sirait</option>
-                  @foreach ($cities as $city)
-                  <option value="{{ $city->name }}">{{ $city->name }}</option>
-                  @endforeach
-              </select>
+              <div class="col-md-4">
+                  Filter Provinsi:
+                  <select id="table-filter" class="filter-province" name="province">
+                      <option value="">All</option>
+                      @foreach ($provinces as $provinsi)
+                      <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  Filter Kabupaten / Kota:
+                  <select id="table-filter" class="filter-kota" name="kota">
+                      <option value="">All</option>
+                      @foreach ($cities as $city)
+                      <option value="{{ $city->name }}">{{ $city->name }}</option>
+                      @endforeach
+                  </select>
               </div>
           </div>
           <table id="table_id" class="table table-bordered table-striped">
@@ -31,6 +41,7 @@
                   <tr>
                       <th width="1%">Nama</th>
                       <th width="1%">Alamat Sesuai KTP</th>
+                      <th width="1%">Provinsi</th>
                       <th width="1%">Kabupaten/Kota</th>
                       <th width="1%">Telp / WA</th>
                       <th width="1%">Email</th>
@@ -43,13 +54,14 @@
                   <tr>
                       <td>{{ $item->name }}</td>
                       <td>{{ $item->address }}</td>
+                      <td>{{ $item->province }}</td>
                       <td>{{ $item->city }}</td>
                       <td>{{ $item->phone_number }}</td>
                       <td>{{ $item->email }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>
                           <a href="{{ route('anggota.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1">View</a>
-                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print</a>
+                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print CV</a>
                           <a href="{{ route('anggota.edit', $item->id) }}" class="btn btn-info btn-sm">Edit</a>
                           <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}

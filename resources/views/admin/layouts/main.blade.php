@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{{ asset('img/logo/logo.png') }}" rel="icon">
@@ -213,11 +214,13 @@
         <script>
             const title = document.querySelector('#title');
             const slug = document.querySelector('#slug');
+            if(title){
             title.addEventListener('change', function() {
                 fetch('checkSlug?title=' + title.value)
                     .then(response => response.json())
                     .then(data => slug.value = data.slug)
             });
+            }
 
         </script>
         <script>
@@ -230,16 +233,57 @@
             $(document).ready(function() {
                 var table = $('#table_id').DataTable();
 
-                $('.filter-kota').on('change', function() {
-                let kotaFilter = $("#table-filter").val();
+                $('.filter-province').on('change', function() {
+                let provinsiFilter = $('#table-filter :selected').text();
                 let search = this.value
-                console.log(`filter ${kotaFilter}`);
+                console.log(`filter provinsi ${provinsiFilter}`);
                 console.log(`ini search ${search}`);
-                table.search(this.value).draw();
+                console.log(`======================================`);
+                table.search(provinsiFilter).draw();
+                table.search("");
+                });
+
+                $('.filter-kota').on('change', function() {
+                let kotaFilter = $('.filter-kota :selected').text();
+                let search = this.value
+                console.log(`filter Kab/Kota ${kotaFilter}`);
+                console.log(`ini search ${search}`);
+                console.log(`######################################`);
+                table.search(kotaFilter).draw();
                 table.search("");
                 });
             });
         </script>
+        <script>
+        $(function() {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+
+            $(function() {
+                $('#table-filter').on('change', function() {
+                    let id_provinsi = $('#table-filter :selected').val();
+                    console.log(`ini provinsi id ${id_provinsi}`);
+                    console.log(`======================================`);
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route("cities") }}',
+                        data: {id_provinsi: id_provinsi},
+                        cache:false,
+                        success: function(msg){
+                            $('.filter-kota').html(msg);
+                        },
+                        error: function(data){
+                            console.log(`errornya ${data}`);
+                        },
+                    });
+                });
+            });
+
+        });
+    </script>
 
         @endauth
 </body>

@@ -121,9 +121,13 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
+                                                    @if($action == 'edit')
                                                     <select class="custom-select" name="city" id="kota">
                                                         <option selected>Pilih Kabupaten / Kota Anda</option>
                                                     </select>
+                                                    @else
+                                                    <input disabled class="form-control" type="text" name="city" value="{{ $item->city }}" placeholder="Provinsi" />
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -131,9 +135,13 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
+                                                    @if($action == 'edit')
                                                     <select class="custom-select" name="district" id="kecamatan">
                                                         <option selected>Pilih Kecamatan Anda</option>
                                                     </select>
+                                                    @else
+                                                    <input disabled class="form-control" type="text" name="district" value="{{ $item->district }}" placeholder="Provinsi" />
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -141,9 +149,13 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
+                                                    @if($action == 'edit')
                                                     <select class="custom-select" name="village" id="desa">
                                                         <option selected>Pilih Desa / Kelurahan Anda</option>
                                                     </select>
+                                                    @else
+                                                    <input disabled class="form-control" type="text" name="district" value="{{ $item->village }}" placeholder="Provinsi" />
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -156,6 +168,7 @@
                                             </div>
 
                                             <div class="col-md-4">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
