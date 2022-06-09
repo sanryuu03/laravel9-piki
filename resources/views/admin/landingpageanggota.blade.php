@@ -61,8 +61,7 @@
                       <td>{{ $item->created_at }}</td>
                       <td>
                           <a href="{{ route('anggota.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1">View</a>
-                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print CV</a>
-                          <a href="{{ route('anggota.edit', $item->id) }}" class="btn btn-info btn-sm">Edit</a>
+                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print</a>
                           <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
