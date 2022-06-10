@@ -101,7 +101,7 @@
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
                                                 <div class="">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/anggota/profile/'.$item->photo_profile) }}">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/app/'.$item->photo_profile) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8">

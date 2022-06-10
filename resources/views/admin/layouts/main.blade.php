@@ -22,26 +22,6 @@
 
 
 </head>
-@guest
-<style>
-    .container {
-        position: relative;
-    }
-
-    .center {
-        position: absolute;
-        margin-top: 250px;
-        top: 50%;
-        width: 100%;
-        text-align: center;
-        font-size: 18px;
-    }
-
-</style>
-<div class="container">
-    <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
-</div>
-@endguest
 @auth
 <body id="page-top">
     <div id="wrapper">
@@ -191,6 +171,27 @@
                 <!-- Footer -->
             </div>
         </div>
+        @else
+        <style>
+            .container {
+                position: relative;
+            }
+
+            .center {
+                position: absolute;
+                margin-top: 250px;
+                top: 50%;
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+            }
+
+        </style>
+        <div class="container">
+            <a class="btn btn-primary center" href="{{ route('admin.login') }}">Login</a>
+        </div>
+        @endauth
+
 
         <!-- Scroll to top -->
         <a class="scroll-to-top rounded" href="#page-top">
@@ -204,88 +205,7 @@
         <!-- DataTable -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#table_id').DataTable();
-            });
-
-        </script>
-        <!-- fecth api slug-->
-        <script>
-            const title = document.querySelector('#title');
-            const slug = document.querySelector('#slug');
-            if(title){
-            title.addEventListener('change', function() {
-                fetch('checkSlug?title=' + title.value)
-                    .then(response => response.json())
-                    .then(data => slug.value = data.slug)
-            });
-            }
-
-        </script>
-        <script>
-            document.addEventListener("trix-file-accept", event => {
-                event.preventDefault()
-            });
-
-        </script>
-        <script>
-            $(document).ready(function() {
-                var table = $('#table_id').DataTable();
-
-                $('.filter-province').on('change', function() {
-                let provinsiFilter = $('#table-filter :selected').text();
-                let search = this.value
-                console.log(`filter provinsi ${provinsiFilter}`);
-                console.log(`ini search ${search}`);
-                console.log(`======================================`);
-                table.search(provinsiFilter).draw();
-                table.search("");
-                });
-
-                $('.filter-kota').on('change', function() {
-                let kotaFilter = $('.filter-kota :selected').text();
-                let search = this.value
-                console.log(`filter Kab/Kota ${kotaFilter}`);
-                console.log(`ini search ${search}`);
-                console.log(`######################################`);
-                table.search(kotaFilter).draw();
-                table.search("");
-                });
-            });
-        </script>
-        <script>
-        $(function() {
-            $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-            });
-
-            $(function() {
-                $('#table-filter').on('change', function() {
-                    let id_provinsi = $('#table-filter :selected').val();
-                    console.log(`ini provinsi id ${id_provinsi}`);
-                    console.log(`======================================`);
-                    $.ajax({
-                        type: 'POST',
-                        url: '{{ route("cities") }}',
-                        data: {id_provinsi: id_provinsi},
-                        cache:false,
-                        success: function(msg){
-                            $('.filter-kota').html(msg);
-                        },
-                        error: function(data){
-                            console.log(`errornya ${data}`);
-                        },
-                    });
-                });
-            });
-
-        });
-    </script>
-
-        @endauth
+        <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

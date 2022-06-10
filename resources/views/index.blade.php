@@ -404,7 +404,7 @@
           }
 
           @media only screen and (max-width: 480px) {
-              h1 {
+              .program h1 {
                   margin-top: -95px !important;
                   margin-bottom: -200px !important;
                   padding-bottom: 260px !important;
@@ -645,10 +645,11 @@
 
           @media (min-width: 768px) {
               .content-3-2-agenda .title-text {
-                  font: 600 2.25rem/2.5rem Poppins, sans-serif;
+                  font: 200 2.25rem/2.5rem Poppins, sans-serif;
               }
 
               .title-text-h1 {
+                  font-weight: 600;
                   margin-top: 0px !important;
               }
 
