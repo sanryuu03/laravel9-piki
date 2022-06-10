@@ -87,6 +87,7 @@
                         @if(auth()->user()->level=='media')
                         <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
                         @endif
+
                     </div>
                 </div>
             </li>

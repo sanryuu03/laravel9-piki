@@ -20,7 +20,7 @@ class BackendPikiController extends Controller
         $user = User::find(3);
         return view('admin/index', [
             "title" => "PIKI - Sangrid CRUD",
-            "creator" => "San"
+            "creator" => $user,
         ]);
     }
 
@@ -59,9 +59,14 @@ class BackendPikiController extends Controller
      * @param  \App\Models\BackendPiki  $backendPiki
      * @return \Illuminate\Http\Response
      */
-    public function show(BackendPiki $backendPiki)
+    public function show(BackendPiki $backendPiki, $id)
     {
-        //
+        $item = User::find($id);
+        return view('admin/index', [
+            "title" => "PIKI - Sangrid CRUD",
+            "creator" => "San",
+            "item" => $item,
+        ]);
     }
 
     /**

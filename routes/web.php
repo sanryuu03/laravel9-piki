@@ -13,6 +13,7 @@ use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\ProfileAnggotaController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\DependantDropdownController;
 
@@ -139,6 +140,11 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
     Route::get('/admin/keuangan', [BackendPikiController::class, 'notFound'])->name('notfound');
+});
 
+Route::group(['middleware' => ['CekLevel:anggota']], function () {
+    Route::get('/admin/profile/{id}', [ProfileAnggotaController::class, 'show'])->name('profile');
+    Route::get('/admin/profile/edit/{id}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');
+    Route::put('/admin/profile/update/{id}', [ProfileAnggotaController::class, 'update'])->name('profile.update');
 });
 
