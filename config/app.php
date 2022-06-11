@@ -205,6 +205,8 @@ return [
 
         Laravolt\Indonesia\ServiceProvider::class,
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
+
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*

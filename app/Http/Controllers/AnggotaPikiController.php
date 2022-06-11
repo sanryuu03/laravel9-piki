@@ -12,7 +12,7 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AnggotaPikiController extends Controller
@@ -233,5 +233,11 @@ class AnggotaPikiController extends Controller
 
         // Jika ingin langsung download (tanpai melihat tampilannya terlebih dahulu) kalian bisa pakai fungsi download
         // return $pdf->download('anggotacv.pdf');
+    }
+
+    public function exportTable($id, $data  )
+    {
+        $pdf = Pdf::loadView('pdf.invoice', $data);
+        return $pdf->download('invoice.pdf');
     }
 }
