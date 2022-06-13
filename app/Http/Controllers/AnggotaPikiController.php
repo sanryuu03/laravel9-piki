@@ -235,9 +235,17 @@ class AnggotaPikiController extends Controller
         // return $pdf->download('anggotacv.pdf');
     }
 
-    public function exportTable($id, $data  )
+    public function exportTable()
     {
-        $pdf = Pdf::loadView('pdf.invoice', $data);
-        return $pdf->download('invoice.pdf');
+        $province = request()->input('province');
+        if ($province) {
+            $province = Province::where('id', $province)->first();
+            $namaProvince = $province->name;
+            return $namaProvince;
+        }
+        $user = User::get();
+        $pdf = Pdf::loadView('admin/table', compact('user'));
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->stream('table.pdf');
     }
 }

@@ -1,5 +1,10 @@
 $(document).ready(function () {
-    $("#table_id").DataTable();
+    $("#table_id").DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'pdf', 'print'
+        ]
+    });
 });
 
 const title = document.querySelector("#title");

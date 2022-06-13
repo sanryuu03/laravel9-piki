@@ -36,7 +36,12 @@
                   </select>
               </div>
           </div>
-          <table id="table_id" class="table table-bordered table-striped">
+          <div class="row">
+              <div class="col-md-4">
+                    <a href="{{ route('table.export') }}" class="btn btn-success btn-sm mb-1" target="_blank">Print Table</a>
+              </div>
+          </div>
+          <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>
                   <tr>
                       <th width="1%">Nama</th>
@@ -61,7 +66,7 @@
                       <td>{{ $item->created_at }}</td>
                       <td>
                           <a href="{{ route('anggota.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1">View</a>
-                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print</a>
+                          <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print CV</a>
                           <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">

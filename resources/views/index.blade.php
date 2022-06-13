@@ -21,11 +21,7 @@
           @media only screen and (max-width: 480px) {
               body .header {
                   background: #f7f7f7;
-                  border-bottom: none !important;
-                  border-style: hidden !important;
-                  border: none !important;
-                  outline: none !important;
-                  border-collapse: collapse !important;
+                  z-index: 1;
               }
 
               body .header .w-px400-mobile {
@@ -188,31 +184,32 @@
               <img src="{{ url('/storage/assets/header/web/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400 invisible d-sm-inline" />
               @endforeach
               @else
-              <img id="hero" class="header w-px400-desktop d-none d-sm-block d-block" src="images/pikiheader.jpg" alt="" onClick="window.open('#','_blank')">
+              <img id="hero" class="header w-px400-desktop d-none d-sm-block d-block" src="images/pikiheader.jpg" alt="">
               @endif
               @if (count($headerMobile) > 0)
               @foreach($headerMobile as $item)
               <img class="object-cover h-full rounded-lg md:rounded-xl w-px400 lg:hidden" src="{{ url('/storage/assets/header/mobile/'.$item->picture_path) }}" alt="workly" />
               @endforeach
               @else
-              <img id="hero" class="header w-px400-mobile lg:hidden" src="images/mobile-device-cover.png" alt="" onClick="window.open('#','_blank')">
+              <img id="hero" class="header w-px400-mobile lg:hidden" src="images/mobile-device-cover.png" alt="">
               @endif
           </div>
       </header>
       <div class="container text-center">
           <div class="row content">
               <div class="col-12">
-                  <div class="invisible button-header">
-                      <button class="sm:visible btn btn-listing" onClick="window.open('{{ route('register') }}','_blank')">Daftar</button>
-                      <button class="sm:visible btn btn-listing" onClick="window.open('{{ route('admin.login') }}','_blank')">Log in</button>
+                  <div class="button-header">
+
+                      <button class="btn btn-listing" onClick="window.open('{{ route('register') }}','_blank')">Daftar</button>
+                      <button class="btn btn-listing" onClick="window.open('{{ route('admin.login') }}','_blank')">Log in</button>
                   </div>
               </div>
           </div>
       </div>
   </section>
-  <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
+  <div class="flex -mt-[140px] my-96 py-20 lg:hidden" style="z-index: 10;">
       <div class="flex-initial w-full ml-[100px]">
-          <a href="{{ route('register') }}" class="btn btn-secondary btn-md mx-auto">Daftar</a>
+          <a href="/daftar" class="btn btn-secondary btn-md mx-auto" target="_blank">Daftar</a>
       </div>
       <div class="flex-initial w-full mr-[70px]">
           <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">Login</a>
@@ -292,6 +289,7 @@
               }
 
               .content-3-2 .isi-berita {
+                  min-width: 380px !important;
                   margin-top: -40px !important;
               }
           }
@@ -613,12 +611,16 @@
 
           @media (max-width: 480px) {
               .title-text-h1 {
-                  margin-top: -50px !important;
                   margin-bottom: -230px !important;
                   text-align: center !important;
                   font: 600 2.25rem/2.5rem Poppins, sans-serif;
                   margin-left: -330px !important;
                   min-width: 1024px !important;
+                  margin-top: -50px !important;
+                  padding-top: 0px !important;
+                  padding-bottom: 10px !important;
+                  /*background-color:rgba(0,0,0,0.7);*/
+                  background-color: #f7f7f7;
               }
 
               .content-3-2-agenda .title-text {
@@ -630,7 +632,7 @@
 
               .content-3-2-agenda .w-px400 {
                   min-width: 412px !important;
-                  margin-top: -100px !important;
+                  margin-top: 150px !important;
                   margin-left: -43px !important;
               }
 
@@ -688,7 +690,7 @@
           }
 
       </style>
-      <h1 class="title-text-h1 text-5xl">Agenda</h1>
+      <h1 class="title-text-h1">Agenda</h1>
       <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->

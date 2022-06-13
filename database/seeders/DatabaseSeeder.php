@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'admin-dummy',
+            'name' => 'ketua',
             'phone_number' => '+6281234567890',
             'email' => 'admindummy@dummy.com',
             'nik' => 'nik dummy',
@@ -130,12 +130,28 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
-            'level' => 'admin', //baru'
-            'password' => bcrypt('halo123'),
+            'level' => 'super-admin', //baru'
+            'password' => bcrypt('piki1'),
         ]);
 
         User::create([
-            'name' => 'bendahara-dummy',
+            'name' => 'sekretaris',
+            'phone_number' => '+6281234567890',
+            'email' => 'superdummy@dummy.com',
+            'nik' => 'nik dummy',
+            'address' => 'alamat dummy',
+            'province' => 'sumut dummy',
+            'city' => 'kota dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+            'level' => 'admin', //baru'
+            'password' => bcrypt('piki2'),
+        ]);
+        User::create([
+            'name' => 'bendahara',
             'phone_number' => '+6281234567890',
             'email' => 'bendaharadummy@dummy.com',
             'nik' => 'nik dummy',
@@ -148,11 +164,28 @@ class DatabaseSeeder extends Seeder
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
             'level' => 'bendahara', //baru'
-            'password' => bcrypt('halo123'),
+            'password' => bcrypt('piki3'),
         ]);
 
         User::create([
-            'name' => 'organisasi-dummy',
+            'name' => 'wakil ketua',
+            'phone_number' => '+6281234567890',
+            'email' => 'dummy2@2dummy.com',
+            'nik' => 'nik dummy2',
+            'address' => 'alamat2 dummy',
+            'province' => 'sumut2 dummy',
+            'city' => 'kota dummy2',
+            'district' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+            'level' => 'wakil-ketua', //baru'
+            'password' => bcrypt('piki4'),
+        ]);
+
+        User::create([
+            'name' => 'organisasi',
             'phone_number' => '+6281234567890',
             'email' => 'organisasidummy@dummy.com',
             'nik' => 'nik dummy',
@@ -165,11 +198,11 @@ class DatabaseSeeder extends Seeder
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
             'level' => 'organisasi', //baru'
-            'password' => bcrypt('halo123'),
+            'password' => bcrypt('piki5'),
         ]);
 
         User::create([
-            'name' => 'infokom-dummy',
+            'name' => 'infokom',
             'phone_number' => '+6281234567890',
             'email' => 'infokomdummy@dummy.com',
             'nik' => 'nik dummy',
@@ -182,11 +215,11 @@ class DatabaseSeeder extends Seeder
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
             'level' => 'infokom', //baru'
-            'password' => bcrypt('halo123'),
+            'password' => bcrypt('piki6'),
         ]);
 
         User::create([
-            'name' => 'media-dummy',
+            'name' => 'media',
             'phone_number' => '+6281234567890',
             'email' => 'mediadummy@dummy.com',
             'nik' => 'nik dummy',
@@ -199,42 +232,9 @@ class DatabaseSeeder extends Seeder
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
             'level' => 'media', //baru'
-            'password' => bcrypt('halo123'),
+            'password' => bcrypt('piki7'),
         ]);
 
-        User::create([
-            'name' => 'san',
-            'phone_number' => '+6281234567890',
-            'email' => 'dummy2@2dummy.com',
-            'nik' => 'nik dummy2',
-            'address' => 'alamat2 dummy',
-            'province' => 'sumut2 dummy',
-            'city' => 'kota dummy2',
-            'district' => 'Kec. Medan Tuntungan dummy',
-            'village' => 'simpang selayang dummy',
-            'job' => 'web dummy',
-            'business_fields' => 'Software House dummy',
-            'description_of_skills' => 'laravel dummy',
-            'level' => 'super-admin', //baru'
-            'password' => bcrypt('halo123'),
-        ]);
-
-        User::create([
-            'name' => 'super',
-            'phone_number' => '+6281234567890',
-            'email' => 'superdummy@dummy.com',
-            'nik' => 'nik dummy',
-            'address' => 'alamat dummy',
-            'province' => 'sumut dummy',
-            'city' => 'kota dummy',
-            'district' => 'Kec. Medan Tuntungan dummy',
-            'village' => 'simpang selayang dummy',
-            'job' => 'web dummy',
-            'business_fields' => 'Software House dummy',
-            'description_of_skills' => 'laravel dummy',
-            'level' => 'super-admin', //baru'
-            'password' => bcrypt('super123'),
-        ]);
 
         User::create([
             'name' => 'Dr. Naslindo Sirait',
