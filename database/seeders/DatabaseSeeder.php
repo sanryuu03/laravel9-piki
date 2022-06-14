@@ -219,7 +219,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'media',
+            'name' => '
+            ',
             'phone_number' => '+6281234567890',
             'email' => 'mediadummy@dummy.com',
             'nik' => 'nik dummy',
@@ -239,6 +240,9 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Dr. Naslindo Sirait',
             'job' => 'Ketua DPD PIKI SUMUT',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN TOBA SAMOSIR',
+            'password' => bcrypt('naslindo'),
         ]);
 
         AnggotaPiki::create([

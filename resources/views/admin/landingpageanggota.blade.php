@@ -14,33 +14,36 @@
 
   .<div class="container-fluid">
       <div class="card-body">
-          <div class="row">
-              <div class="col-md-4">
-                  Filter Provinsi:
-                  <select id="table-filter" class="filter-province" name="province">
-                      <option value="">All</option>
-                      @foreach ($provinces as $provinsi)
-                      <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
-                      @endforeach
-                  </select>
+          <form action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+              <div class="row">
+                  <div class="col-md-4">
+                      Filter Provinsi:
+                      <select id="table-filter" class="filter-province" name="province">
+                          <option value="">All</option>
+                          @foreach ($provinces as $provinsi)
+                          <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                          @endforeach
+                      </select>
+                  </div>
               </div>
-          </div>
-          <div class="row">
-              <div class="col-md-4">
-                  Filter Kabupaten / Kota:
-                  <select id="table-filter" class="filter-kota" name="kota">
-                      <option value="">All</option>
-                      @foreach ($cities as $city)
-                      <option value="{{ $city->name }}">{{ $city->name }}</option>
-                      @endforeach
-                  </select>
+              <div class="row">
+                  <div class="col-md-4">
+                      Filter Kabupaten / Kota:
+                      <select id="table-filter" class="filter-kota" name="kota">
+                          <option value="">All</option>
+                          @foreach ($cities as $city)
+                          <option value="{{ $city->name }}">{{ $city->name }}</option>
+                          @endforeach
+                      </select>
+                  </div>
               </div>
-          </div>
-          <div class="row">
-              <div class="col-md-4">
-                    <a href="{{ route('table.export') }}" class="btn btn-success btn-sm mb-1" target="_blank">Print Table</a>
+              <div class="row">
+                  <div class="col-md-4">
+                    <button type="submit" class="btn btn-info">Print Table</button>
+                  </div>
               </div>
-          </div>
+          </form>
           <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>
                   <tr>

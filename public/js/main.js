@@ -5,6 +5,7 @@ $(document).ready(function () {
             'copy', 'pdf', 'print'
         ]
     });
+
 });
 
 const title = document.querySelector("#title");
@@ -66,6 +67,21 @@ $(function () {
                 cache: false,
                 success: function (msg) {
                     $(".filter-kota").html(msg);
+                },
+                error: function (data) {
+                    console.log(`errornya ${data}`);
+                },
+            });
+            var serializedData = $id_provinsi.serialize();
+            $.ajax({
+                type: "post",
+                url: '/admin/landingpageanggota/exporttable',
+                data: {
+                    id_provinsi,
+                },
+                cache: false,
+                success: function (msg) {
+                    console.log(`kirim id provinsi ${msg}`);
                 },
                 error: function (data) {
                     console.log(`errornya ${data}`);

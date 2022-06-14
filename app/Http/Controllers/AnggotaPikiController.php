@@ -13,6 +13,7 @@ use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Yajra\Datatables\Datatables;
 
 
 class AnggotaPikiController extends Controller
@@ -30,6 +31,7 @@ class AnggotaPikiController extends Controller
         // return $anggota[0]->name;
         // return $anggota->userPiki;
         $user = User::get();
+        // $user = Datatables::of(User::query())->make(true);
         $provinces = Province::all();
         $id_provinsi = $request->id_provinsi;
         $cities = Regency::where('province_id', $id_provinsi)->get();
@@ -235,16 +237,69 @@ class AnggotaPikiController extends Controller
         // return $pdf->download('anggotacv.pdf');
     }
 
-    public function exportTable()
+    public function exportTable(Request $request)
     {
+        // return $request->input('province');
+        // return $_POST['table-filter'];
+        // $id_provinsi = $request->id_provinsi;
+        // $id_provinsi = $request->input('province');
+        // $cities = Regency::where('province_id', $id_provinsi)->get();
+        // return $id_provinsi;
+        // return $cities;
+        // return $_GET['table-filter'];
+        $item = 'Province || Kab/Kota';
+        // return $namaProvince;
         $province = request()->input('province');
-        if ($province) {
+        // if ($province) {
+        //     $province = Province::where('id', $province)->first();
+        //     $namaProvince = $province->name;
+        //     $user = User::where('province', $namaProvince)->get();
+        //     $item = $namaProvince;
+        //     // return $user;
+        //     $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
+        //     $pdf->setPaper('A4', 'potrait');
+        //     return $pdf->stream('table.pdf');
+        // }
+        $regencies = request()->input('kota');
+        // if ($regencies) {
+        //     $kota = Regency::where('id', $regencies)->first();
+        //     $namaKota = $kota->name;
+        //     $user = User::where('city', $namaKota)->get();
+        //     $item = $namaKota;
+        //     // return $user;
+        //     $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
+        //     $pdf->setPaper('A4', 'potrait');
+        //     return $pdf->stream('table.pdf');
+        // }
+        // return $request->input();
+        if ($province != null && $regencies != "==Pilih Kota==") {
+
+            // return $regencies;
+            $kota = Regency::where('id', $regencies)->first();
+            $namaKota = $kota->name;
+            $user = User::where('city', $namaKota)->get();
+            $item = $namaKota;
+            // return $user;
+            $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream('table.pdf');
+        }
+        else
+        {
             $province = Province::where('id', $province)->first();
             $namaProvince = $province->name;
-            return $namaProvince;
+            $user = User::where('province', $namaProvince)->get();
+            $item = $namaProvince;
+            // return $user;
+            $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream('table.pdf');
         }
+        // return ([$namaProvince, $namaKota]);
         $user = User::get();
-        $pdf = Pdf::loadView('admin/table', compact('user'));
+        // return $user;
+
+        $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
         $pdf->setPaper('A4', 'potrait');
         return $pdf->stream('table.pdf');
     }

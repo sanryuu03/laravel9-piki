@@ -42,7 +42,7 @@
             </td>
             <td>
                 <span style="color:blue;font-weight:bold;font-size:22px;">PIKI SUMUT</span> <br />
-                <span style="color:#454647;font-weight:bold;font-size:16px;">Kab</span>
+                <span style="color:#454647;font-weight:bold;font-size:16px;">{{ $item }}</span>
             </td>
         </tr>
     </table>
@@ -58,12 +58,14 @@
             <th>Alamat</th>
             <th>Telp / WA</th>
         </tr>
+        @foreach($user as $item)
         <tr>
-                <td style="width: 3%;">1</td>
-                <td style="width: 7%;">san</td>
-                <td style="width: 7%;">jalan</td>
-                <td style="width: 17%;">081234566</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->address }}</td>
+            <td>{{ $item->phone_number }}</td>
         </tr>
+        @endforeach
     </table>
 </body>
 </html>

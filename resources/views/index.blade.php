@@ -31,11 +31,6 @@
                   margin-top: 70px !important;
                   margin-bottom: -50px !important;
                   background-repeat: no-repeat;
-                  border-bottom: none !important;
-                  border-style: hidden !important;
-                  border: none !important;
-                  outline: none !important;
-                  border-collapse: collapse !important;
               }
           }
 
@@ -207,14 +202,15 @@
           </div>
       </div>
   </section>
-  <div class="flex -mt-[140px] my-96 py-20 lg:hidden" style="z-index: 10;">
-      <div class="flex-initial w-full ml-[100px]">
-          <a href="/daftar" class="btn btn-secondary btn-md mx-auto" target="_blank">Daftar</a>
+  <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
+      <div id ="daftar" class="flex-initial w-full ml-[100px]">
+          <a id ="daftar" href="/daftar" class="btn btn-secondary btn-md mx-auto" target="_blank">daftar</a>
       </div>
       <div class="flex-initial w-full mr-[70px]">
-          <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">Login</a>
+          <a href="{{ route('admin.login') }}" class="btn btn-md mx-auto">login</a>
       </div>
   </div>
+
 
   <!-- Berita Terbaru-->
   <section id="berita" class="h-100 w-100" style="box-sizing: border-box">
