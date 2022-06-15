@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-primary">Login</button>
-                                            <a class="btn btn-danger" href="{{ route('register') }}">Back</a>
+                                    Lupa Password ? <a class="" href="{{ route('forget.password.get') }}">Reset !</a>
                                         </div>
                                     </form>
                                     <hr>

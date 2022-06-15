@@ -26,3 +26,7 @@ tailwindcss.
 PHP 8.1.1.
 
 phpMyAdmin: 5.1.1.
+
+## Laravel 8 Custom Reset Password Example
+
+https://www.codecheef.org/article/laravel-8-custom-reset-password-example

@@ -13,6 +13,7 @@ use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileAnggotaController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\DependantDropdownController;
@@ -51,6 +52,10 @@ Route::get('/indoregion', function () {
     return response()->json('indoregion');
 });
 
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');
@@ -149,4 +154,3 @@ Route::group(['middleware' => ['CekLevel:anggota']], function () {
     Route::get('/admin/profile/edit/{id}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');
     Route::put('/admin/profile/update/{id}', [ProfileAnggotaController::class, 'update'])->name('profile.update');
 });
-
