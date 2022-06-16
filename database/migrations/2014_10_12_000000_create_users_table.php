@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('username');
             $table->string('name');
             $table->text('phone_number')->nullable();
             $table->string('email')->unique()->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('photo_profile')->nullable();
             $table->text('business_fields')->nullable();
             $table->text('description_of_skills')->nullable();
+            $table->text('status_anggota')->default('belum di proses');
             $table->enum('level', ['super-admin', 'admin', 'bendahara', 'wakil-ketua', 'organisasi', 'infokom', 'media', 'anggota'])->default('anggota');
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();

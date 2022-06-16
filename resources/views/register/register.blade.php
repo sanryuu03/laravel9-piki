@@ -57,6 +57,10 @@
                                    {{ csrf_field() }}
                                     @csrf
                                     <div class="mb-3">
+                                        <label>Username <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="username" placeholder="Username Untuk Login" value="{{ old('username') }}" />
+                                    </div>
+                                    <div class="mb-3">
                                         <label>Name <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="name" placeholder="Nama Lengkap Sesuai KTP" value="{{ old('name') }}" />
                                     </div>

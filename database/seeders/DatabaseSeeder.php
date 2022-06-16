@@ -118,6 +118,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'ketua',
             'name' => 'ketua',
             'phone_number' => '+6281234567890',
             'email' => 'admindummy@dummy.com',
@@ -135,6 +136,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'sekretaris',
             'name' => 'sekretaris',
             'phone_number' => '+6281234567890',
             'email' => 'superdummy@dummy.com',
@@ -151,6 +153,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('piki2'),
         ]);
         User::create([
+            'username' => 'bendahara',
             'name' => 'bendahara',
             'phone_number' => '+6281234567890',
             'email' => 'bendaharadummy@dummy.com',
@@ -168,6 +171,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'wakil ketua',
             'name' => 'wakil ketua',
             'phone_number' => '+6281234567890',
             'email' => 'dummy2@2dummy.com',
@@ -185,6 +189,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'organisasi',
             'name' => 'organisasi',
             'phone_number' => '+6281234567890',
             'email' => 'organisasidummy@dummy.com',
@@ -202,6 +207,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'infokom',
             'name' => 'infokom',
             'phone_number' => '+6281234567890',
             'email' => 'infokomdummy@dummy.com',
@@ -219,8 +225,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => '
-            ',
+            'username' => 'media',
+            'name' => 'media',
             'phone_number' => '+6281234567890',
             'email' => 'mediadummy@dummy.com',
             'nik' => 'nik dummy',
@@ -238,17 +244,12 @@ class DatabaseSeeder extends Seeder
 
 
         User::create([
+            'username' => 'naslindo',
             'name' => 'Dr. Naslindo Sirait',
             'job' => 'Ketua DPD PIKI SUMUT',
             'province' => 'SUMATERA UTARA',
             'city' => 'KABUPATEN TOBA SAMOSIR',
             'password' => bcrypt('naslindo'),
-        ]);
-
-        AnggotaPiki::create([
-            'name' => 'Dr. Naslindo Sirait',
-            'users_id' => 7,
-            'jabatan' => 'Ketua DPD PIKI SUMUT',
         ]);
 
         SponsorPiki::create([

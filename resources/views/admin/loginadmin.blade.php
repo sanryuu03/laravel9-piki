@@ -63,9 +63,9 @@
                                     <form action="{{ route('login.action') }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label>name <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="name" name="name" @error('name') is-invalid @enderror autofocus value="{{ old('name') }}" />
-                                            @error('name')
+                                            <label>username <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="username" name="username" @error('username') is-invalid @enderror autofocus value="{{ old('username') }}" />
+                                            @error('username')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

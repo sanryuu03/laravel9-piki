@@ -34,7 +34,7 @@ class RegisterController extends Controller
 
     public function authenticate(Request $request) {
         $credentials = $request->validate([
-            'name' => 'required',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
@@ -108,6 +108,7 @@ class RegisterController extends Controller
         // return request()->all();
         // return $request->file('photo_ktp')->store('storage/assets/user');
         $data = $request->validate([
+            'username' => 'required|max:255',
             'name' => 'required|max:255',
             'phone_number' => 'required',
             'email' => 'required|email|unique:users',
