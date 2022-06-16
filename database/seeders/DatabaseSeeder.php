@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => 'sekretaris',
-            'name' => 'sekretaris',
+            'name' => 'admin umum',
             'phone_number' => '+6281234567890',
             'email' => 'superdummy@dummy.com',
             'nik' => 'nik dummy',

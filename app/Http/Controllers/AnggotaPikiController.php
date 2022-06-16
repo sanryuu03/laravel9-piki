@@ -35,13 +35,14 @@ class AnggotaPikiController extends Controller
         $provinces = Province::all();
         $id_provinsi = $request->id_provinsi;
         $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
 
         // return $kota;
 
         return view('admin/landingpageanggota', [
             "title" => "PIKI - Sangrid",
             "menu" => "Anggota",
-            "creator" => "San",
+            "creator" => $idUser,
             "anggota" => $anggota,
             "user" => $user,
             "provinces" => $provinces,
@@ -85,7 +86,7 @@ class AnggotaPikiController extends Controller
         return view('admin/anggotacv', [
             "title" => "PIKI - Sangrid",
             "menu" => "CV Anggota",
-            "creator" => "San",
+            "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
             "action" => "view",

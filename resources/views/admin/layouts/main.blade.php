@@ -1,3 +1,5 @@
+@if(auth()->user()->level!='anggota')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -217,3 +219,10 @@
 </body>
 
 </html>
+@else
+{{-- {{ dd(auth()->user()->id) }} --}}
+{{-- {{ dd($creator) }} --}}
+<script>
+    window.location = "{{ route('profile', $creator) }}";
+</script>
+@endif

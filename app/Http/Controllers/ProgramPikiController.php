@@ -15,10 +15,11 @@ class ProgramPikiController extends Controller
     public function index()
     {
         $program = ProgramPiki::take(7)->get();
+        $user = auth()->user()->id;
         return view('admin/program', [
             "title" => "PIKI - Sangrid",
             "menu" => "Program",
-            "creator" => "San",
+            "creator" => $user,
             "program" => $program,
         ]);
     }

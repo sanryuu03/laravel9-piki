@@ -19,10 +19,11 @@ class NewsPikiController extends Controller
     {
         $berita = NewsPiki::all();
         $categoryNews = CategoryNews::all();
+        $user = auth()->user()->id;
         return view('admin/landingpageberita', [
             "title" => "PIKI - Sangrid",
             "menu" => "Berita",
-            "creator" => "San",
+            "creator" => $user,
             "berita" => $berita,
             "categoryNews" => $categoryNews,
         ]);

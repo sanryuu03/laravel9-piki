@@ -34,7 +34,7 @@
 
     </style>
 </head>
-
+@auth
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -220,6 +220,8 @@
         </div>
 
     </div>
+        @endauth
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>

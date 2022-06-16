@@ -79,6 +79,7 @@ Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('ci
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
 
+// header
 Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::get('/admin/landingpageheader', [HeaderPikiController::class, 'index'])->name('header');
     Route::post('/admin/upload/proses', [HeaderPikiController::class, 'proses_upload'])->name('upload.header');
@@ -88,7 +89,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::post('/admin/upload/headermobile/hapus/{id}', [HeaderPikiMobileController::class, 'destroy'])->name('header.mobile.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:super-admin,admin,infokom,media']], function () {
+// berita
+Route::group(['middleware' => ['CekLevel:super-admin,infokom,media']], function () {
     // slug berita
     Route::get('/admin/checkSlug', [NewsPikiController::class, 'checkSlug']);
     Route::get('/admin/editberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
@@ -100,23 +102,15 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin,infokom,media']], fun
     Route::post('/admin/landingpageberita/hapus/{id}', [NewsPikiController::class, 'destroy'])->name('berita.destroy');
 });
 
+// program
 Route::group(['middleware' => ['CekLevel:super-admin,admin,organisasi,infokom']], function () {
-
     Route::get('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'index'])->name('program');
     Route::post('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'store'])->name('upload.program');
     Route::post('/admin/landingpagejenisprogram/hapus/{id}', [ProgramPikiController::class, 'destroy'])->name('program.destroy');
 });
 
-Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
-    Route::get('/admin/landingpageagenda', [AgendaPikiController::class, 'index'])->name('agenda.index');
-    Route::post('/admin/landingpageagenda', [AgendaPikiController::class, 'store'])->name('agenda.post');
-    Route::get('/admin/editagenda/{id}', [AgendaPikiController::class, 'edit'])->name('agenda.edit');
-    Route::put('/admin/updateagenda/{id}', [AgendaPikiController::class, 'update'])->name('agenda.update');
-    Route::delete('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
-
-});
-
-Route::group(['middleware' => ['CekLevel:super-admin,admin,bendahara,infokom']], function () {
+// agenda
+Route::group(['middleware' => ['CekLevel:super-admin,admin,bendahara,organisasi,infokom,wakil-ketua']], function () {
     Route::get('/admin/landingpageagenda', [AgendaPikiController::class, 'index'])->name('agenda.index');
     Route::post('/admin/landingpageagenda', [AgendaPikiController::class, 'store'])->name('agenda.post');
     Route::get('/admin/editagenda/{id}', [AgendaPikiController::class, 'edit'])->name('agenda.edit');
@@ -124,6 +118,7 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin,bendahara,infokom']],
     Route::delete('/admin/landingpageagenda/hapus/{id}', [AgendaPikiController::class, 'destroy'])->name('agenda.destroy');
 });
 
+// anggota
 Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () {
     // print cv
     Route::get('/admin/landingpageanggota/export/{id}', [AnggotaPikiController::class, 'export'])->name('anggota.export');
@@ -137,6 +132,7 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
 });
 
+// community partners
 Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
     Route::get('/admin/communitypartners', [SponsorPikiController::class, 'index'])->name('communitypartners');
     Route::post('/admin/communitypartners', [SponsorPikiController::class, 'store'])->name('communitypartners.post');
@@ -145,10 +141,12 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
     Route::post('/admin/communitypartners/hapus/{id}', [SponsorPikiController::class, 'destroy'])->name('communitypartners.destroy');
 });
 
+// keuangan
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
     Route::get('/admin/keuangan', [BackendPikiController::class, 'notFound'])->name('notfound');
 });
 
+// login khusus anggota
 Route::group(['middleware' => ['CekLevel:anggota']], function () {
     Route::get('/admin/profile/{id}', [ProfileAnggotaController::class, 'show'])->name('profile');
     Route::get('/admin/profile/edit/{id}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');

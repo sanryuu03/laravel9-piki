@@ -18,10 +18,11 @@ class AgendaPikiController extends Controller
     public function index()
     {
         $agenda = AgendaPiki::get();
+        $user = auth()->user()->id;
         return view('admin/landingpageagenda', [
             "title" => "PIKI - Sangrid",
             "menu" => "Agenda",
-            "creator" => "San",
+            "creator" => $user,
             "agenda" => $agenda,
         ]);
     }

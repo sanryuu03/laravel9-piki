@@ -38,11 +38,6 @@ class RegisterController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials) && auth()->user()->level=='anggota') {
-            $request->session()->regenerate();
-            // return auth()->user()->id;
-            return redirect()->route('profile', auth()->user()->id);
-        }
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();

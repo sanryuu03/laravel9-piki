@@ -17,7 +17,7 @@ class BackendPikiController extends Controller
 
     public function index()
     {
-        $user = User::find(3);
+        $user = auth()->user()->id;
         return view('admin/index', [
             "title" => "PIKI - Sangrid CRUD",
             "creator" => $user,
@@ -26,9 +26,10 @@ class BackendPikiController extends Controller
 
     public function notFound()
     {
+        $user = auth()->user()->id;
         return view('admin/notfound', [
             "title" => "PIKI - Sangrid CRUD",
-            "creator" => "San"
+            "creator" => $user
         ]);
     }
 

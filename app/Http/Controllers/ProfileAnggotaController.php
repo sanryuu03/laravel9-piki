@@ -59,7 +59,7 @@ class ProfileAnggotaController extends Controller
         return view('admin/profileuser', [
             "title" => "PIKI - Sangrid",
             "menu" => "CV Anggota",
-            "creator" => "San",
+            "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
             "action" => "view",
