@@ -95,18 +95,18 @@
   </div>
   <!-- Header End-->
 
-  .<div class="container-fluid">
-      <div class="card-body">
+  .<div class="container-fluid landingpage-berita">
+      <div class="card-body table-responsive">
           <table class="table table-bordered table-striped">
               <thead>
                   <tr>
-                      <th width="1%">Judul Berita</th>
-                      <th width="1%">Foto Berita</th>
-                      <th width="1%">Keterangan Foto</th>
-                      <th width="1%">Isi Berita</th>
-                      <th width="1%">Kategori Berita</th>
-                      <th width="1%">Created At</th>
-                      <th width="1%">Updated At</th>
+                      <th width="10px">Judul Berita</th>
+                      <th width="10px">Foto Berita</th>
+                      <th width="10px">Keterangan Foto</th>
+                      <th width="10px">Isi Berita</th>
+                      <th width="10px">Kategori Berita</th>
+                      <th width="10px">Created At</th>
+                      <th width="10px">Updated At</th>
                       <th width="0.1%">OPSI</th>
                   </tr>
               </thead>
