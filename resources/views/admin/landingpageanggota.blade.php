@@ -12,7 +12,7 @@
       </div>
   </div>
 
-  .<div class="container-fluid">
+  .<div class="container-fluid landingpage-anggota">
       <div class="card-body">
           <form action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
           @csrf
