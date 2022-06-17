@@ -71,13 +71,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         CategoryNews::create([
-            'name' => 'Daerah',
-            'slug' => 'region'
+            'name' => 'Nasional',
+            'slug' => 'indonesia-flag'
         ]);
 
         CategoryNews::create([
-            'name' => 'Ekonomi',
-            'slug' => 'economy'
+            'name' => 'Daerah',
+            'slug' => 'region'
         ]);
 
         CategoryNews::create([
@@ -86,18 +86,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         CategoryNews::create([
-            'name' => 'Nasional',
-            'slug' => 'indonesia flag'
+            'name' => 'Gereja',
+            'slug' => 'church'
+        ]);
+
+        CategoryNews::create([
+            'name' => 'Ekonomi',
+            'slug' => 'economy'
         ]);
 
         CategoryNews::create([
             'name' => 'Politik',
-            'slug' => 'bendera indonesia'
+            'slug' => 'bendera-indonesia'
         ]);
 
         CategoryNews::create([
             'name' => 'Teknologi',
             'slug' => 'computer'
+        ]);
+
+        CategoryNews::create([
+            'name' => 'Budaya',
+            'slug' => 'north-sumatra'
         ]);
 
         AgendaPiki::create([
