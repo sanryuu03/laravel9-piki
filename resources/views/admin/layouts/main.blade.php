@@ -219,13 +219,6 @@
         <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
         <!-- DataTable -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
         <script src="{{ asset('js/main.js') }}"></script>
 </body>
 

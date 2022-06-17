@@ -23,6 +23,34 @@ class AnggotaPikiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function backendanggota(Request $request)
+    {
+        $anggota = AnggotaPiki::all();
+        // return $anggota;
+        // return $anggota->name;
+        // return $anggota[0]->name;
+        // return $anggota->userPiki;
+        $user = User::get();
+        // $user = Datatables::of(User::query())->make(true);
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
+
+        // return $kota;
+
+        return view('admin/backendanggota', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Anggota",
+            "creator" => $idUser,
+            "anggota" => $anggota,
+            "user" => $user,
+            "provinces" => $provinces,
+            "cities" => $cities,
+        ]);
+
+    }
+
     public function index(Request $request)
     {
         $anggota = AnggotaPiki::all();
