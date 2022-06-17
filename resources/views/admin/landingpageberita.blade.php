@@ -95,7 +95,7 @@
   </div>
   <!-- Header End-->
 
-  .<div class="container-fluid landingpage-berita">
+  .<div class="container-fluid">
       <div class="card-body table-responsive">
           <table class="table table-bordered table-striped">
               <thead>

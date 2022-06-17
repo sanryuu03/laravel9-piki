@@ -20,7 +20,7 @@
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
 
     <style>
-    .landingpage-berita .landingpage-anggota {
+    .landingpage-anggota {
         overflow: auto;
         white-space: nowrap;
     }
