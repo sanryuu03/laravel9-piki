@@ -66,7 +66,7 @@
                         <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
+                        <a class="collapse-item" href="{{  url('/admin/backendanggota') }}">Anggota</a>
                         <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
                         <a class="collapse-item" href="{{  url('/admin/keuangan') }}">Keuangan</a>
                         @endif
@@ -89,7 +89,7 @@
                         @if(auth()->user()->level=='organisasi')
                         <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
                         <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageanggota') }}">Anggota</a>
+                        <a class="collapse-item" href="{{  url('/admin/backendanggota') }}">Anggota</a>
                         @endif
 
                         @if(auth()->user()->level=='infokom')

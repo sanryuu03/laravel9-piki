@@ -126,6 +126,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::match(['get','post'], '/admin/landingpageanggota/exporttable', [AnggotaPikiController::class, 'exportTable'])->name('table.export');
 
     Route::get('/admin/backendanggota', [AnggotaPikiController::class, 'backendanggota'])->name('backendanggota');
+    Route::get('/admin/pendaftarBaru', [AnggotaPikiController::class, 'pendaftarBaru'])->name('pendaftarBaru');
+    Route::get('/admin/dalamProses', [AnggotaPikiController::class, 'dalamProses'])->name('dalamProses');
+    Route::get('/admin/diTolak', [AnggotaPikiController::class, 'diTolak'])->name('diTolak');
     Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])->name('anggota.index');
     Route::get('/admin/anggota/cv/{id}', [AnggotaPikiController::class, 'show'])->name('anggota.cv');
     Route::get('/admin/landingpageanggota/edit/{id}', [AnggotaPikiController::class, 'edit'])->name('anggota.edit');

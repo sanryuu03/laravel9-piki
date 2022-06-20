@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Regency;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\AnggotaPiki;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Barryvdh\Snappy\Facades\SnappyPdf; //import Fungsi PDF
-use Spatie\Browsershot\Browsershot;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\District;
-use App\Models\Village;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\Datatables\Datatables;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\Snappy\Facades\SnappyPdf; //import Fungsi PDF
 
 
 class AnggotaPikiController extends Controller
@@ -23,27 +24,65 @@ class AnggotaPikiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->userBaru = User::where('status_anggota', 'belum di proses')-> get();
+        $this->userDalamProses = User::where('status_anggota', 'dalam proses')-> get();
+        $this->userDiTolak = User::where('status_anggota', 'tidak sesuai')-> get();
+        $this->userDiterima = User::where('status_anggota', 'diterima')-> get();
+
+        $hitungUserBaru = count($this->userBaru);
+        $hitungUseruserDalamProses = count($this->userDalamProses);
+        $hitungUserDiTolak = count($this->userDiTolak);
+        $hitungUserDiterima = count($this->userDiterima->skip(7));
+        // return $hitungUserDiterima;
+        $pendaftarBaru = $hitungUserBaru > 0 ? $hitungUserBaru:0;
+        $dalamProses = $hitungUseruserDalamProses > 0 ? $hitungUseruserDalamProses:0;
+        $diTolak = $hitungUserDiTolak > 0 ? $hitungUserDiTolak:0;
+        $anggotaDiterima = $hitungUserDiterima > 0 ? $hitungUserDiterima:0;
+        // dd($pendaftarBaru);
+        View::share([
+            'pendaftarBaru' => $pendaftarBaru,
+            'dalamProses' => $dalamProses,
+            'diTolak' => $diTolak,
+            'anggotaDiterima' => $anggotaDiterima,
+        ]);
+
+    }
+
     public function backendanggota(Request $request)
     {
-        $anggota = AnggotaPiki::all();
-        // return $anggota;
-        // return $anggota->name;
-        // return $anggota[0]->name;
-        // return $anggota->userPiki;
-        $user = User::get();
-        // $user = Datatables::of(User::query())->make(true);
-        $provinces = Province::all();
-        $id_provinsi = $request->id_provinsi;
-        $cities = Regency::where('province_id', $id_provinsi)->get();
-        $idUser = auth()->user()->id;
 
-        // return $kota;
+        $idUser = auth()->user()->id;
 
         return view('admin/backendanggota', [
             "title" => "PIKI - Sangrid",
             "menu" => "Anggota",
             "creator" => $idUser,
-            "anggota" => $anggota,
+        ]);
+
+    }
+
+    public function index(Request $request)
+    {
+        // return $anggota;
+        // return $anggota->name;
+        // return $anggota[0]->name;
+        // return $anggota->userPiki;
+        $userDiterima = $this->userDiterima;
+        $user = $userDiterima->skip(7);
+        // $user = Datatables::of(User::query())->make(true);
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
+        // return $user;
+
+        return view('admin/landingpageanggota', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Anggota diterima",
+            "creator" => $idUser,
             "user" => $user,
             "provinces" => $provinces,
             "cities" => $cities,
@@ -51,32 +90,22 @@ class AnggotaPikiController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function pendaftarBaru(Request $request)
     {
-        $anggota = AnggotaPiki::all();
-        // return $anggota;
-        // return $anggota->name;
-        // return $anggota[0]->name;
-        // return $anggota->userPiki;
-        $user = User::get();
-        // $user = Datatables::of(User::query())->make(true);
+        $user = $this->userBaru;
         $provinces = Province::all();
         $id_provinsi = $request->id_provinsi;
         $cities = Regency::where('province_id', $id_provinsi)->get();
         $idUser = auth()->user()->id;
-
-        // return $kota;
-
-        return view('admin/landingpageanggota', [
+        // return $user;
+        return view('admin/pendaftarBaru', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Anggota",
+            "menu" => "Pendaftar baru",
             "creator" => $idUser,
-            "anggota" => $anggota,
             "user" => $user,
             "provinces" => $provinces,
             "cities" => $cities,
         ]);
-
     }
 
     /**

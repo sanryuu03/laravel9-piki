@@ -141,6 +141,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'super-admin', //baru'
             'password' => bcrypt('piki1'),
         ]);
@@ -159,6 +160,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'admin', //baru'
             'password' => bcrypt('piki2'),
         ]);
@@ -176,6 +178,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'bendahara', //baru'
             'password' => bcrypt('piki3'),
         ]);
@@ -194,6 +197,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'wakil-ketua', //baru'
             'password' => bcrypt('piki4'),
         ]);
@@ -212,6 +216,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'organisasi', //baru'
             'password' => bcrypt('piki5'),
         ]);
@@ -230,6 +235,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'infokom', //baru'
             'password' => bcrypt('piki6'),
         ]);
@@ -248,18 +254,129 @@ class DatabaseSeeder extends Seeder
             'job' => 'web dummy',
             'business_fields' => 'Software House dummy',
             'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
             'level' => 'media', //baru'
             'password' => bcrypt('piki7'),
         ]);
 
 
         User::create([
-            'username' => 'naslindo',
-            'name' => 'Dr. Naslindo Sirait',
-            'job' => 'Ketua DPD PIKI SUMUT',
+            'username' => 'Naek Silitonga, dr',
+            'name' => 'Naek Silitonga, dr',
+            'phone_number' => '+6281265519278',
+            'email' => 'naeksilitonga@ymail.com',
+            'nik' => '1271143105740001',
+            'address' => 'Jl. Jamil Lubis No. 114 Medan',
             'province' => 'SUMATERA UTARA',
-            'city' => 'KABUPATEN TOBA SAMOSIR',
-            'password' => bcrypt('naslindo'),
+            'city' => 'KOTA MEDAN',
+            'district' => 'MEDAN TEMBUNG',
+            'village' => 'BANDAR SELAMAT',
+            'job' => 'Pegawai Negeri Sipil',
+            'business_fields' => 'Kesehatan',
+            'description_of_skills' => 'Dokter',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'Irwan Ginting,S.Pd',
+            'name' => 'Irwan Ginting,S.Pd',
+            'phone_number' => '+6281361679508',
+            'email' => 'irwangin7ing70@gmail.com',
+            'nik' => '1271040505700009',
+            'address' => 'JL BUKU GANG JOHAR 61',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KOTA MEDAN',
+            'district' => 'MEDAN PETISAH',
+            'village' => 'SEI PUTIH BARAT',
+            'job' => 'Wiraswasta',
+            'business_fields' => 'Pribadi',
+            'description_of_skills' => 'Managerial, biasa menangani team sales, kredit dan collection termasuk pengelolaan SDM.',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'Lenny Fytrya Sihombing',
+            'name' => 'Lenny Fytrya Sihombing',
+            'phone_number' => '+6282167953324',
+            'email' => 'trya24sihombing@gmail.com',
+            'nik' => '1272086411880001',
+            'address' => 'Jl. Bunga lawang',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN SIMALUNGUN',
+            'district' => 'SIANTAR',
+            'village' => 'PEMATANG SIMALUNGUN',
+            'job' => 'Pengajar',
+            'business_fields' => 'Live Streaming Project',
+            'description_of_skills' => 'Mengoperasikan live streaming',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'Henri Sibarani, SE.,Ak, M.Si',
+            'name' => 'Henri Sibarani, SE.,Ak, M.Si',
+            'phone_number' => '+6282139011056',
+            'email' => 'henrisibarani0704@gmail.com',
+            'nik' => '3516130704690004',
+            'address' => 'KOMP TASBI BLOK JJ NO.11',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KOTA MEDAN',
+            'district' => 'MEDAN SUNGGAL',
+            'village' => 'TANJUNG REJO',
+            'job' => 'PNS',
+            'business_fields' => 'Sumber Daya Manusia',
+            'description_of_skills' => 'Perpajakan, Manajemen SDM',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'Junius Ndraha, SE, MM',
+            'name' => 'Junius Ndraha, SE, MM',
+            'phone_number' => '+6281396949000',
+            'email' => 'junius.ndraha@gmail.com',
+            'nik' => '1207261806820007',
+            'address' => 'Jl. Arah Idanogawo No. 52 Km. 21,2 Desa Lolozasai',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN NIAS',
+            'district' => 'GIDO',
+            'village' => 'LOLOZASAI',
+            'job' => 'Wiraswasta',
+            'business_fields' => 'Barang/Jasa, Usaha Depot Air Minum Isi Ulang(DAMIU)',
+            'description_of_skills' => 'Ahli Manajemen Air Minum Tingkat Utama, design grafis, editor video, dll',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'ELI TOHONAN TUA PANE, M.PD',
+            'name' => 'ELI TOHONAN TUA PANE, M.PD',
+            'phone_number' => '+6285262970630',
+            'email' => 'elittpane@gmail.com',
+            'nik' => '1271200101720004',
+            'address' => 'Jl.Bunga Wijaya Kesuma No.1 B Pasar 4 Lk.X Tanjung Sari Medan Selayang Kota Medan',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KOTA MEDAN',
+            'district' => 'MEDAN SELAYANG',
+            'village' => 'PADANG BULAN SELAYANG II',
+            'job' => 'PNS Kemendikbud',
+            'business_fields' => 'Pendidikan',
+            'description_of_skills' => 'Master trainer PAUD',
+            'password' => bcrypt('hehehe'),
+        ]);
+
+        User::create([
+            'username' => 'Piki Darma Kristian Pardede',
+            'name' => 'Piki Darma Kristian Pardede',
+            'phone_number' => '+6281266656992',
+            'email' => 'pikipardede16@gmail.com',
+            'nik' => '1308051612940005',
+            'address' => 'Jl. Syamsiar Thaib JR Tampang',
+            'province' => 'SUMATERA BARAT',
+            'city' => 'KABUPATEN PASAMAN',
+            'district' => 'LUBUK SIKAPING',
+            'village' => 'DURIAN TINGGI',
+            'job' => 'Dosen/Tenaga Pengajar',
+            'business_fields' => 'Pendidikan',
+            'description_of_skills' => 'Kebijakan Publik dan Pemerintahan',
+            'password' => bcrypt('hehehe'),
         ]);
 
         SponsorPiki::create([

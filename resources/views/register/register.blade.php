@@ -17,6 +17,8 @@
     <link href="{{ asset('register/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('register/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
     <style type="text/css">
         .bg-gradient-primary {
@@ -81,6 +83,10 @@
                                         <input class="form-control" type="text" name="address" placeholder="Masukkan Alamat Sesuai KTP" value="{{ old('address') }}" />
                                     </div>
                                     <div class="mb-3">
+                                        <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                        <input id="date" class="form-control" type="text" name="date" placeholder="MM/DD/YYYY" value="{{ old('date') }}" />
+                                    </div>
+                                    <div class="mb-3">
                                         <label>Provinsi <span class="text-danger">*</span></label>
                                         <select class="custom-select" name="provinsi" id="provinsi">
                                             <option selected>Pilih Provinsi Anda</option>
@@ -107,6 +113,33 @@
                                             <option selected>Pilih Desa / Kelurahan Anda</option>
                                         </select>
                                     </div>
+                                        <div class="mb-3">
+                                        <label>Pendidikan Terakhir <span class="text-danger">*</span></label>
+                                        <select id="pendidikan" class="custom-select" name="pendidikan">
+                                            <option selected>Pilih pendidikan Terakhir Anda</option>
+                                            <option value="SLTA">SLTA</option>
+                                            <option value="Diploma">Diploma</option>
+                                            <option value="S1">S1</option>
+                                            <option value="S2">S2</option>
+                                            <option value="S3">S3</option>
+                                        </select>
+                                    </div>
+                                    <div id="sekolah" class="mb-3 d-none">
+                                        <label>Sekolah <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="university" placeholder="Masukkan Nama Sekolah Anda" value="{{ old('university') }}" />
+                                    </div>
+                                    <div id="universitas" class="mb-3 d-none">
+                                        <label>Universitas <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="university" placeholder="Masukkan Nama Kampus Anda" value="{{ old('university') }}" />
+                                    </div>
+                                    <div id="fakultas" class="mb-3 d-none">
+                                        <label>Fakultas <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="fakultas" placeholder="Masukkan Nama Fakultas Anda" value="{{ old('fakultas') }}" />
+                                    </div>
+                                    <div id="jurusan" class="mb-3 d-none">
+                                        <label>Jurusan <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="jurusan" placeholder="Masukkan Nama  Jurusan Anda" value="{{ old('jurusan') }}" />
+                                    </div>
                                     <div class="mb-3">
                                         <label>Pekerjaan <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="job" placeholder="Masukkan Pekerjaan Anda" value="{{ old('job') }}" />
@@ -120,11 +153,15 @@
                                         <input class="form-control" type="file" name="photo_profile" placeholder="Masukkan Photo Profile Anda" />
                                     </div>
                                     <div class="mb-3">
+                                        <label>Jemaat Gereja <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="church" placeholder="Masukkan Nama Gereja Anda" value="{{ old('church') }}" />
+                                    </div>
+                                    <div class="mb-3">
                                         <label>Bidang Usaha <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="business_fields" placeholder="Masukkan Bidang Usaha Anda" value="{{ old('business_fields') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Deskripsi Kehalihan <span class="text-danger">*</span></label>
+                                        <label>Deskripsi Keahlian <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="description_of_skills" placeholder="Masukkan Kehalihan Anda" value="{{ old('description_of_skills') }}" />
                                     </div>
                                     <div class="mb-3">
@@ -160,7 +197,7 @@
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
+
     <script>
         $(function() {
             $.ajaxSetup({
@@ -231,6 +268,46 @@
 
         });
     </script>
+
+    <!-- Menambahakan Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]');
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
+
+<script>
+	$(document).ready(function(){
+                 $('#pendidikan').on('change', function() {
+		            let pendidikan=$('#pendidikan').val();
+		            let sekolah=document.querySelector("#sekolah");
+		            let universitas=document.querySelector("#universitas");
+		            let fakultas=document.querySelector("#fakultas");
+		            let jurusan=document.querySelector("#jurusan");
+                    console.log(`pendidikan ${pendidikan}`);
+                    if(pendidikan === "SLTA" ) {
+                        sekolah.classList.remove("d-none");
+                        universitas.classList.add("d-none");
+                        fakultas.classList.add("d-none");
+                        jurusan.classList.add("d-none");
+                    } else {
+                        sekolah.classList.add("d-none");
+                        universitas.classList.remove("d-none");
+                        fakultas.classList.remove("d-none");
+                        jurusan.classList.remove("d-none");
+                    }
+                });
+	})
+</script>
 
 </body>
 

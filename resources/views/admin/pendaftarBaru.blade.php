@@ -7,7 +7,7 @@
           <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backendanggota') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page"> {{ $menu }}</li>
+              <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
           </ol>
       </div>
   </div>
