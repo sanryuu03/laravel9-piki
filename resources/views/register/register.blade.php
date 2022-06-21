@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                        <input id="date" class="form-control" type="text" name="date" placeholder="MM/DD/YYYY" value="{{ old('date') }}" />
+                                        <input id="date" class="form-control" type="text" name="date" placeholder="YYYY/MM/DD" value="{{ old('date') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Provinsi <span class="text-danger">*</span></label>
@@ -126,9 +126,9 @@
                                     </div>
                                     <div id="sekolah" class="mb-3 d-none">
                                         <label>Sekolah <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="university" placeholder="Masukkan Nama Sekolah Anda" value="{{ old('university') }}" />
+                                        <input class="form-control" type="text" name="sekolah" placeholder="Masukkan Nama Sekolah Anda" value="{{ old('sekolah') }}" />
                                     </div>
-                                    <div id="universitas" class="mb-3 d-none">
+                                    <div id="university" class="mb-3 d-none">
                                         <label>Universitas <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="university" placeholder="Masukkan Nama Kampus Anda" value="{{ old('university') }}" />
                                     </div>
@@ -277,7 +277,8 @@
 		var date_input=$('input[name="date"]');
 		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
 		date_input.datepicker({
-			format: 'mm/dd/yyyy',
+			//format: 'mm/dd/yyyy',
+			format: 'yyyy/mm/dd',
 			container: container,
 			todayHighlight: true,
 			autoclose: true,
@@ -290,7 +291,7 @@
                  $('#pendidikan').on('change', function() {
 		            let pendidikan=$('#pendidikan').val();
 		            let sekolah=document.querySelector("#sekolah");
-		            let universitas=document.querySelector("#universitas");
+		            let universitas=document.querySelector("#university");
 		            let fakultas=document.querySelector("#fakultas");
 		            let jurusan=document.querySelector("#jurusan");
                     console.log(`pendidikan ${pendidikan}`);

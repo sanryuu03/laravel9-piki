@@ -102,8 +102,6 @@
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
 
 </body>
 

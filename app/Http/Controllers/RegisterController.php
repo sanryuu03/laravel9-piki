@@ -72,7 +72,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // return request()->input('desa');
+        // return request()->input('date');
         // $regencies = request()->input('kota');
         // if ($regencies) {
         //     $kota = Regency::where('id', $regencies)->first();
@@ -107,15 +107,22 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'phone_number' => 'required',
             'email' => 'required|email|unique:users',
-            'nik' => 'required',
+            'nik' => 'required|numeric|unique:users',
             'address' => 'required',
+            'date' => 'required',
             'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',
+            'pendidikan' => 'required',
+            'sekolah' => 'nullable',
+            'university' => 'nullable',
+            'fakultas' => 'nullable',
+            'jurusan' => 'nullable',
             'job' => 'required',
-            'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            // 'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            // 'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'church' => 'required',
             'business_fields' => 'required',
             'description_of_skills' => 'required',
             'password' => 'required|min:5|max:255',
@@ -148,6 +155,7 @@ class RegisterController extends Controller
             $namaDesa = $desa->name;
             $data['village'] = $namaDesa;
         }
+        $data['university'] = request()->input('university');
         // return $data;
 
 
