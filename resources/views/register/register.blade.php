@@ -67,6 +67,22 @@
                                         <input class="form-control" type="text" name="name" placeholder="Nama Lengkap Sesuai KTP" value="{{ old('name') }}" />
                                     </div>
                                     <div class="mb-3">
+                                        <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="birthplace" placeholder="Tempat Lahir Sesuai KTP" value="{{ old('birthplace') }}" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                        <input id="date" class="form-control" type="text" name="date" placeholder="YYYY/MM/DD" value="{{ old('date') }}" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                        <select id="gender" class="custom-select" name="gender">
+                                            <option selected>Pilih Jenis Kelamin Anda</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label>Nomor HP / WA <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="phone_number" placeholder="+6281234567890" value="{{ old('phone_number') }}" />
                                     </div>
@@ -81,10 +97,6 @@
                                     <div class="mb-3">
                                         <label>Alamat Sesuai KTP <span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="address" placeholder="Masukkan Alamat Sesuai KTP" value="{{ old('address') }}" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                        <input id="date" class="form-control" type="text" name="date" placeholder="YYYY/MM/DD" value="{{ old('date') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Provinsi <span class="text-danger">*</span></label>
@@ -113,7 +125,7 @@
                                             <option selected>Pilih Desa / Kelurahan Anda</option>
                                         </select>
                                     </div>
-                                        <div class="mb-3">
+                                    <div class="mb-3">
                                         <label>Pendidikan Terakhir <span class="text-danger">*</span></label>
                                         <select id="pendidikan" class="custom-select" name="pendidikan">
                                             <option selected>Pilih pendidikan Terakhir Anda</option>

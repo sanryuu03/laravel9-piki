@@ -36,7 +36,8 @@ class RegisterController extends Controller
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
-        ]);
+        ],
+        [ 'username.required' => 'The :attribute field wajib diisi.']);
 
 
         if(Auth::attempt($credentials)) {
@@ -105,11 +106,13 @@ class RegisterController extends Controller
         $data = $request->validate([
             'username' => 'required|max:255',
             'name' => 'required|max:255',
+            'birthplace' => 'required',
+            'date' => 'required',
+            'gender' => 'required',
             'phone_number' => 'required',
             'email' => 'required|email|unique:users',
-            'nik' => 'required|numeric|unique:users',
+            'nik' => 'required|numeric|digits:16|unique:users',
             'address' => 'required',
-            'date' => 'required',
             'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
@@ -120,12 +123,16 @@ class RegisterController extends Controller
             'fakultas' => 'nullable',
             'jurusan' => 'nullable',
             'job' => 'required',
-            // 'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'church' => 'required',
             'business_fields' => 'required',
             'description_of_skills' => 'required',
             'password' => 'required|min:5|max:255',
+        ],
+        [
+            'nik.required' => 'NIK tidak boleh kosong.',
+            'nik.digits' => 'NIK wajib 16 digit.',
         ]);
 
         $province = request()->input('provinsi');
@@ -155,7 +162,17 @@ class RegisterController extends Controller
             $namaDesa = $desa->name;
             $data['village'] = $namaDesa;
         }
-        $data['university'] = request()->input('university');
+
+        if (request()->input('pendidikan') === "SLTA") {
+            // dd('ini sma');
+            $data['university'] = NULL;
+            $data['fakultas'] = NULL;
+            $data['jurusan'] = NULL;
+        }
+
+        if (request()->input('pendidikan') !== "SLTA") {
+            $data['sekolah'] = NULL;
+        }
         // return $data;
 
 

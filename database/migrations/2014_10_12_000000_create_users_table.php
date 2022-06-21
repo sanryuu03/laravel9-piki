@@ -17,11 +17,13 @@ return new class extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('name');
+            $table->string('birthplace');
+            $table->date('date')->nullable();
+            $table->text('gender')->nullable();
             $table->text('phone_number')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->text('nik')->unique()->nullable();
+            $table->string('nik')->unique()->nullable();
             $table->text('address')->nullable();
-            $table->date('date')->nullable();
             $table->text('province')->nullable();
             $table->text('city')->nullable();
             $table->text('district')->nullable();
