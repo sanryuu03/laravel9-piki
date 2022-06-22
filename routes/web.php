@@ -126,9 +126,19 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::match(['get','post'], '/admin/landingpageanggota/exporttable', [AnggotaPikiController::class, 'exportTable'])->name('table.export');
 
     Route::get('/admin/backendanggota', [AnggotaPikiController::class, 'backendanggota'])->name('backendanggota');
+
     Route::get('/admin/pendaftarBaru', [AnggotaPikiController::class, 'pendaftarBaru'])->name('pendaftarBaru');
-    Route::get('/admin/dalamProses', [AnggotaPikiController::class, 'dalamProses'])->name('dalamProses');
+    Route::get('/admin/pendaftarBaru/cv/{id}', [AnggotaPikiController::class, 'showPendaftarBaru'])->name('pendaftarBaru.cv');
+    Route::get('/admin/processPendaftarBaru/cv/{id}', [AnggotaPikiController::class, 'processPendaftarBaru'])->name('process.pendaftarBaru.cv');
+
+    Route::get('/admin/dalamProses', [AnggotaPikiController::class, 'showProses'])->name('dalamProses');
+    Route::get('/admin/dalamProses/{id}', [AnggotaPikiController::class, 'showProsesUser'])->name('dalamProses.cv');
+    Route::get('/admin/approvePendaftarBaru/cv/{id}', [AnggotaPikiController::class, 'approvePendaftarBaru'])->name('approve.pendaftarBaru.cv');
+
     Route::get('/admin/diTolak', [AnggotaPikiController::class, 'diTolak'])->name('diTolak');
+    Route::get('/admin/diTolak/{id}', [AnggotaPikiController::class, 'showUserTidakSesuai'])->name('tidakSesuai.cv');
+    Route::get('/admin/tidakSesuai/{id}', [AnggotaPikiController::class, 'diTolakUser'])->name('diTolak.cv');
+
     Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])->name('anggota.index');
     Route::get('/admin/anggota/cv/{id}', [AnggotaPikiController::class, 'show'])->name('anggota.cv');
     Route::get('/admin/landingpageanggota/edit/{id}', [AnggotaPikiController::class, 'edit'])->name('anggota.edit');

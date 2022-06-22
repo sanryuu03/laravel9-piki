@@ -118,6 +118,7 @@
                                             </div>
 
                                             <div class="col-md-4">
+                                            <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">

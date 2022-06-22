@@ -68,8 +68,7 @@
                       <td>{{ $item->email }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>
-                          <a href="{{ route('pendaftarBaru.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1 d-inline">View</a>
-                          {{-- <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print CV</a> --}}
+                          <a href="{{ route('dalamProses.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1 d-inline">View</a>
                           <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="btn-sm d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">

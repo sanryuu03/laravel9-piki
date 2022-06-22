@@ -51,7 +51,7 @@ class AnggotaPikiController extends Controller
 
     }
 
-    public function backendanggota(Request $request)
+    public function backendanggota()
     {
 
         $idUser = auth()->user()->id;
@@ -108,6 +108,42 @@ class AnggotaPikiController extends Controller
         ]);
     }
 
+    public function showProses(Request $request)
+    {
+        $user = $this->userDalamProses;
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
+        // return $user;
+        return view('admin/prosesPendaftarBaru', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Proses Pendaftar baru",
+            "creator" => $idUser,
+            "user" => $user,
+            "provinces" => $provinces,
+            "cities" => $cities,
+        ]);
+    }
+
+    public function diTolak(Request $request)
+    {
+        $user = $this->userDiTolak;
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
+        // return $user;
+        return view('admin/tidakSesuaiPendaftarBaru', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pendaftar baru tidak sesuai",
+            "creator" => $idUser,
+            "user" => $user,
+            "provinces" => $provinces,
+            "cities" => $cities,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -135,6 +171,81 @@ class AnggotaPikiController extends Controller
      * @param  \App\Models\AnggotaPiki  $anggotaPiki
      * @return \Illuminate\Http\Response
      */
+    public function showPendaftarBaru(AnggotaPiki $anggotaPiki, $id)
+    {
+        $anggotaPiki = AnggotaPiki::find($id);
+        $user = User::find($id);
+        $provinces = Province::all();
+        return view('admin/anggotacv', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "CV Pendaftar Baru",
+            "creator" => $user,
+            "anggotaPiki" => $anggotaPiki,
+            "item" => $user,
+            "action" => "showPendaftarBaru",
+            "provinces" => $provinces,
+        ]);
+    }
+
+    public function processPendaftarBaru(Request $request)
+    {
+        User::where('id', $request->id)
+            ->update(['status_anggota' => 'dalam proses']);
+
+
+        return redirect()->route('pendaftarBaru');
+    }
+
+    public function showProsesUser(AnggotaPiki $anggotaPiki, $id)
+    {
+        $anggotaPiki = AnggotaPiki::find($id);
+        $user = User::find($id);
+        $provinces = Province::all();
+        return view('admin/anggotacv', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Proses CV Pendaftar Baru",
+            "creator" => $user,
+            "anggotaPiki" => $anggotaPiki,
+            "item" => $user,
+            "action" => "showProsesPendaftarBaru",
+            "provinces" => $provinces,
+        ]);
+    }
+
+    public function approvePendaftarBaru(Request $request)
+    {
+        User::where('id', $request->id)
+            ->update(['status_anggota' => 'diterima']);
+
+
+        return redirect()->route('dalamProses');
+    }
+
+    public function showUserTidakSesuai(AnggotaPiki $anggotaPiki, $id)
+    {
+        $anggotaPiki = AnggotaPiki::find($id);
+        $user = User::find($id);
+        $provinces = Province::all();
+        return view('admin/anggotacv', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "CV Yang Di Tolak",
+            "creator" => $user,
+            "anggotaPiki" => $anggotaPiki,
+            "item" => $user,
+            "action" => "showUserTidakSesuai",
+            "provinces" => $provinces,
+        ]);
+    }
+
+    public function diTolakUser(Request $request)
+    {
+        User::where('id', $request->id)
+            ->update(['status_anggota' => 'tidak sesuai']);
+
+
+        return redirect()->route('dalamProses');
+    }
+
     public function show(Request $request, AnggotaPiki $anggotaPiki, $id)
     {
         $anggotaPiki = AnggotaPiki::find($id);
