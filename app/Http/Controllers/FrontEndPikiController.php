@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\NewsPiki;
 use App\Models\AgendaPiki;
@@ -10,11 +11,11 @@ use App\Models\AnggotaPiki;
 use App\Models\ProgramPiki;
 use App\Models\SponsorPiki;
 use Illuminate\Support\Str;
+use App\Models\CategoryNews;
 use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 
 class FrontEndPikiController extends Controller
@@ -28,7 +29,8 @@ class FrontEndPikiController extends Controller
     {
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->get();
-        $berita = NewsPiki::latest()->first();
+        $berita = NewsPiki::latest()->get();
+        $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();
@@ -42,7 +44,8 @@ class FrontEndPikiController extends Controller
             "creator" => "San",
             'header' => $header,
             'headerMobile' => $headerMobile,
-            "berita" => $berita,
+            "news" => $berita,
+            "categoryNews" => $categoryNews,
             "program" => $program,
             "agenda" => $agenda,
             "item" => $item,

@@ -135,7 +135,7 @@ class NewsPikiController extends Controller
 
         // return $request->id;
         $data = $request->validate($rules);
-        $data['excerpt'] = Str::limit(strip_tags($request->isi_berita), 200);
+        $data['excerpt'] = Str::limit(strip_tags($request->isi_berita), 1705);
         if ($request->file('picture_path')) {
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('picture_path');
@@ -152,7 +152,7 @@ class NewsPikiController extends Controller
                 'picture_path' => $nama_file,
             ]);
         }
-
+// return $data;
         NewsPiki::where('id', $request->id)
                 ->update($data);
 
