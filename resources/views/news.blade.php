@@ -57,7 +57,7 @@
               {!! $news->isi_berita !!}
               </article>
 
-              <button type="button" class="btn btn-danger" href="{{ route('kategori.berita') }}">Back to News</button>
+              <a class="btn btn-danger" href="{{ route('kategori.berita') }}">Back to News</a>
           </div>
       </div>
   </div>
