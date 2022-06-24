@@ -274,7 +274,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'Pegawai Negeri Sipil',
             'business_fields' => 'Kesehatan',
             'description_of_skills' => 'Dokter',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$1fUwGJTDr9QZsY8PrVKIBO5e8fxVTR00/fM82MdBf5lCoskXnAD9y',
         ]);
 
         User::create([
@@ -291,7 +291,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'Wiraswasta',
             'business_fields' => 'Pribadi',
             'description_of_skills' => 'Managerial, biasa menangani team sales, kredit dan collection termasuk pengelolaan SDM.',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$2QZziZmkTgvUTaVYd19eEO8W9S.hqeD.LlbpRAhzzGBdVHWrwKCZ.',
         ]);
 
         User::create([
@@ -308,7 +308,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'Pengajar',
             'business_fields' => 'Live Streaming Project',
             'description_of_skills' => 'Mengoperasikan live streaming',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$UFC7T9tm31k8r4G5ydYcnOA9GLsMCRXb04VQWn0zieapmXZ4XHYOu',
         ]);
 
         User::create([
@@ -325,7 +325,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'PNS',
             'business_fields' => 'Sumber Daya Manusia',
             'description_of_skills' => 'Perpajakan, Manajemen SDM',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$aqzMMq6PKJCVvtnknET5S.rEhhj.K1dV1uHIgBdcQ8kV5Fjlx2jEK',
         ]);
 
         User::create([
@@ -342,7 +342,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'Wiraswasta',
             'business_fields' => 'Barang/Jasa, Usaha Depot Air Minum Isi Ulang(DAMIU)',
             'description_of_skills' => 'Ahli Manajemen Air Minum Tingkat Utama, design grafis, editor video, dll',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$3rYYWiB4W0BsVfYWKHUIf.JzZditXRiKujISOBxQq7qC5ZDEZXpk6',
         ]);
 
         User::create([
@@ -359,7 +359,7 @@ class DatabaseSeeder extends Seeder
             'job' => 'PNS Kemendikbud',
             'business_fields' => 'Pendidikan',
             'description_of_skills' => 'Master trainer PAUD',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$vmfHPyurgP4UN2p0MqDr1OryHi/vyLjYEyW0KoL2oL/PbhXT1BFcS',
         ]);
 
         User::create([
@@ -376,7 +376,41 @@ class DatabaseSeeder extends Seeder
             'job' => 'Dosen/Tenaga Pengajar',
             'business_fields' => 'Pendidikan',
             'description_of_skills' => 'Kebijakan Publik dan Pemerintahan',
-            'password' => bcrypt('hehehe'),
+            'password' => '$2y$10$/unek.rYyEAAJxTuyEyobOudXT6zSp0HXMg17rHfA9syUh9HGFHfS',
+        ]);
+
+        User::create([
+            'username' => 'Symtoy S S.Kom',
+            'name' => 'Symtoy S S.Kom',
+            'phone_number' => '+6281264167702',
+            'email' => 'symtoy@gmail.com',
+            'nik' => '1271180707850001',
+            'address' => 'Simeme Desa Sipultak',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN TAPANULI UTARA',
+            'district' => 'PAGARAN',
+            'village' => 'SIPULTAK',
+            'job' => 'Pendamping Desa',
+            'business_fields' => 'Ternak Ayam',
+            'description_of_skills' => 'Komputer',
+            'password' => '$2y$10$COPM683dLuFyWx52xNNsouiQPwyjYaHeDdVRBfERWfnFqrFQU2vaa',
+        ]);
+
+        User::create([
+            'username' => 'Hotlan Robinson Sihotang',
+            'name' => 'Hotlan Robinson Sihotang',
+            'phone_number' => '+6281375878802',
+            'email' => 'hotlansihotang1984@yahoo.com',
+            'nik' => '1215080411840001',
+            'address' => 'Janji',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN HUMBANG HASUNDUTAN',
+            'district' => 'DOLOK SANGGUL',
+            'village' => 'JANJI',
+            'job' => 'PNS',
+            'business_fields' => 'Penatu',
+            'description_of_skills' => 'Moderasi Beragama',
+            'password' => '$2y$10$zVOXtbMZyyKU6FVYznGFsOSIpQ5O/ENydNNCv/pEHqCpqH6tHez76',
         ]);
 
         SponsorPiki::create([
