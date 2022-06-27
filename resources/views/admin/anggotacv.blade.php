@@ -185,8 +185,11 @@
                                             @elseif($action == 'showPendaftarBaru')
                                             <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">Back</a>
                                             <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
+                                            <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
+                                            <a class="btn btn-warning" href="{{ route('diTolak.cv', $item->id) }}">tidak sesuai</a>
                                             @elseif($action == 'showProsesPendaftarBaru')
                                             <a class="btn btn-danger" href="{{ route('dalamProses') }}">Back</a>
+                                            <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
                                             <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
                                             <a class="btn btn-warning" href="{{ route('diTolak.cv', $item->id) }}">tidak sesuai</a>
                                             @elseif($action == 'showUserTidakSesuai')

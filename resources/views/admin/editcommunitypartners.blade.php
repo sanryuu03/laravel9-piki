@@ -34,7 +34,7 @@
                   <div class="form-group">
                       <label>Keterangan Community Partners</label>
                       <input id="body" type="hidden" name="konten_sponsor" value={{ old('konten_sponsor') }}>
-                      <trix-editor input="body">{{ $item->konten_sponsor }}</trix-editor>
+                      <trix-editor input="body">{!! $item->konten_sponsor !!}</trix-editor>
                   </div>
 
                   <button type="submit" class="btn btn-primary mt-3">Update</button>

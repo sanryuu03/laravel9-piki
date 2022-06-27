@@ -8,9 +8,11 @@ use App\Models\Village;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\AnggotaPiki;
+use App\Models\TempAnggota;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
@@ -31,22 +33,26 @@ class AnggotaPikiController extends Controller
         $this->userDalamProses = User::where('status_anggota', 'dalam proses')-> get();
         $this->userDiTolak = User::where('status_anggota', 'tidak sesuai')-> get();
         $this->userDiterima = User::where('status_anggota', 'diterima')-> get();
+        $Anggota = AnggotaPiki::all();
 
         $hitungUserBaru = count($this->userBaru);
         $hitungUseruserDalamProses = count($this->userDalamProses);
         $hitungUserDiTolak = count($this->userDiTolak);
         $hitungUserDiterima = count($this->userDiterima->skip(7));
+        $hitungjabatanPikiSumut = count($Anggota);
         // return $hitungUserDiterima;
         $pendaftarBaru = $hitungUserBaru > 0 ? $hitungUserBaru:0;
         $dalamProses = $hitungUseruserDalamProses > 0 ? $hitungUseruserDalamProses:0;
         $diTolak = $hitungUserDiTolak > 0 ? $hitungUserDiTolak:0;
         $anggotaDiterima = $hitungUserDiterima > 0 ? $hitungUserDiterima:0;
+        $jabatanPikiSumut = $hitungjabatanPikiSumut > 0 ? $hitungjabatanPikiSumut:0;
         // dd($pendaftarBaru);
         View::share([
             'pendaftarBaru' => $pendaftarBaru,
             'dalamProses' => $dalamProses,
             'diTolak' => $diTolak,
             'anggotaDiterima' => $anggotaDiterima,
+            'jabatanPikiSumut' => $jabatanPikiSumut,
         ]);
 
     }
@@ -144,6 +150,67 @@ class AnggotaPikiController extends Controller
         ]);
     }
 
+    public function jabatanPIKISUMUT(Request $request)
+    {
+        $user = $this->userDiterima->skip(7);
+        $anggota = AnggotaPiki::all();
+        $provinces = Province::all();
+        $id_provinsi = $request->id_provinsi;
+        $cities = Regency::where('province_id', $id_provinsi)->get();
+        $idUser = auth()->user()->id;
+        // return $anggota->id ;
+        // foreach($anggota as $a) {
+        //     return $a->userPiki->id ;
+        // }
+        return view('admin/jabatanpikisumut', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Jabatan PIKI SUMUT",
+            "creator" => $idUser,
+            "user" => $user,
+            "anggota" => $anggota,
+            "provinces" => $provinces,
+            "cities" => $cities,
+        ]);
+    }
+
+
+    public function editJabatanPIKISUMUT(AnggotaPiki $anggotaPiki, $id)
+    {
+        $anggotaPiki = AnggotaPiki::find($id);
+        $idUser = auth()->user()->id;
+
+        return view('admin/editjabatanpikisumut', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Jabatan PIKI SUMUT",
+            "creator" => $idUser,
+            "item" => $anggotaPiki,
+        ]);
+    }
+
+    public function updateJabatanPIKISUMUT(Request $request)
+    {
+        $anggotaPiki = AnggotaPiki::where('id', $request->id)->first();
+        // return $anggotaPiki;
+        AnggotaPiki::where('id', $request->id)
+        ->update(['jabatan_piki_sumut' => $request->jabatan_piki_sumut]);
+
+        $data = [
+            'users_id' => $anggotaPiki->users_id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'diterima',
+            'jabatan_piki_sumut' => $request->jabatan_piki_sumut,
+        ];
+        TempAnggota::create($data);
+
+        return redirect()->route('jabatan.piki.sumut')->with('success', 'Jabatan berhasil di edit');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -189,8 +256,25 @@ class AnggotaPikiController extends Controller
 
     public function processPendaftarBaru(Request $request)
     {
+        $anggotaPiki = User::where('id', $request->id)->first();
         User::where('id', $request->id)
             ->update(['status_anggota' => 'dalam proses']);
+
+        $data = [
+            'users_id' => $request->id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'dalam proses',
+            'jabatan_piki_sumut' => 'anggota',
+        ];
+
+        TempAnggota::create($data);
 
 
         return redirect()->route('pendaftarBaru');
@@ -214,8 +298,27 @@ class AnggotaPikiController extends Controller
 
     public function approvePendaftarBaru(Request $request)
     {
+        $anggotaPiki = User::where('id', $request->id)->first();
         User::where('id', $request->id)
             ->update(['status_anggota' => 'diterima']);
+
+        // return $anggotaPiki->name;
+        $data = [
+            'users_id' => $request->id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'diterima',
+            'jabatan_piki_sumut' => 'anggota',
+        ];
+
+        TempAnggota::create($data);
+        AnggotaPiki::create($data);
 
 
         return redirect()->route('dalamProses');
@@ -239,8 +342,25 @@ class AnggotaPikiController extends Controller
 
     public function diTolakUser(Request $request)
     {
+        $anggotaPiki = User::where('id', $request->id)->first();
         User::where('id', $request->id)
             ->update(['status_anggota' => 'tidak sesuai']);
+
+        $data = [
+            'users_id' => $request->id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'tidak sesuai',
+            'jabatan_piki_sumut' => 'anggota',
+        ];
+
+        TempAnggota::create($data);
 
 
         return redirect()->route('dalamProses');

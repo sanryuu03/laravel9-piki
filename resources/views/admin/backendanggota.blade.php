@@ -35,7 +35,7 @@
                       </a>
                   </div>
               </div>
-              <!-- Earnings (Monthly) Card Example -->
+              <!-- Dalam Proses Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
                       <a href="{{  url('/admin/dalamProses') }}" class="d-flex">
@@ -56,7 +56,7 @@
                       </a>
                   </div>
               </div>
-              <!-- Earnings (Annual) Card Example -->
+              <!-- Ditolak Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
                       <a href="{{  url('/admin/diTolak') }}" class="d-flex">
@@ -70,7 +70,7 @@
                                   </div>
                               </div>
                               <div class="col-auto">
-                                  <i class="fas fa-user-times fa-2x text-success"></i>
+                                  <i class="fas fa-user-times fa-2x text-danger"></i>
                               </div>
                           </div>
                       </div>
@@ -78,7 +78,7 @@
                   </div>
               </div>
 
-              <!-- Pending Requests Card Example -->
+              <!-- Diterima Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
                       <a href="{{  url('/admin/landingpageanggota') }}" class="d-flex">
@@ -92,7 +92,29 @@
                                       </div>
                                   </div>
                                   <div class="col-auto">
-                                      <i class="fas fa-id-card fa-2x text-warning"></i>
+                                      <i class="fas fa-id-card fa-2x text-success"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Jabatan Di Piki Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                      <a href="{{  url('/admin/jabatanPIKISUMUT') }}" class="d-flex">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Jabatan Di PIKI SUMUT</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jabatanPikiSumut }}</div>
+                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                          <span>Anggota diterima</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      <i class="fas fa-hospital-user fa-2x text-primary"></i>
                                   </div>
                               </div>
                           </div>

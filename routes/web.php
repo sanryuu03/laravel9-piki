@@ -144,6 +144,10 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::get('/admin/landingpageanggota/edit/{id}', [AnggotaPikiController::class, 'edit'])->name('anggota.edit');
     Route::put('/admin/landingpageanggota/update/{id}', [AnggotaPikiController::class, 'update'])->name('anggota.update');
     Route::post('/admin/landingpageanggota/hapus/{id}', [AnggotaPikiController::class, 'destroy'])->name('anggota.destroy');
+
+    Route::get('/admin/jabatanPIKISUMUT', [AnggotaPikiController::class, 'jabatanPIKISUMUT'])->name('jabatan.piki.sumut');
+    Route::get('/admin/jabatanPIKISUMUT/edit/{id}', [AnggotaPikiController::class, 'editJabatanPIKISUMUT'])->name('edit.jabatan.piki.sumut');
+    Route::put('/admin/jabatanPIKISUMUT/update/{id}', [AnggotaPikiController::class, 'updateJabatanPIKISUMUT'])->name('update.jabatan.piki.sumut');
 });
 
 // community partners

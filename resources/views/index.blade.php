@@ -204,7 +204,7 @@
   </section>
   <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
       <div id ="daftar" class="flex-initial w-full ml-[100px]">
-          <a id ="daftar" href="/daftar" class="btn btn-secondary btn-md mx-auto" target="_blank">daftar</a>
+          <a id ="daftar" href="/daftar" class="btn btn-info btn-md mx-auto" target="_blank">daftar</a>
       </div>
       <div class="flex-initial w-full mr-[70px]">
           <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">login</a>
@@ -1085,7 +1085,7 @@
                   <ul style="padding: 0; margin: 0">
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="card card-body d-lg-none isi-konten-sponsor">
-                              {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 250) }}.
+                              {!! str()->limit($item->konten_sponsor, 250) !!}.
                               <br />
                               <a href="#" class="read-more text-sky-400">Read More...</a>
                           </div>
@@ -1093,7 +1093,7 @@
                       <!-- tampilan web -->
                       <div class="container-fluid justify-content-center d-flex">
                           <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
-                              {{ \Illuminate\Support\Str::limit($item->konten_sponsor, 1250) }}.
+                              {!! str()->limit($item->konten_sponsor, 1080) !!}.
                               <br />
                               <a href="" class="read-more text-sky-400">Read More...</a>
                           </div>

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->text('phone_number')->nullable();
             $table->enum('status_anggota', ['diterima', 'dalam proses', 'tidak sesuai', 'belum di proses'])->default('belum di proses');
+            $table->string('jabatan_piki_sumut')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
