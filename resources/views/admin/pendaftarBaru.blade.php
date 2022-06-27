@@ -52,7 +52,7 @@
               </div>
               <div class="row">
                   <div class="col-md-4">
-                    <button type="submit" class="btn btn-info">Print Table</button>
+                    <button id="print-table" type="submit" class="btn btn-info">Print Table</button>
                   </div>
               </div>
           </form>
