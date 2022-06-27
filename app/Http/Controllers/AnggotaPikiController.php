@@ -277,8 +277,9 @@ class AnggotaPikiController extends Controller
         TempAnggota::create($data);
 
 
-        return redirect()->route('pendaftarBaru');
+        return redirect()->route('pendaftarBaru')->with('process', 'Pendaftar Baru Sedang Di Proses');
     }
+
 
     public function showProsesUser(AnggotaPiki $anggotaPiki, $id)
     {
@@ -321,7 +322,35 @@ class AnggotaPikiController extends Controller
         AnggotaPiki::create($data);
 
 
-        return redirect()->route('dalamProses');
+        return redirect()->route('pendaftarBaru')->with('success', 'Pendaftar Baru Berhasil Di Terima');
+    }
+
+    public function menuDalamProsesapprovePendaftarBaru(Request $request)
+    {
+        $anggotaPiki = User::where('id', $request->id)->first();
+        User::where('id', $request->id)
+            ->update(['status_anggota' => 'diterima']);
+
+        // return $anggotaPiki->name;
+        $data = [
+            'users_id' => $request->id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'diterima',
+            'jabatan_piki_sumut' => 'anggota',
+        ];
+
+        TempAnggota::create($data);
+        AnggotaPiki::create($data);
+
+
+        return redirect()->route('dalamProses')->with('success', 'Pendaftar Baru Berhasil Di Terima');
     }
 
     public function showUserTidakSesuai(AnggotaPiki $anggotaPiki, $id)
@@ -363,7 +392,33 @@ class AnggotaPikiController extends Controller
         TempAnggota::create($data);
 
 
-        return redirect()->route('dalamProses');
+        return redirect()->route('pendaftarBaru')->with('unapproved', 'Pendaftar Baru Di Tolak');
+    }
+
+    public function menuDalamProsesdiTolakUser(Request $request)
+    {
+        $anggotaPiki = User::where('id', $request->id)->first();
+        User::where('id', $request->id)
+            ->update(['status_anggota' => 'tidak sesuai']);
+
+        $data = [
+            'users_id' => $request->id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'tidak sesuai',
+            'jabatan_piki_sumut' => 'anggota',
+        ];
+
+        TempAnggota::create($data);
+
+
+        return redirect()->route('dalamProses')->with('unapproved', 'Pendaftar Baru Di Tolak');
     }
 
     public function show(Request $request, AnggotaPiki $anggotaPiki, $id)
@@ -482,7 +537,7 @@ class AnggotaPikiController extends Controller
             ->update($data);
 
 
-        return redirect()->route('anggota.index');
+        return redirect()->route('anggota.index')->with('success', 'Jabatan berhasil di edit');
     }
 
     /**

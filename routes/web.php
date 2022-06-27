@@ -134,10 +134,12 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::get('/admin/dalamProses', [AnggotaPikiController::class, 'showProses'])->name('dalamProses');
     Route::get('/admin/dalamProses/{id}', [AnggotaPikiController::class, 'showProsesUser'])->name('dalamProses.cv');
     Route::get('/admin/approvePendaftarBaru/cv/{id}', [AnggotaPikiController::class, 'approvePendaftarBaru'])->name('approve.pendaftarBaru.cv');
+    Route::get('/admin/menuDalamProsesapprovePendaftarBaru/cv/{id}', [AnggotaPikiController::class, 'menuDalamProsesapprovePendaftarBaru'])->name('menu.dalam.proses.approve.pendaftarBaru.cv');
 
     Route::get('/admin/diTolak', [AnggotaPikiController::class, 'diTolak'])->name('diTolak');
     Route::get('/admin/diTolak/{id}', [AnggotaPikiController::class, 'showUserTidakSesuai'])->name('tidakSesuai.cv');
     Route::get('/admin/tidakSesuai/{id}', [AnggotaPikiController::class, 'diTolakUser'])->name('diTolak.cv');
+    Route::get('/admin/menuDalamProsesdiTolakUser/{id}', [AnggotaPikiController::class, 'menuDalamProsesdiTolakUser'])->name('menu.dalam.proses.diTolak.cv');
 
     Route::get('/admin/landingpageanggota', [AnggotaPikiController::class, 'index'])->name('anggota.index');
     Route::get('/admin/anggota/cv/{id}', [AnggotaPikiController::class, 'show'])->name('anggota.cv');

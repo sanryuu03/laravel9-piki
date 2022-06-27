@@ -11,7 +11,19 @@
           </ol>
       </div>
   </div>
-
+  @if(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+      {{ session('success') }}
+  </div>
+  @elseif(session()->has('process'))
+  <div class="alert alert-info" role="alert">
+      {{ session('process') }}
+  </div>
+  @elseif(session()->has('unapproved'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('unapproved') }}
+  </div>
+  @endif
   .<div class="container-fluid landingpage-anggota">
       <div class="card-body">
           <form action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
