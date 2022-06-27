@@ -40,6 +40,7 @@ return new class extends Migration
             $table->text('business_fields')->nullable();
             $table->text('description_of_skills')->nullable();
             $table->text('status_anggota')->default('belum di proses');
+            $table->text('alasan_ditolak')->nullable();
             $table->enum('level', ['super-admin', 'admin', 'bendahara', 'wakil-ketua', 'organisasi', 'infokom', 'media', 'anggota'])->default('anggota');
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();

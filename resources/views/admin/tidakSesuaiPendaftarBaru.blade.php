@@ -16,7 +16,7 @@
       <div class="card-body">
           <form action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
           @csrf
-              <div class="row">
+              {{-- <div class="row">
                   <div class="col-md-4">
                       Filter Provinsi:
                       <select id="table-filter" class="filter-province" name="province">
@@ -42,18 +42,15 @@
                   <div class="col-md-4">
                     <button type="submit" class="btn btn-info">Print Table</button>
                   </div>
-              </div>
+              </div> --}}
           </form>
           <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>
                   <tr>
                       <th width="1%">Nama</th>
-                      <th width="1%">Alamat Sesuai KTP</th>
-                      <th width="1%">Provinsi</th>
-                      <th width="1%">Kabupaten/Kota</th>
-                      <th width="1%">Telp / WA</th>
-                      <th width="1%">Email</th>
+                      <th width="1%">Alasan Ditolak</th>
                       <th width="1%">Created At</th>
+                      <th width="1%">Updated At</th>
                       <th width="1%">OPSI</th>
                   </tr>
               </thead>
@@ -61,20 +58,17 @@
                   @foreach($user as $item)
                   <tr>
                       <td>{{ $item->name }}</td>
-                      <td>{{ $item->address }}</td>
-                      <td>{{ $item->province }}</td>
-                      <td>{{ $item->city }}</td>
-                      <td>{{ $item->phone_number }}</td>
-                      <td>{{ $item->email }}</td>
+                      <td>{{ $item->alasan_ditolak }}</td>
                       <td>{{ $item->created_at }}</td>
+                      <td>{{ $item->updated_at }}</td>
                       <td>
                           <a href="{{ route('tidakSesuai.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1 d-inline">View</a>
-                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="btn-sm d-inline">
+                          {{-- <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="btn-sm d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
                                   Delete
                               </button>
-                          </form>
+                          </form> --}}
                       </td>
                   </tr>
                   @endforeach

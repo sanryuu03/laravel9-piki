@@ -168,7 +168,7 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
+                                                <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
@@ -186,11 +186,11 @@
                                             <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">Back</a>
                                             <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
                                             <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                            <a class="btn btn-warning" href="{{ route('diTolak.cv', $item->id) }}">tidak sesuai</a>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
                                             @elseif($action == 'showProsesPendaftarBaru')
                                             <a class="btn btn-danger" href="{{ route('dalamProses') }}">Back</a>
                                             <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                            <a class="btn btn-warning" href="{{ route('menu.dalam.proses.diTolak.cv', $item->id) }}">tidak sesuai</a>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">tidak sesuai</button>
                                             @elseif($action == 'showUserTidakSesuai')
                                             <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
                                             @else
@@ -211,6 +211,62 @@
         </div>
 
     </div>
+
+    <!-- Modal Alasan Start-->
+    <div class="modal fade" id="showPendaftarBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('diTolak.cv', $item->id) }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-info">Send message</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Alasan End-->
+
+    <!-- Modal Alasan Start-->
+    <div class="modal fade" id="showProsesPendaftarBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('menu.dalam.proses.diTolak.cv', $item->id) }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-info">Send message</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Alasan End-->
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>

@@ -372,8 +372,6 @@ class AnggotaPikiController extends Controller
     public function diTolakUser(Request $request)
     {
         $anggotaPiki = User::where('id', $request->id)->first();
-        User::where('id', $request->id)
-            ->update(['status_anggota' => 'tidak sesuai']);
 
         $data = [
             'users_id' => $request->id,
@@ -387,19 +385,23 @@ class AnggotaPikiController extends Controller
             'phone_number' => $anggotaPiki->phone_number,
             'status_anggota' => 'tidak sesuai',
             'jabatan_piki_sumut' => 'anggota',
+            'alasan_ditolak' => $request->alasan_ditolak,
         ];
 
         TempAnggota::create($data);
 
+        User::where('id', $request->id)
+            ->update([
+                'status_anggota' => 'tidak sesuai',
+                'alasan_ditolak' => $request->alasan_ditolak,
+            ]);
 
-        return redirect()->route('pendaftarBaru')->with('unapproved', 'Pendaftar Baru Di Tolak');
+            return redirect()->route('pendaftarBaru')->with('unapproved', 'Pendaftar Baru Di Tolak');
     }
 
     public function menuDalamProsesdiTolakUser(Request $request)
     {
         $anggotaPiki = User::where('id', $request->id)->first();
-        User::where('id', $request->id)
-            ->update(['status_anggota' => 'tidak sesuai']);
 
         $data = [
             'users_id' => $request->id,
@@ -413,10 +415,16 @@ class AnggotaPikiController extends Controller
             'phone_number' => $anggotaPiki->phone_number,
             'status_anggota' => 'tidak sesuai',
             'jabatan_piki_sumut' => 'anggota',
+            'alasan_ditolak' => $request->alasan_ditolak,
         ];
 
         TempAnggota::create($data);
 
+        User::where('id', $request->id)
+            ->update([
+                'status_anggota' => 'tidak sesuai',
+                'alasan_ditolak' => $request->alasan_ditolak,
+            ]);
 
         return redirect()->route('dalamProses')->with('unapproved', 'Pendaftar Baru Di Tolak');
     }
