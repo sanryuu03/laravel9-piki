@@ -34,18 +34,21 @@ class AnggotaPikiController extends Controller
         $this->userDiTolak = User::where('status_anggota', 'tidak sesuai')-> get();
         $this->userDiterima = User::where('status_anggota', 'diterima')-> get();
         $Anggota = AnggotaPiki::all();
+        $this->anggotaYangDitampilkan = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')-> get();
 
         $hitungUserBaru = count($this->userBaru);
         $hitungUseruserDalamProses = count($this->userDalamProses);
         $hitungUserDiTolak = count($this->userDiTolak);
         $hitungUserDiterima = count($this->userDiterima->skip(7));
         $hitungjabatanPikiSumut = count($Anggota);
+        $this->hitunganggotaYangDitampilkan = count($this->anggotaYangDitampilkan);
         // return $hitungUserDiterima;
         $pendaftarBaru = $hitungUserBaru > 0 ? $hitungUserBaru:0;
         $dalamProses = $hitungUseruserDalamProses > 0 ? $hitungUseruserDalamProses:0;
         $diTolak = $hitungUserDiTolak > 0 ? $hitungUserDiTolak:0;
         $anggotaDiterima = $hitungUserDiterima > 0 ? $hitungUserDiterima:0;
         $jabatanPikiSumut = $hitungjabatanPikiSumut > 0 ? $hitungjabatanPikiSumut:0;
+        $anggotaYangDitampilkan = $this->hitunganggotaYangDitampilkan > 0 ? $this->hitunganggotaYangDitampilkan:0;
         // dd($pendaftarBaru);
         View::share([
             'pendaftarBaru' => $pendaftarBaru,
@@ -53,6 +56,7 @@ class AnggotaPikiController extends Controller
             'diTolak' => $diTolak,
             'anggotaDiterima' => $anggotaDiterima,
             'jabatanPikiSumut' => $jabatanPikiSumut,
+            'anggotaYangDitampilkan' => $anggotaYangDitampilkan,
         ]);
 
     }
@@ -210,6 +214,71 @@ class AnggotaPikiController extends Controller
         TempAnggota::create($data);
 
         return redirect()->route('jabatan.piki.sumut')->with('success', 'Jabatan berhasil di edit');
+    }
+
+    public function anggotaYangDitampilkan()
+    {
+        $anggota = $this->anggotaYangDitampilkan;
+        $idUser = auth()->user()->id;
+        // return $anggota->id ;
+        // foreach($anggota as $a) {
+        //     return $a->userPiki->id ;
+        // }
+        return view('admin/anggotaYangDitampilkan', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Anggota Yang Ditampilkan Pada Landing Page",
+            "creator" => $idUser,
+            "anggota" => $anggota,
+        ]);
+    }
+
+    public function pilihAnggotaYangDitampilkan()
+    {
+        $anggota = AnggotaPiki::all();
+        $idUser = auth()->user()->id;
+        // return $anggota->id ;
+        // foreach($anggota as $a) {
+        //     return $a->userPiki->id ;
+        // }
+        return view('admin/pilihAnggotaYangDitampilkan', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pilih Anggota Yang Ditampilkan Pada Landing Page",
+            "creator" => $idUser,
+            "anggota" => $anggota,
+        ]);
+    }
+
+    public function jadikanAnggotaYangDitampilkan(Request $request)
+    {
+
+        $anggotaPiki = AnggotaPiki::where('id', $request->id)->first();
+
+        $data = [
+            'users_id' => $anggotaPiki->users_id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'diterima',
+            'jabatan_piki_sumut' => $request->jabatan_piki_sumut,
+            'tampilkan_anggota_dilandingpage' => 'ya',
+        ];
+        if (count($this->anggotaYangDitampilkan) < 3) {
+            if ($anggotaPiki->tampilkan_anggota_dilandingpage == 'ya') {
+                return redirect()->route('anggota.yang.ditampilkan')->with('error', 'Anggota sudah ditampilkan di landing page');
+            }
+            TempAnggota::create($data);
+
+            AnggotaPiki::where('id', $request->id)
+            ->update(['tampilkan_anggota_dilandingpage' => 'ya']);
+
+            return redirect()->route('anggota.yang.ditampilkan')->with('success', 'Anggota berhasil di tampilkan di landing page');
+        }
+        return redirect()->route('anggota.yang.ditampilkan')->with('error', 'maksimal 3 anggota yang dapat di tampilkan');
     }
     /**
      * Show the form for creating a new resource.
