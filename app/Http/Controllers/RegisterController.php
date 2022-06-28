@@ -170,16 +170,19 @@ class RegisterController extends Controller
             $data['village'] = $namaDesa;
         }
 
-        if (request()->input('pendidikan') === "SLTA") {
-            // dd('ini sma');
+        if (request()->input('pendidikan') === "Pilih-Pendidikan") {
+            $data['pendidikan'] = "Tidak Kuliah";
             $data['university'] = NULL;
             $data['fakultas'] = NULL;
             $data['jurusan'] = NULL;
         }
 
-        if (request()->input('pendidikan') !== "SLTA") {
-            $data['sekolah'] = NULL;
+        if (request()->input('pendidikan') === "Tidak-Kuliah") {
+            $data['university'] = NULL;
+            $data['fakultas'] = NULL;
+            $data['jurusan'] = NULL;
         }
+
         // return $data;
 
         if ($request->file('photo_ktp')) {

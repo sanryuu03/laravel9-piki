@@ -29,7 +29,7 @@
         }
 
         .keahlian {
-            height: 100mm;
+            /*height: 100mm;*/
         }
 
     </style>
@@ -75,36 +75,15 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="">
+                                                <div class="mt-5">
                                                     <input disabled class="form-control" type="name" name="name" value="{{ $item->name }}" placeholder="Nama" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mt-n5">
-                                                <div class="mb-3">
-                                                    <input id="upload" disabled type="hidden" name="picture_path" class="form-control" value="{{ asset('/storage/assets/anggota/profile'.$item->photo_profile) }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 mt-n5">
-                                                <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="phone_number" value="{{ $item->phone_number }}" placeholder="No Hp" />
+                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
                                                 </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 mb-3">
-                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="province" id="provinsi">
@@ -117,12 +96,6 @@
                                                     <input disabled class="form-control" type="text" name="province" value="{{ $item->province }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="city" id="kota">
@@ -132,11 +105,6 @@
                                                     <input disabled class="form-control" type="text" name="city" value="{{ $item->city }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="district" id="kecamatan">
@@ -146,11 +114,6 @@
                                                     <input disabled class="form-control" type="text" name="district" value="{{ $item->district }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="village" id="desa">
@@ -160,9 +123,20 @@
                                                     <input disabled class="form-control" type="text" name="district" value="{{ $item->village }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
+                                                <div class="mb-3">
+                                                    <input disabled class="form-control" type="text" name="phone_number" value="{{ $item->phone_number }}" placeholder="No Hp" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="mb-3">
+                                                    <img class="" width="550px" height="350px" src="{{ url('/storage/assets/user/ktp/'.$item->photo_ktp) }}">
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
+
+                                            <div class="col-md-4 mb-3">
+                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
@@ -171,14 +145,15 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
+                                                <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
                                                     {{-- <input disabled class="form-control keahlian" type="text" name="description_of_skills" value="{{ $item->description_of_skills }}" placeholder="Deskripsi Keahlian" /> --}}
-                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="25" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
+                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="10" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="mb-3">
                                             @if($action == 'view')

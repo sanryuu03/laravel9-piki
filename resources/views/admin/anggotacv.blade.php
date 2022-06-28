@@ -168,7 +168,7 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
+                                                <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/user/ktp/'.$item->photo_ktp) }}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">

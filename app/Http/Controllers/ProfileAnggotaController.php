@@ -118,6 +118,25 @@ class ProfileAnggotaController extends Controller
 
             return redirect()->route('anggota.index')->with('success', 'profile berhasil di update');
         }
+
+        if ($request->file('picture_path_ktp')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path_ktp');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/user/ktp/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            User::where('id', $request->id)->update([
+                'photo_ktp' => $nama_file,
+            ]);
+
+            return redirect()->route('anggota.index')->with('success', 'ktp berhasil di update');
+        }
         // return $request;
                 $rules = [
                     'name' => 'required|max:255',

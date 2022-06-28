@@ -125,20 +125,20 @@
                                             <option selected>Pilih Desa / Kelurahan Anda</option>
                                         </select>
                                     </div>
+                                    <div id="sekolah" class="mb-3">
+                                        <label>Riwayat Pendidikan <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="sekolah" placeholder="Masukkan Nama SLTA/SMA/SMK Anda" value="{{ old('sekolah') }}" />
+                                    </div>
                                     <div class="mb-3">
-                                        <label>Pendidikan Terakhir <span class="text-danger">*</span></label>
+                                        <label>Perguruan Tinggi (Optional)</label>
                                         <select id="pendidikan" class="custom-select" name="pendidikan">
-                                            <option selected>Pilih pendidikan Terakhir Anda</option>
-                                            <option value="SLTA">SLTA</option>
+                                            <option value="Pilih-Pendidikan" selected>Pilih pendidikan Terakhir Anda</option>
+                                            <option value="Tidak-Kuliah">Tidak Kuliah</option>
                                             <option value="Diploma">Diploma</option>
                                             <option value="S1">S1</option>
                                             <option value="S2">S2</option>
                                             <option value="S3">S3</option>
                                         </select>
-                                    </div>
-                                    <div id="sekolah" class="mb-3 d-none">
-                                        <label>Sekolah <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="sekolah" placeholder="Masukkan Nama Sekolah Anda" value="{{ old('sekolah') }}" />
                                     </div>
                                     <div id="university" class="mb-3 d-none">
                                         <label>Universitas <span class="text-danger">*</span></label>
@@ -302,18 +302,19 @@
 	$(document).ready(function(){
                  $('#pendidikan').on('change', function() {
 		            let pendidikan=$('#pendidikan').val();
-		            let sekolah=document.querySelector("#sekolah");
 		            let universitas=document.querySelector("#university");
 		            let fakultas=document.querySelector("#fakultas");
 		            let jurusan=document.querySelector("#jurusan");
                     console.log(`pendidikan ${pendidikan}`);
-                    if(pendidikan === "SLTA" ) {
-                        sekolah.classList.remove("d-none");
+                    if(pendidikan === "Pilih-Pendidikan" ) {
+                        universitas.classList.add("d-none");
+                        fakultas.classList.add("d-none");
+                        jurusan.classList.add("d-none");
+                    } else if(pendidikan === "Tidak-Kuliah") {
                         universitas.classList.add("d-none");
                         fakultas.classList.add("d-none");
                         jurusan.classList.add("d-none");
                     } else {
-                        sekolah.classList.add("d-none");
                         universitas.classList.remove("d-none");
                         fakultas.classList.remove("d-none");
                         jurusan.classList.remove("d-none");

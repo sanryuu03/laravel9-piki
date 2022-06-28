@@ -168,12 +168,21 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_ktp) }}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
-                                                    {{-- <input disabled class="form-control keahlian" type="text" name="description_of_skills" value="{{ $item->description_of_skills }}" placeholder="Deskripsi Keahlian" /> --}}
-                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="25" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
+                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="15" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <input id="upload-ktp" type="hidden" name="picture_path_ktp" class="form-control" value="{{ asset('/storage/assets/anggota/profile'.$item->photo_profile) }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="mb-3">
+                                                    <img class="" width="550px" height="300px" src="{{ url('/storage/assets/user/ktp/'.$item->photo_ktp) }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -204,83 +213,8 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script>
-        $(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $(function() {
-                $('#provinsi').on('change', function() {
-                    let id_provinsi = $('#provinsi').val();
-                    console.log(`ini provinsi id ${id_provinsi}`);
-                    $.ajax({
-                        type: 'POST'
-                        , url: '{{ route("cities") }}'
-                        , data: {
-                            id_provinsi: id_provinsi
-                        }
-                        , cache: false
-                        , success: function(msg) {
-                            $('#kota').html(msg);
-                            $('#kecamatan').html('<option>==Pilih Kabupaten==</option>');
-                            $('#desa').html('<option>==Pilih Desa==</option>');
-                        }
-                        , error: function(data) {
-                            console.log(`errornya ${data}`);
-                        }
-                    , });
-                });
-            });
-
-            $(function() {
-                $('#kota').on('change', function() {
-                    let id_kota = $('#kota').val();
-                    console.log(`ini kota id ${id_kota}`);
-                    $.ajax({
-                        type: 'POST'
-                        , url: '{{ route("districts") }}'
-                        , data: {
-                            id_kota
-                        }
-                        , cache: false
-                        , success: function(msg) {
-                            $('#kecamatan').html(msg);
-                            $('#desa').html('<option>==Pilih Desa==</option>');
-                        }
-                        , error: function(data) {
-                            console.log(`errornya ${data}`);
-                        }
-                    , });
-                });
-            });
-
-            $(function() {
-                $('#kecamatan').on('change', function() {
-                    let id_kecamatan = $('#kecamatan').val();
-                    console.log(`ini kecamatan id ${id_kecamatan}`);
-                    $.ajax({
-                        type: 'POST'
-                        , url: '{{ route("villages") }}'
-                        , data: {
-                            id_kecamatan
-                        }
-                        , cache: false
-                        , success: function(msg) {
-                            $('#desa').html(msg);
-                        }
-                        , error: function(data) {
-                            console.log(`errornya ${data}`);
-                        }
-                    , });
-                });
-            });
-
-        });
-
-    </script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
     <script>
@@ -297,6 +231,7 @@
             }
             textarea.removeAttribute('disabled');
             document.getElementById('upload').type = 'file';
+            document.getElementById('upload-ktp').type = 'file';
             console.log('type input dirubah');
         }
 
