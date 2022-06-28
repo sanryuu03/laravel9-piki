@@ -25,22 +25,26 @@ class RegisterController extends Controller
         return view('register/register', compact('provinces'));
     }
 
-    public function login() {
+    public function login()
+    {
         return view('admin/loginadmin', [
             "title" => "Admin PIKI",
             "creator" => "San"
         ]);
     }
 
-    public function authenticate(Request $request) {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ],
-        [ 'username.required' => 'The :attribute field wajib diisi.']);
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate(
+            [
+                'username' => 'required',
+                'password' => 'required'
+            ],
+            ['username.required' => 'The :attribute field wajib diisi.']
+        );
 
 
-        if(Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }
@@ -48,7 +52,8 @@ class RegisterController extends Controller
         return back()->with('loginError', 'Login failed!');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -103,37 +108,39 @@ class RegisterController extends Controller
         // return $namaDesa;
         // return request()->all();
         // return $request->file('photo_ktp')->store('storage/assets/user');
-        $data = $request->validate([
-            'username' => 'required|max:255',
-            'name' => 'required|max:255',
-            'birthplace' => 'required',
-            'date' => 'required',
-            'gender' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required|email|unique:users',
-            'nik' => 'required|numeric|digits:16|unique:users',
-            'address' => 'required',
-            'provinsi' => 'required',
-            'kota' => 'required',
-            'kecamatan' => 'required',
-            'desa' => 'required',
-            'pendidikan' => 'required',
-            'sekolah' => 'nullable',
-            'university' => 'nullable',
-            'fakultas' => 'nullable',
-            'jurusan' => 'nullable',
-            'job' => 'required',
-            'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'church' => 'required',
-            'business_fields' => 'required',
-            'description_of_skills' => 'required',
-            'password' => 'required|min:5|max:255',
-        ],
-        [
-            'nik.required' => 'NIK tidak boleh kosong.',
-            'nik.digits' => 'NIK wajib 16 digit.',
-        ]);
+        $data = $request->validate(
+            [
+                'username' => 'required|max:255',
+                'name' => 'required|max:255',
+                'birthplace' => 'required',
+                'date' => 'required',
+                'gender' => 'required',
+                'phone_number' => 'required',
+                'email' => 'required|email|unique:users',
+                'nik' => 'required|numeric|digits:16|unique:users',
+                'address' => 'required',
+                'provinsi' => 'required',
+                'kota' => 'required',
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'pendidikan' => 'required',
+                'sekolah' => 'nullable',
+                'university' => 'nullable',
+                'fakultas' => 'nullable',
+                'jurusan' => 'nullable',
+                'job' => 'required',
+                'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+                'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+                'church' => 'required',
+                'business_fields' => 'required',
+                'description_of_skills' => 'required',
+                'password' => 'required|min:5|max:255',
+            ],
+            [
+                'nik.required' => 'NIK tidak boleh kosong.',
+                'nik.digits' => 'NIK wajib 16 digit.',
+            ]
+        );
 
         $province = request()->input('provinsi');
         if ($province) {
@@ -175,13 +182,34 @@ class RegisterController extends Controller
         }
         // return $data;
 
+        if ($request->file('photo_ktp')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('photo_ktp');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
 
-        if($request->file('photo_ktp')){
-            $data['photo_ktp'] = $request->file('photo_ktp')->store('assets/user/ktp');
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/user/ktp/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            $data['photo_ktp'] = $nama_file;
         }
 
-        if($request->file('photo_profile')){
-            $data['photo_profile'] = $request->file('photo_profile')->store('assets/user/profile');
+        if ($request->file('photo_profile')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('photo_profile');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/user/profile/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            $data['photo_profile'] = $nama_file;
         }
 
         $data['password'] = bcrypt($data['password']);
