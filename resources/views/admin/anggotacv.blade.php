@@ -143,7 +143,11 @@
                                             </div>
 
                                             <div class="col-md-4">
+                                            @if($item->status_anggota == "diterima")
+                                                <p class="font-weight-normal">Status Anggota: <span class="text-success font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
+                                            @else
                                                 <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
+                                            @endif
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
