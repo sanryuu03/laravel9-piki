@@ -13,6 +13,6 @@ class AnggotaPiki extends Model
 
     public function userPiki()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 }

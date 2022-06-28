@@ -100,7 +100,25 @@ class ProfileAnggotaController extends Controller
      */
     public function update(Request $request, ProfileAnggota $profileAnggota)
     {
-                // return $request;
+        if ($request->file('picture_path')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/user/profile/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            User::where('id', $request->id)->update([
+                'photo_profile' => $nama_file,
+            ]);
+
+            return redirect()->route('anggota.index')->with('success', 'profile berhasil di update');
+        }
+        // return $request;
                 $rules = [
                     'name' => 'required|max:255',
                     'phone_number' => 'required',
@@ -150,17 +168,6 @@ class ProfileAnggotaController extends Controller
                     $data['village'] = $namaDesa;
                 }
 
-                if ($request->file('picture_path')) {
-                    // jika gambar lama ada, maka hapus gambar lama
-                    if ($request->picture_path) {
-                        Storage::delete($request->picture_path);
-                    }
-                    $data['photo_profile'] = $request->file('picture_path')->store('assets/user/profile');
-                    User::where('id', $request->id)
-                        ->update([
-                            'photo_profile' => $data['photo_profile'],
-                        ]);
-                }
         // return $data;
                 User::where('id', $request->id)
                     ->update($data);

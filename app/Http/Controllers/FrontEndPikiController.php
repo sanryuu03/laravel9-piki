@@ -35,8 +35,8 @@ class FrontEndPikiController extends Controller
         $program = ProgramPiki::take(7)->get();
         $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();
         $item = AgendaPiki::latest()->first();
-        // return $berita;
-        $anggota = AnggotaPiki::take(7)->get();
+        $anggota = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')->get();
+        // return $anggota;
         $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
         return view('/index', [

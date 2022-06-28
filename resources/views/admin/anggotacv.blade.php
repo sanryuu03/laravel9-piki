@@ -69,7 +69,7 @@
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
                                                 <div class="">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_profile) }}">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/user/profile/'.$item->photo_profile) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8">

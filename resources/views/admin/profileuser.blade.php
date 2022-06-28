@@ -54,14 +54,16 @@
                                         <h1 class="h4 text-gray-900 mb-4">{{ $menu }}</h1>
                                         <p class="text-gray-900">Selamat Datang</p>
                                     </div>
-                                    @if(session('success'))
-                                    <p class="alert alert-success">{{ session('success') }}</p>
+                                    @if(session()->has('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
                                     @endif
-                                    @if($errors->any())
+                                    {{-- @if($errors->any())
                                     @foreach($errors->all() as $err)
                                     <p class="alert alert-danger">{{ $err }}</p>
                                     @endforeach
-                                    @endif
+                                    @endif --}}
 
                                     <form action="{{ route('anggota.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
@@ -69,7 +71,7 @@
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
                                                 <div class="">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/'.$item->photo_profile) }}">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('storage/assets/user/profile/'.$item->photo_profile) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
@@ -118,7 +120,7 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                            <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
+                                                <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
@@ -221,7 +223,7 @@
         </div>
 
     </div>
-        @endauth
+    @endauth
 
 
     <!-- Bootstrap core JavaScript-->
@@ -230,6 +232,7 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
@@ -249,6 +252,7 @@
             document.getElementById('upload').type = 'file';
             console.log('type input dirubah');
         }
+
     </script>
 
 </body>

@@ -203,8 +203,8 @@
       </div>
   </section>
   <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
-      <div id ="daftar" class="flex-initial w-full ml-[100px]">
-          <a id ="daftar" href="/daftar" class="btn btn-info btn-md mx-auto" target="_blank">daftar</a>
+      <div id="daftar" class="flex-initial w-full ml-[100px]">
+          <a id="daftar" href="/daftar" class="btn btn-info btn-md mx-auto" target="_blank">daftar</a>
       </div>
       <div class="flex-initial w-full mr-[70px]">
           <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">login</a>
@@ -270,7 +270,7 @@
           }
 
           @media (min-width: 768px) {
-              main{
+              main {
                   background-color: #041941;
                   margin-top: -10px !important;
               }
@@ -524,7 +524,7 @@
       </style>
       <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
           <h2 class="title-text text-center lg:text-slate-800">Berita Terbaru</h2>
-              @foreach($news as $berita)
+          @foreach($news as $berita)
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="img-hero justify-content-center d-flex">
@@ -554,7 +554,7 @@
   </section>
 
   <!-- Kategory Berita Start-->
-    <style>
+  <style>
       @media (max-width: 480px) {
           h1 {
               margin-top: 25px !important;
@@ -562,8 +562,7 @@
       }
 
 
-      @media (min-width: 992px) {
-      }
+      @media (min-width: 992px) {}
 
   </style>
   <h1 class="mb-3 text-center fs-3">News Category:</h1>
@@ -681,7 +680,7 @@
                   margin-top: 0px !important;
               }
 
-              .title-text-agenda-lainnya{
+              .title-text-agenda-lainnya {
                   font-size: 30px !important;
               }
           }
@@ -750,9 +749,9 @@
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start text-center">
                   <h6 class="title-text title-text-agenda-lainnya">Agenda Lainnya</h6>
                   <ul style="padding: 0; margin: 0">
-      <?php $no = 0;?>
-      @foreach($agenda as $item)
-      <?php $no++ ;?>
+                      <?php $no = 0;?>
+                      @foreach($agenda as $item)
+                      <?php $no++ ;?>
                       <li class="list-unstyled" style="margin-bottom: 1rem">
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                               <span class="circle text-white d-flex align-items-center justify-content-center">
@@ -762,7 +761,7 @@
                               {{ $item->nama_agenda }}.
                           </h4>
                       </li>
-  @endforeach
+                      @endforeach
                   </ul>
                   <button class="btn btn-learn-agenda text-white">Lihat lebih banyak agenda</button>
               </div>
@@ -867,19 +866,27 @@
           <h2 class="title-text text-center">Anggota</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
-              <div class="img-hero left-column text-center justify-content-center d-flex">
+              @if(count($anggota) != 0)
+              <div class="img-hero left-column text-center d-flex justify-content-center mx-auto">
                   <div class="container-fluid">
-                      @foreach($user->skip(7) as $item)
-                      <div class="card mb-3" style="max-width: 540px;">
+                      @foreach($anggota as $item)
+                      <div class="card mb-3">
                           <div class="row g-0">
-                              <div class="col-md-4">
-                                  <img src="{{ url('/storage/'.$item->photo_profile) }}" class="img-fluid rounded-start" alt="...">
+                              <div class="col-md-3">
+                                  @if($item->userPiki->photo_profile)
+                                  <img src="{{ url('/storage/assets/user/profile/'.$item->userPiki->photo_profile) }}" class="img-fluid rounded-start" alt="...">
+                                  @else
+                                  <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
+                                  @endif
                               </div>
                               <div class="col-md-8">
                                   <div class="card-body">
-                                      <h5 class="card-title">{{ $item->name }}.</h5>
-                                      <p class="card-text">{{ $item->job }}.</p>
-                                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                      <h5 class="card-title">{{ $item->name }}</h5>
+                                      <small class="text-muted">{{ $item->jabatan_piki_sumut }}</small>
+                                      <p class="card-text">{{ $item->job }}</p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <p class="card-text"><small class="text-muted">{{ date('d-M-Y', strtotime($item->created_at)) }}</small></p>
                                   </div>
                               </div>
                           </div>
@@ -888,7 +895,7 @@
                   </div>
               </div>
 
-
+              @else
               <!-- Right Column -->
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
                   <ul style="padding: 0; margin: 0">
@@ -938,6 +945,9 @@
                       </div>
                   </ul>
               </div>
+              @endif
+
+
 
           </div>
       </div>
