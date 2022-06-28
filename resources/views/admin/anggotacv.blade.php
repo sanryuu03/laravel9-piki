@@ -69,40 +69,19 @@
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
                                                 <div class="">
-                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/user/profile/'.$item->photo_profile) }}">
+                                                    <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('storage/assets/user/profile/'.$item->photo_profile) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="">
+                                                <div class="mt-5">
                                                     <input disabled class="form-control" type="name" name="name" value="{{ $item->name }}" placeholder="Nama" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mt-n5">
-                                                <div class="mb-3">
-                                                    <input id="upload" disabled type="hidden" name="picture_path" class="form-control" value="{{ asset('/storage/assets/anggota/profile'.$item->photo_profile) }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 mt-n5">
-                                                <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="phone_number" value="{{ $item->phone_number }}" placeholder="No Hp" />
+                                                    <input disabled class="form-control" type="text" name="nik" value="{{ $item->nik }}" placeholder="NIK" />
                                                 </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="mb-3">
-                                                    <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 mb-3">
-                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="province" id="provinsi">
@@ -115,11 +94,6 @@
                                                     <input disabled class="form-control" type="text" name="province" value="{{ $item->province }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="city" id="kota">
@@ -129,11 +103,6 @@
                                                     <input disabled class="form-control" type="text" name="city" value="{{ $item->city }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="district" id="kecamatan">
@@ -143,11 +112,6 @@
                                                     <input disabled class="form-control" type="text" name="district" value="{{ $item->district }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                            </div>
-                                            <div class="col-md-8">
                                                 <div class="mb-3">
                                                     @if($action == 'edit')
                                                     <select class="custom-select" name="village" id="desa">
@@ -157,9 +121,20 @@
                                                     <input disabled class="form-control" type="text" name="district" value="{{ $item->village }}" placeholder="Provinsi" />
                                                     @endif
                                                 </div>
+                                                <div class="mb-3">
+                                                    <input disabled class="form-control" type="text" name="phone_number" value="{{ $item->phone_number }}" placeholder="No Hp" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="mb-3">
+                                                    <img class="" width="550px" height="350px" src="{{ url('/storage/assets/user/ktp/'.$item->photo_ktp) }}">
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
+
+                                            <div class="col-md-4 mb-3">
+                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
@@ -168,47 +143,49 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <img class="ml-5 rounded-circle" width="100px" height="100px" src="{{ url('/storage/assets/user/ktp/'.$item->photo_ktp) }}">
+                                                <p class="font-weight-normal">Status Anggota: <span class="text-danger font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="mb-3">
                                                     {{-- <input disabled class="form-control keahlian" type="text" name="description_of_skills" value="{{ $item->description_of_skills }}" placeholder="Deskripsi Keahlian" /> --}}
-                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="25" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
+                                                    <textarea disabled class="form-control keahlian" id="exampleFormControlTextarea1" rows="10" name="description_of_skills">{{ $item->description_of_skills }}</textarea>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            @if($action == 'print')
-                                            <a class="btn btn-success" href="{{ route('anggota.export', $item->id) }}">Print</a>
-                                            @elseif($action == 'edit')
-                                            <button type="submit" class="btn btn-info">Update</button>
-                                            @elseif($action == 'showPendaftarBaru')
-                                            <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">Back</a>
-                                            <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
-                                            <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
-                                            @elseif($action == 'showProsesPendaftarBaru')
-                                            <a class="btn btn-danger" href="{{ route('dalamProses') }}">Back</a>
-                                            <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">tidak sesuai</button>
-                                            @elseif($action == 'showUserTidakSesuai')
-                                            <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
-                                            @else
-                                            <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
-                                            @endif
-                                        </div>
-                                    </form>
-                                    <hr>
 
+                                        </div>
                                 </div>
+                                <div class="mb-3">
+                                    @if($action == 'print')
+                                    <a class="btn btn-success" href="{{ route('anggota.export', $item->id) }}">Print</a>
+                                    @elseif($action == 'edit')
+                                    <button type="submit" class="btn btn-info">Update</button>
+                                    @elseif($action == 'showPendaftarBaru')
+                                    <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">Back</a>
+                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
+                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
+                                    @elseif($action == 'showProsesPendaftarBaru')
+                                    <a class="btn btn-danger" href="{{ route('dalamProses') }}">Back</a>
+                                    <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">approve</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">tidak sesuai</button>
+                                    @elseif($action == 'showUserTidakSesuai')
+                                    <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
+                                    @else
+                                    <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
+                                    @endif
+                                </div>
+                                </form>
+                                <hr>
+
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
+
+    </div>
 
     </div>
 
@@ -274,7 +251,7 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-            <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
