@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProfileAnggota;
-use Illuminate\Http\Request;
-use App\Models\AnggotaPiki;
 use App\Models\User;
-use App\Models\Province;
 use App\Models\Regency;
-use App\Models\District;
 use App\Models\Village;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\AnggotaPiki;
+use App\Models\TempAnggota;
+use Illuminate\Http\Request;
+use App\Models\ProfileAnggota;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -138,61 +139,76 @@ class ProfileAnggotaController extends Controller
             return redirect()->route('anggota.index')->with('success', 'ktp berhasil di update');
         }
         // return $request;
-                $rules = [
-                    'name' => 'required|max:255',
-                    'phone_number' => 'required',
-                    'nik' => 'required',
-                    'address' => 'required',
-                    'province' => 'required',
-                    'city' => 'required',
-                    'district' => 'required',
-                    'village' => 'required',
-                    'job' => 'required',
-                    'description_of_skills' => 'required',
-                ];
-                $data = $request->validate($rules);
+        $rules = [
+            'name' => 'required|max:255',
+            'phone_number' => 'required',
+            'nik' => 'required',
+            'address' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'district' => 'required',
+            'village' => 'required',
+            'job' => 'required',
+            'description_of_skills' => 'required',
+        ];
+        $data = $request->validate($rules);
 
-                // $data = $request->validate([
-                //     'province' => 'required',
-                //     'city' => 'required',
-                //     'district' => 'required',
-                //     'village' => 'required',
-                // ]);
+        // $data = $request->validate([
+        //     'province' => 'required',
+        //     'city' => 'required',
+        //     'district' => 'required',
+        //     'village' => 'required',
+        // ]);
 
-                $province = request()->input('province');
-                if ($province) {
-                    $province = Province::where('id', $province)->first();
-                    $namaProvince = $province->name;
-                    $data['province'] = $namaProvince;
-                }
+        $province = request()->input('province');
+        if ($province) {
+            $province = Province::where('id', $province)->first();
+            $namaProvince = $province->name;
+            $data['province'] = $namaProvince;
+        }
 
-                $regencies = request()->input('city');
-                if ($regencies) {
-                    $kota = Regency::where('id', $regencies)->first();
-                    $namaKota = $kota->name;
-                    $data['city'] = $namaKota;
-                }
+        $regencies = request()->input('city');
+        if ($regencies) {
+            $kota = Regency::where('id', $regencies)->first();
+            $namaKota = $kota->name;
+            $data['city'] = $namaKota;
+        }
 
-                $districts = request()->input('district');
-                if ($districts) {
-                    $kecamatan = District::where('id', $districts)->first();
-                    $namaKecamatan = $kecamatan->name;
-                    $data['district'] = $namaKecamatan;
-                }
+        $districts = request()->input('district');
+        if ($districts) {
+            $kecamatan = District::where('id', $districts)->first();
+            $namaKecamatan = $kecamatan->name;
+            $data['district'] = $namaKecamatan;
+        }
 
-                $villages = request()->input('village');
-                if ($villages) {
-                    $desa = Village::where('id', $villages)->first();
-                    $namaDesa = $desa->name;
-                    $data['village'] = $namaDesa;
-                }
+        $villages = request()->input('village');
+        if ($villages) {
+            $desa = Village::where('id', $villages)->first();
+            $namaDesa = $desa->name;
+            $data['village'] = $namaDesa;
+        }
 
         // return $data;
-                User::where('id', $request->id)
-                    ->update($data);
+        TempAnggota::create(
+            [
+                'users_id' => $request->id,
+                'name' => $request->name,
+                'province' => $namaProvince,
+                'city' => $namaKota,
+                'district' => $namaKecamatan,
+                'village' => $namaDesa,
+                'job' => $request->job,
+                'address' => $request->address,
+                'phone_number' => $request->phone_number,
+                'jabatan_piki_sumut' => 'anggota',
+            ]
+        );
+
+        User::where('id', $request->id)
+            ->update($data);
 
 
-                return redirect()->route('profile', $request->id)->with('success', 'CV telah diperbarui');
+        return redirect()->route('profile', $request->id)->with('success', 'CV telah diperbarui');
     }
 
     /**
