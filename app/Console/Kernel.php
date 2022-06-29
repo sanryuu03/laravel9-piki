@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('command:perpindahanTempKeAnggota')->daily();
+        // $schedule->command('command:perpindahanTempKeAnggota')->everyFiveMinutes()->timezone('Asia/Jakarta');
         $schedule->command('artisan cache:clear')->everyFiveMinutes();
         $schedule->command('artisan view:clear')->everyFiveMinutes();
         //Mencatat info log
