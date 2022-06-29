@@ -775,9 +775,6 @@
                                       <small class="text-muted">{{ $item->jabatan_piki_sumut }}</small>
                                       <p class="card-text">{{ $item->job }}</p>
                                   </div>
-                                  <div class="card-footer">
-                                      <p class="card-text"><small class="text-muted">{{ date('d-M-Y', strtotime($item->created_at)) }}</small></p>
-                                  </div>
                               </div>
                           </div>
                       </div>
