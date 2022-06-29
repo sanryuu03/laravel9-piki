@@ -386,173 +386,63 @@
   <!-- END: Program -->
 
   <!-- Berita Terbaru-->
-  <section id="berita" class="h-100 w-100" style="box-sizing: border-box">
-      <style>
-          @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-          .content-3-2 .btn:focus,
-          .content-3-2 .btn:active {
-              outline: none !important;
+  <style>
+      @media (max-width: 480px) {
+          h1 {
+              margin-top: 25px !important;
           }
+      }
 
-          .content-3-2 {
-              padding: 5rem 2rem;
+
+      @media (min-width: 768px) {
+          h1 {
+              margin-top: 0px !important;
+              font-weight: 600;
           }
-
-          .content-3-2 .img-hero {
-              width: 100%;
-              margin-bottom: 3rem;
+          .judul-berita {
+              margin-top: 0px !important;
+              font-size: 35px !important;
+              font-weight: 600;
           }
+        .card-poto-berita {
+        min-height: 299px !important;
+        max-height: 300px !important;
+        }
 
-          .content-3-2 .right-column {
-              width: 100%;
-          }
+        .footer-berita {
+        padding-top: 150px !important;
+        }
+      }
 
-          .content-3-2 .title-text {
-              font: 600 1.875rem/2.25rem Poppins, sans-serif;
-              margin-top: -2.5rem;
-              margin-bottom: 2.5rem;
-              letter-spacing: -0.025em;
-          }
-
-          .content-3-2 .title-caption {
-              font: 500 1.5rem/2rem Poppins, sans-serif;
-              margin-bottom: 1.25rem;
-              color: #121212;
-          }
-
-          .content-3-2 .text-caption {
-              font: 400 1rem/1.75rem Poppins, sans-serif;
-              letter-spacing: 0.025em;
-              color: #565656;
-          }
-
-          .content-3-2 .btn-learn {
-              font: 600 1rem/1.5rem Poppins, sans-serif;
-              padding: 1rem 2.5rem;
-              background-color: #27c499;
-              transition: 0.3s;
-              letter-spacing: 0.025em;
-              border-radius: 0.75rem;
-          }
-
-          .content-3-2 .btn:hover {
-              background-color: #45dbb2;
-              transition: 0.3s;
-          }
-
-          @media (max-width: 480px) {
-              .content-3-2 {
-                  margin-top: -600px !important;
-                  padding-top: -550px !important;
-                  padding-bottom: -70px !important;
-              }
-
-              .content-3-2 .title-text {
-                  margin-top: 480px !important;
-              }
-
-              .content-3-2 .card-berita {
-                  min-width: 380px !important;
-                  margin-top: -30px !important;
-              }
-
-              .content-3-2 .isi-berita {
-                  min-width: 380px !important;
-                  margin-top: -40px !important;
-              }
-          }
-
-          @media (min-width: 768px) {
-              .content-3-2 .title-text {
-                  font: 600 2.25rem/2.5rem Poppins, sans-serif;
-                  min-height: 3rem !important;
-                  margin-top: -65px !important;
-                  margin-bottom: 5px !important;
-              }
-
-              .content-3-2 .judul-berita {
-                  font-size: 40px !important;
-              }
-
-              .content-3-2 .isi-berita {
-                  padding: 0px !important;
-                  min-height: 420px !important;
-                  min-width: 550px !important;
-                  /*background-color: coral !important;*/
-              }
-
-              .content-3-2 .card-berita {
-                  margin-top: 5px !important;
-                  min-height: 580px !important;
-                  margin-bottom: 5px !important;
-              }
-
-              .content-3-2 .card-body-berita-kiri {
-                  margin-bottom: -50px !important;
-              }
-
-              .content-3-2 .card-berita-kanan {
-                  min-height: 580px !important;
-                  /*background-color: green !important;*/
-              }
-          }
-
-          @media (min-width: 992px) {
-              .content-3-2 .img-hero {
-                  width: 50%;
-                  margin-bottom: 0;
-              }
-
-              .content-3-2 .right-column {
-                  margin-left: 1rem;
-                  margin-right: 0rem;
-              }
-
-              .content-3-2 .circle {
-                  margin-right: 1.25rem;
-                  margin-bottom: 0;
-              }
-
-              .content-3-2 .read-more {
-                  bottom: 0px !important;
-                  left: 0px !important;
-                  position: absolute;
-              }
-          }
-
-      </style>
-      <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center lg:text-slate-800">Berita Terbaru</h2>
+  </style>
+  <h1 class="mb-3 text-center fs-1">Berita:</h1>
+  <div class="container-fluid">
           @foreach($news as $berita)
-          <div class="d-flex flex-lg-row flex-column align-items-center">
-              <!-- Left Column -->
-              <div class="img-hero justify-content-center d-flex">
-                  <div class="card card-berita">
-                      <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="...">
-                      <div class="card-body card-body-berita-kiri">
-                          <p class="card-text text-muted">{!! $berita->keterangan_foto !!}</p>
-                      </div>
-                  </div>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="mb-3">
+              <div class="card" style="width: 25rem;">
+                  <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top card-poto-berita" alt="...">
               </div>
-
-              <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
-                  <div class="card card-berita-kanan d-inline">
-                      <div class="h-100 card-body isi-berita">
-                          <h5 class="card-title text-primary">
-                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400 judul-berita">{{ $berita->judul_berita }}</a>
-                          </h5>
-                          {!! $berita->excerpt !!}
-                          <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400">Read More...</a>
-                      </div>
-                  </div>
               </div>
           </div>
-          @endforeach
+          <div class="col-md-8">
+              <div class="">
+                  <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400 judul-berita">{{ $berita->judul_berita }}</a>
+              </div>
+              <div class="footer-berita mb-5">
+                  <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-primary fs-3">{{ $berita->categoryNews->name }}</a>
+                  <a class="ml-5 text-secondary fs-2">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
+                  <hr>
+              </div>
+          </div>
       </div>
-  </section>
+          @endforeach
+  </div>
 
+
+
+  <!-- Berita End-->
   <!-- Kategory Berita Start-->
   <style>
       @media (max-width: 480px) {
@@ -582,8 +472,8 @@
           @endforeach
       </div>
   </div>
-
   <!-- Kategory Berita End-->
+
   <!-- Agenda-->
   <section class="h1-00 w-100 bg-tosca-1" style="box-sizing: border-box">
       <style>
