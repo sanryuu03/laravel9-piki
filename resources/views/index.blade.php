@@ -576,7 +576,7 @@
                   margin-left: -330px !important;
                   min-width: 1024px !important;
                   margin-top: -50px !important;
-                  padding-top: 0px !important;
+                  padding-top: 40px !important;
                   padding-bottom: 10px !important;
                   /*background-color:rgba(0,0,0,0.7);*/
                   background-color: #f7f7f7;
