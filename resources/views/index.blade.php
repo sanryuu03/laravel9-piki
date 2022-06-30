@@ -267,6 +267,10 @@
                   min-width: 380px !important;
                   margin-left: -20px !important;
               }
+
+              #carouselExampleControls {
+                  margin-bottom: -50px !important;
+              }
           }
 
           @media (min-width: 768px) {
@@ -388,9 +392,32 @@
   <!-- Berita Terbaru-->
   <style>
       @media (max-width: 480px) {
+        .header-berita {
+              background-color: #f7f7f7;
+              //background-color: salmon;
+              padding-top: 1px !important;
+        }
           h1 {
-              margin-top: 25px !important;
+              padding-top: 12px !important;
+              font-weight: bolder;
           }
+          .judul-berita {
+              margin-top: 0px !important;
+              font-size: 25px !important;
+              font-weight: 900;
+          }
+        .card-poto-berita {
+              margin-top: -15px !important;
+              margin-left: -10px !important;
+              max-width: 384px !important;
+        }
+        .footer-berita {
+        margin-bottom: 20px !important;
+        }
+        .waktu-posting-berita {
+            font-size: 20px !important;
+            margin-left: 5px !important;
+        }
       }
 
 
@@ -405,24 +432,26 @@
               font-weight: 600;
           }
         .card-poto-berita {
-        min-height: 299px !important;
-        max-height: 300px !important;
+        min-height: 99px !important;
+        max-height: 155px !important;
         }
 
         .footer-berita {
-        padding-top: 150px !important;
+        padding-top: 0px !important;
         }
       }
 
   </style>
-  <h1 class="mb-3 text-center fs-1">Berita:</h1>
+  <div class="container-fluid header-berita">
+  <h1 class="mb-3 text-center fs-1">Berita</h1>
+  </div>
   <div class="container-fluid">
           @foreach($news as $berita)
       <div class="row">
           <div class="col-md-4">
               <div class="mb-3">
               <div class="card" style="width: 25rem;">
-                  <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top card-poto-berita" alt="...">
+                  <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top card-poto-berita img-fluid" alt="...">
               </div>
               </div>
           </div>
@@ -431,8 +460,8 @@
                   <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400 judul-berita">{{ $berita->judul_berita }}</a>
               </div>
               <div class="footer-berita mb-5">
-                  <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-primary fs-3">{{ $berita->categoryNews->name }}</a>
-                  <a class="ml-5 text-secondary fs-2">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
+                  <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-primary fs-2">{{ $berita->categoryNews->name }}</a>
+                  <a class="ml-5 text-secondary fs-2 waktu-posting-berita">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
                   <hr>
               </div>
           </div>
@@ -447,7 +476,7 @@
   <style>
       @media (max-width: 480px) {
           h1 {
-              margin-top: 25px !important;
+              margin-top: -10px !important;
           }
       }
 
