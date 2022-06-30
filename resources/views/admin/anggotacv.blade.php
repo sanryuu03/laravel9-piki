@@ -176,6 +176,9 @@
                                     <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
                                     @else
                                     <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
+                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
+                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
                                     @endif
                                 </div>
                                 </form>
