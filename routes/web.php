@@ -100,6 +100,13 @@ Route::group(['middleware' => ['CekLevel:super-admin,infokom,media']], function 
     Route::get('/admin/editberita/{id}', [NewsPikiController::class, 'edit'])->name('berita.edit');
     Route::put('/admin/updateberita/{id}', [NewsPikiController::class, 'update'])->name('berita.update');
     Route::post('/admin/landingpageberita/hapus/{id}', [NewsPikiController::class, 'destroy'])->name('berita.destroy');
+
+    Route::get('/admin/backendkategoriberita', [CategoryNewsController::class, 'kategoriberita'])->name('backend.kategori.berita');
+    Route::get('/admin/backendaddkategoriberita', [CategoryNewsController::class, 'addkategoriberita'])->name('backend.add.kategori.berita');
+    Route::get('/admin/backendeditkategoriberita/checkSlug', [NewsPikiController::class, 'checkSlug']);
+    Route::get('/admin/backendeditkategoriberita/{id}', [CategoryNewsController::class, 'editkategoriberita'])->name('backend.edit.kategori.berita');
+    Route::post('/admin/backendaddkategoriberita', [CategoryNewsController::class, 'saveformkategoriberita'])->name('save.form.kategori.berita');
+    Route::post('/admin/backendkategoriberita/hapus/{id}', [CategoryNewsController::class, 'destroy'])->name('destroy.kategori.berita');
 });
 
 // program

@@ -501,7 +501,11 @@
           <div class="col-md-4 mb-3">
               <a href="/categories/{{ $berita->slug }}">
                   <div class="card bg-dark text-white">
+                  @if($berita->picture_path_kategori_berita !== NULL)
+                      <img src="{{ url('/storage/assets/categorynews/'.$berita->picture_path_kategori_berita) }}" class="card-img img-fluid" alt="{{ $berita->name }}" style="width:500px; height:395px;">
+                  @else
                       <img src="https://source.unsplash.com/500x500?{{ $berita->slug }}" class="card-img" alt="{{ $berita->name }}">
+                  @endif
                       <div class="card-img-overlay d-flex align-items-center p-0">
                           <h5 class="card-title text-center flex-fill p-4 fs-3" style="background-color:rgba(0,0,0,0.7)">{{ $berita->name }}</h5>
                       </div>

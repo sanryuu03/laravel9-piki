@@ -18,6 +18,11 @@
           </ol>
       </div>
   </div>
+  <div class="container-fluid" id="container-wrapper">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <a href="{{ route('backend.kategori.berita') }}" class="btn btn-info btn-sm">List Kategori Berita</a>
+      </div>
+  </div>
   @if(session()->has('success'))
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
@@ -137,3 +142,4 @@
   </div>
   <!---Container Fluid-->
   @endsection
+

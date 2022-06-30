@@ -6,6 +6,7 @@ const title = document.querySelector("#title");
 const slug = document.querySelector("#slug");
 if (title) {
     title.addEventListener("change", function () {
+        console.log(`ini nilai title ${title.value}`);
         fetch("checkSlug?title=" + title.value)
             .then((response) => response.json())
             .then((data) => (slug.value = data.slug));

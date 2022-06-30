@@ -17,6 +17,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
+            $table->text('picture_path_kategori_berita')->nullable();
+            $table->string('post_by')->nullable();
+            $table->string('edited_by')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
