@@ -392,32 +392,37 @@
   <!-- Berita Terbaru-->
   <style>
       @media (max-width: 480px) {
-        .header-berita {
+          .header-berita {
               background-color: #f7f7f7;
               //background-color: salmon;
               padding-top: 1px !important;
-        }
+          }
+
           h1 {
               padding-top: 12px !important;
               font-weight: bolder;
           }
+
           .judul-berita {
               margin-top: 0px !important;
               font-size: 25px !important;
               font-weight: 900;
           }
-        .card-poto-berita {
+
+          .card-poto-berita {
               margin-top: -15px !important;
               margin-left: -10px !important;
               max-width: 384px !important;
-        }
-        .footer-berita {
-        margin-bottom: 20px !important;
-        }
-        .waktu-posting-berita {
-            font-size: 20px !important;
-            margin-left: 5px !important;
-        }
+          }
+
+          .footer-berita {
+              margin-bottom: 20px !important;
+          }
+
+          .waktu-posting-berita {
+              font-size: 20px !important;
+              margin-left: 5px !important;
+          }
       }
 
 
@@ -426,33 +431,38 @@
               margin-top: 0px !important;
               font-weight: 600;
           }
+
           .judul-berita {
               margin-top: 0px !important;
               font-size: 35px !important;
               font-weight: 600;
           }
-        .card-poto-berita {
-        min-height: 99px !important;
-        max-height: 155px !important;
-        }
 
-        .footer-berita {
-        padding-top: 0px !important;
-        }
+          .card-poto-berita {
+              min-height: 99px !important;
+              max-height: 155px !important;
+              object-fit: cover;
+              height: 100% !important;
+              width: 100% !important;
+          }
+
+          .footer-berita {
+              padding-top: 0px !important;
+          }
       }
 
   </style>
   <div class="container-fluid header-berita">
-  <h1 class="mb-3 text-center fs-1">Berita</h1>
+      <h1 class="mb-3 text-center fs-1">Berita</h1>
   </div>
   <div class="container-fluid">
-          @foreach($news as $berita)
+      @foreach($news as $berita)
       <div class="row">
           <div class="col-md-4">
               <div class="mb-3">
-              <div class="card" style="width: 25rem;">
-                  <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top card-poto-berita img-fluid" alt="...">
-              </div>
+                  <div class="card" style="width: 25rem;">
+                      <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top card-poto-berita img-fluid" alt="...">
+                  </div>
               </div>
           </div>
           <div class="col-md-8">
@@ -466,7 +476,7 @@
               </div>
           </div>
       </div>
-          @endforeach
+      @endforeach
   </div>
 
 
@@ -746,7 +756,7 @@
 
               .content-3-2-anggota .left-column {
                   margin-top: -30px !important;
-                  margin-left: -5px !important;
+                  margin-left: -35px !important;
                   min-width: 400px !important;
 
               }
@@ -1192,3 +1202,4 @@
   <!-- End Faq's-->
 
   @endsection
+
