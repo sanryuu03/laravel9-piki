@@ -13,10 +13,13 @@ use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\SumbanganPikiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileAnggotaController;
+use App\Http\Controllers\KategoriAnggotaController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\DependantDropdownController;
+use App\Http\Controllers\SubKategoriAnggotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +74,8 @@ Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->
 
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
+
+Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
@@ -162,6 +167,12 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::get('/admin/pilihAnggotaYangDitampilkan', [AnggotaPikiController::class, 'pilihAnggotaYangDitampilkan'])->name('pilih.anggota.yang.ditampilkan');
     Route::post('/admin/pilihAnggotaYangDitampilkan/{id}', [AnggotaPikiController::class, 'pilihAnggotaYangDitampilkan'])->name('pilih.anggota.ini.yang.ditampilkan');
     Route::match(['get','post'], '/admin/jadikanAnggotaYangDitampilkan/{id}', [AnggotaPikiController::class, 'jadikanAnggotaYangDitampilkan'])->name('jadikan.anggota.yang.ditampilkan');
+
+    Route::get('/admin/kategorianggota', [KategoriAnggotaController::class, 'index'])->name('kategori.anggota');
+    Route::get('/admin/addkategorianggota', [KategoriAnggotaController::class, 'addKategoriAnggota'])->name('add.kategori.anggota');
+
+    Route::get('/admin/subkategorianggota', [SubKategoriAnggotaController::class, 'index'])->name('sub.kategori.anggota');
+    Route::get('/admin/addsubkategorianggota', [SubKategoriAnggotaController::class, 'addsubkategorianggota'])->name('add.sub.kategori.anggota');
 });
 
 // community partners
@@ -175,7 +186,10 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 
 // keuangan
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
-    Route::get('/admin/keuangan', [BackendPikiController::class, 'notFound'])->name('notfound');
+    Route::get('/admin/keuangan', [BackendPikiController::class, 'index'])->name('backend.keuangan');
+    Route::get('/admin/pemasukanKeuangan', [BackendPikiController::class, 'pemasukan'])->name('backend.pemasukan');
+    Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');
+    Route::get('/admin/laporanKeuangan', [BackendPikiController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
 });
 
 // login khusus anggota

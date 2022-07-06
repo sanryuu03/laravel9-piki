@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\NewsPiki;
 use App\Models\AgendaPiki;
 use App\Models\AnggotaPiki;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
+use App\Models\DataRekening;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -429,6 +430,12 @@ class DatabaseSeeder extends Seeder
             Pertamina telah mengurangi 27% emisi pada 2010-2020 untuk mendukung Kontribusi Nasional Indonesia. Pertamina juga melibatkan mitra nasional maupun internasional untuk mengeksplorasi kemitraan untuk dekarbonisasi dan mempercepat pertumbuhan EBT.
 
             “Kita melakukan kolaborasi dan melibatkan mitra nasional dan internasional untuk mempercepat net zero emission. Semoga kerja keras ini bisa berjalan dengan baik,” tutupnya',
+        ]);
+
+        DataRekening::create([
+            'rekening_pembayaran' => 'Bank SUMUT',
+            'nomor_rekening' => '1000.104.000.7722',
+            'atas_nama' => 'DPD PIKI SUMUT',
         ]);
 
     }

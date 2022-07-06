@@ -18,8 +18,9 @@ class BackendPikiController extends Controller
     public function index()
     {
         $user = auth()->user()->id;
-        return view('admin/index', [
+        return view('admin/keuangan', [
             "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'keuangan PIKI SUMUT',
             "creator" => $user,
         ]);
     }
@@ -102,5 +103,81 @@ class BackendPikiController extends Controller
     public function destroy(BackendPiki $backendPiki)
     {
         //
+    }
+
+    public function pemasukan()
+    {
+        $user = auth()->user()->id;
+        return view('admin/pemasukanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'iuran' => 'iuran',
+            'sumbangan' => 'sumbangan',
+        ]);
+    }
+
+    public function pemasukanSummary()
+    {
+        $user = auth()->user()->id;
+        return view('admin/pemasukanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'iuran' => 'iuran',
+            'sumbangan' => 'sumbangan',
+        ]);
+    }
+    public function pemasukanIuran()
+    {
+        $user = auth()->user()->id;
+        return view('admin/pemasukanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'iuran' => 'iuran',
+            'sumbangan' => 'sumbangan',
+        ]);
+    }
+    public function pemasukanSumbangan()
+    {
+        $user = auth()->user()->id;
+        return view('admin/pemasukanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'iuran' => 'iuran',
+            'sumbangan' => 'sumbangan',
+        ]);
+    }
+
+    public function pengeluaran()
+    {
+        $user = auth()->user()->id;
+        return view('admin/pengeluaranKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pengeluaran Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'pengeluaranBaru' => 'keuangan',
+            'diproses' => 'iuran',
+            'ditolak' => 'iuran',
+            'terverifikasi' => 'iuran',
+        ]);
+    }
+
+    public function laporanKeuangan()
+    {
+        $user = auth()->user()->id;
+        return view('admin/laporanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Laporan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'keuangan' => 'keuangan',
+            'iuran' => 'iuran',
+        ]);
     }
 }

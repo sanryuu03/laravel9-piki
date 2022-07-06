@@ -187,7 +187,7 @@
                         </ul>
                         <a href="{{ route('index') }}#program" class="block nav-link text-white">Program</a>
                         <a href="{{ route('kategori.berita') }}" class="block nav-link text-white">Berita</a>
-                        <a href="" class="block nav-link text-white">Donasi</a>
+                        <a href="{{ route('sumbangan.frontend') }}" class="block nav-link text-white">Donasi</a>
                     </nav>
                 </div>
 

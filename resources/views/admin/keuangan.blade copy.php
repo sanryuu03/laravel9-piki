@@ -11,6 +11,7 @@
           </ol>
       </div>
   </div>
+
   <div class="container-fluid">
       <div class="card-body">
           <div class="row mb-3">
@@ -21,8 +22,8 @@
                       <div class="card-body">
                           <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Pendaftar Baru</div>
-                                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $pendaftarBaru }}</div>
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Pemasukan</div>
+                                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $keuangan }}</div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
                                       <span>Belum di proses</span>
                                   </div>
@@ -42,8 +43,8 @@
                       <div class="card-body">
                           <div class="row align-items-center">
                               <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Dalam Proses</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $dalamProses }}</div>
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $iuran }}</div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
                                       <span>Sedang di verifikasi</span>
                                   </div>
@@ -63,7 +64,7 @@
                       <div class="card-body">
                           <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Di Tolak</div>
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Laporan Keuangan</div>
                                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $diTolak }}</div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
                                       <span>Verifikasi anggota gagal</span>
