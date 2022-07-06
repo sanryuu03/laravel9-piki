@@ -11,6 +11,7 @@ use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use App\Models\DataRekening;
 use Illuminate\Database\Seeder;
+use Database\Seeders\IndoRegionSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -437,6 +438,9 @@ class DatabaseSeeder extends Seeder
             'nomor_rekening' => '1000.104.000.7722',
             'atas_nama' => 'DPD PIKI SUMUT',
         ]);
+
+        $this->call(IndoRegionSeeder::class);
+
 
     }
 }
