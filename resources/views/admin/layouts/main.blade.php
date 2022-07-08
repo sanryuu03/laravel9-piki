@@ -54,58 +54,147 @@
             <div class="sidebar-heading">
                 Features
             </div>
+            @if(auth()->user()->level=='super-admin')
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
+                <a class="nav-link" href="{{  url('/admin/landingpageheader') }}">
                     <i class="far fa-fw fa-window-maximize"></i>
-                    <span>Landing Page</span>
+                    <span>Header</span>
                 </a>
-                <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Landing Page</h6>
-                        @if(auth()->user()->level=='super-admin')
-                        <a class="collapse-item" href="{{  url('/admin/landingpageheader') }}">Header</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/backendanggota') }}">Anggota</a>
-                        <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
-                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">Keuangan</a>
-                        @endif
-
-                        @if(auth()->user()->level=='admin')
-                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/communitypartners') }}">Community Partners</a>
-                        @endif
-
-                        @if(auth()->user()->level=='bendahara')
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/keuangan') }}">Keuangan</a>
-                        @endif
-
-                        @if(auth()->user()->level=='wakil-ketua')
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        @endif
-
-                        @if(auth()->user()->level=='organisasi')
-                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        <a class="collapse-item" href="{{  url('/admin/backendanggota') }}">Anggota</a>
-                        @endif
-
-                        @if(auth()->user()->level=='infokom')
-                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpagejenisprogram') }}">Program</a>
-                        <a class="collapse-item" href="{{  url('/admin/landingpageagenda') }}">Agenda</a>
-                        @endif
-
-                        @if(auth()->user()->level=='media')
-                        <a class="collapse-item" href="{{  url('/admin/landingpageberita') }}">Berita</a>
-                        @endif
-
-                    </div>
-                </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageberita') }}">
+                    <i class="fas fa-fw fa-newspaper"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpagejenisprogram') }}">
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>Program</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/backendanggota') }}">
+                    <i class="fas fa-fw fa-user-gear"></i>
+                    <span>Anggota</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/communitypartners') }}">
+                    <i class="fas fa-fw fa-handshake"></i>
+                    <span>Community Partners</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/keuangan') }}">
+                    <i class="fas fa-fw fa-money-bill-transfer"></i>
+                    <span>Keuangan</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpagejenisprogram') }}">
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>Program</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/communitypartners') }}">
+                    <i class="fas fa-fw fa-handshake"></i>
+                    <span>Community Partners</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='bendahara')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/keuangan') }}">
+                    <i class="fas fa-fw fa-money-bill-transfer"></i>
+                    <span>Keuangan</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='wakil-ketua')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='organisasi')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpagejenisprogram') }}">
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>Program</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/backendanggota') }}">
+                    <i class="fas fa-fw fa-user-gear"></i>
+                    <span>Anggota</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='infokom')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageberita') }}">
+                    <i class="fas fa-fw fa-newspaper"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpagejenisprogram') }}">
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>Program</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageagenda') }}">
+                    <i class="fas fa-fw fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            @endif
+
+            @if(auth()->user()->level=='media')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/landingpageberita') }}">
+                    <i class="fas fa-fw fa-newspaper"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
+            @endif
+
             <hr class="sidebar-divider">
             <div class="version" id="version-ruangadmin"></div>
         </ul>
