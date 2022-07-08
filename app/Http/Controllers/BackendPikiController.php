@@ -190,7 +190,7 @@ class BackendPikiController extends Controller
         $pemasukanIuran = IuranPiki::all();
         return view('admin/pemasukanIuranDiproses', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Pemasukan Iuran Di Proses",
+            "menu" => "Pemasukan Iuran DiProses",
             "creator" => $idUser,
             'pemasukanIuran' => $pemasukanIuran,
         ]);
@@ -227,6 +227,58 @@ class BackendPikiController extends Controller
         return view('admin/pemasukanSumbangan', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan PIKI SUMUT',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
+    public function pemasukanSumbanganBaru()
+    {
+        $user = auth()->user()->id;
+        $rekapSumbangan = SumbanganPiki::get();
+        return view('admin/pemasukanSumbanganBaru', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Sumbangan Baru',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
+    public function pemasukanSumbanganDiproses()
+    {
+        $user = auth()->user()->id;
+        $rekapSumbangan = SumbanganPiki::get();
+        return view('admin/pemasukanSumbanganDiproses', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Sumbangan Diproses',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
+    public function pemasukanSumbanganDitolak()
+    {
+        $user = auth()->user()->id;
+        $rekapSumbangan = SumbanganPiki::get();
+        return view('admin/pemasukanSumbanganDitolak', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Sumbangan Ditolak',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
+    public function pemasukanSumbanganDiterima()
+    {
+        $user = auth()->user()->id;
+        $rekapSumbangan = SumbanganPiki::get();
+        return view('admin/pemasukanSumbanganDiterima', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pemasukan Sumbangan Diterima',
             "creator" => $user,
             'summary' => 'ringkasan',
             'rekapSumbangan' => $rekapSumbangan,

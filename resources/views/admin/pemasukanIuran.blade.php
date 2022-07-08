@@ -29,7 +29,7 @@
               <!-- Dalam Proses Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/dalamProses') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanIuranDiproses') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
                                   <div class="col mr-2">
@@ -49,7 +49,7 @@
               <!-- Ditolak Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/diTolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanIuranDitolak') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
@@ -70,7 +70,7 @@
               <!-- Diterima Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/landingpageanggota') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanIuranDiterima') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">

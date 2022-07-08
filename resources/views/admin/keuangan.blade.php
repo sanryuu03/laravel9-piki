@@ -29,7 +29,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pemasukan</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
                                   </div>
                                   <div class="col-auto">
                                       <i class="fas fa-money-bill-trend-up fa-2x text-info"></i>
@@ -46,7 +46,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                           <div class="card-body">
                               <div class="row align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
                                   </div>
                                   <div class="col-auto">
                                       <i class="fas fa-hand-holding-dollar fa-2x text-primary"></i>
@@ -63,7 +63,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Laporan Keuangan</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
                                   </div>
                                   <div class="col-auto">
                                       <i class="fas fa-file-invoice-dollar fa-2x text-danger"></i>
