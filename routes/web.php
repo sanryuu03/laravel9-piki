@@ -189,8 +189,16 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
     Route::get('/admin/keuangan', [BackendPikiController::class, 'keuangan'])->name('backend.keuangan');
     Route::get('/admin/pemasukanKeuangan', [BackendPikiController::class, 'pemasukan'])->name('backend.pemasukan');
+
     Route::get('/admin/pemasukanIuran', [BackendPikiController::class, 'pemasukanIuran'])->name('backend.iuran');
+    Route::get('/admin/pemasukanIuranDetail', [BackendPikiController::class, 'pemasukanIuranDetail'])->name('backend.iuran.detail');
+    Route::get('/admin/pemasukanIuranBaru', [BackendPikiController::class, 'pemasukanIuranBaru'])->name('backend.iuran.baru');
+    Route::get('/admin/pemasukanIuranDiproses', [BackendPikiController::class, 'pemasukanIuranDiproses'])->name('backend.iuran.diproses');
+    Route::get('/admin/pemasukanIuranDitolak', [BackendPikiController::class, 'pemasukanIuranDitolak'])->name('backend.iuran.ditolak');
+    Route::get('/admin/pemasukanIuranDiterima', [BackendPikiController::class, 'pemasukanIuranDiterima'])->name('backend.iuran.diterima');
+
     Route::get('/admin/pemasukanSumbangan', [BackendPikiController::class, 'pemasukanSumbangan'])->name('backend.sumbangan');
+    Route::get('/admin/pemasukanSumbanganDetail', [BackendPikiController::class, 'pemasukanSumbanganDetail'])->name('backend.sumbangan.detail');
     Route::get('/admin/rekapPemasukan', [BackendPikiController::class, 'rekapPemasukan'])->name('backend.rekap.pemasukan');
 
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');

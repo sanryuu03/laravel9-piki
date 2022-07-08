@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sub_kategori_anggotas', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('kategori_anggotas');
+            $table->foreignId('kategori_anggotas_id');
             $table->string('name')->unique();
             $table->string('post_by')->nullable();
             $table->string('edited_by')->nullable();

@@ -171,6 +171,55 @@ class BackendPikiController extends Controller
             'pemasukanIuran' => $pemasukanIuran,
         ]);
     }
+
+    public function pemasukanIuranBaru(Request $request)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::all();
+        return view('admin/pemasukanIuranBaru', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Baru",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+        ]);
+    }
+
+    public function pemasukanIuranDiproses(Request $request)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::all();
+        return view('admin/pemasukanIuranDiproses', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Di Proses",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+        ]);
+    }
+
+    public function pemasukanIuranDitolak(Request $request)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::all();
+        return view('admin/pemasukanIuranDitolak', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Di Tolak",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+        ]);
+    }
+
+    public function pemasukanIuranDiterima(Request $request)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::all();
+        return view('admin/pemasukanIuranDiterima', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Diterima",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+        ]);
+    }
+
     public function pemasukanSumbangan()
     {
         $user = auth()->user()->id;
