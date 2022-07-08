@@ -20,10 +20,11 @@
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
 
     <style>
-    .landingpage-anggota {
-        overflow: auto;
-        white-space: nowrap;
-    }
+        .landingpage-anggota {
+            overflow: auto;
+            white-space: nowrap;
+        }
+
     </style>
 
     {{-- trix editor --}}
@@ -146,8 +147,47 @@
                     </ul>
                 </nav>
                 <!-- Topbar -->
+                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.rekap.pemasukan')
+                <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+                    <div class="container">
+                        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
 
+                            <ul class="navbar-nav">
+                                @if(auth()->user()->level=='super-admin')
+                                <li class="nav-item dropdown">
+                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">Pemasukan</a>
+                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                        <li><a href="{{ url('/admin/rekapPemasukan') }}" class="dropdown-item">Summary</a></li>
+                                        <li><a href="{{ url('/admin/pemasukanIuran') }}" class="dropdown-item">Iuran</a></li>
+                                        <li><a href="{{ url('/admin/pemasukanSumbangan') }}" class="dropdown-item">Sumbangan</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">Pengeluaran</a>
+                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                        <li><a href="#" class="dropdown-item">Summary</a></li>
+                                        <li><a href="#" class="dropdown-item">Investasi</a></li>
+                                        <li><a href="#" class="dropdown-item">Rutin</a></li>
+                                        <li><a href="#" class="dropdown-item">Program</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{  url('/admin/laporanKeuangan') }}" class="nav-link text-primary">Laporan Keuangan</a>
+                                </li>
+                                @endif
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+                @endif
                 @yield('menuContent')
+
+
 
                 <!-- Modal Logout -->
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
@@ -219,7 +259,10 @@
         <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
         <!-- DataTable -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset('js/mainTanggal.js') }}"></script>
 </body>
 
 </html>
@@ -228,5 +271,6 @@
 {{-- {{ dd($creator) }} --}}
 <script>
     window.location = "{{ route('profile', $creator) }}";
+
 </script>
 @endif

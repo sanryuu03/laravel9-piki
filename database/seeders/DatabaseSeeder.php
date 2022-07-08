@@ -10,6 +10,7 @@ use App\Models\AnggotaPiki;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use App\Models\DataRekening;
+use App\Models\jenisPemasukan;
 use Illuminate\Database\Seeder;
 use Database\Seeders\IndoRegionSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -441,6 +442,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call(IndoRegionSeeder::class);
 
+        jenisPemasukan::create([
+            'jenis_pemasukan' => 'iuran',
+        ]);
+
+        jenisPemasukan::create([
+            'jenis_pemasukan' => 'sumbangan',
+        ]);
 
     }
 }

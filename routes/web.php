@@ -76,6 +76,7 @@ Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kateg
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
 Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
+Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('save.form.sumbangan.frontend');
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
@@ -186,8 +187,12 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 
 // keuangan
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
-    Route::get('/admin/keuangan', [BackendPikiController::class, 'index'])->name('backend.keuangan');
+    Route::get('/admin/keuangan', [BackendPikiController::class, 'keuangan'])->name('backend.keuangan');
     Route::get('/admin/pemasukanKeuangan', [BackendPikiController::class, 'pemasukan'])->name('backend.pemasukan');
+    Route::get('/admin/pemasukanIuran', [BackendPikiController::class, 'pemasukanIuran'])->name('backend.iuran');
+    Route::get('/admin/pemasukanSumbangan', [BackendPikiController::class, 'pemasukanSumbangan'])->name('backend.sumbangan');
+    Route::get('/admin/rekapPemasukan', [BackendPikiController::class, 'rekapPemasukan'])->name('backend.rekap.pemasukan');
+
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');
     Route::get('/admin/laporanKeuangan', [BackendPikiController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
 });

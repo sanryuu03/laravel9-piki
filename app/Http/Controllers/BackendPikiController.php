@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\BackendPiki;
+use App\Models\IuranPiki;
+use App\Models\jenisPemasukan;
+use App\Models\SumbanganPiki;
 use Illuminate\Http\Request;
 
 class BackendPikiController extends Controller
@@ -18,7 +21,7 @@ class BackendPikiController extends Controller
     public function index()
     {
         $user = auth()->user()->id;
-        return view('admin/keuangan', [
+        return view('admin/index', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'keuangan PIKI SUMUT',
             "creator" => $user,
@@ -105,6 +108,16 @@ class BackendPikiController extends Controller
         //
     }
 
+    public function keuangan()
+    {
+        $user = auth()->user()->id;
+        return view('admin/keuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Keuangan PIKI SUMUT',
+            "creator" => $user,
+        ]);
+    }
+
     public function pemasukan()
     {
         $user = auth()->user()->id;
@@ -118,12 +131,28 @@ class BackendPikiController extends Controller
         ]);
     }
 
+    public function rekapPemasukan()
+    {
+        $user = auth()->user()->id;
+        $jenisPemasukan = jenisPemasukan::all();
+        $rekapSumbangan = SumbanganPiki::get();
+        // return $jenisPemasukan;
+        return view('admin/rekapPemasukanKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Rekap Pemasukan Keuangan PIKI SUMUT',
+            "creator" => $user,
+            'jenisPemasukan' => $jenisPemasukan,
+            'nama' => 'sumbangan',
+            'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
     public function pemasukanSummary()
     {
         $user = auth()->user()->id;
         return view('admin/pemasukanKeuangan', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            'menu' => 'Pemasukan Summary PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
             'iuran' => 'iuran',
@@ -133,25 +162,25 @@ class BackendPikiController extends Controller
     public function pemasukanIuran()
     {
         $user = auth()->user()->id;
-        return view('admin/pemasukanKeuangan', [
+        $pemasukanIuran = IuranPiki::all();
+        return view('admin/pemasukanIuran', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            'menu' => 'Pemasukan Iuran PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
-            'iuran' => 'iuran',
-            'sumbangan' => 'sumbangan',
+            'pemasukanIuran' => $pemasukanIuran,
         ]);
     }
     public function pemasukanSumbangan()
     {
         $user = auth()->user()->id;
-        return view('admin/pemasukanKeuangan', [
+        $rekapSumbangan = SumbanganPiki::get();
+        return view('admin/pemasukanSumbangan', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Pemasukan Keuangan PIKI SUMUT',
+            'menu' => 'Pemasukan Sumbangan PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
-            'iuran' => 'iuran',
-            'sumbangan' => 'sumbangan',
+            'rekapSumbangan' => $rekapSumbangan,
         ]);
     }
 

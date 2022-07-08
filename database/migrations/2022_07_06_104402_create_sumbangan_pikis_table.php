@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sumbangan_pikis', function (Blueprint $table) {
             $table->increments('id');
             $table->text('jumlah_sumbangan')->nullable();
-            $table->text('nama_penyumbangan')->nullable();
+            $table->text('nama_penyumbang')->nullable();
             $table->text('telp')->nullable();
             $table->text('tujuan_sumbangan')->nullable();
             $table->text('email')->nullable();

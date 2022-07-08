@@ -1,6 +1,13 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
+  {{-- /**
+  <style>
+li.dropdown-submenu2:hover > .dropdown-menu {
+    display: block;
+}
+  </style>
+  */ --}}
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">

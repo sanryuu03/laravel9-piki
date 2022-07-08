@@ -16,26 +16,31 @@
 
   </style>
   <h1 class="pt-5 mb-3 text-center fs-3">Sumbangan</h1>
+    @if(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+      {{ session('success') }}
+  </div>
+  @endif
   <div class="container-fluid">
       <div class="card mx-3 my-3">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('save.form.kategori.berita') }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('save.form.sumbangan.frontend') }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group">
                           <label>Jumlah Sumbangan <span class="text-danger">*</span></label>
-                          <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
-                          @error('name')
+                          <input id="uang" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
+                          @error('jumlah_sumbangan')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
                           @enderror
                       </div>
                       <div class="form-group">
-                          <label>Nama Penyumbangan <span class="text-danger">*</span></label>
-                          <input type="text" name="nama_penyumbangan" class="form-control @error('nama_penyumbangan') is-invalid @enderror" value="{{ old('nama_penyumbangan') }}">
-                          @error('nama_penyumbangan')
+                          <label>Nama Penyumbang <span class="text-danger">*</span></label>
+                          <input type="text" name="nama_penyumbang" class="form-control @error('nama_penyumbang') is-invalid @enderror" value="{{ old('nama_penyumbang') }}">
+                          @error('nama_penyumbang')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
@@ -126,7 +131,7 @@
                       </div>
                       <div class="form-group">
                           <label>Nomor Rekening</label>
-                          <input type="text" readonly name="atas_nama" class="form-control @error('nomor_rekening') is-invalid @enderror" value="{{ old('nomor_rekening', $dataRekening->nomor_rekening) }}">
+                          <input type="text" readonly name="nomor_rekening" class="form-control @error('nomor_rekening') is-invalid @enderror" value="{{ old('nomor_rekening', $dataRekening->nomor_rekening) }}">
                           @error('nomor_rekening')
                           <div class="invalid-feedback">
                               {{ $message }}

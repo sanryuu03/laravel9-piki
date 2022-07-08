@@ -18,7 +18,7 @@ class KategoriAnggotaController extends Controller
         $user = auth()->user()->id;
         return view('admin/kategorianggota', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Kategori Berita",
+            "menu" => "Kategori Anggota",
             "creator" => $user,
             "kategoriAnggota" => $kategoriAnggota,
         ]);
