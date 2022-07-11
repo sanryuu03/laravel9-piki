@@ -74,6 +74,7 @@
     <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
 
 
 </body>

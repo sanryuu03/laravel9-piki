@@ -25,14 +25,14 @@
       <div class="card mx-3 my-3">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('save.form.sumbangan.frontend', $item->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('save.form.iuran', $item->id) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group">
                           <div class="row">
-                              <div class="col-md-4">
+                              <div class="col-md-12">
                                   Jenis Setoran:
-                                  <select id="table-filter-jenis-pemasukan" class="custom-select table-filter-jenis-pemasukan" name="jenis-pemasukan">
+                                  <select id="filter-jenis-setoran" class="custom-select filter-jenis-setoran" name="jenis_setoran">
                                       <option value="">All</option>
                                       @foreach ($jenisPemasukan as $pemasukan)
                                       <option value="{{ $pemasukan->id }}">{{ $pemasukan->jenis_pemasukan }}</option>
@@ -41,18 +41,27 @@
                               </div>
                           </div>
                       </div>
-                      <div class="form-group">
+                      <div id="iuran-bulan" class="form-group d-none">
                           <label>Iuran Bulan <span class="text-danger">*</span></label>
-                          <input id="uang" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
-                          @error('jumlah_sumbangan')
+                          <input type="text" name="iuran_bulan" class="form-control @error('iuran_bulan') is-invalid @enderror" value="{{ old('iuran_bulan') }}">
+                          @error('iuran_bulan')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
                           @enderror
                       </div>
-                      <div class="form-group">
-                          <label>Jumlah Iuran/Sumbangan <span class="text-danger">*</span></label>
-                          <input id="uang" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
+                      <div class="form-group jumlah-iuran d-none">
+                          <label>Jumlah Iuran <span class="text-danger">*</span></label>
+                          <input id="uang" type="text" name="jumlah_iuran" class="form-control @error('jumlah_iuran') is-invalid @enderror" value="{{ old('jumlah_iuran') }}">
+                          @error('jumlah_iuran')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                          @enderror
+                      </div>
+                      <div class="form-group jumlah-sumbangan d-none">
+                          <label>Jumlah Sumbangan <span class="text-danger">*</span></label>
+                          <input id="jumlah_sumbangan" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
                           @error('jumlah_sumbangan')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -124,8 +133,8 @@
                       </div>
                       <div class="form-group">
                           <label>Slip Setoran <span class="font-weight-bold text-danger">* (Ukuran Gambar max 2MB)</span></label>
-                          <input type="file" name="picture_path_slip_setoran_sumbangan" class="form-control @error('picture_path_slip_setoran_sumbangan') is-invalid @enderror">
-                          @error('picture_path_slip_setoran_sumbangan')
+                          <input type="file" name="picture_path_slip_setoran_iuran" class="form-control @error('picture_path_slip_setoran_iuran') is-invalid @enderror">
+                          @error('picture_path_slip_setoran_iuran')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>

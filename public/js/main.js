@@ -180,3 +180,28 @@ $(function () {
             table.search("");
         });
     });
+    $('.filter-jenis-setoran').on("change", function () {
+        let jenisPemasukanFilter = $("#filter-jenis-setoran :selected").text();
+        let search = this.value;
+        console.log(`filter jenis pemasukan ${jenisPemasukanFilter}`);
+        console.log(`ini value ${search}`);
+        console.log(`======================================`);
+        let iuranBulan=document.querySelector("#iuran-bulan");
+        let jumlahIuran=document.querySelector(".jumlah-iuran");
+        let jumlahSumbangan=document.querySelector(".jumlah-sumbangan");
+        if(jenisPemasukanFilter === "All" ) {
+            iuranBulan.classList.add("d-none");
+            jumlahIuran.classList.add("d-none");
+            jumlahSumbangan.classList.add("d-none");
+        }
+        if(jenisPemasukanFilter === "iuran" ) {
+            iuranBulan.classList.remove("d-none");
+            jumlahIuran.classList.remove("d-none");
+            jumlahSumbangan.classList.add("d-none");
+        }
+        else {
+            iuranBulan.classList.add("d-none");
+            jumlahIuran.classList.add("d-none");
+            jumlahSumbangan.classList.remove("d-none");
+        }
+    });

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\ProfileAnggota;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DataRekening;
+use App\Models\IuranPiki;
 use App\Models\jenisPemasukan;
 
 
@@ -241,5 +242,42 @@ class ProfileAnggotaController extends Controller
             "item" => $user,
             'jenisPemasukan' => $jenisPemasukan,
         ]);
+    }
+
+    public function saveIuran(Request $request)
+    {
+        // return $request;
+        $data = $request->except('_token');
+        if (request()->input('jumlah_iuran')) {
+            $dataRupiah = $request->jumlah_iuran;
+            $rupiah = str_replace(".", "", $dataRupiah);
+            $data['jumlah_iuran'] = $rupiah;
+        }
+        if (request()->input('jumlah_sumbangan')) {
+            $dataRupiah = $request->jumlah_sumbangan;
+            $rupiah = str_replace(".", "", $dataRupiah);
+            $data['jumlah_sumbangan'] = $rupiah;
+        }
+        $jenisPemasukan = jenisPemasukan::where('id', $request->jenis_setoran)->get();
+        $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
+        $data['jenis_setoran'] = $namaJenisPemasukan;
+
+        if ($request->file('picture_path_slip_setoran_iuran')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path_slip_setoran_iuran');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/slip/setoran/iuran/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            $data['picture_path_slip_setoran_iuran'] = $nama_file;
+        }
+
+        IuranPiki::create($data);
+        return redirect()->route('iuran', $request->id)->with('success', 'Iuran Berhasil Dilakukan, Terima Kasih !');
     }
 }

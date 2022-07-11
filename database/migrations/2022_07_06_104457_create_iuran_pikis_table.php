@@ -17,14 +17,16 @@ return new class extends Migration
             $table->increments('id');
             $table->text('jenis_setoran')->nullable();
             $table->text('iuran_bulan')->nullable();
-            $table->text('nama_penyumbangan')->nullable();
+            $table->text('jumlah_iuran')->nullable();
+            $table->text('jumlah_sumbangan')->nullable();
+            $table->text('nama_penyumbang')->nullable();
             $table->text('telp')->nullable();
             $table->text('tujuan_sumbangan')->nullable();
             $table->text('berita')->nullable();
             $table->text('rekening_pembayaran')->default('Bank Sumut');
             $table->text('nomor_rekening')->default('1000.104.000.7722');
             $table->text('atas_nama')->default('DPD PIKI SUMUT');
-            $table->text('picture_path_slip_setoran_sumbangan')->nullable();
+            $table->text('picture_path_slip_setoran_iuran')->nullable();
             $table->timestamps();
         });
     }
