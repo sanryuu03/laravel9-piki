@@ -215,4 +215,5 @@ Route::group(['middleware' => ['CekLevel:anggota']], function () {
     Route::get('/admin/profile/{id}', [ProfileAnggotaController::class, 'show'])->name('profile');
     Route::get('/admin/profile/edit/{id}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');
     Route::put('/admin/profile/update/{id}', [ProfileAnggotaController::class, 'update'])->name('profile.update');
+    Route::get('/admin/iuran/{id}', [ProfileAnggotaController::class, 'iuran'])->name('iuran');
 });

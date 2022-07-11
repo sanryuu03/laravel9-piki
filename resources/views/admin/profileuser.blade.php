@@ -18,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('register/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/dist/css/adminlte.min.css') }}" rel="stylesheet">
+
+
 
     <style type="text/css">
         .bg-gradient-primary {
@@ -35,7 +38,33 @@
     </style>
 </head>
 @auth
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary hold-transition layout-top-nav">
+    <div class="wrapper">
+            <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+            <div class="container">
+                <a href="{{  url('/backendKMD') }}" class="navbar-brand">
+                    <img src="{{ asset('backend/img/logo/logo2.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-bold">{{ $menu }}</span>
+                </a>
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/profile', $item->id) }}" class="nav-link">Home</a>
+                        </li>
+                        @if(auth()->user()->level=='anggota' && auth()->user()->status_anggota=='diterima')
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/iuran', $item->id) }}" class="nav-link">Iuran</a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
 
     <div class="container">
 

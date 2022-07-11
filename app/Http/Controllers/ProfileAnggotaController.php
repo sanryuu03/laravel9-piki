@@ -12,6 +12,9 @@ use App\Models\TempAnggota;
 use Illuminate\Http\Request;
 use App\Models\ProfileAnggota;
 use Illuminate\Support\Facades\Storage;
+use App\Models\DataRekening;
+use App\Models\jenisPemasukan;
+
 
 
 class ProfileAnggotaController extends Controller
@@ -59,7 +62,7 @@ class ProfileAnggotaController extends Controller
         $user = User::find($id);
         return view('admin/profileuser', [
             "title" => "PIKI - Sangrid",
-            "menu" => "CV Anggota",
+            "menu" => "PIKI - CV Anggota",
             "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
@@ -220,5 +223,23 @@ class ProfileAnggotaController extends Controller
     public function destroy(ProfileAnggota $profileAnggota)
     {
         //
+    }
+
+    public function iuran($id)
+    {
+        $anggotaPiki = AnggotaPiki::where('users_id', $id)->get();
+        $user = User::find($id);
+        $dataRekening = DataRekening::latest()->first();
+        $jenisPemasukan = jenisPemasukan::all();
+        // return $anggotaPiki[0]->name;
+        return view('admin/iuranatausumbanganPiki', [
+            "title" => "PIKI - Iuran",
+            "menu" => "Iuran",
+            "creator" => "San",
+            'dataRekening' => $dataRekening,
+            "anggotaPiki" => $anggotaPiki[0],
+            "item" => $user,
+            'jenisPemasukan' => $jenisPemasukan,
+        ]);
     }
 }
