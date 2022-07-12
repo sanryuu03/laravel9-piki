@@ -129,11 +129,11 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.iuran.detail', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
                       <td>Rp. {{ number_format($item->jumlah_iuran,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>
-                          <a href="{{ route('backend.iuran.detail', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                          <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                           <form action="{{ route('backend.post.iuran.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">

@@ -204,7 +204,7 @@ class BackendPikiController extends Controller
         $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
         $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
         $data['status_iuran'] = 'iuran diproses';
-        $data['status_verifikasi_bendahara'] = 'approve';
+        $data['status_verifikasi_bendahara'] = 'terverifikasi';
         IuranPiki::where('id', $request->id)
         ->update($data);
 
@@ -224,11 +224,30 @@ class BackendPikiController extends Controller
             [
                 'jumlah_iuran' => $rupiahHapusSimbolRp,
                 'status_iuran' => 'iuran diproses',
-                'status_verifikasi_bendahara' => 'approve',
+                'status_verifikasi_bendahara' => 'terverifikasi',
             ]
         );
 
         return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+    }
+
+    public function pemasukanIuranDiverifikasiKetuaViaForm(Request $request)
+    {
+        // return $dataIuran = IuranPiki::where('id', $request->id)->get();
+        $data = IuranPiki::find($request->id);
+        $dataRupiah = $data->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        IuranPiki::where('id', $request->id)
+        ->update(
+            [
+                'jumlah_iuran' => $rupiahHapusSimbolRp,
+                'status_iuran' => 'iuran diproses',
+                'status_verifikasi_ketua' => 'terverifikasi',
+            ]
+        );
+
+        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi bendahara');
     }
 
     public function postPemasukanIuranDiverifikasiKetua(Request $request)
@@ -237,10 +256,10 @@ class BackendPikiController extends Controller
         $dataRupiah = $request->jumlah_iuran;
         $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
         $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-        return $rupiahHapusSimbolRp;
+        // return $rupiahHapusSimbolRp;
         $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
         $data['status_iuran'] = 'iuran diproses';
-        $data['status_verifikasi_bendahara'] = 'approve';
+        $data['status_verifikasi_ketua'] = 'terverifikasi';
         IuranPiki::where('id', $request->id)
         ->update($data);
         return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
@@ -257,7 +276,7 @@ class BackendPikiController extends Controller
         $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran diproses')->get();
         return view('admin/pemasukanIuranDiproses', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Pemasukan Iuran DiProses",
+            "menu" => "Pemasukan Iuran Di Proses",
             "creator" => $idUser,
             'pemasukanIuran' => $pemasukanIuran,
         ]);
@@ -298,11 +317,37 @@ class BackendPikiController extends Controller
     }
 
 
-    public function pemasukanIuranDetail($id)
+    public function pemasukanIuranDetailViaBendahara($id)
     {
         $idUser = auth()->user()->id;
         $pemasukanIuran = IuranPiki::find($id);
-        return view('admin/pemasukanIuranDetail', [
+        return view('admin/pemasukanIuranDetailViaBendahara', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Detail",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+            'item' => $pemasukanIuran,
+        ]);
+    }
+
+    public function pemasukanIuranDetailViaKetua($id)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::find($id);
+        return view('admin/pemasukanIuranDetailViaKetua', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Detail",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+            'item' => $pemasukanIuran,
+        ]);
+    }
+
+    public function pemasukanIuranDetailViaSpi($id)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::find($id);
+        return view('admin/pemasukanIuranDetailViaSPi', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Detail",
             "creator" => $idUser,

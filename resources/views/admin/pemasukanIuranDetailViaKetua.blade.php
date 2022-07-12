@@ -4,7 +4,7 @@
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran.baru') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -28,7 +28,7 @@
       <div class="card mx-3 my-3">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('backend.post.iuran.diverifikasi.bendahara', $item->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('backend.post.iuran.diverifikasi.ketua', $item->id) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group">
@@ -130,7 +130,7 @@
                           @enderror
                       </div>
 
-                      <button class="btn btn-primary mt-3">Verifikasi</button>
+                      <button class="btn btn-primary mt-3">Verifikasi Ketua</button>
                       <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
                       <!-- Modal Alasan Start-->
                       <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

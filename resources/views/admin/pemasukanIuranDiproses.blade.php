@@ -133,7 +133,13 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.iuran.detail', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @if(auth()->user()->level=='bendahara')
+                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @elseif(auth()->user()->level=='super-admin')
+                      <td><a href="{{ route('backend.iuran.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @elseif(auth()->user()->level=='spi')
+                      <td><a href="{{ route('backend.iuran.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @endif
                       <td>Rp. {{ number_format($item->jumlah_iuran,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>{{ $item->status_verifikasi_bendahara }}</td>
@@ -141,14 +147,18 @@
                       <td>{{ $item->status_verifikasi_spi }}</td>
                       <td>{{ $item->alasan_ditolak }}</td>
                       <td>
-                          <a href="{{ route('backend.iuran.detail', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                          <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                           <form action="{{ route('backend.post.iuran.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
-                          <a href="{{ route('backend.post.iuran.diverifikasi.bendahara', $item->id) }}" class="btn btn-success btn-sm">Verifikasi</a>
+                          @if(auth()->user()->level=='super-admin')
+                          <a href="{{ route('backend.post.iuran.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          @elseif(auth()->user()->level=='bendahara')
+                          <a href="{{ route('backend.post.iuran.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
                           <!-- Modal Alasan Start-->
                           <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

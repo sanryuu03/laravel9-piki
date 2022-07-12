@@ -245,7 +245,7 @@
                         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
 
                             <ul class="navbar-nav">
-                                @if(auth()->user()->level=='super-admin')
+                                @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">Pemasukan</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
