@@ -27,7 +27,14 @@ return new class extends Migration
             $table->text('nomor_rekening')->default('1000.104.000.7722');
             $table->text('atas_nama')->default('DPD PIKI SUMUT');
             $table->text('picture_path_slip_setoran_iuran')->nullable();
+            $table->text('status_iuran')->default('iuran baru');
+            $table->text('status_verifikasi_bendahara')->nullable();
+            $table->text('status_verifikasi_ketua')->nullable();
+            $table->text('status_verifikasi_spi')->nullable();
+            $table->text('alasan_ditolak')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->text('deleted_by')->nullable();
         });
     }
 

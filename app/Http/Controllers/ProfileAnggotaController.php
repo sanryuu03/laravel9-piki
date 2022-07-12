@@ -248,6 +248,16 @@ class ProfileAnggotaController extends Controller
     {
         // return $request;
         $data = $request->except('_token');
+        $namaBulan = $_POST['bulan'];
+        $arrBulan = [];
+        foreach ($namaBulan as $bulan){
+            array_push($arrBulan, $bulan);
+        }
+        // return $arrBulan;
+        // return $data['iuran_bulan'] = $arrBulan;
+        // return implode(", ",$arrBulan);
+        // return implode(", ",$data['iuran_bulan'] = $arrBulan);
+        $data['iuran_bulan'] = implode(", ",$arrBulan);
         if (request()->input('jumlah_iuran')) {
             $dataRupiah = $request->jumlah_iuran;
             $rupiah = str_replace(".", "", $dataRupiah);

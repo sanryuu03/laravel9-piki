@@ -91,7 +91,7 @@
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backendanggota') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -119,8 +119,12 @@
                       <th width="0.1%">NO</th>
                       <th width="1%">Tanggal</th>
                       <th width="1%">Nama</th>
-                      <th width="1%">Jumlah</th>
+                      <th width="1%">Jumlah Iuran</th>
                       <th width="1%">Berita</th>
+                      <th width="0.01%">Bendahara</th>
+                      <th width="0.01%">Ketua</th>
+                      <th width="0.01%">SPI</th>
+                      <th width="0.01%">Alasan Ditolak</th>
                       <th width="0.01%">OPSI</th>
                   </tr>
               </thead>
@@ -130,16 +134,49 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td><a href="{{ route('backend.iuran.detail', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
-                      <td>{{ number_format($item->jumlah_sumbangan,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->jumlah_iuran,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
+                      <td>{{ $item->status_verifikasi_bendahara }}</td>
+                      <td>{{ $item->status_verifikasi_ketua }}</td>
+                      <td>{{ $item->status_verifikasi_spi }}</td>
+                      <td>{{ $item->alasan_ditolak }}</td>
                       <td>
-                          <a href="{{ route('backend.iuran.detail', $item->id) }}" class="btn btn-primary btn-sm mb-1"><i class="fa-solid fa-eye"></i></a>
-                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('backend.iuran.detail', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                          <form action="{{ route('backend.post.iuran.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
+                          <a href="{{ route('backend.post.iuran.diverifikasi.bendahara', $item->id) }}" class="btn btn-success btn-sm">Verifikasi</a>
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
+                          <!-- Modal Alasan Start-->
+                          <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form action="{{ route('backend.post.iuran.ditolak', $item->id) }}" method="post">
+                                              @csrf
+                                              <div class="form-group">
+                                                  <label for="message-text" class="col-form-label">Message:</label>
+                                                  <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                                              </div>
+                                              <button type="submit" class="btn btn-info">Send message</button>
+                                          </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Modal Alasan End-->
                       </td>
                   </tr>
                   @endforeach

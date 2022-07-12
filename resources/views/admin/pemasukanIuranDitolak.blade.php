@@ -91,7 +91,7 @@
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backendanggota') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -119,7 +119,7 @@
                       <th width="0.1%">NO</th>
                       <th width="1%">Tanggal</th>
                       <th width="1%">Nama</th>
-                      <th width="1%">Jumlah</th>
+                      <th width="1%">Jumlah Iuran</th>
                       <th width="1%">Berita</th>
                       <th width="0.01%">OPSI</th>
                   </tr>

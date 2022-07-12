@@ -91,117 +91,131 @@ $(function () {
 });
 
 // backend anggota
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
     $(function () {
-        $.ajaxSetup({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-        });
-
-        $(function () {
-            $("#provinsi").on("change", function () {
-                let id_provinsi = $("#provinsi").val();
-                console.log(`ini provinsi id ${id_provinsi}`);
-                $.ajax({
-                    type: "POST",
-                    url: '/cities',
-                    data: {
-                        id_provinsi: id_provinsi,
-                    },
-                    cache: false,
-                    success: function (msg) {
-                        $("#kota").html(msg);
-                        $("#kecamatan").html(
-                            "<option>==Pilih Kabupaten==</option>"
-                        );
-                        $("#desa").html("<option>==Pilih Desa==</option>");
-                    },
-                    error: function (data) {
-                        console.log(`errornya ${data}`);
-                    },
-                });
-            });
-        });
-
-        $(function () {
-            $("#kota").on("change", function () {
-                let id_kota = $("#kota").val();
-                console.log(`ini kota id ${id_kota}`);
-                $.ajax({
-                    type: "POST",
-                    url: '/districts',
-                    data: {
-                        id_kota,
-                    },
-                    cache: false,
-                    success: function (msg) {
-                        $("#kecamatan").html(msg);
-                        $("#desa").html("<option>==Pilih Desa==</option>");
-                    },
-                    error: function (data) {
-                        console.log(`errornya ${data}`);
-                    },
-                });
-            });
-        });
-
-        $(function () {
-            $("#kecamatan").on("change", function () {
-                let id_kecamatan = $("#kecamatan").val();
-                console.log(`ini kecamatan id ${id_kecamatan}`);
-                $.ajax({
-                    type: "POST",
-                    url: '/villages',
-                    data: {
-                        id_kecamatan,
-                    },
-                    cache: false,
-                    success: function (msg) {
-                        $("#desa").html(msg);
-                    },
-                    error: function (data) {
-                        console.log(`errornya ${data}`);
-                    },
-                });
+        $("#provinsi").on("change", function () {
+            let id_provinsi = $("#provinsi").val();
+            console.log(`ini provinsi id ${id_provinsi}`);
+            $.ajax({
+                type: "POST",
+                url: '/cities',
+                data: {
+                    id_provinsi: id_provinsi,
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#kota").html(msg);
+                    $("#kecamatan").html(
+                        "<option>==Pilih Kabupaten==</option>"
+                    );
+                    $("#desa").html("<option>==Pilih Desa==</option>");
+                },
+                error: function (data) {
+                    console.log(`errornya ${data}`);
+                },
             });
         });
     });
 
-    $(document).ready(function () {
-        var table = $("#table_id").DataTable();
-
-        $(".table-filter-jenis-pemasukan").on("change", function () {
-            let jenisPemasukanFilter = $("#table-filter-jenis-pemasukan :selected").text();
-            let search = this.value;
-            console.log(`filter jenis pemasukan ${jenisPemasukanFilter}`);
-            console.log(`ini search ${search}`);
-            console.log(`======================================`);
-            table.search(jenisPemasukanFilter).draw();
-            table.search("");
+    $(function () {
+        $("#kota").on("change", function () {
+            let id_kota = $("#kota").val();
+            console.log(`ini kota id ${id_kota}`);
+            $.ajax({
+                type: "POST",
+                url: '/districts',
+                data: {
+                    id_kota,
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#kecamatan").html(msg);
+                    $("#desa").html("<option>==Pilih Desa==</option>");
+                },
+                error: function (data) {
+                    console.log(`errornya ${data}`);
+                },
+            });
         });
     });
-    $('.filter-jenis-setoran').on("change", function () {
-        let jenisPemasukanFilter = $("#filter-jenis-setoran :selected").text();
+
+    $(function () {
+        $("#kecamatan").on("change", function () {
+            let id_kecamatan = $("#kecamatan").val();
+            console.log(`ini kecamatan id ${id_kecamatan}`);
+            $.ajax({
+                type: "POST",
+                url: '/villages',
+                data: {
+                    id_kecamatan,
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#desa").html(msg);
+                },
+                error: function (data) {
+                    console.log(`errornya ${data}`);
+                },
+            });
+        });
+    });
+});
+
+$(document).ready(function () {
+    var table = $("#table_id").DataTable();
+
+    $(".table-filter-jenis-pemasukan").on("change", function () {
+        let jenisPemasukanFilter = $("#table-filter-jenis-pemasukan :selected").text();
         let search = this.value;
         console.log(`filter jenis pemasukan ${jenisPemasukanFilter}`);
-        console.log(`ini value ${search}`);
+        console.log(`ini search ${search}`);
         console.log(`======================================`);
-        let iuranBulan=document.querySelector("#iuran-bulan");
-        let jumlahIuran=document.querySelector(".jumlah-iuran");
-        let jumlahSumbangan=document.querySelector(".jumlah-sumbangan");
-        if(jenisPemasukanFilter === "All" ) {
-            iuranBulan.classList.add("d-none");
-            jumlahIuran.classList.add("d-none");
-            jumlahSumbangan.classList.add("d-none");
-        }
-        if(jenisPemasukanFilter === "iuran" ) {
-            iuranBulan.classList.remove("d-none");
-            jumlahIuran.classList.remove("d-none");
-            jumlahSumbangan.classList.add("d-none");
-        }
-        else {
-            iuranBulan.classList.add("d-none");
-            jumlahIuran.classList.add("d-none");
-            jumlahSumbangan.classList.remove("d-none");
-        }
+        table.search(jenisPemasukanFilter).draw();
+        table.search("");
     });
+});
+$('.filter-jenis-setoran').on("change", function () {
+    let jenisPemasukanFilter = $("#filter-jenis-setoran :selected").text();
+    let search = this.value;
+    console.log(`filter jenis pemasukan ${jenisPemasukanFilter}`);
+    console.log(`ini value ${search}`);
+    console.log(`======================================`);
+    let iuranBulan = document.querySelector("#iuran-bulan");
+    let jumlahIuran = document.querySelector(".jumlah-iuran");
+    let jumlahSumbangan = document.querySelector(".jumlah-sumbangan");
+    if (jenisPemasukanFilter === "All") {
+        iuranBulan.classList.add("d-none");
+        jumlahIuran.classList.add("d-none");
+        jumlahSumbangan.classList.add("d-none");
+    }
+    if (jenisPemasukanFilter === "iuran") {
+        iuranBulan.classList.remove("d-none");
+        jumlahIuran.classList.remove("d-none");
+        jumlahSumbangan.classList.add("d-none");
+    }
+    else {
+        iuranBulan.classList.add("d-none");
+        jumlahIuran.classList.add("d-none");
+        jumlahSumbangan.classList.remove("d-none");
+    }
+});
+
+function UpdateCost() {
+    var sum = 0;
+    var gn, elem;
+    for (i = 1; i <= 12; i++) {
+        gn = 'inlineCheckbox' + i;
+        elem = document.getElementById(gn);
+        if (elem.checked == true) {
+            sum += Number(elem.value);
+         }
+    }
+    document.getElementById('uang').value = sum.toFixed(2) * 5000;
+}
+

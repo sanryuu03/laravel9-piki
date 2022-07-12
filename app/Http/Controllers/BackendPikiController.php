@@ -175,7 +175,7 @@ class BackendPikiController extends Controller
     public function pemasukanIuranBaru(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::all();
+        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran baru')->get();
         return view('admin/pemasukanIuranBaru', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Baru",
@@ -184,10 +184,77 @@ class BackendPikiController extends Controller
         ]);
     }
 
+    public function postPemasukanIuranDestroy(Request $request)
+    {
+        $data = ['deleted_by' => auth()->user()->name];
+        IuranPiki::where('id', $request->id)
+        ->update($data);
+        $iuran = IuranPiki::find($request->id);
+        $iuran->delete(); //softdeletes
+
+        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah dihapus');;
+    }
+
+    public function postPemasukanIuranDiverifikasiBendahara(Request $request)
+    {
+        // return $request->jumlah_iuran;
+        $data = $request->except('_token');
+        $dataRupiah = $request->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
+        $data['status_iuran'] = 'iuran diproses';
+        $data['status_verifikasi_bendahara'] = 'approve';
+        IuranPiki::where('id', $request->id)
+        ->update($data);
+
+
+        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+    }
+
+    public function postPemasukanIuranDiverifikasiBendaharaViaForm(Request $request)
+    {
+        // return $dataIuran = IuranPiki::where('id', $request->id)->get();
+        $data = IuranPiki::find($request->id);
+        $dataRupiah = $data->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        IuranPiki::where('id', $request->id)
+        ->update(
+            [
+                'jumlah_iuran' => $rupiahHapusSimbolRp,
+                'status_iuran' => 'iuran diproses',
+                'status_verifikasi_bendahara' => 'approve',
+            ]
+        );
+
+        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+    }
+
+    public function postPemasukanIuranDiverifikasiKetua(Request $request)
+    {
+        $data = $request->except('_token');
+        $dataRupiah = $request->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        return $rupiahHapusSimbolRp;
+        $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
+        $data['status_iuran'] = 'iuran diproses';
+        $data['status_verifikasi_bendahara'] = 'approve';
+        IuranPiki::where('id', $request->id)
+        ->update($data);
+        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+    }
+
+    public function postPemasukanIuranDiverifikasiSpi(Request $request)
+    {
+        return $request;
+    }
+
     public function pemasukanIuranDiproses(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::all();
+        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran diproses')->get();
         return view('admin/pemasukanIuranDiproses', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran DiProses",
@@ -196,10 +263,15 @@ class BackendPikiController extends Controller
         ]);
     }
 
+    public function postPemasukanIuranDitolak(Request $request)
+    {
+        return $request;
+    }
+
     public function pemasukanIuranDitolak(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::all();
+        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran ditolak')->get();
         return view('admin/pemasukanIuranDitolak', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Di Tolak",
@@ -208,15 +280,34 @@ class BackendPikiController extends Controller
         ]);
     }
 
+    public function postPemasukanIuranDiterima(Request $request)
+    {
+        return $request;
+    }
+
     public function pemasukanIuranDiterima(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::all();
+        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran terverifikasi')->get();
         return view('admin/pemasukanIuranDiterima', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Diterima",
             "creator" => $idUser,
             'pemasukanIuran' => $pemasukanIuran,
+        ]);
+    }
+
+
+    public function pemasukanIuranDetail($id)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanIuran = IuranPiki::find($id);
+        return view('admin/pemasukanIuranDetail', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Iuran Detail",
+            "creator" => $idUser,
+            'pemasukanIuran' => $pemasukanIuran,
+            'item' => $pemasukanIuran,
         ]);
     }
 

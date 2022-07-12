@@ -30,6 +30,11 @@ return new class extends Migration
             $table->text('nomor_rekening')->nullable();
             $table->text('atas_nama')->nullable();
             $table->text('picture_path_slip_setoran_sumbangan')->nullable();
+            $table->text('status_sumbangan')->default('sumbangan baru');
+            $table->text('status_verifikasi_bendahara')->nullable();
+            $table->text('status_verifikasi_ketua')->nullable();
+            $table->text('status_verifikasi_spi')->nullable();
+            $table->text('alasan_ditolak')->nullable();
             $table->timestamps();
         });
     }

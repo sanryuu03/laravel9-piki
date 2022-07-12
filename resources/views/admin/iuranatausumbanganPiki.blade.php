@@ -42,8 +42,70 @@
                           </div>
                       </div>
                       <div id="iuran-bulan" class="form-group d-none">
-                          <label>Iuran Bulan <span class="text-danger">*</span></label>
-                          <input type="text" name="iuran_bulan" class="form-control @error('iuran_bulan') is-invalid @enderror" value="{{ old('iuran_bulan') }}">
+                          <label>Iuran Bulan <span class="font-weight-bold text-danger">*</span></label>
+                          <div>
+                              <label><span class="font-weight-bold text-danger">50000/Bulan *</span></label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox1" value="Januari"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox1" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox1">Januari</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox2" value="Februari"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox2" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox2">Februari</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox3" value="Maret"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox3" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox3">Maret</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox4" value="April"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox4" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox4">April</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox5" value="Mei"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox5" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox5">Mei</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox6" value="Juni"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox6" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox6">Juni</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox7" value="Juli"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox7" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox7">Juli</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox8" value="Agustus"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox8" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox8">Agustus</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox9" value="September"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox9" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox9">September</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox10" value="Oktober"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox10" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox10">Oktober</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox11" value="November"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox11" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox11">November</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox12" value="Desember"> --}}
+                              <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox12" onclick="UpdateCost()" value="1">
+                              <label class="form-check-label" for="inlineCheckbox12">Desember</label>
+                          </div>
                           @error('iuran_bulan')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -149,7 +211,4 @@
   </div>
 
   <!-- Kategory Berita End-->
-
-
-
   @endsection
