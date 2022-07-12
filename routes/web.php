@@ -186,22 +186,26 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 });
 
 // keuangan
-Route::group(['middleware' => ['CekLevel:super-admin,bendahara']], function () {
+Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function () {
     Route::get('/admin/keuangan', [BackendPikiController::class, 'keuangan'])->name('backend.keuangan');
     Route::get('/admin/pemasukanKeuangan', [BackendPikiController::class, 'pemasukan'])->name('backend.pemasukan');
 
     Route::get('/admin/pemasukanIuran', [BackendPikiController::class, 'pemasukanIuran'])->name('backend.iuran');
     Route::get('/admin/pemasukanIuranDetailViaBendahara/{id}', [BackendPikiController::class, 'pemasukanIuranDetailViaBendahara'])->name('backend.iuran.detail.via.bendahara');
     Route::get('/admin/pemasukanIuranDetailViaKetua/{id}', [BackendPikiController::class, 'pemasukanIuranDetailViaKetua'])->name('backend.iuran.detail.via.ketua');
-    Route::get('/admin/pemasukanIuranDetailViaSPi.blade/{id}', [BackendPikiController::class, 'pemasukanIuranDetailViaSPi.blade'])->name('backend.iuran.detail.via.spi');
+    Route::get('/admin/pemasukanIuranDetailViaSPi.blade/{id}', [BackendPikiController::class, 'pemasukanIuranDetailViaSPi'])->name('backend.iuran.detail.via.spi');
+
     Route::get('/admin/pemasukanIuranBaru', [BackendPikiController::class, 'pemasukanIuranBaru'])->name('backend.iuran.baru');
     Route::get('/admin/pemasukanIuranDiproses', [BackendPikiController::class, 'pemasukanIuranDiproses'])->name('backend.iuran.diproses');
     Route::match(['get','post'], '/admin/pemasukanIuranDitolak/{id}', [BackendPikiController::class, 'postPemasukanIuranDitolak'])->name('backend.post.iuran.ditolak');
     Route::get('/admin/pemasukanIuranDitolak', [BackendPikiController::class, 'pemasukanIuranDitolak'])->name('backend.iuran.ditolak');
     Route::match(['get','post'],'/admin/pemasukanIuranDiterima/{id}', [BackendPikiController::class, 'postPemasukanIuranDiterima'])->name('backend.post.iuran.diterima');
     Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiBendahara/{id}', [BackendPikiController::class, 'postPemasukanIuranDiverifikasiBendahara'])->name('backend.post.iuran.diverifikasi.bendahara');
+
     Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiBendaharaViaForm/{id}', [BackendPikiController::class, 'postPemasukanIuranDiverifikasiBendaharaViaForm'])->name('backend.post.iuran.diverifikasi.bendahara.via.form');
     Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiKetuaViaForm/{id}', [BackendPikiController::class, 'pemasukanIuranDiverifikasiKetuaViaForm'])->name('backend.post.iuran.diverifikasi.ketua.via.form');
+    Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiSpiViaForm/{id}', [BackendPikiController::class, 'pemasukanIuranDiverifikasiSpiViaForm'])->name('backend.post.iuran.diverifikasi.spi.via.form');
+
     Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiKetua/{id}', [BackendPikiController::class, 'postPemasukanIuranDiverifikasiKetua'])->name('backend.post.iuran.diverifikasi.ketua');
     Route::match(['get','post'],'/admin/pemasukanIuranDiverifikasiSpi/{id}', [BackendPikiController::class, 'postPemasukanIuranDiverifikasiSpi'])->name('backend.post.iuran.diverifikasi.spi');
     Route::get('/admin/pemasukanIuranDiterima', [BackendPikiController::class, 'pemasukanIuranDiterima'])->name('backend.iuran.diterima');

@@ -247,7 +247,26 @@ class BackendPikiController extends Controller
             ]
         );
 
-        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi bendahara');
+        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+    }
+
+    public function pemasukanIuranDiverifikasiSpiViaForm(Request $request)
+    {
+        // return $dataIuran = IuranPiki::where('id', $request->id)->get();
+        $data = IuranPiki::find($request->id);
+        $dataRupiah = $data->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        IuranPiki::where('id', $request->id)
+        ->update(
+            [
+                'jumlah_iuran' => $rupiahHapusSimbolRp,
+                'status_iuran' => 'iuran terverifikasi',
+                'status_verifikasi_spi' => 'terverifikasi',
+            ]
+        );
+
+        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi SPI');
     }
 
     public function postPemasukanIuranDiverifikasiKetua(Request $request)
@@ -267,7 +286,18 @@ class BackendPikiController extends Controller
 
     public function postPemasukanIuranDiverifikasiSpi(Request $request)
     {
-        return $request;
+        // return $request;
+        $data = $request->except('_token');
+        $dataRupiah = $request->jumlah_iuran;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        // return $rupiahHapusSimbolRp;
+        $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
+        $data['status_iuran'] = 'iuran terverifikasi';
+        $data['status_verifikasi_spi'] = 'terverifikasi';
+        IuranPiki::where('id', $request->id)
+        ->update($data);
+        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi SPI');
     }
 
     public function pemasukanIuranDiproses(Request $request)

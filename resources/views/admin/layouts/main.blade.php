@@ -195,6 +195,15 @@
             </li>
             @endif
 
+                        @if(auth()->user()->level=='spi')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/keuangan') }}">
+                    <i class="fas fa-fw fa-money-bill-transfer"></i>
+                    <span>Keuangan</span>
+                </a>
+            </li>
+            @endif
+
             <hr class="sidebar-divider">
             <div class="version" id="version-ruangadmin"></div>
         </ul>
@@ -245,7 +254,7 @@
                         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
 
                             <ul class="navbar-nav">
-                                @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
+                                @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">Pemasukan</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">

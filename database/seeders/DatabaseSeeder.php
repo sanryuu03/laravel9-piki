@@ -262,6 +262,25 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('piki7'),
         ]);
 
+        User::create([
+            'username' => 'spi',
+            'name' => 'spi',
+            'phone_number' => '+6281234567890',
+            'email' => 'spidummy@dummy.com',
+            'nik' => '1234567890123458',
+            'address' => 'alamat dummy',
+            'province' => 'sumut dummy',
+            'city' => 'kota dummy',
+            'district' => 'Kec. Medan Tuntungan dummy',
+            'village' => 'simpang selayang dummy',
+            'job' => 'web dummy',
+            'business_fields' => 'Software House dummy',
+            'description_of_skills' => 'laravel dummy',
+            'status_anggota' => 'diterima',
+            'level' => 'spi', //baru'
+            'password' => bcrypt('piki8'),
+        ]);
+
 
         User::create([
             'username' => 'Naek Silitonga, dr',

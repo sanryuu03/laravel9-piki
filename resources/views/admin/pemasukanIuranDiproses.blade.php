@@ -154,7 +154,9 @@
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
-                          @if(auth()->user()->level=='super-admin')
+                          @if(auth()->user()->level=='spi')
+                          <a href="{{ route('backend.post.iuran.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          @elseif(auth()->user()->level=='super-admin')
                           <a href="{{ route('backend.post.iuran.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
                           @elseif(auth()->user()->level=='bendahara')
                           <a href="{{ route('backend.post.iuran.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
