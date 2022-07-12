@@ -235,19 +235,24 @@ class BackendPikiController extends Controller
     {
         // return $dataIuran = IuranPiki::where('id', $request->id)->get();
         $data = IuranPiki::find($request->id);
-        $dataRupiah = $data->jumlah_iuran;
-        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
-        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-        IuranPiki::where('id', $request->id)
-        ->update(
-            [
-                'jumlah_iuran' => $rupiahHapusSimbolRp,
-                'status_iuran' => 'iuran diproses',
-                'status_verifikasi_ketua' => 'terverifikasi',
-            ]
-        );
+        if ($data->status_verifikasi_bendahara == 'terverifikasi') {
+            $dataRupiah = $data->jumlah_iuran;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            IuranPiki::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah_iuran' => $rupiahHapusSimbolRp,
+                    'status_iuran' => 'iuran diproses',
+                    'status_verifikasi_ketua' => 'terverifikasi',
+                ]
+            );
 
-        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+            return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+        }
+        else {
+            return redirect()->route('backend.iuran.diproses')->with('unapproved', 'Iuran gagal diverifikasi Ketua');
+        }
     }
 
     public function pemasukanIuranDiverifikasiSpiViaForm(Request $request)
@@ -276,17 +281,23 @@ class BackendPikiController extends Controller
 
     public function postPemasukanIuranDiverifikasiKetua(Request $request)
     {
-        $data = $request->except('_token');
-        $dataRupiah = $request->jumlah_iuran;
-        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
-        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-        // return $rupiahHapusSimbolRp;
-        $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
-        $data['status_iuran'] = 'iuran diproses';
-        $data['status_verifikasi_ketua'] = 'terverifikasi';
-        IuranPiki::where('id', $request->id)
-        ->update($data);
-        return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+        $iuran = IuranPiki::find($request->id);
+        if ($iuran->status_verifikasi_bendahara == 'terverifikasi') {
+            $data = $request->except('_token');
+            $dataRupiah = $request->jumlah_iuran;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            // return $rupiahHapusSimbolRp;
+            $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
+            $data['status_iuran'] = 'iuran diproses';
+            $data['status_verifikasi_ketua'] = 'terverifikasi';
+            IuranPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.iuran.diproses')->with('success', 'Iuran telah diverifikasi Ketua');
+        }
+        else {
+            return redirect()->route('backend.iuran.diproses')->with('unapproved', 'Iuran gagal diverifikasi Ketua');
+        }
     }
 
     public function postPemasukanIuranDiverifikasiSpi(Request $request)
