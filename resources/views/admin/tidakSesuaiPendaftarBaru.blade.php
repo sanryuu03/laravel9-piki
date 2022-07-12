@@ -57,7 +57,7 @@
               <tbody>
                   @foreach($user as $item)
                   <tr>
-                      <td>{{ $item->name }}</td>
+                      <td><a href="{{ route('tidakSesuai.cv', $item->id) }}" class="">{{ $item->name }}</a></td>
                       <td>{{ $item->alasan_ditolak }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->updated_at }}</td>

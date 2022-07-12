@@ -72,7 +72,7 @@
               <tbody>
                   @foreach($user as $item)
                   <tr>
-                      <td>{{ $item->name }}</td>
+                      <td><a href="{{ route('dalamProses.cv', $item->id) }}" class="">{{ $item->name }}</a></td>
                       <td>{{ $item->address }}</td>
                       <td>{{ $item->province }}</td>
                       <td>{{ $item->city }}</td>
