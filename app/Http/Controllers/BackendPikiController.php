@@ -174,6 +174,7 @@ class BackendPikiController extends Controller
 
     public function pemasukanIuranBaru(Request $request)
     {
+        // return auth()->user()->level;
         $idUser = auth()->user()->id;
         $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran baru')->get();
         return view('admin/pemasukanIuranBaru', [
@@ -198,37 +199,53 @@ class BackendPikiController extends Controller
     public function postPemasukanIuranDiverifikasiBendahara(Request $request)
     {
         // return $request->jumlah_iuran;
-        $data = $request->except('_token');
-        $dataRupiah = $request->jumlah_iuran;
-        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
-        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-        $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
-        $data['status_iuran'] = 'iuran diproses';
-        $data['status_verifikasi_bendahara'] = 'terverifikasi';
-        IuranPiki::where('id', $request->id)
-        ->update($data);
+        if (auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.iuran.baru')->with('unapproved', 'Iuran belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='spi') {
+            return redirect()->route('backend.iuran.baru')->with('unapproved', 'Iuran belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='bendahara') {
+            $data = $request->except('_token');
+            $dataRupiah = $request->jumlah_iuran;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
+            $data['status_iuran'] = 'iuran diproses';
+            $data['status_verifikasi_bendahara'] = 'terverifikasi';
+            IuranPiki::where('id', $request->id)
+            ->update($data);
 
 
-        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+            return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+        }
     }
 
     public function postPemasukanIuranDiverifikasiBendaharaViaForm(Request $request)
     {
         // return $dataIuran = IuranPiki::where('id', $request->id)->get();
-        $data = IuranPiki::find($request->id);
-        $dataRupiah = $data->jumlah_iuran;
-        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
-        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-        IuranPiki::where('id', $request->id)
-        ->update(
-            [
-                'jumlah_iuran' => $rupiahHapusSimbolRp,
-                'status_iuran' => 'iuran diproses',
-                'status_verifikasi_bendahara' => 'terverifikasi',
-            ]
-        );
+        if (auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.iuran.baru')->with('unapproved', 'Iuran belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='spi') {
+            return redirect()->route('backend.iuran.baru')->with('unapproved', 'Iuran belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='bendahara') {
+            $data = IuranPiki::find($request->id);
+            $dataRupiah = $data->jumlah_iuran;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            IuranPiki::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah_iuran' => $rupiahHapusSimbolRp,
+                    'status_iuran' => 'iuran diproses',
+                    'status_verifikasi_bendahara' => 'terverifikasi',
+                ]
+            );
 
-        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+            return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah diverifikasi bendahara');
+        }
     }
 
     public function pemasukanIuranDiverifikasiKetuaViaForm(Request $request)
