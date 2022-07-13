@@ -205,17 +205,3 @@ $('.filter-jenis-setoran').on("change", function () {
         jumlahSumbangan.classList.remove("d-none");
     }
 });
-
-function UpdateCost() {
-    var sum = 0;
-    var gn, elem;
-    for (i = 1; i <= 12; i++) {
-        gn = 'inlineCheckbox' + i;
-        elem = document.getElementById(gn);
-        if (elem.checked == true) {
-            sum += Number(elem.value);
-         }
-    }
-    document.getElementById('uang').value = sum.toFixed(2) * 5000;
-}
-

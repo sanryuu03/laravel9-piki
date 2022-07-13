@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\BackendPiki;
+use App\Models\DataBankIuran;
 use App\Models\IuranPiki;
 use App\Models\jenisPemasukan;
 use App\Models\SumbanganPiki;
@@ -159,6 +160,7 @@ class BackendPikiController extends Controller
             'sumbangan' => 'sumbangan',
         ]);
     }
+
     public function pemasukanIuran()
     {
         $user = auth()->user()->id;
@@ -193,7 +195,7 @@ class BackendPikiController extends Controller
         $iuran = IuranPiki::find($request->id);
         $iuran->delete(); //softdeletes
 
-        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah dihapus');;
+        return redirect()->route('backend.iuran.baru')->with('success', 'Iuran telah dihapus');
     }
 
     public function postPemasukanIuranDiverifikasiBendahara(Request $request)

@@ -195,7 +195,7 @@
             </li>
             @endif
 
-                        @if(auth()->user()->level=='spi')
+            @if(auth()->user()->level=='spi')
             <li class="nav-item">
                 <a class="nav-link" href="{{  url('/admin/keuangan') }}">
                     <i class="fas fa-fw fa-money-bill-transfer"></i>
@@ -245,7 +245,7 @@
                     </ul>
                 </nav>
                 <!-- Topbar -->
-                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan')
+                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.data.iuran' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan')
                 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
                     <div class="container">
                         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -358,8 +358,8 @@
         <!-- DataTable -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-
         <script src="{{ asset('js/main.js') }}"></script>
+
         <script src="{{ asset('js/mainTanggal.js') }}"></script>
 </body>
 

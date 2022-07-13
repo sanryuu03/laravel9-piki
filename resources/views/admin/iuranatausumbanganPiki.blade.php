@@ -44,7 +44,7 @@
                       <div id="iuran-bulan" class="form-group d-none">
                           <label>Iuran Bulan <span class="font-weight-bold text-danger">*</span></label>
                           <div>
-                              <label><span class="font-weight-bold text-danger">50000/Bulan *</span></label>
+                              <label><span class="font-weight-bold text-danger">Rp. {{ number_format($dataBiayaIuran->biaya_iuran,0,",",".") }}/Bulan *</span></label>
                           </div>
                           <div class="form-check form-check-inline">
                               {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox1" value="Januari"> --}}
@@ -211,4 +211,22 @@
   </div>
 
   <!-- Kategory Berita End-->
+<script>
+var dataBiayaIuran = @json($dataBiayaIuran->biaya_iuran);
+
+UpdateCost = function() {
+    console.log(dataBiayaIuran)
+    var sum = 0;
+    var gn, elem;
+    for (i = 1; i <= 12; i++) {
+        gn = 'inlineCheckbox' + i;
+        elem = document.getElementById(gn);
+        if (elem.checked == true) {
+            sum += Number(elem.value);
+        }
+    }
+    document.getElementById('uang').value = sum.toFixed(2) * dataBiayaIuran;
+}
+
+</script>
   @endsection

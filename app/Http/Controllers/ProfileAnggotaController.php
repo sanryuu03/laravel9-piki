@@ -7,14 +7,15 @@ use App\Models\Regency;
 use App\Models\Village;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\IuranPiki;
 use App\Models\AnggotaPiki;
 use App\Models\TempAnggota;
+use App\Models\DataRekening;
 use Illuminate\Http\Request;
+use App\Models\DataBiayaIuran;
+use App\Models\jenisPemasukan;
 use App\Models\ProfileAnggota;
 use Illuminate\Support\Facades\Storage;
-use App\Models\DataRekening;
-use App\Models\IuranPiki;
-use App\Models\jenisPemasukan;
 
 
 
@@ -232,6 +233,7 @@ class ProfileAnggotaController extends Controller
         $user = User::find($id);
         $dataRekening = DataRekening::latest()->first();
         $jenisPemasukan = jenisPemasukan::all();
+        $dataBiayaIuran = DataBiayaIuran::latest()->first();
         // return $anggotaPiki[0]->name;
         return view('admin/iuranatausumbanganPiki', [
             "title" => "PIKI - Iuran",
@@ -241,6 +243,7 @@ class ProfileAnggotaController extends Controller
             "anggotaPiki" => $anggotaPiki[0],
             "item" => $user,
             'jenisPemasukan' => $jenisPemasukan,
+            'dataBiayaIuran' => $dataBiayaIuran,
         ]);
     }
 

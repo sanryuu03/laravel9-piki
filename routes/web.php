@@ -13,7 +13,9 @@ use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\DataBankIuranController;
 use App\Http\Controllers\SumbanganPikiController;
+use App\Http\Controllers\DataBiayaIuranController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileAnggotaController;
 use App\Http\Controllers\KategoriAnggotaController;
@@ -189,6 +191,18 @@ Route::group(['middleware' => ['CekLevel:super-admin,admin']], function () {
 Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function () {
     Route::get('/admin/keuangan', [BackendPikiController::class, 'keuangan'])->name('backend.keuangan');
     Route::get('/admin/pemasukanKeuangan', [BackendPikiController::class, 'pemasukan'])->name('backend.pemasukan');
+
+    Route::get('/admin/DataIuran', [DataBankIuranController::class, 'index'])->name('backend.data.iuran');
+    Route::match(['get','post'],'/admin/formAddDataIuran', [DataBankIuranController::class, 'show'])->name('backend.form.add.data.iuran');
+    Route::match(['get','post'],'/admin/formEditDataIuran/{id}', [DataBankIuranController::class, 'edit'])->name('backend.form.edit.data.iuran');
+    Route::match(['get','post'],'/admin/saveFormDataIuran', [DataBankIuranController::class, 'saveFormDataIuran'])->name('save.form.data.rekening.iuran');
+    Route::match(['get','post'],'/admin/destroyDataBankIuran/{id}', [DataBankIuranController::class, 'destroy'])->name('destroy.data.rekening.iuran');
+
+    Route::get('/admin/dataBiayaIuran', [DataBiayaIuranController::class, 'index'])->name('backend.data.biaya.iuran');
+    Route::match(['get','post'],'/admin/formAddDataBiayaIuran', [DataBiayaIuranController::class, 'show'])->name('backend.form.add.data.biaya.iuran');
+    Route::match(['get','post'],'/admin/formEditDataBiayaIuran/{id}', [DataBiayaIuranController::class, 'edit'])->name('backend.form.edit.data.biaya.iuran');
+    Route::match(['get','post'],'/admin/saveFormDataBiayaIuran', [DataBiayaIuranController::class, 'saveFormDataBiayaIuran'])->name('backend.save.form.edit.data.biaya.iuran');
+    Route::match(['get','post'],'/admin/destroyDataBiayaIuran/{id}', [DataBiayaIuranController::class, 'destroy'])->name('backend.destroy.data.biaya.iuran');
 
     Route::get('/admin/pemasukanIuran', [BackendPikiController::class, 'pemasukanIuran'])->name('backend.iuran');
     Route::get('/admin/pemasukanIuranDetailViaBendahara/{id}', [BackendPikiController::class, 'pemasukanIuranDetailViaBendahara'])->name('backend.iuran.detail.via.bendahara');

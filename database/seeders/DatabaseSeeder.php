@@ -9,6 +9,7 @@ use App\Models\AgendaPiki;
 use App\Models\AnggotaPiki;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
+use App\Models\DataBankIuran;
 use App\Models\DataRekening;
 use App\Models\jenisPemasukan;
 use Illuminate\Database\Seeder;
@@ -467,6 +468,12 @@ class DatabaseSeeder extends Seeder
 
         jenisPemasukan::create([
             'jenis_pemasukan' => 'sumbangan',
+        ]);
+
+        DataBankIuran::create([
+            'rekening_pembayaran' => 'Bank SUMUT',
+            'nomor_rekening' => '1000.104.000.7722',
+            'atas_nama' => 'DPD PIKI SUMUT',
         ]);
 
     }
