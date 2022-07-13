@@ -171,6 +171,8 @@
   </div>
   <!---Container Fluid-->
   <!-- Modal Alasan Start-->
+                  @foreach($pemasukanIuran as $item)
+
   <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -196,5 +198,7 @@
           </div>
       </div>
   </div>
+                  @endforeach
+
   <!-- Modal Alasan End-->
   @endsection
