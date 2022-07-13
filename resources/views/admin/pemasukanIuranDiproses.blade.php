@@ -1,7 +1,7 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
-      <div class="container-fluid">
+  <div class="container-fluid">
       <div class="card-body">
           <div class="row mb-3">
               <!-- New User Card Example -->
@@ -162,33 +162,6 @@
                           <a href="{{ route('backend.post.iuran.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
                           @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
-                          <!-- Modal Alasan Start-->
-                          <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                          </button>
-                                      </div>
-                                      <div class="modal-body">
-                                          <form action="{{ route('backend.post.iuran.ditolak', $item->id) }}" method="post">
-                                              @csrf
-                                              <div class="form-group">
-                                                  <label for="message-text" class="col-form-label">Message:</label>
-                                                  <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
-                                              </div>
-                                              <button type="submit" class="btn btn-info">Send message</button>
-                                          </form>
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Modal Alasan End-->
                       </td>
                   </tr>
                   @endforeach
@@ -197,4 +170,31 @@
       </div>
   </div>
   <!---Container Fluid-->
+  <!-- Modal Alasan Start-->
+  <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="{{ route('backend.post.iuran.ditolak', $item->id) }}" method="post">
+                      @csrf
+                      <div class="form-group">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-info">Send message</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Modal Alasan End-->
   @endsection

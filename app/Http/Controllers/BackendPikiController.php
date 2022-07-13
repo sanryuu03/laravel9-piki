@@ -353,7 +353,32 @@ class BackendPikiController extends Controller
 
     public function postPemasukanIuranDitolak(Request $request)
     {
-        return $request;
+        // return $request;
+        $data = $request->except('_token');
+        $data['status_iuran'] = 'iuran ditolak';
+        $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
+        if ($request->alasan_ditolak == null && auth()->user()->level=='bendahara') {
+            $data['status_verifikasi_bendahara'] = 'ditolak';
+            IuranPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.iuran.ditolak')->with('success', 'Iuran telah ditolak');
+        }
+        elseif ($request->alasan_ditolak == null && auth()->user()->level=='super-admin') {
+            $data['status_verifikasi_ketua'] = 'ditolak';
+            IuranPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.iuran.ditolak')->with('success', 'Iuran telah ditolak');
+        }
+        elseif ($request->alasan_ditolak == null && auth()->user()->level=='spi') {
+            $data['status_verifikasi_spi'] = 'ditolak';
+            IuranPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.iuran.ditolak')->with('success', 'Iuran telah ditolak');
+        }
+        else {
+            return redirect()->route('backend.iuran.diproses')->with('unapproved', 'Iuran sudah pernah telah ditolak');
+        }
+
     }
 
     public function pemasukanIuranDitolak(Request $request)
