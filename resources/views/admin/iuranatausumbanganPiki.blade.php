@@ -20,6 +20,10 @@
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
   </div>
+   @elseif(session()->has('unapproved'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('unapproved') }}
+  </div>
   @endif
   <div class="container-fluid">
       <div class="card mx-3 my-3">
