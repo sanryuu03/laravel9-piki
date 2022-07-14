@@ -469,7 +469,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganBaru()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::get();
+        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan baru')->get();
         return view('admin/pemasukanSumbanganBaru', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Baru',
@@ -482,7 +482,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDiproses()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::get();
+        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan diproses')->get();
         return view('admin/pemasukanSumbanganDiproses', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Diproses',
@@ -495,7 +495,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDitolak()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::get();
+        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan ditolak')->get();
         return view('admin/pemasukanSumbanganDitolak', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Ditolak',
@@ -508,7 +508,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDiterima()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::get();
+        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan terverifikasi')->get();
         return view('admin/pemasukanSumbanganDiterima', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Diterima',

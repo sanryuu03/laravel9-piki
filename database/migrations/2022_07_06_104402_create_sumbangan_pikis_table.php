@@ -36,6 +36,8 @@ return new class extends Migration
             $table->string('status_verifikasi_spi')->nullable();
             $table->text('alasan_ditolak')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->string('deleted_by')->nullable();
         });
     }
 

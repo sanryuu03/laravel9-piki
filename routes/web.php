@@ -232,6 +232,21 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::get('/admin/pemasukanSumbanganDitolak', [BackendPikiController::class, 'pemasukanSumbanganDitolak'])->name('backend.sumbangan.ditolak');
     Route::get('/admin/pemasukanSumbanganDiterima', [BackendPikiController::class, 'pemasukanSumbanganDiterima'])->name('backend.sumbangan.diterima');
 
+    Route::get('/admin/pemasukanSumbanganViaBendahara/{id}', [SumbanganPikiController::class, 'pemasukanSumbanganViaBendahara'])->name('backend.sumbangan.detail.via.bendahara');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiBendahara/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiBendahara'])->name('backend.post.sumbangan.diverifikasi.bendahara');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiBendaharaViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiBendaharaViaForm'])->name('backend.post.sumbangan.diverifikasi.bendahara.via.form');
+
+    Route::get('/admin/pemasukanSumbanganViaKetua/{id}', [SumbanganPikiController::class, 'pemasukanSumbanganViaKetua'])->name('backend.sumbangan.detail.via.ketua');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiKetua/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiKetua'])->name('backend.post.sumbangan.diverifikasi.ketua');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiKetuaViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiKetuaViaForm'])->name('backend.post.sumbangan.diverifikasi.ketua.via.form');
+
+    Route::get('/admin/pemasukanSumbanganViaSpi/{id}', [SumbanganPikiController::class, 'pemasukanSumbanganViaSpi'])->name('backend.sumbangan.detail.via.spi');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiSpi/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiSpi'])->name('backend.post.sumbangan.diverifikasi.spi');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDiverifikasiSpiViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDiverifikasiSpiViaForm'])->name('backend.post.sumbangan.diverifikasi.spi.via.form');
+
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDitolak/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDitolak'])->name('backend.post.sumbangan.ditolak');
+    Route::match(['get','post'],'/admin/pemasukanSumbanganDestroy/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDestroy'])->name('backend.post.sumbangan.destroy');
+
     Route::get('/admin/rekapPemasukan', [BackendPikiController::class, 'rekapPemasukan'])->name('backend.rekap.pemasukan');
 
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');

@@ -119,8 +119,12 @@
                       <th width="0.1%">NO</th>
                       <th width="1%">Tanggal</th>
                       <th width="1%">Nama</th>
-                      <th width="1%">Jumlah</th>
+                      <th width="1%">Jumlah Sumbangan</th>
                       <th width="1%">Berita</th>
+                      <th width="0.01%">Bendahara</th>
+                      <th width="0.01%">Ketua</th>
+                      <th width="0.01%">SPI</th>
+                      <th width="0.01%">Alasan Ditolak</th>
                       <th width="0.01%">OPSI</th>
                   </tr>
               </thead>
@@ -129,17 +133,62 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
-                      <td>{{ number_format($item->jumlah_sumbangan,0,",",".") }}</td>
+                      @if(auth()->user()->level=='bendahara')
+                      <td><a href="{{ route('backend.sumbangan.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @elseif(auth()->user()->level=='super-admin')
+                      <td><a href="{{ route('backend.sumbangan.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @elseif(auth()->user()->level=='spi')
+                      <td><a href="{{ route('backend.sumbangan.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      @endif
+                      <td>Rp. {{ number_format($item->jumlah_sumbangan,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
+                      <td>{{ $item->status_verifikasi_bendahara }}</td>
+                      <td>{{ $item->status_verifikasi_ketua }}</td>
+                      <td>{{ $item->status_verifikasi_spi }}</td>
+                      <td>{{ $item->alasan_ditolak }}</td>
                       <td>
-                          <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm mb-1"><i class="fa-solid fa-eye"></i></a>
-                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                          <form action="{{ route('backend.post.sumbangan.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
+                          @if(auth()->user()->level=='spi')
+                          <a href="{{ route('backend.post.sumbangan.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          @elseif(auth()->user()->level=='super-admin')
+                          <a href="{{ route('backend.post.sumbangan.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          @elseif(auth()->user()->level=='bendahara')
+                          <a href="{{ route('backend.post.sumbangan.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          @endif
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
+                          <!-- Modal Alasan Start-->
+                          <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                                              @csrf
+                                              <div class="form-group">
+                                                  <label for="message-text" class="col-form-label">Message:</label>
+                                                  <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                                              </div>
+                                              <button type="submit" class="btn btn-info">Send message</button>
+                                          </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Modal Alasan End-->
                       </td>
                   </tr>
                   @endforeach
