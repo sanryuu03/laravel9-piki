@@ -22,40 +22,6 @@ li.dropdown-submenu2:hover > .dropdown-menu {
   <div class="container-fluid">
       <div class="card-body">
           <div class="row mb-3">
-              <!-- New User Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanKeuangan') }}" class="d-flex">
-                          <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
-                                  </div>
-                                  <div class="col-auto">
-                                      <i class="fas fa-money-bill-trend-up fa-2x text-info"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-              </div>
-              <!-- Dalam Proses Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card h-100">
-                      <a href="{{  url('/admin/pengeluaranKeuangan') }}" class="d-flex">
-                          <div class="card-body">
-                              <div class="row align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
-                                  </div>
-                                  <div class="col-auto">
-                                      <i class="fas fa-hand-holding-dollar fa-2x text-primary"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-              </div>
               <!-- Ditolak Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
@@ -63,10 +29,52 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Coming Soon</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Input Data Report</div>
                                   </div>
                                   <div class="col-auto">
                                       <i class="fas fa-file-invoice-dollar fa-2x text-danger"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Data Iuran Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                      <a href="{{  url('/admin/DataIuran') }}" class="d-flex">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Data Iuran</div>
+                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                          <span>Data bank iuran</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      <i class="fas fa-building-columns fa-2x text-success"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Data Biaya Iuran Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                      <a href="{{  url('/admin/dataBiayaIuran') }}" class="d-flex">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Data Biaya Iuran</div>
+                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                          <span>Data biaya iuran</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      <i class="fas fa-money-bill-wave fa-2x text-success"></i>
                                   </div>
                               </div>
                           </div>
