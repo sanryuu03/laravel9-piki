@@ -366,11 +366,17 @@ class BackendPikiController extends Controller
             ->update($data);
             return redirect()->route('backend.iuran.ditolak')->with('success', 'Iuran telah ditolak');
         }
+        elseif ($iuran->alasan_ditolak == null && $iuran->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.iuran.diproses')->with('unapproved', 'Iuran belum bisa ditolak karna belum di verifikasi bendahara');
+        }
         elseif ($iuran->alasan_ditolak == null && auth()->user()->level=='super-admin') {
             $data['status_verifikasi_ketua'] = 'ditolak';
             IuranPiki::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.iuran.ditolak')->with('success', 'Iuran telah ditolak');
+        }
+        elseif ($iuran->alasan_ditolak == null && $iuran->status_verifikasi_bendahara == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.iuran.diproses')->with('unapproved', 'Iuran belum bisa ditolak karna belum di verifikasi bendahara');
         }
         elseif ($iuran->alasan_ditolak == null && auth()->user()->level=='spi') {
             $data['status_verifikasi_spi'] = 'ditolak';
