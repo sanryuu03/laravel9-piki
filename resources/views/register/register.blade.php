@@ -126,14 +126,14 @@
                                         </select>
                                     </div>
                                     <div id="sekolah" class="mb-3">
-                                        <label>Riwayat Pendidikan <span class="text-danger">*</span></label>
+                                        <label>Pendidikan SLTA (Optional)</label>
                                         <input class="form-control" type="text" name="sekolah" placeholder="Masukkan Nama SLTA/SMA/SMK Anda" value="{{ old('sekolah') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Perguruan Tinggi (Optional)</label>
+                                        <label>Perguruan Tinggi <span class="text-danger">*</span></label>
                                         <select id="pendidikan" class="custom-select" name="pendidikan">
                                             <option value="Pilih-Pendidikan" selected>Pilih pendidikan Terakhir Anda</option>
-                                            <option value="Tidak-Kuliah">Tidak Kuliah</option>
+                                            {{-- <option value="Tidak-Kuliah">Tidak Kuliah</option> --}}
                                             <option value="Diploma">Diploma</option>
                                             <option value="S1">S1</option>
                                             <option value="S2">S2</option>
@@ -153,7 +153,7 @@
                                         <input class="form-control" type="text" name="jurusan" placeholder="Masukkan Nama  Jurusan Anda" value="{{ old('jurusan') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Pekerjaan <span class="text-danger">*</span></label>
+                                        <label>Pekerjaan (Optional)</label>
                                         <input class="form-control" type="text" name="job" placeholder="Masukkan Pekerjaan Anda" value="{{ old('job') }}" />
                                     </div>
                                     <div class="mb-3">
@@ -169,16 +169,16 @@
                                         <input class="form-control" type="text" name="church" placeholder="Masukkan Nama Gereja Anda" value="{{ old('church') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Bidang Usaha <span class="text-danger">*</span></label>
+                                        <label>Bidang Usaha (Optional)</label>
                                         <input class="form-control" type="text" name="business_fields" placeholder="Masukkan Bidang Usaha Anda" value="{{ old('business_fields') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Deskripsi Keahlian <span class="text-danger">*</span></label>
+                                        <label>Deskripsi Keahlian (Optional)</label>
                                         <input class="form-control" type="text" name="description_of_skills" placeholder="Masukkan Kehalihan Anda" value="{{ old('description_of_skills') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Password <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="password" name="password" placeholder="Isi Kata Sandi" />
+                                        <input class="form-control" type="password" name="password" placeholder="Isi Kata Sandi Minimal 5 Huruf" />
                                     </div>
                                     <div class="mb-3">
                                         <label>Password Confirmation<span class="text-danger">*</span></label>

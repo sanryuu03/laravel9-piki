@@ -128,12 +128,9 @@ class RegisterController extends Controller
                 'university' => 'nullable',
                 'fakultas' => 'nullable',
                 'jurusan' => 'nullable',
-                'job' => 'required',
                 'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
                 'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
                 'church' => 'required',
-                'business_fields' => 'required',
-                'description_of_skills' => 'required',
                 'password' => 'required|min:5|max:255',
             ],
             [

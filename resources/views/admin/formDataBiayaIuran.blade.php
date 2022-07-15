@@ -33,7 +33,7 @@
                   {{ csrf_field() }}
 
                   <div class="form-group">
-                      <label>Biaya Iuran</label>
+                      <label>Besaran Biaya Iuran</label>
                       <input type="hidden" name="id" class="form-control" value="{{ $dataIuran->id }}">
                       <input id="title" type="text" name="biaya_iuran" class="form-control @error('biaya_iuran') is-invalid @enderror" value="{{ old('biaya_iuran', $dataIuran->biaya_iuran) }}">
                       @error('biaya_iuran')
