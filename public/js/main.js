@@ -205,3 +205,18 @@ $('.filter-jenis-setoran').on("change", function () {
         jumlahSumbangan.classList.remove("d-none");
     }
 });
+$(document).ready(function () {
+    $("#harga_satuan").on("change", function () {
+        let volume = $("#volume").val();
+        let hargaSatuan = $("#harga_satuan").val();
+        let jumlah = volume * hargaSatuan
+        let search = this.value;
+        console.log(`filter jenis volume ${volume}`);
+        console.log(`filter jenis harga satuan ${hargaSatuan}`);
+        console.log(`ini search ${search}`);
+        console.log(`======================================`);
+        console.log(`jumlah ${jumlah}`);
+        document.getElementById('jumlah').innerHTML = 'heheh'
+        $("#jumlah").val(jumlah);
+    });
+});

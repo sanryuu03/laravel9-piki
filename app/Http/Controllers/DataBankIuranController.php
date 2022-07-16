@@ -63,6 +63,7 @@ class DataBankIuranController extends Controller
             'dataIuran' => $dataBankIuran,
             'namaUser' => $namaUser,
             'action' => 'add',
+            'urlNavbarKeuangan' => 'urlNavbarKeuangan',
         ]);
     }
 

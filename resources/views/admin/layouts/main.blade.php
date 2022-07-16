@@ -245,7 +245,7 @@
                     </ul>
                 </nav>
                 <!-- Topbar -->
-                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.data.iuran' || request()->route()->getName() === 'backend.data.biaya.iuran' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan')
+                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.data.iuran' || request()->route()->getName() === 'backend.data.biaya.iuran' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan' || request()->route()->getName() === 'backend.pengeluaran.rutin' || request()->route()->getName() === 'backend.pengeluaran.rutin.baru' || request()->route()->getName() === 'backend.pengeluaran.rutin.diproses' || request()->route()->getName() === 'backend.pengeluaran.rutin.ditolak' || request()->route()->getName() === 'backend.pengeluaran.rutin.diterima')
                 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
                     <div class="container">
                         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -268,7 +268,7 @@
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                         <li><a href="#" class="dropdown-item">Summary</a></li>
                                         <li><a href="#" class="dropdown-item">Investasi</a></li>
-                                        <li><a href="#" class="dropdown-item">Rutin</a></li>
+                                        <li><a href="{{ route('backend.pengeluaran.rutin') }}" class="dropdown-item">Rutin</a></li>
                                         <li><a href="#" class="dropdown-item">Program</a></li>
                                     </ul>
                                 </li>

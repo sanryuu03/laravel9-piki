@@ -157,11 +157,11 @@
                                         <input class="form-control" type="text" name="job" placeholder="Masukkan Pekerjaan Anda" value="{{ old('job') }}" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Foto KTP <span class="text-danger">*</span></label>
+                                        <label>Foto KTP <span class="text-danger">(Gambar Maksimal 2MB) *</span></label>
                                         <input class="form-control" type="file" name="photo_ktp" placeholder="Masukkan Photo KTP Anda" />
                                     </div>
                                     <div class="mb-3">
-                                        <label>Foto Profil <span class="text-danger">*</span></label>
+                                        <label>Foto Profil <span class="text-danger">(Gambar Maksimal 2MB) *</span></label>
                                         <input class="form-control" type="file" name="photo_profile" placeholder="Masukkan Photo Profile Anda" />
                                     </div>
                                     <div class="mb-3">

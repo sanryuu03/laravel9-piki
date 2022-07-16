@@ -1,59 +1,65 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
-  {{-- /**
-  <style>
-li.dropdown-submenu2:hover > .dropdown-menu {
-    display: block;
-}
-  </style>
-  */ --}}
   <!-- Container Fluid-->
-  <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">{{ $menu }}</h1>
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
-          </ol>
-      </div>
-  </div>
 
   <div class="container-fluid">
       <div class="card-body">
           <div class="row mb-3">
+              <!-- New User Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                      <a href="{{  url('/admin/pengeluaranRutinBaru') }}" class="d-flex">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran Baru</div>
+                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                          <span>Belum di proses</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      <i class="fas fa-money-bill-wave fa-2x text-info"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <!-- Dalam Proses Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                      <a href="{{  url('/admin/pengeluaranRutinDiproses') }}" class="d-flex">
+                          <div class="card-body">
+                              <div class="row align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran Diproses</div>
+                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                          <span>Sedang di verifikasi</span>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      <i class="fas fa-tasks fa-2x text-primary"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
               <!-- Ditolak Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/laporanKeuangan') }}" class="d-flex">
+                      <a href="{{  url('/admin/pengeluaranRutinDitolak') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Input Data Report</div>
-                                  </div>
-                                  <div class="col-auto">
-                                      <i class="fas fa-file-invoice-dollar fa-2x text-danger"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-              </div>
-
-              <!-- Data Iuran Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card h-100">
-                      <a href="{{  url('/admin/DataIuran') }}" class="d-flex">
-                          <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Data Iuran</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran ditolak</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
-                                          <span>Data bank iuran</span>
+                                          <span>Verifikasi gagal</span>
                                       </div>
                                   </div>
                                   <div class="col-auto">
-                                      <i class="fas fa-building-columns fa-2x text-success"></i>
+                                      <i class="fas fa-user-times fa-2x text-danger"></i>
                                   </div>
                               </div>
                           </div>
@@ -61,47 +67,29 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                   </div>
               </div>
 
-              <!-- Data Biaya Iuran Card Example -->
+              <!-- Diterima Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/dataBiayaIuran') }}" class="d-flex">
+                      <a href="{{  url('/admin/pengeluaranRutinDiterima') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Data Biaya Iuran</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran terverifikasi</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
-                                          <span>Data biaya iuran</span>
+                                          <span>Pengeluaran diterima</span>
                                       </div>
                                   </div>
                                   <div class="col-auto">
-                                      <i class="fas fa-money-bill-wave fa-2x text-success"></i>
+                                      <i class="fas fa-file-circle-check fa-2x text-success"></i>
                                   </div>
                               </div>
                           </div>
                       </a>
                   </div>
               </div>
-
-                            <!-- Tambah Pengeluaran Rutin Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card h-100">
-                      <a href="{{  url('/admin/formAddPengeluaranRutin') }}" class="d-flex">
-                          <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Tambah Pegeluaran Rutin</div>
-                                  </div>
-                                  <div class="col-auto">
-                                      <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-              </div>
-
           </div>
       </div>
   </div>
+
   <!---Container Fluid-->
   @endsection
