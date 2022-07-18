@@ -22,6 +22,8 @@ use App\Http\Controllers\KategoriAnggotaController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\PengeluaranRutinController;
 use App\Http\Controllers\DependantDropdownController;
+use App\Http\Controllers\NamaKegiatanController;
+use App\Http\Controllers\PosAnggaranController;
 use App\Http\Controllers\SubKategoriAnggotaController;
 
 /*
@@ -87,6 +89,8 @@ Route::get('provinces', 'DependentDropdownController@provinces')->name('province
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
+
+Route::post('/posAnggaran', [PosAnggaranController::class, 'posAnggaran']);
 
 // header
 Route::group(['middleware' => ['CekLevel:super-admin']], function () {
@@ -277,6 +281,20 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
 
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');
     Route::get('/admin/laporanKeuangan', [BackendPikiController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
+
+    Route::get('/admin/posAngaran', [PosAnggaranController::class, 'index'])->name('backend.pos.anggaran');
+    Route::match(['get', 'post'],'/admin/formAddPosAngaran', [PosAnggaranController::class, 'show'])->name('backend.form.add.pos.anggaran');
+    Route::match(['get', 'post'],'/admin/formEditPosAngaran/{id}', [PosAnggaranController::class, 'edit'])->name('backend.form.edit.pos.anggaran');
+    Route::match(['get', 'post'],'/admin/saveFormPosAngaran', [PosAnggaranController::class, 'saveFormPosAngaran'])->name('backend.save.form.pos.anggaran');
+    Route::match(['get', 'post'],'/admin/formPosAngaranDestroy/{id}', [PosAnggaranController::class, 'destroy'])->name('backend.pos.anggaran.destroy');
+
+    Route::get('/admin/namaKegiatan', [NamaKegiatanController::class, 'index'])->name('backend.nama.kegiatan');
+    Route::match(['get', 'post'],'/admin/formAddNamaKegiatan', [NamaKegiatanController::class, 'show'])->name('backend.form.add.nama.kegiatan');
+    Route::match(['get', 'post'],'/admin/formEditNamaKegiatan/{id}', [NamaKegiatanController::class, 'edit'])->name('backend.form.edit.nama.kegiatan');
+    Route::match(['get', 'post'],'/admin/saveFormNamaKegiatan', [NamaKegiatanController::class, 'saveFormNamaKegiatan'])->name('backend.save.form.nama.kegiatan');
+    Route::match(['get', 'post'],'/admin/formNamaKegiatanDestroy/{id}', [NamaKegiatanController::class, 'destroy'])->name('backend.nama.kegiatan.destroy');
+
+    Route::match(['get', 'post'], '/admin/pengeluaranRutinDestroy/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
 });
 
 // login khusus anggota

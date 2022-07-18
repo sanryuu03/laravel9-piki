@@ -100,6 +100,40 @@ li.dropdown-submenu2:hover > .dropdown-menu {
               </a>
           </div>
       </div>
+      <!-- Master Pos Anggaran Rutin Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/posAngaran') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Master Pos Anggaran</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-clipboard-list fa-2x text-primary"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <!-- Nama Kegiatan Rutin Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/namaKegiatan') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Nama Kegiatan</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-clipboard-list fa-2x text-info"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
       @endif
   </div>
   </div>

@@ -11,7 +11,7 @@
   </style>
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">{{ $menu }}</h1>
+          <h1 class="h3 mb-0 text-gray-800"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a>{{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -35,7 +35,16 @@
                   <div class="form-group">
                       <label>Pos Anggaran</label>
                       <input type="hidden" name="id" class="form-control" value="{{ $pengeluaranRutin->id }}">
-                      <input type="text" name="pos_anggaran" class="form-control @error('pos_anggaran') is-invalid @enderror" value="{{ old('pos_anggaran', $pengeluaranRutin->pos_anggaran) }}">
+                      <select class="custom-select" name="pos_anggarans_id" id='pos-anggaran'>
+                          <option selected>Pilih Pos Anggaran</option>
+                          @foreach($posAnggaran as $pos)
+                          @if(old('pos_anggarans_id') == $pos->id)
+                          <option value="{{ $pos->id }}" selected>{{ $pos->nama_pos_anggaran }}</option>
+                          @else
+                          <option value="{{ $pos->id }}">{{ $pos->nama_pos_anggaran }}</option>
+                          @endif
+                          @endforeach
+                      </select>
                       @error('pos_anggaran')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -44,7 +53,9 @@
                   </div>
                   <div class="form-group">
                       <label>Nama Kegiatan</label>
-                      <input type="text" name="nama_kegiatan" class="form-control @error('nama_kegiatan') is-invalid @enderror" value="{{ old('nama_kegiatan', $pengeluaranRutin->nama_kegiatan) }}">
+                      <select class="custom-select" name="nama_kegiatan" id="nama_kegiatan">
+                          <option selected>Pilih Nama Kegiatan</option>
+                      </select>
                       @error('nama_kegiatan')
                       <div class="invalid-feedback">
                           {{ $message }}

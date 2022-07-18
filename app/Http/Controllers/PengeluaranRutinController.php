@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PosAnggaran;
+use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
 use App\Models\PengeluaranRutin;
 
@@ -108,11 +110,13 @@ class PengeluaranRutinController extends Controller
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
+        $posAnggaran = PosAnggaran::get();
         return view('admin/formPengeluaranRutin', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => ucwords('form tambah pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
+            'posAnggaran' => $posAnggaran,
             'pengeluaranRutin' => $pengeluaranRutin,
             'namaUser' => $namaUser,
             'action' => 'add',
@@ -123,6 +127,10 @@ class PengeluaranRutinController extends Controller
     {
         // return $request;
         // return $request->action;
+        $posAnggaran = PosAnggaran::where('id', $request->pos_anggarans_id)->first();
+        $namakegiatan = NamaKegiatan::where('id', $request->nama_kegiatan)->first();
+        // return $posAnggaran->nama_pos_anggaran;
+        // return $namakegiatan->nama_kegiatan;
         if ($request->action == "add") {
             $pesanError = [
                 'pos_anggaran' => 'wajib di isi',
@@ -137,7 +145,7 @@ class PengeluaranRutinController extends Controller
             ];
             // $data = request()->except(['_token'], $pesanError);
             $data = $request->validate([
-                'pos_anggaran' => 'required',
+                'pos_anggaran' => 'nullable',
                 'nama_kegiatan' => 'required',
                 'tanggal' => 'required',
                 'uraian_pengeluaran' => 'required',
@@ -168,6 +176,9 @@ class PengeluaranRutinController extends Controller
             // upload file
             $file->move($tujuan_upload, $nama_file);
             $data['picture_path_bukti_pengeluaran_rutin'] = $nama_file;
+
+            $data['pos_anggaran'] = $posAnggaran->nama_pos_anggaran;
+            $data['nama_kegiatan'] = $namakegiatan->nama_kegiatan;
             PengeluaranRutin::create($data);
             return redirect()->route('backend.keuangan')->with('success', 'Pengeluaran Rutin telah ditambahkan');
         }

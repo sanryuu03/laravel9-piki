@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('nama_kegiatans', function (Blueprint $table) {
             $table->increments('id');
+            $table->foreignId('pos_anggarans_id');
+            $table->string('nama_kegiatan')->nullable();
+            $table->string('post_by')->nullable();
+            $table->string('edited_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->string('deleted_by')->nullable();
