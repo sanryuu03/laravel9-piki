@@ -361,6 +361,12 @@ class SumbanganPikiController extends Controller
             ->update($data);
             return redirect()->route('backend.sumbangan.ditolak')->with('success', 'Sumbangan telah ditolak');
         }
+        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.sumbangan.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.sumbangan.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
+        }
         elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
             return redirect()->route('backend.sumbangan.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
         }
@@ -369,9 +375,6 @@ class SumbanganPikiController extends Controller
             SumbanganPiki::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.ditolak')->with('success', 'Sumbangan telah ditolak');
-        }
-        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && auth()->user()->level=='spi') {
-            return redirect()->route('backend.sumbangan.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
         }
         elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='spi') {
             $data['status_verifikasi_spi'] = 'ditolak';
