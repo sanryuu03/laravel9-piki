@@ -18,7 +18,7 @@ class DataBankIuranController extends Controller
         $dataIuran = DataBankIuran::all();
         return view('admin/dataIuran', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Data Rekening Iuran PIKI SUMUT',
+            'menu' => ucwords('Pengaturan Rekening Bank PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
             'dataIuran' => $dataIuran,

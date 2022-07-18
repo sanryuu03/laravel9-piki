@@ -18,7 +18,7 @@ class DataBiayaIuranController extends Controller
         $dataIuran = DataBiayaIuran::all();
         return view('admin/dataBiayaIuran', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Data Biaya Iuran PIKI SUMUT',
+            'menu' => ucwords('pengaturan besaran Biaya Iuran PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
             'dataIuran' => $dataIuran,

@@ -47,7 +47,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Data Iuran</div>
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Pengaturan Rekening Bank</div>
                               <div class="mt-2 mb-0 text-muted text-xs">
                                   <span>Data bank iuran</span>
                               </div>
@@ -68,7 +68,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Data Biaya Iuran</div>
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Pengaturan Besaran Biaya Iuran</div>
                               <div class="mt-2 mb-0 text-muted text-xs">
                                   <span>Data biaya iuran</span>
                               </div>
@@ -83,23 +83,6 @@ li.dropdown-submenu2:hover > .dropdown-menu {
       </div>
 
       @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
-      <!-- Tambah Pengeluaran Rutin Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card h-100">
-              <a href="{{  url('/admin/formAddPengeluaranRutin') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Tambah Pengeluaran Rutin</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
-                          </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-      </div>
       <!-- Master Pos Anggaran Rutin Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
           <div class="card h-100">
@@ -128,6 +111,23 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-clipboard-list fa-2x text-info"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <!-- Tambah Pengeluaran Rutin Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/formAddPengeluaranRutin') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Tambah Pengeluaran Rutin</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
                           </div>
                       </div>
                   </div>

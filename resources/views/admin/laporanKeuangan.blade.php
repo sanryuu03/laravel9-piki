@@ -1,6 +1,11 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
+  <style>
+  .ui-datepicker-calendar {
+    display: none;
+    }
+    </style>
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -42,8 +47,8 @@
                   <div class="col-md-1">
                       Bulan:
                   </div>
-                  <div class="col-md-4">
-                      <input id="date" class="form-control" type="text" name="bulan" placeholder="YYYY/MM/DD" value="" />
+                  <div class="col-md-2">
+                      <input id="date" class="form-control" type="text" name="bulan" placeholder="pilih Bulan" value="" />
                   </div>
               </div>
               <div class="row">
