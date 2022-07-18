@@ -82,7 +82,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
           </div>
       </div>
 
-      @if(auth()->user()->level=='bendahara')
+      @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
       <!-- Tambah Pengeluaran Rutin Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
           <div class="card h-100">
