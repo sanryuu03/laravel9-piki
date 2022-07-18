@@ -261,6 +261,17 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaBendahara/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaBendahara'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara');
     Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaBendaharaViaForm/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaBendaharaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form');
 
+    Route::get('/admin/formPengeluaranRutinViaKetua/{id}', [PengeluaranRutinController::class, 'formPengeluaranRutinViaKetua'])->name('backend.form.pengeluaran.rutin.via.ketua');
+    Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaKetua/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaKetua'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua');
+    Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaKetuaViaForm/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaKetuaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua.via.form');
+
+    Route::get('/admin/formPengeluaranRutinViaSpi/{id}', [PengeluaranRutinController::class, 'formPengeluaranRutinViaSpi'])->name('backend.form.pengeluaran.rutin.via.spi');
+    Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaSpi/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaSpi'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi');
+    Route::match(['get', 'post'],'/admin/postPengeluaranRutinViaSpiViaForm/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinViaSpiViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi.via.form');
+
+    Route::match(['get', 'post'], '/admin/pengeluaranRutinDitolak/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinDitolak'])->name('backend.post.pengeluaran.rutin.ditolak');
+    Route::match(['get', 'post'], '/admin/pengeluaranRutinDestroy/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
+
 
     Route::get('/admin/rekapPemasukan', [BackendPikiController::class, 'rekapPemasukan'])->name('backend.rekap.pemasukan');
 

@@ -138,7 +138,7 @@
                       <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>
                           <a href="{{ route('backend.form.edit.pengeluaran.rutin', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
-                          <form action="{{ route('backend.post.sumbangan.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <form action="{{ route('backend.post.pengeluaran.rutin.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm">
                                   <i class="fa-solid fa-trash-can"></i>
@@ -157,7 +157,7 @@
                                           </button>
                                       </div>
                                       <div class="modal-body">
-                                          <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                                          <form action="{{ route('backend.post.pengeluaran.rutin.ditolak', $item->id) }}" method="post">
                                               @csrf
                                               <div class="form-group">
                                                   <label for="message-text" class="col-form-label">Message:</label>

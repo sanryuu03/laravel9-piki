@@ -151,10 +151,10 @@ class PengeluaranRutinController extends Controller
             ], $pesanError);
             if (!$request->file('picture_path_bukti_pengeluaran_rutin')) {
                 return back()
-                ->withInput()
-                ->withErrors([
-                    'picture_path_bukti_pengeluaran_rutin' => 'Gambar belum di upload '
-                ]);
+                    ->withInput()
+                    ->withErrors([
+                        'picture_path_bukti_pengeluaran_rutin' => 'Gambar belum di upload '
+                    ]);
             }
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('picture_path_bukti_pengeluaran_rutin');
@@ -233,13 +233,13 @@ class PengeluaranRutinController extends Controller
 
     public function postPengeluaranRutinViaBendahara(Request $request)
     {
-        if (auth()->user()->level=='super-admin') {
+        if (auth()->user()->level == 'super-admin') {
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
-        if (auth()->user()->level=='spi') {
+        if (auth()->user()->level == 'spi') {
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
-        if (auth()->user()->level=='bendahara') {
+        if (auth()->user()->level == 'bendahara') {
             $data = $request->except('_token');
             $dataRupiah = $request->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
@@ -248,7 +248,7 @@ class PengeluaranRutinController extends Controller
             $data['status_pengeluaran'] = 'pengeluaran diproses';
             $data['status_verifikasi_bendahara'] = 'terverifikasi';
             PengeluaranRutin::where('id', $request->id)
-            ->update($data);
+                ->update($data);
 
 
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
@@ -257,25 +257,25 @@ class PengeluaranRutinController extends Controller
 
     public function postPengeluaranRutinViaBendaharaViaForm(Request $request)
     {
-        if (auth()->user()->level=='super-admin') {
+        if (auth()->user()->level == 'super-admin') {
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
-        if (auth()->user()->level=='spi') {
+        if (auth()->user()->level == 'spi') {
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
-        if (auth()->user()->level=='bendahara') {
+        if (auth()->user()->level == 'bendahara') {
             $data = PengeluaranRutin::find($request->id);
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             PengeluaranRutin::where('id', $request->id)
-            ->update(
-                [
-                    'jumlah' => $rupiahHapusSimbolRp,
-                    'status_pengeluaran' => 'pengeluaran diproses',
-                    'status_verifikasi_bendahara' => 'terverifikasi',
-                ]
-            );
+                ->update(
+                    [
+                        'jumlah' => $rupiahHapusSimbolRp,
+                        'status_pengeluaran' => 'pengeluaran diproses',
+                        'status_verifikasi_bendahara' => 'terverifikasi',
+                    ]
+                );
 
             return redirect()->route('backend.pengeluaran.rutin.baru')->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
         }
@@ -287,11 +287,222 @@ class PengeluaranRutinController extends Controller
         $pengeluaranRutin = PengeluaranRutin::where('status_pengeluaran', 'pengeluaran diproses')->get();
         return view('admin/pengeluaranRutinDiproses', [
             "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Pemasukan Sumbangan Diproses',
+            'menu' => 'Pengeluaran Rutin Diproses',
             "creator" => $user,
             'summary' => 'ringkasan',
             'pengeluaranRutin' => $pengeluaranRutin,
             'item' => $pengeluaranRutin,
         ]);
+    }
+
+    public function formPengeluaranRutinViaKetua($id)
+    {
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $pengeluaranRutin = PengeluaranRutin::find($id);
+        return view('admin/formPengeluaranRutinViaKetua', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'pengeluaranRutin' => $pengeluaranRutin,
+            'item' => $pengeluaranRutin,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+        ]);
+    }
+
+    public function postPengeluaranRutinViaKetua(Request $request)
+    {
+        $pengeluaranRutin = PengeluaranRutin::find($request->id);
+        if ($pengeluaranRutin->status_verifikasi_ketua == 'terverifikasi') {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
+        }
+        if ($pengeluaranRutin->status_verifikasi_bendahara == 'terverifikasi') {
+            $data = $request->except('_token');
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status_pengeluaran'] = 'pengeluaran diproses';
+            $data['status_verifikasi_ketua'] = 'terverifikasi';
+            PengeluaranRutin::where('id', $request->id)
+                ->update($data);
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
+        }
+        else {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
+        }
+    }
+
+    public function postPengeluaranRutinViaKetuaViaForm(Request $request)
+    {
+        $data = PengeluaranRutin::find($request->id);
+        if ($data->status_verifikasi_ketua == 'terverifikasi') {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
+        }
+        if ($data->status_verifikasi_bendahara == 'terverifikasi') {
+            $dataRupiah = $data->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            PengeluaranRutin::where('id', $request->id)
+                ->update(
+                    [
+                        'jumlah' => $rupiahHapusSimbolRp,
+                        'status_pengeluaran' => 'pengeluaran diproses',
+                        'status_verifikasi_ketua' => 'terverifikasi',
+                    ]
+                );
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
+        }
+         else {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
+        }
+    }
+
+    public function formPengeluaranRutinViaSpi($id)
+    {
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $pengeluaranRutin = PengeluaranRutin::find($id);
+        return view('admin/formPengeluaranRutinViaSpi', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'pengeluaranRutin' => $pengeluaranRutin,
+            'item' => $pengeluaranRutin,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+        ]);
+    }
+
+    public function postPengeluaranRutinViaSpi(Request $request)
+    {
+        // return $request;
+        $pengeluaranRutin = PengeluaranRutin::find($request->id);
+        if ($pengeluaranRutin->status_verifikasi_spi == 'terverifikasi') {
+            return redirect()->route('backend.pengeluaran.rutin.diterima')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
+        }
+        if ($pengeluaranRutin->status_verifikasi_bendahara == 'terverifikasi' && $pengeluaranRutin->status_verifikasi_ketua == 'terverifikasi') {
+            $data = $request->except('_token');
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            // return $rupiahHapusSimbolRp;
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status_pengeluaran'] = 'pengeluaran terverifikasi';
+            $data['status_verifikasi_spi'] = 'terverifikasi';
+            PengeluaranRutin::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
+        }
+        else {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
+        }
+    }
+
+    public function postPengeluaranRutinViaSpiViaForm(Request $request)
+    {
+        $data = PengeluaranRutin::find($request->id);
+        if ($data->status_verifikasi_spi == 'terverifikasi') {
+            return redirect()->route('backend.pengeluaran.rutin.diterima')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
+        }
+        if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
+            $dataRupiah = $data->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            PengeluaranRutin::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status_pengeluaran' => 'pengeluaran terverifikasi',
+                    'status_verifikasi_spi' => 'terverifikasi',
+                    ]
+            );
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
+        }
+        else {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
+        }
+    }
+
+    public function pengeluaranRutinDiterima()
+    {
+        $user = auth()->user()->id;
+        $pengeluaranRutin = PengeluaranRutin::where('status_pengeluaran', 'pengeluaran terverifikasi')->get();
+        return view('admin/pengeluaranRutinDiterima', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pengeluaran Rutin Diterima',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'pengeluaranRutin' => $pengeluaranRutin,
+            'item' => $pengeluaranRutin,
+        ]);
+    }
+
+    public function pengeluaranRutinDitolak()
+    {
+        $user = auth()->user()->id;
+        $pengeluaranRutin = PengeluaranRutin::where('status_pengeluaran', 'pengeluaran ditolak')->get();
+        return view('admin/pengeluaranRutinDitolak', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Pengeluaran Rutin Ditolak',
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'pengeluaranRutin' => $pengeluaranRutin,
+            'item' => $pengeluaranRutin,
+        ]);
+    }
+
+    public function postPengeluaranRutinDitolak(Request $request)
+    {
+        // return $request;
+        $data = $request->except('_token');
+        $data['status_pengeluaran'] = 'pengeluaran ditolak';
+        $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
+        $pengeluaranRutin = PengeluaranRutin::find($request->id);
+        if ($pengeluaranRutin->alasan_ditolak == null && auth()->user()->level=='bendahara') {
+            $data['status_verifikasi_bendahara'] = 'ditolak';
+            PengeluaranRutin::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+        }
+        elseif ($pengeluaranRutin->alasan_ditolak == null && $pengeluaranRutin->status_verifikasi_bendahara == null && $pengeluaranRutin->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($pengeluaranRutin->alasan_ditolak == null && $pengeluaranRutin->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($pengeluaranRutin->alasan_ditolak == null && $pengeluaranRutin->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($pengeluaranRutin->alasan_ditolak == null && auth()->user()->level=='super-admin') {
+            $data['status_verifikasi_ketua'] = 'ditolak';
+            PengeluaranRutin::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+        }
+        elseif ($pengeluaranRutin->alasan_ditolak == null && auth()->user()->level=='spi') {
+            $data['status_verifikasi_spi'] = 'ditolak';
+            PengeluaranRutin::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+        }
+        else {
+            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin sudah pernah telah ditolak');
+        }
+
+    }
+
+    public function postPengeluaranRutinDestroy(Request $request)
+    {
+        $data = ['deleted_by' => auth()->user()->name];
+        PengeluaranRutin::where('id', $request->id)
+        ->update($data);
+        $pengeluaranRutin = PengeluaranRutin::find($request->id);
+        $pengeluaranRutin->delete(); //softdeletes
+
+        return redirect()->back()->with('success', 'Pengeluaran Rutin telah dihapus');
     }
 }
