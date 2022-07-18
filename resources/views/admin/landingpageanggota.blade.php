@@ -72,7 +72,7 @@
                           <a href="{{ route('anggota.export', $item->id) }}" class="btn btn-success btn-sm mb-1">Print CV</a>
                           <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger btn-sm">
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   Delete
                               </button>
                           </form>

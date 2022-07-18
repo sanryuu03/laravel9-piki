@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\BackendPiki;
-use App\Models\DataBankIuran;
 use App\Models\IuranPiki;
-use App\Models\jenisPemasukan;
-use App\Models\SumbanganPiki;
+use App\Models\BackendPiki;
+use App\Models\PosAnggaran;
+use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
+use App\Models\DataBankIuran;
+use App\Models\SumbanganPiki;
+use App\Models\jenisPemasukan;
+use App\Models\LaporanKeuangan;
 
 class BackendPikiController extends Controller
 {
@@ -541,12 +544,18 @@ class BackendPikiController extends Controller
     public function laporanKeuangan()
     {
         $user = auth()->user()->id;
+        $posAnggaran = PosAnggaran::get();
+        $namaKegiatan = NamaKegiatan::get();
+        $laporanKeuangan = LaporanKeuangan::get();
         return view('admin/laporanKeuangan', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Laporan Keuangan PIKI SUMUT',
             "creator" => $user,
             'keuangan' => 'keuangan',
             'iuran' => 'iuran',
+            'posAnggaran' => $posAnggaran,
+            'namaKegiatan' => $namaKegiatan,
+            'laporanKeuangan' => $laporanKeuangan,
         ]);
     }
 }
