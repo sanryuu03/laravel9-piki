@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('kategori_anggotas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->nullable();
             $table->string('post_by')->nullable();
             $table->string('edited_by')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
+            $table->softDeletes();
+            $table->string('deleted_by')->nullable();
         });
     }
 

@@ -30,7 +30,7 @@ class KategoriAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         return view('admin/formkategorianggota', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Form Tambah Kategori Berita",
+            "menu" => ucwords("Form Tambah Kategori anggota"),
             "userId" => $userId,
             "namaUser" => $namaUser,
             "kategoriAnggota" => $kategoriAnggota,
@@ -76,9 +76,20 @@ class KategoriAnggotaController extends Controller
      * @param  \App\Models\KategoriAnggota  $kategoriAnggota
      * @return \Illuminate\Http\Response
      */
-    public function edit(KategoriAnggota $kategoriAnggota)
+    public function edit(KategoriAnggota $kategoriAnggota, $id)
     {
-        //
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $kategoriAnggota = KategoriAnggota::find($id);
+        return view('admin/formkategorianggota', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form edit kategori anggota PIKI SUMUT'),
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'kategoriAnggota' => $kategoriAnggota,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+        ]);
     }
 
     /**
@@ -99,8 +110,37 @@ class KategoriAnggotaController extends Controller
      * @param  \App\Models\KategoriAnggota  $kategoriAnggota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KategoriAnggota $kategoriAnggota)
+    public function destroy(Request $request)
     {
-        //
+        $data = ['deleted_by' => auth()->user()->name];
+        KategoriAnggota::where('id', $request->id)
+        ->update($data);
+        $kategoriAnggota = KategoriAnggota::find($request->id);
+        $kategoriAnggota->delete(); //softdeletes
+
+        return redirect()->back()->with('success', 'Kategori Anggota telah dihapus');
+    }
+
+    public function saveFormKategoriAnggota(Request $request)
+    {
+        // return $request;
+        // return $request->action;
+        if ($request->action == "add") {
+            $pesanError = [
+                'name' => 'wajib di isi',
+            ];
+            // $data = request()->except(['_token'], $pesanError);
+            $data = $request->validate([
+                'name' => 'required',
+                'post_by' => 'required',
+            ], $pesanError);
+            KategoriAnggota::create($data);
+            return redirect()->route('kategori.anggota')->with('success', 'Kategori Anggota telah ditambahkan');
+        }
+        if ($request->action == "edit") {
+            $data = $request->except(['_token', 'action']);
+            KategoriAnggota::where('id', $request->id)->update($data);
+            return redirect()->route('kategori.anggota')->with('success', 'Kategori Anggota telah diedit');
+        }
     }
 }

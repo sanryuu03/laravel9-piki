@@ -48,7 +48,7 @@
                       Bulan:
                   </div>
                   <div class="col-md-3">
-                      <input class="form-control" type="month" id="start" min="2022-03" value="2022-07" name="bulan" placeholder="pilih Bulan" value="" />
+                      <input class="form-control" type="month" id="start" min="2022-01" value="2022-07" name="bulan" placeholder="pilih Bulan" value="" />
                   </div>
               </div>
               <div class="row">

@@ -39,24 +39,22 @@
                       <th width="10px">Kategori Anggota</th>
                       <th width="10px">Created At</th>
                       <th width="10px">Updated At</th>
-                      <th width="10px">Post By</th>
-                      <th width="10px">Edited By</th>
-                      <th width="0.1%">OPSI</th>
+                      <th width="1px">Post By</th>
+                      <th width="0.1px">Edited By</th>
+                      <th width="10%">OPSI</th>
                   </tr>
               </thead>
               <tbody>
                   @foreach($kategoriAnggota as $item)
                   <tr>
                       <td>{{ $item->name }}</td>
-                      <td>{!! $item->slug !!}</td>
-                      <td><img width="150px" src="{{ url('/storage/assets/categorynews/'.$item->picture_path_kategori_berita) }}"></td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->updated_at)) }} WIB</td>
                       <td>{{ $item->post_by }}</td>
                       <td>{{ $item->edited_by }}</td>
                       <td>
-                          <a href="{{ route('backend.edit.kategori.berita', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                          <form action="{{ route('destroy.kategori.berita', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('edit.kategori.anggota', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <form action="{{ route('backend.kategori.anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>

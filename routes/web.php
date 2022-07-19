@@ -178,6 +178,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
 
     Route::get('/admin/kategorianggota', [KategoriAnggotaController::class, 'index'])->name('kategori.anggota');
     Route::get('/admin/addkategorianggota', [KategoriAnggotaController::class, 'addKategoriAnggota'])->name('add.kategori.anggota');
+    Route::get('/admin/editkategorianggota/{id}', [KategoriAnggotaController::class, 'edit'])->name('edit.kategori.anggota');
+    Route::match(['get', 'post'], '/admin/saveFormKategoriAnggota', [KategoriAnggotaController::class, 'saveFormKategoriAnggota'])->name('backend.save.form.kategori.anggota');
+    Route::match(['get', 'post'], '/admin/destroyKategoriAnggota/{id}', [KategoriAnggotaController::class, 'destroy'])->name('backend.kategori.anggota.destroy');
 
     Route::get('/admin/subkategorianggota', [SubKategoriAnggotaController::class, 'index'])->name('sub.kategori.anggota');
     Route::get('/admin/addsubkategorianggota', [SubKategoriAnggotaController::class, 'addsubkategorianggota'])->name('add.sub.kategori.anggota');

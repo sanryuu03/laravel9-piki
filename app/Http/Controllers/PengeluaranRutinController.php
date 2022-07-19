@@ -180,7 +180,7 @@ class PengeluaranRutinController extends Controller
             $data['pos_anggaran'] = $posAnggaran->nama_pos_anggaran;
             $data['nama_kegiatan'] = $namakegiatan->nama_kegiatan;
             PengeluaranRutin::create($data);
-            return redirect()->route('backend.keuangan')->with('success', 'Pengeluaran Rutin telah ditambahkan');
+            return redirect()->route('backend.form.add.pengeluaran.rutin')->with('success', 'Pengeluaran Rutin telah ditambahkan');
         }
         if ($request->action == "edit") {
             // return $request->id;
