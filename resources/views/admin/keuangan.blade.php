@@ -117,7 +117,24 @@ li.dropdown-submenu2:hover > .dropdown-menu {
               </a>
           </div>
       </div>
-      <!-- Tambah Pengeluaran Rutin Card Example -->
+      <!-- Tambah Pemasukan Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/formInput') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Input Pemasukan</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-file-invoice-dollar fa-2x text-success"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <!-- Tambah Pengeluaran Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
           <div class="card h-100">
               <a href="{{  url('/admin/formAddPengeluaranRutin') }}" class="d-flex">

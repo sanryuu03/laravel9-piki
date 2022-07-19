@@ -362,6 +362,7 @@
 
         <script src="{{ asset('js/mainTanggal.js') }}"></script>
         <script src="{{ asset('js/mainPosAnggaran.js') }}"></script>
+        <script src="{{ asset('js/mainPendapatan.js') }}"></script>
 </body>
 
 </html>

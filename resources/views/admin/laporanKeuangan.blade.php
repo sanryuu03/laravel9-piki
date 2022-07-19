@@ -19,27 +19,28 @@
 
   <div class="container-fluid">
       <div class="card-body">
-          <form action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
+          <form class="mb-1" action="{{ route('table.export') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="row">
                   <div class="col-md-4">
                       Pos Anggaran:
-                      <select id="table-filter" class="filter-province" name="province">
-                          <option value="">All</option>
-                          @foreach ($posAnggaran as $pos)
-                          <option value="{{ $pos->id }}">{{ $pos->name }}</option>
+                      <select class="custom-select" name="pos_anggarans_id" id='pos-anggaran'>
+                          <option selected>Pilih Pos Anggaran</option>
+                          @foreach($posAnggaran as $pos)
+                          @if(old('pos_anggarans_id') == $pos->id)
+                          <option value="{{ $pos->id }}" selected>{{ $pos->nama_pos_anggaran }}</option>
+                          @else
+                          <option value="{{ $pos->id }}">{{ $pos->nama_pos_anggaran }}</option>
+                          @endif
                           @endforeach
                       </select>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-4">
-                      Nama Kegiatan:
-                      <select id="table-filter" class="filter-kota" name="kota">
-                          <option value="">All</option>
-                          @foreach ($namaKegiatan as $kegiatan)
-                          <option value="{{ $kegiatan->name }}">{{ $kegiatan->name }}</option>
-                          @endforeach
+                      <label>Nama Kegiatan</label>
+                      <select class="custom-select" name="nama_kegiatan" id="nama_kegiatan">
+                          <option selected>Pilih Nama Kegiatan</option>
                       </select>
                   </div>
               </div>
@@ -70,9 +71,18 @@
                   <tr>
                       <th width="0.1%">No</th>
                       <th width="1%">Bulan</th>
-                      <th width="1%">Pemasukan</th>
-                      <th width="1%">Pengeluaran</th>
+                      <th width="1%" colspan="2" class="text-center">Pemasukan</th>
+                      <th width="1%" colspan="2" class="text-center">Pengeluaran</th>
                       <th width="1%">Kas</th>
+                  </tr>
+                  <tr>
+                      <th width="0.1%"></th>
+                      <th width="1%"></th>
+                      <th width="1%">Nama Pemasukan</th>
+                      <th width="1%">Jumlah Pemasukan</th>
+                      <th width="1%">Nama Pengeluaran</th>
+                      <th width="1%">Jumlah Pengeluaran</th>
+                      <th width="1%"></th>
                   </tr>
               </thead>
               <tbody>

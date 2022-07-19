@@ -7,23 +7,26 @@ use App\Http\Controllers\NewsPikiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AgendaPikiController;
 use App\Http\Controllers\HeaderPikiController;
+use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\AnggotaPikiController;
 use App\Http\Controllers\BackendPikiController;
+use App\Http\Controllers\PosAnggaranController;
 use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
 use App\Http\Controllers\CategoryNewsController;
 use App\Http\Controllers\FrontEndPikiController;
+use App\Http\Controllers\NamaKegiatanController;
 use App\Http\Controllers\DataBankIuranController;
 use App\Http\Controllers\SumbanganPikiController;
 use App\Http\Controllers\DataBiayaIuranController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\JenisPemasukanController;
 use App\Http\Controllers\ProfileAnggotaController;
 use App\Http\Controllers\KategoriAnggotaController;
+use App\Http\Controllers\LaporanKeuanganController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\PengeluaranRutinController;
 use App\Http\Controllers\DependantDropdownController;
-use App\Http\Controllers\NamaKegiatanController;
-use App\Http\Controllers\PosAnggaranController;
 use App\Http\Controllers\SubKategoriAnggotaController;
 
 /*
@@ -91,6 +94,7 @@ Route::post('/districts', [DependantDropdownController::class, 'districts'])->na
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
 
 Route::post('/posAnggaran', [PosAnggaranController::class, 'posAnggaran']);
+Route::post('/dataUser', [PendapatanController::class, 'dataUser']);
 
 // header
 Route::group(['middleware' => ['CekLevel:super-admin']], function () {
@@ -285,7 +289,7 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::get('/admin/rekapPemasukan', [BackendPikiController::class, 'rekapPemasukan'])->name('backend.rekap.pemasukan');
 
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');
-    Route::get('/admin/laporanKeuangan', [BackendPikiController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
+    Route::get('/admin/laporanKeuangan', [LaporanKeuanganController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
 
     Route::get('/admin/posAngaran', [PosAnggaranController::class, 'index'])->name('backend.pos.anggaran');
     Route::match(['get', 'post'],'/admin/formAddPosAngaran', [PosAnggaranController::class, 'show'])->name('backend.form.add.pos.anggaran');
@@ -298,6 +302,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'],'/admin/formEditNamaKegiatan/{id}', [NamaKegiatanController::class, 'edit'])->name('backend.form.edit.nama.kegiatan');
     Route::match(['get', 'post'],'/admin/saveFormNamaKegiatan', [NamaKegiatanController::class, 'saveFormNamaKegiatan'])->name('backend.save.form.nama.kegiatan');
     Route::match(['get', 'post'],'/admin/formNamaKegiatanDestroy/{id}', [NamaKegiatanController::class, 'destroy'])->name('backend.nama.kegiatan.destroy');
+
+    Route::get('/admin/formInput/', [PendapatanController::class, 'show'])->name('backend.pendapatan');
+    Route::match(['get', 'post'],'/admin/saveFormInput/', [PendapatanController::class, 'saveFormInput'])->name('backend.save.form.input.pendapatan');
 
     Route::match(['get', 'post'], '/admin/pengeluaranRutinDestroy/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
 });

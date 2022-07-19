@@ -540,22 +540,4 @@ class BackendPikiController extends Controller
             'terverifikasi' => 'iuran',
         ]);
     }
-
-    public function laporanKeuangan()
-    {
-        $user = auth()->user()->id;
-        $posAnggaran = PosAnggaran::get();
-        $namaKegiatan = NamaKegiatan::get();
-        $laporanKeuangan = LaporanKeuangan::get();
-        return view('admin/laporanKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
-            'menu' => 'Laporan Keuangan PIKI SUMUT',
-            "creator" => $user,
-            'keuangan' => 'keuangan',
-            'iuran' => 'iuran',
-            'posAnggaran' => $posAnggaran,
-            'namaKegiatan' => $namaKegiatan,
-            'laporanKeuangan' => $laporanKeuangan,
-        ]);
-    }
 }
