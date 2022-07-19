@@ -8,6 +8,8 @@ use App\Models\Village;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\AnggotaPiki;
+use App\Models\KategoriAnggota;
+use App\Models\SubKategoriAnggota;
 use App\Models\TempAnggota;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -35,6 +37,8 @@ class AnggotaPikiController extends Controller
         $this->userDiterima = User::where('status_anggota', 'diterima')-> get();
         $Anggota = AnggotaPiki::all();
         $this->anggotaYangDitampilkan = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')-> get();
+        $this->kategoriAnggota = KategoriAnggota::get();
+        $this->subKategoriAnggota = SubKategoriAnggota::get();
 
         $hitungUserBaru = count($this->userBaru);
         $hitungUseruserDalamProses = count($this->userDalamProses);
@@ -42,6 +46,8 @@ class AnggotaPikiController extends Controller
         $hitungUserDiterima = count($this->userDiterima->skip(7));
         $hitungjabatanPikiSumut = count($Anggota);
         $this->hitunganggotaYangDitampilkan = count($this->anggotaYangDitampilkan);
+        $hitungKategoriAnggota = count($this->kategoriAnggota);
+        $hitungSubKategoriAnggota = count($this->subKategoriAnggota);
         // return $hitungUserDiterima;
         $pendaftarBaru = $hitungUserBaru > 0 ? $hitungUserBaru:0;
         $dalamProses = $hitungUseruserDalamProses > 0 ? $hitungUseruserDalamProses:0;
@@ -49,6 +55,8 @@ class AnggotaPikiController extends Controller
         $anggotaDiterima = $hitungUserDiterima > 0 ? $hitungUserDiterima:0;
         $jabatanPikiSumut = $hitungjabatanPikiSumut > 0 ? $hitungjabatanPikiSumut:0;
         $anggotaYangDitampilkan = $this->hitunganggotaYangDitampilkan > 0 ? $this->hitunganggotaYangDitampilkan:0;
+        $kategoriAnggota = $hitungKategoriAnggota > 0 ? $hitungKategoriAnggota:0;
+        $subKategoriAnggota = $hitungSubKategoriAnggota > 0 ? $hitungSubKategoriAnggota:0;
         // dd($pendaftarBaru);
         View::share([
             'pendaftarBaru' => $pendaftarBaru,
@@ -57,6 +65,8 @@ class AnggotaPikiController extends Controller
             'anggotaDiterima' => $anggotaDiterima,
             'jabatanPikiSumut' => $jabatanPikiSumut,
             'anggotaYangDitampilkan' => $anggotaYangDitampilkan,
+            'kategoriAnggota' => $kategoriAnggota,
+            'subKategoriAnggota' => $subKategoriAnggota,
         ]);
 
     }
