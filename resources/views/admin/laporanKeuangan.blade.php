@@ -44,18 +44,18 @@
                   </div>
               </div>
               <div class="row">
-                  <div class="col-md-1">
+                  <div class="col-md-1" for="start">
                       Bulan:
                   </div>
-                  <div class="col-md-2">
-                      <input id="date" class="form-control" type="text" name="bulan" placeholder="pilih Bulan" value="" />
+                  <div class="col-md-3">
+                      <input class="form-control" type="month" id="start" min="2022-03" value="2022-07" name="bulan" placeholder="pilih Bulan" value="" />
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-1">
                       Uraian:
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                       <input id="uraian" class="form-control" type="text" name="uraian" placeholder="cari uraian" value="" />
                   </div>
               </div>
