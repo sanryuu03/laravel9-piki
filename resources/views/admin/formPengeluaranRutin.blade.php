@@ -153,24 +153,4 @@
   <!-- Header End-->
 
   <!---Container Fluid-->
-    <script>
-      var dataBiayaIuran = @json($dataBiayaIuran -> biaya_iuran);
-
-      UpdateCost = function() {
-          let moon = ['Januari', 'Februari']
-          var sum = 0;
-          var gn, elem;
-          for (i = 1; i <= 12; i++) {
-              gn = 'inlineCheckbox' + i;
-              elem = document.getElementById(gn);
-  const element = elem["inlineCheckbox1"];
-              if (elem.checked == true) {
-          console.log(element.innerHTML)
-                  sum += Number(elem.value);
-              }
-          }
-          document.getElementById('uang').value = sum.toFixed(2) * dataBiayaIuran;
-      }
-
-  </script>
   @endsection
