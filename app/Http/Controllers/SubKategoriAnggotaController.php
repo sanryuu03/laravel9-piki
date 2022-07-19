@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriAnggota;
 use App\Models\SubKategoriAnggota;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,12 @@ class SubKategoriAnggotaController extends Controller
     {
         $subKategoriAnggota = SubKategoriAnggota::all();
         $user = auth()->user()->id;
-        return view('admin/kategorianggota', [
+        $kategoriAnggota = KategoriAnggota::get();
+        return view('admin/subkategorianggota', [
             "title" => "PIKI - Sangrid",
-            "menu" => "Kategori Berita",
+            "menu" => ucwords("sub kategori anggota"),
             "creator" => $user,
+            "kategoriAnggota" => $kategoriAnggota,
             "subKategoriAnggota" => $subKategoriAnggota,
         ]);
     }
@@ -53,7 +56,18 @@ class SubKategoriAnggotaController extends Controller
      */
     public function show(SubKategoriAnggota $subKategoriAnggota)
     {
-        //
+        $userId = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $kategoriAnggota = KategoriAnggota::get();
+        return view('admin/formsubkategorianggota', [
+            "title" => "PIKI - Sangrid",
+            "menu" => ucwords("form tambah sub Kategori anggota"),
+            "userId" => $userId,
+            "namaUser" => $namaUser,
+            "kategoriAnggota" => $kategoriAnggota,
+            "subKategoriAnggota" => $subKategoriAnggota,
+            "action" => 'add',
+        ]);
     }
 
     /**
@@ -85,8 +99,41 @@ class SubKategoriAnggotaController extends Controller
      * @param  \App\Models\SubKategoriAnggota  $subKategoriAnggota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubKategoriAnggota $subKategoriAnggota)
+    public function destroy(Request $request)
     {
-        //
+        $data = ['deleted_by' => auth()->user()->name];
+        SubKategoriAnggota::where('id', $request->id)
+        ->update($data);
+        $subKategoriAnggota = SubKategoriAnggota::find($request->id);
+        $subKategoriAnggota->delete(); //softdeletes
+
+        return redirect()->back()->with('success', ' Sub Kategori Anggota telah dihapus');
+    }
+
+    public function saveFormSubKategoriAnggota(Request $request)
+    {
+        // return $request;
+        // return $request->action;
+        if ($request->action == "add") {
+            $pesanError = [
+                'name' => 'wajib di isi',
+            ];
+            // $data = request()->except(['_token'], $pesanError);
+            $data = $request->validate([
+                'kategori_anggota_id' => 'required',
+                'name' => 'required',
+                'post_by' => 'required',
+            ], $pesanError);
+
+            SubKategoriAnggota::create($data);
+            return redirect()->route('sub.kategori.anggota')->with('success', 'Sub Kategori Anggota telah ditambahkan');
+        }
+        if ($request->action == "edit") {
+            // return $request->id;
+            // return $request;
+            $data = $request->except(['_token', 'action']);
+            SubKategoriAnggota::where('id', $request->id)->update($data);
+            return redirect()->route('sub.kategori.anggota')->with('success', 'Sub Kategori Anggota telah diedit');
+        }
     }
 }

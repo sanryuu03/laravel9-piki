@@ -183,7 +183,9 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::match(['get', 'post'], '/admin/destroyKategoriAnggota/{id}', [KategoriAnggotaController::class, 'destroy'])->name('backend.kategori.anggota.destroy');
 
     Route::get('/admin/subkategorianggota', [SubKategoriAnggotaController::class, 'index'])->name('sub.kategori.anggota');
-    Route::get('/admin/addsubkategorianggota', [SubKategoriAnggotaController::class, 'addsubkategorianggota'])->name('add.sub.kategori.anggota');
+    Route::get('/admin/addsubkategorianggota', [SubKategoriAnggotaController::class, 'show'])->name('add.sub.kategori.anggota');
+    Route::match(['get', 'post'], '/admin/saveformsubkategorianggota', [SubKategoriAnggotaController::class, 'saveFormSubKategoriAnggota'])->name('backend.save.form.sub.kategori.anggota');
+    Route::match(['get', 'post'], '/admin/destroysubkategorianggota/{id}', [SubKategoriAnggotaController::class, 'destroy'])->name('destroy.sub.kategori.anggota');
 });
 
 // community partners
