@@ -104,19 +104,10 @@
                       </div>
                       @enderror
                   </div>
-                      <div class="form-group jumlah-iuran d-none">
-                          <label>Jumlah Iuran <span class="text-danger">*</span></label>
-                          <input id="uang" type="text" name="jumlah_iuran" class="form-control @error('jumlah_iuran') is-invalid @enderror" value="{{ old('jumlah_iuran') }}">
-                          @error('jumlah_iuran')
-                          <div class="invalid-feedback">
-                              {{ $message }}
-                          </div>
-                          @enderror
-                      </div>
-                      <div class="form-group jumlah-sumbangan d-none">
-                          <label>Jumlah Sumbangan <span class="text-danger">*</span></label>
-                          <input id="jumlah_sumbangan" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
-                          @error('jumlah_sumbangan')
+                      <div id='jumlah' class="form-group jumlah-iuran d-none">
+                          <label>Jumlah <span class="text-danger">*</span></label>
+                          <input id="uang" type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah') }}">
+                          @error('jumlah')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>

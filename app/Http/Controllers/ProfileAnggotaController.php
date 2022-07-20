@@ -66,7 +66,7 @@ class ProfileAnggotaController extends Controller
         return view('admin/profileuser', [
             "title" => "PIKI - Sangrid",
             "menu" => "PIKI - CV Anggota",
-            "creator" => $user,
+            "user" => $user,
             "anggotaPiki" => $anggotaPiki,
             "item" => $user,
             "action" => "view",
@@ -256,6 +256,7 @@ class ProfileAnggotaController extends Controller
         }
         if ($request->jenis_setoran == 1) {
             $data = $request->except('_token');
+            $data['tanggal'] = now();
             $namaBulan = $_POST['bulan'];
             $arrBulan = [];
             foreach ($namaBulan as $bulan){
@@ -266,15 +267,10 @@ class ProfileAnggotaController extends Controller
             // return implode(", ",$arrBulan);
             // return implode(", ",$data['iuran_bulan'] = $arrBulan);
             $data['iuran_bulan'] = implode(", ",$arrBulan);
-            if (request()->input('jumlah_iuran')) {
-                $dataRupiah = $request->jumlah_iuran;
+            if (request()->input('jumlah')) {
+                $dataRupiah = $request->jumlah;
                 $rupiah = str_replace(".", "", $dataRupiah);
-                $data['jumlah_iuran'] = $rupiah;
-            }
-            if (request()->input('jumlah_sumbangan')) {
-                $dataRupiah = $request->jumlah_sumbangan;
-                $rupiah = str_replace(".", "", $dataRupiah);
-                $data['jumlah_sumbangan'] = $rupiah;
+                $data['jumlah'] = $rupiah;
             }
             $jenisPemasukan = jenisPemasukan::where('id', $request->jenis_setoran)->get();
             $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
@@ -300,9 +296,10 @@ class ProfileAnggotaController extends Controller
         }
         if ($request->jenis_setoran == 2) {
             $data = $request->except('_token');
-            $dataRupiah = $request->jumlah_sumbangan;
+            $data['tanggal'] = now();
+            $dataRupiah = $request->jumlah;
             $rupiah = str_replace(".","",$dataRupiah);
-            $data['jumlah_sumbangan'] = $rupiah;
+            $data['jumlah'] = $rupiah;
 
             if ($request->file('picture_path_slip_setoran_iuran')) {
                 // menyimpan data file yang diupload ke variabel $file
@@ -316,10 +313,17 @@ class ProfileAnggotaController extends Controller
                 // upload file
                 $file->move($tujuan_upload, $nama_file);
 
-                $data['picture_path_slip_setoran_sumbangan'] = $nama_file;
+                $data['picture_path_slip_setoran_iuran'] = $nama_file;
             }
 
-            SumbanganPiki::create($data);
+            $jenisPemasukan = jenisPemasukan::where('id', $request->jenis_setoran)->get();
+            $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
+            $data['jenis_setoran'] = $namaJenisPemasukan;
+
+            $data['status'] = 'sumbangan baru';
+
+
+            IuranPiki::create($data);
             return redirect()->route('iuran', $request->id)->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
         }
 

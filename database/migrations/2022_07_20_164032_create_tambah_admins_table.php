@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenis_pemasukans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('jenis_pemasukan')->nullable();
+        Schema::create('tambah_admins', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis_pemasukans');
+        Schema::dropIfExists('tambah_admins');
     }
 };

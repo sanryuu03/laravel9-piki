@@ -15,23 +15,23 @@ return new class extends Migration
     {
         Schema::create('iuran_pikis', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('tanggal')->nullable();
             $table->string('jenis_setoran')->nullable();
-            $table->text('iuran_bulan')->nullable();
-            $table->text('jumlah_iuran')->nullable();
-            $table->text('jumlah_sumbangan')->nullable();
-            $table->text('nama_penyumbang')->nullable();
+            $table->string('iuran_bulan')->nullable();
+            $table->string('jumlah')->nullable();
+            $table->string('nama_penyumbang')->nullable();
             $table->string('telp')->nullable();
-            $table->text('tujuan_sumbangan')->nullable();
-            $table->text('berita')->nullable();
+            $table->string('tujuan_sumbangan')->nullable();
+            $table->string('berita')->nullable();
             $table->string('rekening_pembayaran')->default('Bank Sumut');
             $table->string('nomor_rekening')->default('1000.104.000.7722');
             $table->string('atas_nama')->default('DPD PIKI SUMUT');
-            $table->text('picture_path_slip_setoran_iuran')->nullable();
-            $table->string('status_iuran')->default('iuran baru');
+            $table->string('picture_path_slip_setoran_iuran')->nullable();
+            $table->string('status')->default('iuran baru');
             $table->string('status_verifikasi_bendahara')->nullable();
             $table->string('status_verifikasi_ketua')->nullable();
             $table->string('status_verifikasi_spi')->nullable();
-            $table->text('alasan_ditolak')->nullable();
+            $table->string('alasan_ditolak')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->string('deleted_by')->nullable();

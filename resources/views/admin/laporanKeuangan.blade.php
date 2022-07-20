@@ -2,10 +2,11 @@
 
   @section('menuContent')
   <style>
-  .ui-datepicker-calendar {
-    display: none;
-    }
-    </style>
+      .ui-datepicker-calendar {
+          display: none;
+      }
+
+  </style>
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -66,36 +67,83 @@
                   </div>
               </div> --}}
           </form>
-          <table id="table_id" class="table table-bordered table-striped table-anggota">
+          <div class='row'>
+              <div class='col-md-6'>
+                  <table class="table table-bordered table-striped table-anggota">
+                      <thead>
+                          <tr>
+                              <th width="0.1%">No</th>
+                              <th width="1%">Bulan</th>
+                              <th width="1%" colspan="2" class="text-center">Pemasukan</th>
+                          </tr>
+                          <tr>
+                              <th width="0.1%"></th>
+                              <th width="1%"></th>
+                              <th width="1%">Nama Pemasukan</th>
+                              <th width="1%">Jumlah Pemasukan</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        @php
+                            $totalPemasukan=0;$totalPengeluaran=0;
+                        @endphp
+                          @foreach($iuranPiki as $iuran)
+                          @if ($iuran->jenis_setoran=='sumbangan')
+                          @php $iuran->sum += $sumbangan;
+
+                          @endphp
+                          @endif
+                          @php $totalPemasukan += $iuran->sum; @endphp
+                          <tr>
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ date('F', strtotime($iuran->tanggal)) }}</td>
+                              {{-- <td>{{ $iuran->tanggal }}</td> --}}
+                              <td>{{ $iuran->jenis_setoran }}</td>
+                              <td>{{ $iuran->sum }}</td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                  </table>
+              </div>
+              <div class='col-md-6'>
+                  <table class="table table-bordered table-striped table-anggota">
+                      <thead>
+                          <tr>
+                              <th width="0.1%">No</th>
+                              <th width="1%" colspan="2" class="text-center">Pengeluaran</th>
+                              <th width="0.1%">Kas</th>
+                          </tr>
+                          <tr>
+                              <th width="0.1%"></th>
+                              <th width="1%">Nama Pengeluaran</th>
+                              <th width="1%">Jumlah Pengeluaran</th>
+                              <th width="1%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach($pengeluaranRutin as $pengeluaran)
+                          @php $totalPengeluaran += $pengeluaran->sum; @endphp
+                          <tr>
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $pengeluaran->pos_anggaran }}</td>
+                              <td>{{ $pengeluaran->sum }}</td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+                    <table class="table table-bordered table-striped table-anggota">
               <thead>
                   <tr>
-                      <th width="0.1%">No</th>
-                      <th width="1%">Bulan</th>
-                      <th width="1%" colspan="2" class="text-center">Pemasukan</th>
-                      <th width="1%" colspan="2" class="text-center">Pengeluaran</th>
-                      <th width="1%">Kas</th>
-                  </tr>
-                  <tr>
-                      <th width="0.1%"></th>
-                      <th width="1%"></th>
-                      <th width="1%">Nama Pemasukan</th>
-                      <th width="1%">Jumlah Pemasukan</th>
-                      <th width="1%">Nama Pengeluaran</th>
-                      <th width="1%">Jumlah Pengeluaran</th>
-                      <th width="1%"></th>
+                      <th width="32%" class="text-center">Total Pendapatan</th>
+                      <td width="15%" class="text-center">{{ $totalPemasukan }}</th>
+                      <th width="20%" class="text-center">Total Pengeluaran</th>
+                      <td width="20%" class="text-center">{{ $totalPengeluaran }}</th>
+                      <th width="10%" class="text-center">{{ $totalPemasukan-$totalPengeluaran }}</th>
+
                   </tr>
               </thead>
-              <tbody>
-                  @foreach($laporanKeuangan as $item)
-                  <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $item->bulan }}</td>
-                      <td>{{ $item->pemasukan }}</td>
-                      <td>{{ $item->pengeluaran }}</td>
-                      <td>{{ $item->kas }}</td>
-                  </tr>
-                  @endforeach
-              </tbody>
           </table>
 
       </div>

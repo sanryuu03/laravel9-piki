@@ -28,6 +28,7 @@ use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\PengeluaranRutinController;
 use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\SubKategoriAnggotaController;
+use App\Http\Controllers\TambahAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,11 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 
     Route::post('/admin/upload/headermobile', [HeaderPikiMobileController::class, 'store'])->name('upload.header.mobile');
     Route::post('/admin/upload/headermobile/hapus/{id}', [HeaderPikiMobileController::class, 'destroy'])->name('header.mobile.destroy');
+
+    Route::get('/admin/tambahAdmin', [TambahAdminController::class, 'index'])->name('backend.super.admin');
+    Route::get('/admin/addTambahAdmin', [TambahAdminController::class, 'show'])->name('backend.tambah.admin');
+    Route::get('/admin/formTambahAdmin/{id}', [TambahAdminController::class, 'formTambahAdmin'])->name('backend.form.tambah.admin');
+    Route::match(['get', 'post'],'/admin/saveTambahAdmin', [TambahAdminController::class, 'saveTambahAdmin'])->name('backend.save.tambah.admin');
 });
 
 // berita

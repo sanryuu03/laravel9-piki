@@ -15,6 +15,8 @@ use App\Models\jenisPemasukan;
 use Illuminate\Database\Seeder;
 use Database\Seeders\IndoRegionSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Permission;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -436,6 +438,24 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$zVOXtbMZyyKU6FVYznGFsOSIpQ5O/ENydNNCv/pEHqCpqH6tHez76',
         ]);
 
+        User::create([
+            'username' => 'san',
+            'name' => 'san',
+            'gender' => 'Pria',
+            'phone_number' => '+6281375878802',
+            'email' => 'san@yahoo.com',
+            'nik' => '1215080411840009',
+            'address' => 'Janji',
+            'province' => 'SUMATERA UTARA',
+            'city' => 'KABUPATEN HUMBANG HASUNDUTAN',
+            'district' => 'DOLOK SANGGUL',
+            'village' => 'JANJI',
+            'job' => 'PNS',
+            'business_fields' => 'Penatu',
+            'description_of_skills' => 'Moderasi Beragama',
+            'password' => bcrypt('san'),
+        ]);
+
         SponsorPiki::create([
             'konten_sponsor' => 'Komitmen Pertamina terhadap Program Keberlanjutan.
 
@@ -474,6 +494,48 @@ class DatabaseSeeder extends Seeder
             'rekening_pembayaran' => 'Bank SUMUT',
             'nomor_rekening' => '1000.104.000.7722',
             'atas_nama' => 'DPD PIKI SUMUT',
+        ]);
+
+        Permission::create([
+            'name' => 'header',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'berita',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'program',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'agenda',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'anggota',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'community partners',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'keuangan',
+            'guard_name' => 'web'
+
         ]);
 
     }

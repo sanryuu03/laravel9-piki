@@ -86,6 +86,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/tambahAdmin') }}">
+                    <i class="fas fa-fw fa-users-gear"></i>
+                    <span>{{ ucwords('tambah admin') }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{  url('/admin/communitypartners') }}">
                     <i class="fas fa-fw fa-handshake"></i>
                     <span>Community Partners</span>

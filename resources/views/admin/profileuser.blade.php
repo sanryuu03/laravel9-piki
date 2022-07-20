@@ -60,6 +60,11 @@
                             <a href="{{  url('/admin/iuran', $item->id) }}" class="nav-link">Iuran</a>
                         </li>
                         @endif
+                        @can('anggota', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/backendanggota', $item->id) }}" class="nav-link">Anggota</a>
+                        </li>
+                        @endcan
                     </ul>
                 </div>
             </div>

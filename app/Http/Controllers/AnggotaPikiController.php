@@ -43,7 +43,7 @@ class AnggotaPikiController extends Controller
         $hitungUserBaru = count($this->userBaru);
         $hitungUseruserDalamProses = count($this->userDalamProses);
         $hitungUserDiTolak = count($this->userDiTolak);
-        $hitungUserDiterima = count($this->userDiterima->skip(7));
+        $hitungUserDiterima = count($this->userDiterima->skip(8));
         $hitungjabatanPikiSumut = count($Anggota);
         $this->hitunganggotaYangDitampilkan = count($this->anggotaYangDitampilkan);
         $hitungKategoriAnggota = count($this->kategoriAnggota);

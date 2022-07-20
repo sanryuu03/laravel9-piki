@@ -187,22 +187,17 @@ $('.filter-jenis-setoran').on("change", function () {
     console.log(`ini value ${search}`);
     console.log(`======================================`);
     let iuranBulan = document.querySelector("#iuran-bulan");
-    let jumlahIuran = document.querySelector(".jumlah-iuran");
-    let jumlahSumbangan = document.querySelector(".jumlah-sumbangan");
+    let jumlah = document.querySelector('#jumlah');
     if (jenisPemasukanFilter === "All") {
         iuranBulan.classList.add("d-none");
-        jumlahIuran.classList.add("d-none");
-        jumlahSumbangan.classList.add("d-none");
     }
     if (jenisPemasukanFilter === "iuran") {
+        jumlah.classList.remove("d-none");
         iuranBulan.classList.remove("d-none");
-        jumlahIuran.classList.remove("d-none");
-        jumlahSumbangan.classList.add("d-none");
     }
     else {
         iuranBulan.classList.add("d-none");
-        jumlahIuran.classList.add("d-none");
-        jumlahSumbangan.classList.remove("d-none");
+        jumlah.classList.remove("d-none");
     }
 });
 $(document).ready(function () {
