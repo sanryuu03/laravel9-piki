@@ -45,78 +45,65 @@
                               </div>
                           </div>
                       </div>
-                      <div id="iuran-bulan" class="form-group d-none">
-                          <label>Iuran Bulan <span class="font-weight-bold text-danger">*</span></label>
-                          <div>
-                              <label><span class="font-weight-bold text-danger">Rp. {{ number_format($dataBiayaIuran->biaya_iuran,0,",",".") }}/Bulan *</span></label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Januari">
-                              <label class="form-check-label" for="inlineCheckbox1">Januari</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Februari">
-                              <label class="form-check-label" for="inlineCheckbox2">Februari</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              {{-- <input class="form-check-input" type="checkbox" name="bulan[]" id="inlineCheckbox3"> --}}
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Maret">
-                              <label class="form-check-label" for="inlineCheckbox3">Maret</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox4" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="April">
-                              <label class="form-check-label" for="inlineCheckbox4">April</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Mei">
-                              <label class="form-check-label" for="inlineCheckbox5">Mei</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Juni">
-                              <label class="form-check-label" for="inlineCheckbox6">Juni</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox7" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Juli">
-                              <label class="form-check-label" for="inlineCheckbox7">Juli</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox8" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Agustus">
-                              <label class="form-check-label" for="inlineCheckbox8">Agustus</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox9" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="September">
-                              <label class="form-check-label" for="inlineCheckbox9">September</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox10" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Oktober">
-                              <label class="form-check-label" for="inlineCheckbox10">Oktober</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox11" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="November">
-                              <label class="form-check-label" for="inlineCheckbox11">November</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox12" onclick="UpdateCost()" value="1">
-                              <input name="bulan[]" type="hidden" class="form-control @error('iuran_bulan') is-invalid @enderror" value="Desember">
-                              <label class="form-check-label" for="inlineCheckbox12">Desember</label>
-                          </div>
-                          @error('iuran_bulan')
-                          <div class="invalid-feedback">
-                              {{ $message }}
-                          </div>
-                          @enderror
+                  <div id="iuran-bulan" class="form-group d-none">
+                      <label>Iuran Bulan <span class="font-weight-bold text-danger">*</span></label>
+                      <div>
+                          <label><span class="font-weight-bold text-danger">Rp. {{ number_format($dataBiayaIuran->biaya_iuran,0,",",".") }}/Bulan *</span></label>
                       </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox1" onclick="UpdateCost()" value="Januari">
+                          <label class="form-check-label" for="inlineCheckbox1">Januari</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox2" onclick="UpdateCost()" value="Februari">
+                          <label class="form-check-label" for="inlineCheckbox2">Februari</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox3" onclick="UpdateCost()" value="Maret">
+                          <label class="form-check-label" for="inlineCheckbox3">Maret</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox4" onclick="UpdateCost()" value="April">
+                          <label class="form-check-label" for="inlineCheckbox4">April</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox5" onclick="UpdateCost()" value="Mei">
+                          <label class="form-check-label" for="inlineCheckbox5">Mei</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox6" onclick="UpdateCost()" value="Juni">
+                          <label class="form-check-label" for="inlineCheckbox6">Juni</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox7" onclick="UpdateCost()" value="Juli">
+                          <label class="form-check-label" for="inlineCheckbox7">Juli</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox8" onclick="UpdateCost()" value="Agustus">
+                          <label class="form-check-label" for="inlineCheckbox8">Agustus</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox9" onclick="UpdateCost()" value="September">
+                          <label class="form-check-label" for="inlineCheckbox9">September</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox10" onclick="UpdateCost()" value="Oktober">
+                          <label class="form-check-label" for="inlineCheckbox10">Oktober</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox11" onclick="UpdateCost()" value="November">
+                          <label class="form-check-label" for="inlineCheckbox11">November</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bulan[]" type="checkbox" id="inlineCheckbox12" onclick="UpdateCost()" value="Desember">
+                          <label class="form-check-label" for="inlineCheckbox12">Desember</label>
+                      </div>
+                      @error('iuran_bulan')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
+                  </div>
                       <div class="form-group jumlah-iuran d-none">
                           <label>Jumlah Iuran <span class="text-danger">*</span></label>
                           <input id="uang" type="text" name="jumlah_iuran" class="form-control @error('jumlah_iuran') is-invalid @enderror" value="{{ old('jumlah_iuran') }}">
@@ -220,7 +207,6 @@
       var dataBiayaIuran = @json($dataBiayaIuran -> biaya_iuran);
 
       UpdateCost = function() {
-          let moon = ['Januari', 'Februari']
           var sum = 0;
           var gn, elem;
           for (i = 1; i <= 12; i++) {
@@ -228,8 +214,7 @@
               elem = document.getElementById(gn);
   const element = elem["inlineCheckbox1"];
               if (elem.checked == true) {
-          console.log(element.innerHTML)
-                  sum += Number(elem.value);
+                  sum += Number(1);
               }
           }
           document.getElementById('uang').value = sum.toFixed(2) * dataBiayaIuran;
