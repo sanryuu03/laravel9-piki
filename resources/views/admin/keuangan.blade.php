@@ -83,6 +83,40 @@ li.dropdown-submenu2:hover > .dropdown-menu {
       </div>
 
       @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
+      <!-- Master Menu Navbar Pemasukan Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/masterMenuNavbarKeuangan') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Master Menu Navbar</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-clipboard-list fa-2x text-primary"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+            <!-- Sub Menu Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card h-100">
+              <a href="{{  url('/admin/subMenuNavbarKeuangan') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-uppercase mb-1">Sub Menu</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-clipboard-list fa-2x text-info"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
       <!-- Master Pos Anggaran Rutin Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
           <div class="card h-100">

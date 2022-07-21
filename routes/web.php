@@ -27,7 +27,9 @@ use App\Http\Controllers\LaporanKeuanganController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\PengeluaranRutinController;
 use App\Http\Controllers\DependantDropdownController;
+use App\Http\Controllers\MasterMenuNavbarController;
 use App\Http\Controllers\SubKategoriAnggotaController;
+use App\Http\Controllers\SubMenuNavbarKeuanganController;
 use App\Http\Controllers\TambahAdminController;
 
 /*
@@ -320,6 +322,18 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'],'/admin/saveFormInput/', [PendapatanController::class, 'saveFormInput'])->name('backend.save.form.input.pendapatan');
 
     Route::match(['get', 'post'], '/admin/pengeluaranRutinDestroy/{id}', [PengeluaranRutinController::class, 'postPengeluaranRutinDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
+
+    Route::get('/admin/masterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'masterMenuNavbarKeuangan'])->name('backend.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/formAddMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'formAddMasterMenuNavbarKeuangan'])->name('backend.form.add.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/formEditMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'formEditMasterMenuNavbarKeuangan'])->name('backend.form.edit.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/saveFormMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'saveFormMasterMenuNavbarKeuangan'])->name('backend.save.form.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/destroyMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'destroyMasterMenuNavbarKeuangan'])->name('backend.destroy.master.menu.navbar.keuangan');
+
+    Route::get('/admin/subMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'index'])->name('backend.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/formAddSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'show'])->name('backend.form.add.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/formEditSubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'formEditSubMenuNavbarKeuangan'])->name('backend.form.edit.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/saveFormSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'saveFormSubMenuNavbarKeuangan'])->name('backend.save.form.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'],'/admin/destroySubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'destroySubMenuNavbarKeuangan'])->name('backend.destroy.sub.menu.navbar.keuangan');
 });
 
 // login khusus anggota

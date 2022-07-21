@@ -91,7 +91,7 @@ class AnggotaPikiController extends Controller
         // return $anggota[0]->name;
         // return $anggota->userPiki;
         $userDiterima = $this->userDiterima;
-        $user = $userDiterima->skip(7);
+        $user = $userDiterima->skip(8);
         // $user = Datatables::of(User::query())->make(true);
         $provinces = Province::all();
         $id_provinsi = $request->id_provinsi;

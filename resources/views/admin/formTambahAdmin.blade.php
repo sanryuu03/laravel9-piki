@@ -65,19 +65,19 @@
                   </div>
                   <div class="form-group">
                       <label>Hak Akses</label><br>
-                      <input type="checkbox" id="hakAkses1" name="hakAkses[]" value="header" @if($permisi[0] == 'header') checked @endif>
+                      <input type="checkbox" id="hakAkses1" name="hakAkses[]" value="header">
                       <label for="hakAkses1"> Header</label><br>
-                      <input type="checkbox" id="hakAkses2" name="hakAkses[]" value="berita" @if($permisi[1] == 'berita') checked @endif>
+                      <input type="checkbox" id="hakAkses2" name="hakAkses[]" value="berita">
                       <label for="hakAkses2"> Berita</label><br>
-                      <input type="checkbox" id="hakAkses3" name="hakAkses[]" value="program" @if($permisi[3] == 'program') checked @endif>
+                      <input type="checkbox" id="hakAkses3" name="hakAkses[]" value="program">
                       <label for="hakAkses3"> Program</label><br>
-                      <input type="checkbox" id="hakAkses4" name="hakAkses[]" value="agenda" @if('agenda' == 'agenda') checked @endif>
+                      <input type="checkbox" id="hakAkses4" name="hakAkses[]" value="agenda">
                       <label for="hakAkses4"> Agenda</label><br>
-                      <input type="checkbox" id="hakAkses5" name="hakAkses[]" value="anggota" @if('anggota' == 'anggota') checked @endif>
+                      <input type="checkbox" id="hakAkses5" name="hakAkses[]" value="anggota">
                       <label for="hakAkses5"> Anggota</label><br>
-                      <input type="checkbox" id="hakAkses6" name="hakAkses[]" value="community partners" @if('community partners' == 'community partners') checked @endif>
+                      <input type="checkbox" id="hakAkses6" name="hakAkses[]" value="community partners">
                       <label for="hakAkses6"> Community Partners</label><br>
-                      <input type="checkbox" id="hakAkses7" name="hakAkses[]" value="keuangan" @if('keuangan' == 'keuangan') checked @endif>
+                      <input type="checkbox" id="hakAkses7" name="hakAkses[]" value="keuangan">
                       <label for="hakAkses7"> Keuangan</label><br>
                   </div>
 
