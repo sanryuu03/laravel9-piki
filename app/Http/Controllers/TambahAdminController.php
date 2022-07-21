@@ -19,7 +19,8 @@ class TambahAdminController extends Controller
     public function index()
     {
         $idUser = auth()->user()->id;
-        $users = User::where('status_anggota', 'diterima')->get();
+        $izin = Permission::get();
+        $users = User::permission($izin)->get();
         return view('admin/backendTambahAdmin', [
             "title" => "PIKI - Sangrid",
             "menu" => ucwords('tambah admin'),
@@ -77,9 +78,39 @@ class TambahAdminController extends Controller
      * @param  \App\Models\TambahAdmin  $tambahAdmin
      * @return \Illuminate\Http\Response
      */
-    public function edit(TambahAdmin $tambahAdmin)
+    public function edit(TambahAdmin $tambahAdmin, $id)
     {
-        //
+        $user = auth()->user()->id;
+        // return $id;
+        $namaUser = auth()->user()->name;
+        $userDiterima = AnggotaPiki::with('userPiki')->where('status_anggota', 'diterima')->where('users_id', $id)->first();
+        // return $userDiterima;
+        $izin = Permission::get();
+        // return $izin;
+        // return $izin[0]->name;
+        // return count($izin);
+        $users = User::permission($izin)->first();
+        // return $users->Permissions;
+        foreach ($izin as $punten) {
+            $monggo[] = $punten->name;
+        }
+        // return $monggo;
+        foreach ($users->permissions as $Permission) {
+            $permisi[] = $Permission->name;
+        }
+        // return $permisi;
+        return view('admin/formTambahAdmin', [
+            "title" => "PIKI - Iuran",
+            "menu" => ucwords("pilih roles"),
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'userDiterima' => $userDiterima,
+            'namaUser' => $namaUser,
+            'users' => $users,
+            'izin' => $monggo,
+            'permisi' => $permisi,
+            'action' => 'add',
+        ]);
     }
 
     /**
@@ -136,5 +167,23 @@ class TambahAdminController extends Controller
         }
         if ($request->action == "edit") {
         }
+    }
+
+    public function hapusTambahAdmin(Request $request)
+    {
+        // return $request;
+        // return $request->id;
+        // return $request->action;
+        $izin = Permission::get();
+        // $user = User::where('id', $request->users_id)->first();
+        $user = User::where('id', $request->id)->permission($izin)->first();
+        // return $user;
+        $userIzin = User::permission($izin)->first();
+        foreach ($user->permissions as $Permission) {
+            $permisi[] = $Permission->name;
+        }
+        // return $permisi;
+        $user->revokePermissionTo($permisi);
+        return redirect()->back()->with('success', 'permission telah di hapus !');
     }
 }

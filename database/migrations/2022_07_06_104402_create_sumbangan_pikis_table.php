@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('sumbangan_pikis', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('jumlah_sumbangan')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->text('jumlah')->nullable();
             $table->text('nama_penyumbang')->nullable();
             $table->string('telp')->nullable();
             $table->text('tujuan_sumbangan')->nullable();
@@ -30,7 +31,7 @@ return new class extends Migration
             $table->string('nomor_rekening')->nullable();
             $table->string('atas_nama')->nullable();
             $table->text('picture_path_slip_setoran_sumbangan')->nullable();
-            $table->string('status_sumbangan')->default('sumbangan baru');
+            $table->string('status')->default('sumbangan baru');
             $table->string('status_verifikasi_bendahara')->nullable();
             $table->string('status_verifikasi_ketua')->nullable();
             $table->string('status_verifikasi_spi')->nullable();

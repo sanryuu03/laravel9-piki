@@ -141,7 +141,7 @@
                       @elseif(auth()->user()->level=='spi')
                       <td><a href="{{ route('backend.iuran.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
                       @endif
-                      <td>Rp. {{ number_format($item->jumlah_iuran,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>{{ $item->status_verifikasi_bendahara }}</td>
                       <td>{{ $item->status_verifikasi_ketua }}</td>

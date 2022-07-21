@@ -50,8 +50,8 @@
                       </div>
                       <div class="form-group jumlah-iuran">
                           <label>Jumlah Iuran </label>
-                          <input id="uang" readonly type="text" name="jumlah_iuran" class="form-control @error('jumlah_iuran') is-invalid @enderror" value="{{ old('jumlah_iuran', 'Rp. '.number_format($pemasukanIuran->jumlah_iuran,0,",",".")) }}">
-                          @error('jumlah_iuran')
+                          <input id="uang" readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($pemasukanIuran->jumlah,0,",",".")) }}">
+                          @error('jumlah')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>

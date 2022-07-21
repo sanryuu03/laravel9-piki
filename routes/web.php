@@ -55,6 +55,11 @@ Route::get('/foo', function () {
     return response()->json('storage');
 });
 
+Route::get('/seed', function () {
+    Artisan::call('migrate:fresh --seed');
+    return response()->json('migrate:fresh --seed');
+});
+
 Route::get('/storage', function () {
     return view('storage');
 });
@@ -108,8 +113,10 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 
     Route::get('/admin/tambahAdmin', [TambahAdminController::class, 'index'])->name('backend.super.admin');
     Route::get('/admin/addTambahAdmin', [TambahAdminController::class, 'show'])->name('backend.tambah.admin');
+    Route::get('/admin/editTambahAdmin/{id}', [TambahAdminController::class, 'edit'])->name('backend.edit.admin');
     Route::get('/admin/formTambahAdmin/{id}', [TambahAdminController::class, 'formTambahAdmin'])->name('backend.form.tambah.admin');
     Route::match(['get', 'post'],'/admin/saveTambahAdmin', [TambahAdminController::class, 'saveTambahAdmin'])->name('backend.save.tambah.admin');
+    Route::match(['get', 'post'],'/admin/hapusTambahAdmin/{id}', [TambahAdminController::class, 'hapusTambahAdmin'])->name('backend.hapus.tambah.admin');
 });
 
 // berita

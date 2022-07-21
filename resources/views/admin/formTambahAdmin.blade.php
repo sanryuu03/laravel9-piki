@@ -29,7 +29,7 @@
                       <label>Pos Anggaran</label>
                       <input type="hidden" name="id" class="form-control" value="{{ $creator }}">
                       <input type="hidden" name="users_id" class="form-control" value="{{ $userDiterima->users_id }}">
-                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $userDiterima->name) }}">
+                      <input type="text" readonly name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $userDiterima->name) }}">
                       @error('name')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -38,7 +38,7 @@
                   </div>
                   <div class="form-group jumlah-iuran">
                       <label>Gender <span class="text-danger">*</span></label>
-                      <input type="text" name="gender" class="form-control @error('gender') is-invalid @enderror" value="{{ old('gender', $userDiterima->userPiki->gender) }}">
+                      <input type="text" readonly name="gender" class="form-control @error('gender') is-invalid @enderror" value="{{ old('gender', $userDiterima->userPiki->gender) }}">
                       @error('gender')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                       <label>Phone Number <span class="text-danger">*</span></label>
-                      <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number', $userDiterima->phone_number) }}">
+                      <input type="text" readonly name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number', $userDiterima->phone_number) }}">
                       @error('phone_number')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-group">
                       <label>Email</label>
-                      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $userDiterima->userPiki->email) }}">
+                      <input type="text" readonly name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $userDiterima->userPiki->email) }}">
                       @error('email')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -65,19 +65,19 @@
                   </div>
                   <div class="form-group">
                       <label>Hak Akses</label><br>
-                      <input type="checkbox" id="hakAkses1" name="hakAkses[]" value="header">
+                      <input type="checkbox" id="hakAkses1" name="hakAkses[]" value="header" @if($permisi[0] == 'header') checked @endif>
                       <label for="hakAkses1"> Header</label><br>
-                      <input type="checkbox" id="hakAkses2" name="hakAkses[]" value="berita">
+                      <input type="checkbox" id="hakAkses2" name="hakAkses[]" value="berita" @if($permisi[1] == 'berita') checked @endif>
                       <label for="hakAkses2"> Berita</label><br>
-                      <input type="checkbox" id="hakAkses3" name="hakAkses[]" value="program">
+                      <input type="checkbox" id="hakAkses3" name="hakAkses[]" value="program" @if($permisi[3] == 'program') checked @endif>
                       <label for="hakAkses3"> Program</label><br>
-                      <input type="checkbox" id="hakAkses4" name="hakAkses[]" value="agenda">
+                      <input type="checkbox" id="hakAkses4" name="hakAkses[]" value="agenda" @if('agenda' == 'agenda') checked @endif>
                       <label for="hakAkses4"> Agenda</label><br>
-                      <input type="checkbox" id="hakAkses5" name="hakAkses[]" value="anggota">
+                      <input type="checkbox" id="hakAkses5" name="hakAkses[]" value="anggota" @if('anggota' == 'anggota') checked @endif>
                       <label for="hakAkses5"> Anggota</label><br>
-                      <input type="checkbox" id="hakAkses6" name="hakAkses[]" value="community partners">
+                      <input type="checkbox" id="hakAkses6" name="hakAkses[]" value="community partners" @if('community partners' == 'community partners') checked @endif>
                       <label for="hakAkses6"> Community Partners</label><br>
-                      <input type="checkbox" id="hakAkses7" name="hakAkses[]" value="keuangan">
+                      <input type="checkbox" id="hakAkses7" name="hakAkses[]" value="keuangan" @if('keuangan' == 'keuangan') checked @endif>
                       <label for="hakAkses7"> Keuangan</label><br>
                   </div>
 

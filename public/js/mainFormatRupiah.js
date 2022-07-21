@@ -48,7 +48,7 @@
     return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
 }
 
-  var rupiah = document.getElementById('jumlah_sumbangan');
+  var rupiah = document.getElementById('jumlah');
   rupiah.addEventListener('keyup', function(e){
       // tambahkan 'Rp.' pada saat form di ketik
       // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka

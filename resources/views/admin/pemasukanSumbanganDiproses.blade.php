@@ -140,7 +140,7 @@
                       @elseif(auth()->user()->level=='spi')
                       <td><a href="{{ route('backend.sumbangan.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
                       @endif
-                      <td>Rp. {{ number_format($item->jumlah_sumbangan,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>{{ $item->status_verifikasi_bendahara }}</td>
                       <td>{{ $item->status_verifikasi_ketua }}</td>

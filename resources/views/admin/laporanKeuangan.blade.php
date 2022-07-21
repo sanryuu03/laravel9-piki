@@ -89,8 +89,8 @@
                         @endphp
                           @foreach($iuranPiki as $iuran)
                           @if ($iuran->jenis_setoran=='sumbangan')
-                          @php $iuran->sum += $sumbangan;
-
+                          @php
+                          $iuran->sum += $sumbangan;
                           @endphp
                           @endif
                           @php $totalPemasukan += $iuran->sum; @endphp

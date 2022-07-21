@@ -130,7 +130,7 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
-                      <td>Rp. {{ number_format($item->jumlah_iuran,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>
                           <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>

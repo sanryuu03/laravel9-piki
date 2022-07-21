@@ -36,11 +36,7 @@
                       <th width="1%">Nama Akun</th>
                       <th width="1%">Roles</th>
                       <th width="1%">Permissions</th>
-                      <th width="1%">Created At</th>
-                      <th width="1%">Di Buat Oleh</th>
-                      <th width="1%">Updated At</th>
-                      <th width="1%">Di Edit Oleh</th>
-                      <th width="3.4%">OPSI</th>
+                      <th width="0.1%">OPSI</th>
                   </tr>
               </thead>
               <tbody>
@@ -58,16 +54,12 @@
                           <span class="badge bg-danger text-white">{{ $Permission->name }}</span>
                           @endforeach
                       </td>
-                      <td>{{ date('d-M-y H:i', strtotime($user->created_at)) }} WIB</td>
-                      <td>{{ $user->post_by }}</td>
-                      <td>{{ date('d-M-y H:i', strtotime($user->updated_at)) }} WIB</td>
-                      <td>{{ $user->edited_by }}</td>
                       <td>
-                          <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                          <a href="" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
-                          <form action="" method="POST" class="d-inline">
+                          {{-- <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
+                          <a href="{{ route('backend.edit.admin', $user->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <form action="{{ route('backend.hapus.tambah.admin', $user->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger btn-sm">
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash"></i>
                               </button>
                           </form>

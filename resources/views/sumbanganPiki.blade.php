@@ -30,8 +30,8 @@
 
                       <div class="form-group">
                           <label>Jumlah Sumbangan <span class="text-danger">*</span></label>
-                          <input id="uang" type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan') }}">
-                          @error('jumlah_sumbangan')
+                          <input id="uang" type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah') }}">
+                          @error('jumlah')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>

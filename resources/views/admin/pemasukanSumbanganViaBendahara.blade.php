@@ -33,8 +33,8 @@
 
                       <div class="form-group jumlah-iuran">
                           <label>Jumlah Sumbangan </label>
-                          <input id="uang" readonly type="text" name="jumlah_sumbangan" class="form-control @error('jumlah_sumbangan') is-invalid @enderror" value="{{ old('jumlah_sumbangan', 'Rp. '.number_format($sumbangan->jumlah_sumbangan,0,",",".")) }}">
-                          @error('jumlah_sumbangan')
+                          <input id="uang" readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($sumbangan->jumlah,0,",",".")) }}">
+                          @error('jumlah')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>

@@ -69,7 +69,7 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td><a href="{{ route('anggota.cv', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
-                      <td>{{ number_format($item->jumlah_sumbangan,0,",",".") }}</td>
+                      <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>
                           <a href="{{ route('anggota.cv', $item->id) }}" class="btn btn-primary btn-sm mb-1"><i class="fa-solid fa-eye"></i></a>

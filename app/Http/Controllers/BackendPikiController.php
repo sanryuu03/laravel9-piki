@@ -181,7 +181,7 @@ class BackendPikiController extends Controller
     {
         // return auth()->user()->level;
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran baru')->get();
+        $pemasukanIuran = IuranPiki::where('status', 'iuran baru')->get();
         return view('admin/pemasukanIuranBaru', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Baru",
@@ -203,7 +203,7 @@ class BackendPikiController extends Controller
 
     public function postPemasukanIuranDiverifikasiBendahara(Request $request)
     {
-        // return $request->jumlah_iuran;
+        // return $request->jumlah;
         if (auth()->user()->level=='super-admin') {
             return redirect()->route('backend.iuran.baru')->with('unapproved', 'Iuran belum diverifikasi karna anda bukan bendahara');
         }
@@ -212,11 +212,11 @@ class BackendPikiController extends Controller
         }
         if (auth()->user()->level=='bendahara') {
             $data = $request->except('_token');
-            $dataRupiah = $request->jumlah_iuran;
+            $dataRupiah = $request->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-            $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
-            $data['status_iuran'] = 'iuran diproses';
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'iuran diproses';
             $data['status_verifikasi_bendahara'] = 'terverifikasi';
             IuranPiki::where('id', $request->id)
             ->update($data);
@@ -237,14 +237,14 @@ class BackendPikiController extends Controller
         }
         if (auth()->user()->level=='bendahara') {
             $data = IuranPiki::find($request->id);
-            $dataRupiah = $data->jumlah_iuran;
+            $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             IuranPiki::where('id', $request->id)
             ->update(
                 [
-                    'jumlah_iuran' => $rupiahHapusSimbolRp,
-                    'status_iuran' => 'iuran diproses',
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'iuran diproses',
                     'status_verifikasi_bendahara' => 'terverifikasi',
                 ]
             );
@@ -258,14 +258,14 @@ class BackendPikiController extends Controller
         // return $dataIuran = IuranPiki::where('id', $request->id)->get();
         $data = IuranPiki::find($request->id);
         if ($data->status_verifikasi_bendahara == 'terverifikasi') {
-            $dataRupiah = $data->jumlah_iuran;
+            $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             IuranPiki::where('id', $request->id)
             ->update(
                 [
-                    'jumlah_iuran' => $rupiahHapusSimbolRp,
-                    'status_iuran' => 'iuran diproses',
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'iuran diproses',
                     'status_verifikasi_ketua' => 'terverifikasi',
                 ]
             );
@@ -282,14 +282,14 @@ class BackendPikiController extends Controller
         // return $dataIuran = IuranPiki::where('id', $request->id)->get();
         $data = IuranPiki::find($request->id);
         if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
-            $dataRupiah = $data->jumlah_iuran;
+            $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             IuranPiki::where('id', $request->id)
             ->update(
                 [
-                    'jumlah_iuran' => $rupiahHapusSimbolRp,
-                    'status_iuran' => 'iuran terverifikasi',
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'iuran terverifikasi',
                     'status_verifikasi_spi' => 'terverifikasi',
                 ]
             );
@@ -306,12 +306,12 @@ class BackendPikiController extends Controller
         $iuran = IuranPiki::find($request->id);
         if ($iuran->status_verifikasi_bendahara == 'terverifikasi') {
             $data = $request->except('_token');
-            $dataRupiah = $request->jumlah_iuran;
+            $dataRupiah = $request->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             // return $rupiahHapusSimbolRp;
-            $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
-            $data['status_iuran'] = 'iuran diproses';
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'iuran diproses';
             $data['status_verifikasi_ketua'] = 'terverifikasi';
             IuranPiki::where('id', $request->id)
             ->update($data);
@@ -328,12 +328,12 @@ class BackendPikiController extends Controller
         $iuran = IuranPiki::find($request->id);
         if ($iuran->status_verifikasi_bendahara == 'terverifikasi' && $iuran->status_verifikasi_ketua == 'terverifikasi') {
             $data = $request->except('_token');
-            $dataRupiah = $request->jumlah_iuran;
+            $dataRupiah = $request->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             // return $rupiahHapusSimbolRp;
-            $data['jumlah_iuran'] = $rupiahHapusSimbolRp;
-            $data['status_iuran'] = 'iuran terverifikasi';
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'iuran terverifikasi';
             $data['status_verifikasi_spi'] = 'terverifikasi';
             IuranPiki::where('id', $request->id)
             ->update($data);
@@ -347,7 +347,7 @@ class BackendPikiController extends Controller
     public function pemasukanIuranDiproses(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran diproses')->get();
+        $pemasukanIuran = IuranPiki::where('status', 'iuran diproses')->get();
         return view('admin/pemasukanIuranDiproses', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Di Proses",
@@ -360,7 +360,7 @@ class BackendPikiController extends Controller
     {
         // return $request;
         $data = $request->except('_token');
-        $data['status_iuran'] = 'iuran ditolak';
+        $data['status'] = 'iuran ditolak';
         $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
         $iuran = IuranPiki::find($request->id);
         if ($iuran->alasan_ditolak == null && auth()->user()->level=='bendahara') {
@@ -396,7 +396,7 @@ class BackendPikiController extends Controller
     public function pemasukanIuranDitolak(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran ditolak')->get();
+        $pemasukanIuran = IuranPiki::where('status', 'iuran ditolak')->get();
         return view('admin/pemasukanIuranDitolak', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Di Tolak",
@@ -413,7 +413,7 @@ class BackendPikiController extends Controller
     public function pemasukanIuranDiterima(Request $request)
     {
         $idUser = auth()->user()->id;
-        $pemasukanIuran = IuranPiki::where('status_iuran', 'iuran terverifikasi')->get();
+        $pemasukanIuran = IuranPiki::where('status', 'iuran terverifikasi')->get();
         return view('admin/pemasukanIuranDiterima', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Iuran Diterima",
@@ -478,7 +478,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganBaru()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan baru')->get();
+        $rekapSumbangan = IuranPiki::where('status', 'sumbangan baru')->get();
         return view('admin/pemasukanSumbanganBaru', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Baru',
@@ -491,7 +491,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDiproses()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan diproses')->get();
+        $rekapSumbangan = IuranPiki::where('status', 'sumbangan diproses')->get();
         return view('admin/pemasukanSumbanganDiproses', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Diproses',
@@ -504,7 +504,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDitolak()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan ditolak')->get();
+        $rekapSumbangan = IuranPiki::where('status', 'sumbangan ditolak')->get();
         return view('admin/pemasukanSumbanganDitolak', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Ditolak',
@@ -517,7 +517,7 @@ class BackendPikiController extends Controller
     public function pemasukanSumbanganDiterima()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::where('status_sumbangan', 'sumbangan terverifikasi')->get();
+        $rekapSumbangan = IuranPiki::where('status', 'sumbangan terverifikasi')->get();
         return view('admin/pemasukanSumbanganDiterima', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Pemasukan Sumbangan Diterima',

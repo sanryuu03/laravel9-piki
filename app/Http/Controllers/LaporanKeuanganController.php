@@ -99,20 +99,22 @@ class LaporanKeuanganController extends Controller
         // $sumbangan = SumbanganPiki::first();
 
         $iuranPiki = IuranPiki::groupBy('jenis_setoran','tanggal')
+        ->where('status', 'iuran terverifikasi')
+        ->orWhere('status', 'sumbangan terverifikasi')
         ->selectRaw('tanggal,jenis_setoran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
 
-        $sumbangan = SumbanganPiki::where('status_sumbangan','sumbangan terverifikasi')->sum('jumlah_sumbangan');
+        $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
         $pengeluaranRutin = PengeluaranRutin::groupBy('pos_anggaran','tanggal')
         ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
 
         // return $pengeluaranRutin;
-        // $sumbangan = SumbanganPiki::sum('jumlah_sumbangan');
+        // $sumbangan = SumbanganPiki::sum('jumlah');
         // dd($sumbangan);
         // dd($iuranPiki);
-        // return $sumbangan->sum('jumlah_sumbangan');
-        // return gettype(array_sum( explode( ',', $sumbangan->jumlah_sumbangan ) ));
+        // return $sumbangan->sum('jumlah');
+        // return gettype(array_sum( explode( ',', $sumbangan->jumlah ) ));
         $arrJenisSetoran = [];
         foreach($laporanKeuangan as $laporan) {
             $namaPemasukan = $laporan->nama_pemasukan;
