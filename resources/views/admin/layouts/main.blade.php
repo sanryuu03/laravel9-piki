@@ -267,7 +267,7 @@
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                     @foreach($subMenuNavbarKeuangan as $item)
                                     @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
-                                        <li><a href="{{ url('/admin/re kapPemasukan') }}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
+                                        <li><a href="{!! url('/admin/dinamisUrlNavbarKeuangan', [$item->masterMenuNavbarKeuangan->nama_menu, $item->nama_sub_menu]) !!}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
                                     @endif
                                     @endforeach
                                     </ul>

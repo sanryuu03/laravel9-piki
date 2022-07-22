@@ -27,6 +27,7 @@ use App\Http\Controllers\LaporanKeuanganController;
 use App\Http\Controllers\HeaderPikiMobileController;
 use App\Http\Controllers\PengeluaranRutinController;
 use App\Http\Controllers\DependantDropdownController;
+use App\Http\Controllers\DinamisUrlNavbarKeuanganController;
 use App\Http\Controllers\MasterMenuNavbarController;
 use App\Http\Controllers\SubKategoriAnggotaController;
 use App\Http\Controllers\SubMenuNavbarKeuanganController;
@@ -334,6 +335,8 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'],'/admin/formEditSubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'formEditSubMenuNavbarKeuangan'])->name('backend.form.edit.sub.menu.navbar.keuangan');
     Route::match(['get', 'post'],'/admin/saveFormSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'saveFormSubMenuNavbarKeuangan'])->name('backend.save.form.sub.menu.navbar.keuangan');
     Route::match(['get', 'post'],'/admin/destroySubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'destroySubMenuNavbarKeuangan'])->name('backend.destroy.sub.menu.navbar.keuangan');
+
+    Route::match(['get', 'post'],'/admin/dinamisUrlNavbarKeuangan/{masterMenu?}/{subMenu?}', [DinamisUrlNavbarKeuanganController::class, 'dinamisUrlNavbarKeuangan'])->name('backend.dinamis.url.navbar.keuangan');
 });
 
 // login khusus anggota
