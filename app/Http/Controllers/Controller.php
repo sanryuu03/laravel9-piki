@@ -17,10 +17,12 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        $navbarAnggota = false;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::get();
         // dd($pendaftarBaru);
         View::share([
+            "navbarAnggota" => $navbarAnggota,
             "masterMenuNavbarKeuangan" => $masterMenuNavbarKeuangan,
             "subMenuNavbarKeuangan" => $subMenuNavbarKeuangan,
         ]);

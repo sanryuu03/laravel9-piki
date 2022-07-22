@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KategoriAnggota;
 use App\Models\SubKategoriAnggota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class SubKategoriAnggotaController extends Controller
 {
@@ -13,6 +14,15 @@ class SubKategoriAnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $navbarAnggota = true;
+        View::share([
+            "navbarAnggota" => $navbarAnggota,
+        ]);
+
+    }
+
     public function index()
     {
         $subKategoriAnggota = SubKategoriAnggota::all();

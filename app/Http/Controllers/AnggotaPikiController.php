@@ -58,6 +58,8 @@ class AnggotaPikiController extends Controller
         $kategoriAnggota = $hitungKategoriAnggota > 0 ? $hitungKategoriAnggota:0;
         $subKategoriAnggota = $hitungSubKategoriAnggota > 0 ? $hitungSubKategoriAnggota:0;
         // dd($pendaftarBaru);
+        // $navbarAnggota = request()->route()->getName() === 'backendanggota';
+        $navbarAnggota = true;
         View::share([
             'pendaftarBaru' => $pendaftarBaru,
             'dalamProses' => $dalamProses,
@@ -67,6 +69,7 @@ class AnggotaPikiController extends Controller
             'anggotaYangDitampilkan' => $anggotaYangDitampilkan,
             'kategoriAnggota' => $kategoriAnggota,
             'subKategoriAnggota' => $subKategoriAnggota,
+            "navbarAnggota" => $navbarAnggota,
         ]);
 
     }
