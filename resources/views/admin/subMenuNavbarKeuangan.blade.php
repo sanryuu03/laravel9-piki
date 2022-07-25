@@ -3,8 +3,8 @@
   @section('menuContent')
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -27,7 +27,7 @@
   .<div class="container-fluid landingpage-anggota">
         <div class="row">
           <div class="col-md-4">
-              <a href="{{ route('backend.form.add.sub.menu.navbar.keuangan') }}" class="btn btn-warning btn-sm mb-1">Tambah Sub Menu Navbar Keuangan</a>
+              <a href="{{ route('backend.form.add.sub.menu.navbar.keuangan') }}" class="mb-1 btn btn-warning btn-sm">Tambah Sub Menu Navbar Keuangan</a>
           </div>
       </div>
       <div class="card-body">
@@ -51,8 +51,8 @@
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->updated_at)) }} WIB</td>
                       <td>
-                          <a href="{{ route('backend.form.edit.nama.kegiatan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
-                          <form action="{{ route('backend.pos.anggaran.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('backend.form.edit.sub.menu.navbar.keuangan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <form action="{{ route('backend.destroy.sub.menu.navbar.keuangan', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>

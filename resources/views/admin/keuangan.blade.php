@@ -10,8 +10,8 @@ li.dropdown-submenu2:hover > .dropdown-menu {
   */ --}}
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">{{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">{{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -21,15 +21,15 @@ li.dropdown-submenu2:hover > .dropdown-menu {
 
   <div class="container-fluid">
       <div class="card-body">
-          <div class="row mb-3">
+          <div class="mb-3 row">
               <!-- Ditolak Card Example -->
-              {{-- <div class="col-xl-3 col-md-6 mb-4">
+              {{-- <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
                       <a href="{{  url('/admin/laporanKeuangan') }}" class="d-flex">
               <div class="card-body">
                   <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-uppercase mb-1">Input Data Report</div>
+                      <div class="mr-2 col">
+                          <div class="mb-1 text-xs font-weight-bold text-uppercase">Input Data Report</div>
                       </div>
                       <div class="col-auto">
                           <i class="fas fa-file-invoice-dollar fa-2x text-danger"></i>
@@ -41,14 +41,14 @@ li.dropdown-submenu2:hover > .dropdown-menu {
       </div> --}}
 
       <!-- Data Iuran Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/DataIuran') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Pengaturan Rekening Bank</div>
-                              <div class="mt-2 mb-0 text-muted text-xs">
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">Pengaturan Rekening Bank</div>
+                              <div class="mt-2 mb-0 text-xs text-muted">
                                   <span>Data bank iuran</span>
                               </div>
                           </div>
@@ -62,14 +62,14 @@ li.dropdown-submenu2:hover > .dropdown-menu {
       </div>
 
       <!-- Data Biaya Iuran Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/dataBiayaIuran') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Pengaturan Besaran Iuran</div>
-                              <div class="mt-2 mb-0 text-muted text-xs">
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">Pengaturan Besaran Iuran</div>
+                              <div class="mt-2 mb-0 text-xs text-muted">
                                   <span>Data biaya iuran</span>
                               </div>
                           </div>
@@ -84,13 +84,13 @@ li.dropdown-submenu2:hover > .dropdown-menu {
 
       @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara')
       <!-- Master Menu Navbar Pemasukan Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/masterMenuNavbarKeuangan') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Master Menu Navbar</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Master Menu Navbar') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-clipboard-list fa-2x text-primary"></i>
@@ -100,14 +100,14 @@ li.dropdown-submenu2:hover > .dropdown-menu {
               </a>
           </div>
       </div>
-            <!-- Sub Menu Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <!-- Sub Menu Card Example -->
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/subMenuNavbarKeuangan') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Sub Menu</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Sub Menu') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-clipboard-list fa-2x text-info"></i>
@@ -117,14 +117,31 @@ li.dropdown-submenu2:hover > .dropdown-menu {
               </a>
           </div>
       </div>
+      {{-- <!-- Form Card Example -->
+      <div class="mb-4 col-xl-3 col-md-6">
+          <div class="card h-100">
+              <a href="{{  url('/admin/customForm') }}" class="d-flex">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('custom form') }}</div>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fas fa-table-list fa-2x text-info"></i>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div> --}}
       <!-- Master Pos Anggaran Rutin Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/posAngaran') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Master Pos Anggaran</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Master Pos Anggaran') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-clipboard-list fa-2x text-primary"></i>
@@ -135,13 +152,13 @@ li.dropdown-submenu2:hover > .dropdown-menu {
           </div>
       </div>
       <!-- Nama Kegiatan Rutin Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/namaKegiatan') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Nama Kegiatan</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Nama Kegiatan') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-clipboard-list fa-2x text-info"></i>
@@ -152,13 +169,13 @@ li.dropdown-submenu2:hover > .dropdown-menu {
           </div>
       </div>
       <!-- Tambah Pemasukan Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/formInput') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Input Pemasukan</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pemasukan') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-file-invoice-dollar fa-2x text-success"></i>
@@ -169,13 +186,13 @@ li.dropdown-submenu2:hover > .dropdown-menu {
           </div>
       </div>
       <!-- Tambah Pengeluaran Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
-              <a href="{{  url('/admin/formAddPengeluaranRutin') }}" class="d-flex">
+              <a href="{{  url('/admin/formAddPengeluaran') }}" class="d-flex">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-uppercase mb-1">Input Pengeluaran</div>
+                          <div class="mr-2 col">
+                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pengeluaran') }}</div>
                           </div>
                           <div class="col-auto">
                               <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>

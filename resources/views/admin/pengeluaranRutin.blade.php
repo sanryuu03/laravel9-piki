@@ -9,7 +9,7 @@
               <!-- New User Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pengeluaranRutinBaru') }}" class="d-flex">
+                      <a href="{{  url('/admin/PengeluaranBaru') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
@@ -29,7 +29,7 @@
               <!-- Dalam Proses Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pengeluaranRutinDiproses') }}" class="d-flex">
+                      <a href="{{  url('/admin/PengeluaranDiproses') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
                                   <div class="col mr-2">
@@ -49,7 +49,7 @@
               <!-- Ditolak Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pengeluaranRutinDitolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/PengeluaranDitolak') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
@@ -70,7 +70,7 @@
               <!-- Diterima Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pengeluaranRutinDiterima') }}" class="d-flex">
+                      <a href="{{  url('/admin/PengeluaranDiterima') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">

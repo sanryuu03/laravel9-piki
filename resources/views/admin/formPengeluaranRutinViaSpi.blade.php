@@ -33,8 +33,8 @@
 
                   <div class="form-group">
                       <label>Pos Anggaran</label>
-                      <input type="hidden" name="id" class="form-control" value="{{ $pengeluaranRutin->id }}">
-                      <input type="text" name="pos_anggaran" class="form-control @error('pos_anggaran') is-invalid @enderror" value="{{ old('pos_anggaran', $pengeluaranRutin->pos_anggaran) }}">
+                      <input type="hidden" name="id" class="form-control" value="{{ $Pengeluaran->id }}">
+                      <input type="text" name="pos_anggaran" class="form-control @error('pos_anggaran') is-invalid @enderror" value="{{ old('pos_anggaran', $Pengeluaran->pos_anggaran) }}">
                       @error('pos_anggaran')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -43,7 +43,7 @@
                   </div>
                   <div class="form-group">
                       <label>Nama Kegiatan</label>
-                      <input type="text" name="nama_kegiatan" class="form-control @error('nama_kegiatan') is-invalid @enderror" value="{{ old('nama_kegiatan', $pengeluaranRutin->nama_kegiatan) }}">
+                      <input type="text" name="nama_kegiatan" class="form-control @error('nama_kegiatan') is-invalid @enderror" value="{{ old('nama_kegiatan', $Pengeluaran->nama_kegiatan) }}">
                       @error('nama_kegiatan')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -52,7 +52,7 @@
                   </div>
                   <div class="form-group">
                       <label>Tanggal</label>
-                      <input id="date" class="form-control @error('tanggal') is-invalid @enderror" type="text" name="tanggal" placeholder="YYYY/MM/DD" value="{{ old('tanggal', $pengeluaranRutin->tanggal) }}" />
+                      <input id="date" class="form-control @error('tanggal') is-invalid @enderror" type="text" name="tanggal" placeholder="YYYY/MM/DD" value="{{ old('tanggal', $Pengeluaran->tanggal) }}" />
                       @error('tanggal')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -61,7 +61,7 @@
                   </div>
                   <div class="form-group">
                       <label>Uraian pengeluaran</label>
-                      <input type="text" name="uraian_pengeluaran" class="form-control @error('uraian_pengeluaran') is-invalid @enderror" value="{{ old('uraian_pengeluaran', $pengeluaranRutin->uraian_pengeluaran) }}">
+                      <input type="text" name="uraian_pengeluaran" class="form-control @error('uraian_pengeluaran') is-invalid @enderror" value="{{ old('uraian_pengeluaran', $Pengeluaran->uraian_pengeluaran) }}">
                       @error('uraian_pengeluaran')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -70,7 +70,7 @@
                   </div>
                   <div class="form-group">
                       <label>Volume</label>
-                      <input id='volume' type="text" name="volume" class="form-control @error('volume') is-invalid @enderror" value="{{ old('volume', $pengeluaranRutin->volume) }}">
+                      <input id='volume' type="text" name="volume" class="form-control @error('volume') is-invalid @enderror" value="{{ old('volume', $Pengeluaran->volume) }}">
                       @error('volume')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -79,7 +79,7 @@
                   </div>
                   <div class="form-group">
                       <label>Satuan</label>
-                      <input type="text" name="satuan" class="form-control @error('satuan') is-invalid @enderror" value="{{ old('satuan', $pengeluaranRutin->satuan) }}">
+                      <input type="text" name="satuan" class="form-control @error('satuan') is-invalid @enderror" value="{{ old('satuan', $Pengeluaran->satuan) }}">
                       @error('satuan')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -88,7 +88,7 @@
                   </div>
                   <div class="form-group">
                       <label>Harga Satuan</label>
-                      <input id='harga_satuan' type="text" name="harga_satuan" class="form-control @error('harga_satuan') is-invalid @enderror" value="{{ old('harga_satuan', $pengeluaranRutin->harga_satuan) }}">
+                      <input id='harga_satuan' type="text" name="harga_satuan" class="form-control @error('harga_satuan') is-invalid @enderror" value="{{ old('harga_satuan', $Pengeluaran->harga_satuan) }}">
                       @error('harga_satuan')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -97,7 +97,7 @@
                   </div>
                   <div class="form-group">
                       <label>Jumlah</label>
-                      <input id='jumlah' readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($pengeluaranRutin->jumlah,0,",",".")) }}">
+                      <input id='jumlah' readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($Pengeluaran->jumlah,0,",",".")) }}">
                       @error('jumlah')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -106,7 +106,7 @@
                   </div>
                   <div class="form-group">
                       <label>Berita</label>
-                      <input type="text" name="berita" class="form-control @error('berita') is-invalid @enderror" value="{{ old('berita', $pengeluaranRutin->berita) }}">
+                      <input type="text" name="berita" class="form-control @error('berita') is-invalid @enderror" value="{{ old('berita', $Pengeluaran->berita) }}">
                       @error('berita')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -117,7 +117,7 @@
                   <div>
                       <label>Bukti Pengeluaran</label>
                       </div>
-                          <img class="" width="550px" height="350px" src="{{ url('/storage/assets/pengeluaran/rutin/'.$pengeluaranRutin->picture_path_bukti_pengeluaran_rutin) }}">
+                          <img class="" width="550px" height="350px" src="{{ url('/storage/assets/pengeluaran/rutin/'.$Pengeluaran->picture_path_bukti_pengeluaran_rutin) }}">
                       @error('picture_path_bukti_pengeluaran_rutin')
                       <div class="invalid-feedback">
                           {{ $message }}

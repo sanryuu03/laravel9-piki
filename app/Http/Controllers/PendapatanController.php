@@ -13,6 +13,7 @@ use App\Models\SumbanganPiki;
 use App\Models\DataBiayaIuran;
 use App\Models\jenisPemasukan;
 use App\Models\LaporanKeuangan;
+use App\Models\SubMenuNavbarKeuangan;
 
 class PendapatanController extends Controller
 {
@@ -61,6 +62,7 @@ class PendapatanController extends Controller
         $jenisPemasukan = jenisPemasukan::all();
         $dataBiayaIuran = DataBiayaIuran::latest()->first();
         $userDiterima = User::where('status_anggota', 'diterima')->get();
+        $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
         return view('admin/formPendapatan', [
             "title" => "PIKI - Iuran",
             "menu" => ucwords("input pendapatan"),
@@ -73,6 +75,7 @@ class PendapatanController extends Controller
             'dataBiayaIuran' => $dataBiayaIuran,
             'namaUser' => $namaUser,
             'action' => 'add',
+            'jenisPengeluaran' => $jenisPengeluaran,
         ]);
     }
 
@@ -114,13 +117,17 @@ class PendapatanController extends Controller
     {
         // return $request;
         // return $request->action;
+        $jenisPendapatan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();
+        // return $jenisPendapatan->nama_sub_menu;
         if ($request->action == "add") {
             if ($request->jenis_setoran == null) {
                 return redirect()->route('iuran', $request->id)->with('unapproved', 'Jenis Setoran Belum Dipilih !');
             }
-            if ($request->jenis_setoran == 1) {
+            if ($jenisPendapatan->nama_sub_menu == 'iuran') {
                 $data = $request->except('_token');
                 $data['tanggal'] = now();
+                $data['nama_penyetor'] = $request->nama_penyumbang;
+                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
                 $namaBulan = $_POST['bulan'];
                 $arrBulan = [];
                 foreach ($namaBulan as $bulan){
@@ -136,9 +143,9 @@ class PendapatanController extends Controller
                     $rupiah = str_replace(".", "", $dataRupiah);
                     $data['jumlah'] = $rupiah;
                 }
-                $jenisPemasukan = jenisPemasukan::where('id', $request->jenis_setoran)->get();
-                $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
-                $data['jenis_setoran'] = $namaJenisPemasukan;
+                $jenisPemasukan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();
+                $namaJenisPemasukan = $jenisPemasukan->nama_sub_menu;
+                $data['jenis_pendapatan'] = $namaJenisPemasukan;
 
                 if ($request->file('picture_path_slip_setoran_iuran')) {
                     // menyimpan data file yang diupload ke variabel $file
@@ -155,15 +162,17 @@ class PendapatanController extends Controller
                     $data['picture_path_slip_setoran_iuran'] = $nama_file;
                 }
 
-                IuranPiki::create($data);
+                Pendapatan::create($data);
                 return redirect()->route('backend.pendapatan')->with('success', 'Iuran Berhasil Dilakukan, Terima Kasih !');
             }
-            if ($request->jenis_setoran == 2) {
+            if ($jenisPendapatan->nama_sub_menu == 'sumbangan') {
                 $data = $request->except('_token');
                 $data['tanggal'] = now();
                 $dataRupiah = $request->jumlah;
                 $rupiah = str_replace(".","",$dataRupiah);
                 $data['jumlah'] = $rupiah;
+                $data['nama_penyetor'] = $request->nama_penyumbang;
+                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
 
                 if ($request->file('picture_path_slip_setoran_iuran')) {
                     // menyimpan data file yang diupload ke variabel $file
@@ -180,15 +189,49 @@ class PendapatanController extends Controller
                     $data['picture_path_slip_setoran_iuran'] = $nama_file;
                 }
 
-                $jenisPemasukan = jenisPemasukan::where('id', $request->jenis_setoran)->get();
-                $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
-                $data['jenis_setoran'] = $namaJenisPemasukan;
+                $jenisPemasukan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();
+                $namaJenisPemasukan = $jenisPemasukan->nama_sub_menu;
+                $data['jenis_pendapatan'] = $namaJenisPemasukan;
 
                 $data['status'] = 'sumbangan baru';
 
 
-                IuranPiki::create($data);
+                Pendapatan::create($data);
                 return redirect()->route('backend.pendapatan')->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
+            }
+            else {
+                // return request();
+                $data = $request->except('_token');
+                $data['tanggal'] = now();
+                $dataRupiah = $request->jumlah;
+                $rupiah = str_replace(".","",$dataRupiah);
+                $data['jumlah'] = $rupiah;
+                $data['nama_penyetor'] = $request->nama_penyumbang;
+                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
+
+                if ($request->file('picture_path_slip_setoran_iuran')) {
+                    // menyimpan data file yang diupload ke variabel $file
+                    $file = $request->file('picture_path_slip_setoran_iuran');
+                    $nama_file = time() . "_" . $file->getClientOriginalName();
+                    // dd($nama_file);
+
+                    // isi dengan nama folder tempat kemana file diupload
+                    $tujuan_upload = 'storage/assets/slip/setoran/pendapatan/';
+
+                    // upload file
+                    $file->move($tujuan_upload, $nama_file);
+
+                    $data['picture_path_slip_setoran_iuran'] = $nama_file;
+                }
+
+                $jenisPemasukan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();
+                $namaJenisPemasukan = $jenisPemasukan->nama_sub_menu;
+                $data['jenis_pendapatan'] = $namaJenisPemasukan;
+
+                $data['status'] = 'baru';
+                Pendapatan::create($data);
+                return redirect()->route('backend.pendapatan')->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
+
             }
         }
         if ($request->action == "edit") {

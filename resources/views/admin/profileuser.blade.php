@@ -46,10 +46,10 @@
                     <img src="{{ asset('backend/img/logo/logo2.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-bold">{{ $menu }}</span>
                 </a>
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="order-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                <div class="order-3 collapse navbar-collapse" id="navbarCollapse">
 
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -60,9 +60,39 @@
                             <a href="{{  url('/admin/iuran', $item->id) }}" class="nav-link">Iuran</a>
                         </li>
                         @endif
+                        @can('header', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/landingpageheader') }}" class="nav-link">{{ ucwords('header') }}</a>
+                        </li>
+                        @endcan
+                        @can('berita', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/landingpageberita') }}" class="nav-link">{{ ucwords('berita') }}</a>
+                        </li>
+                        @endcan
+                        @can('program', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/landingpagejenisprogram') }}" class="nav-link">{{ ucwords('program') }}</a>
+                        </li>
+                        @endcan
+                        @can('agenda', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/landingpageagenda') }}" class="nav-link">{{ ucwords('agenda') }}</a>
+                        </li>
+                        @endcan
                         @can('anggota', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/backendanggota', $item->id) }}" class="nav-link">Anggota</a>
+                            <a href="{{  url('/admin/backendanggota') }}" class="nav-link">{{ ucwords('anggota') }}</a>
+                        </li>
+                        @endcan
+                        @can('community partners', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/communitypartners') }}" class="nav-link">{{ ucwords('community partners') }}</a>
+                        </li>
+                        @endcan
+                        @can('keuangan', $user)
+                        <li class="nav-item">
+                            <a href="{{  url('/admin/keuangan') }}" class="nav-link">{{ ucwords('keuangan') }}</a>
                         </li>
                         @endcan
                     </ul>
@@ -78,14 +108,14 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                <div class="my-5 border-0 shadow-lg card o-hidden">
+                    <div class="p-0 card-body">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ $menu }}</h1>
+                                        <h1 class="mb-4 text-gray-900 h4">{{ $menu }}</h1>
                                         <p class="text-gray-900">Selamat Datang</p>
                                     </div>
                                     @if(session()->has('success'))
@@ -169,7 +199,7 @@
 
                                             <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="mb-3 col-md-4">
                                                 <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">
@@ -201,7 +231,7 @@
                                     </form>
                                     <hr>
                                     <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
                                         Logout
                                     </a>
 

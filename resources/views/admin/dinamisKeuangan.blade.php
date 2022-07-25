@@ -5,16 +5,16 @@
 
   <div class="container-fluid">
       <div class="card-body">
-          <div class="row mb-3">
+          <div class="mb-3 row">
               <!-- New User Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganBaru') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Baru']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">{{ ucwords($subMenu.' baru') }}</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' baru') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Belum di proses</span>
                                       </div>
                                   </div>
@@ -27,14 +27,14 @@
                   </div>
               </div>
               <!-- Dalam Proses Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDiproses') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diproses']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">{{ ucwords($subMenu.' Diproses') }}</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' Diproses') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sedang di verifikasi</span>
                                       </div>
                                   </div>
@@ -47,14 +47,14 @@
                   </div>
               </div>
               <!-- Ditolak Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDitolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Ditolak']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">{{ ucwords($subMenu.' ditolak') }}</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' ditolak') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Verifikasi gagal</span>
                                       </div>
                                   </div>
@@ -68,14 +68,14 @@
               </div>
 
               <!-- Diterima Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDiterima') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diterima']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">{{ ucwords($subMenu.' terverifikasi') }}</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' terverifikasi') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sumbangan diterima</span>
                                       </div>
                                   </div>

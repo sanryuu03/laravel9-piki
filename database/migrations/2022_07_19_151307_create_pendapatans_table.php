@@ -15,8 +15,23 @@ return new class extends Migration
     {
         Schema::create('pendapatans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('post_by')->nullable();
-            $table->string('edited_by')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->string('jenis_pendapatan')->nullable();
+            $table->string('iuran_bulan')->nullable();
+            $table->string('jumlah')->nullable();
+            $table->string('nama_penyetor')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('tujuan_penyetor')->nullable();
+            $table->string('berita')->nullable();
+            $table->string('rekening_pembayaran')->default('Bank Sumut');
+            $table->string('nomor_rekening')->default('1000.104.000.7722');
+            $table->string('atas_nama')->default('DPD PIKI SUMUT');
+            $table->string('picture_path_slip_pendapatan')->nullable();
+            $table->string('status')->default('baru');
+            $table->string('status_verifikasi_bendahara')->nullable();
+            $table->string('status_verifikasi_ketua')->nullable();
+            $table->string('status_verifikasi_spi')->nullable();
+            $table->string('alasan_ditolak')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->string('deleted_by')->nullable();

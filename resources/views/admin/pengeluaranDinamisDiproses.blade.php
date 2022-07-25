@@ -1,18 +1,20 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
+  <!-- Container Fluid-->
+
   <div class="container-fluid">
       <div class="card-body">
-          <div class="row mb-3">
+          <div class="mb-3 row">
               <!-- New User Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/PengeluaranBaru') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Baru']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran Baru</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' baru') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Belum di proses</span>
                                       </div>
                                   </div>
@@ -25,14 +27,14 @@
                   </div>
               </div>
               <!-- Dalam Proses Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/PengeluaranDiproses') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diproses']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran Diproses</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' Diproses') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sedang di verifikasi</span>
                                       </div>
                                   </div>
@@ -45,14 +47,14 @@
                   </div>
               </div>
               <!-- Ditolak Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/PengeluaranDitolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Ditolak']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran ditolak</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' ditolak') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Verifikasi gagal</span>
                                       </div>
                                   </div>
@@ -66,15 +68,15 @@
               </div>
 
               <!-- Diterima Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/PengeluaranDiterima') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diterima']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran terverifikasi</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
-                                          <span>Pengeluaran diterima</span>
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' terverifikasi') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
+                                          <span>Sumbangan diterima</span>
                                       </div>
                                   </div>
                                   <div class="col-auto">
@@ -88,10 +90,11 @@
           </div>
       </div>
   </div>
-  <!-- Container Fluid-->
+
+  <!---Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.pengeluaran.rutin') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.pengeluaran.rutin') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -123,6 +126,10 @@
                       <th width="1%">Satuan</th>
                       <th width="1%">Harga Satuan</th>
                       <th width="1%">Jumlah Pengeluaran</th>
+                      <th width="0.01%">Bendahara</th>
+                      <th width="0.01%">Ketua</th>
+                      <th width="0.01%">SPI</th>
+                      <th width="0.01%">Alasan Ditolak</th>
                       <th width="0.01%">OPSI</th>
                   </tr>
               </thead>
@@ -131,11 +138,21 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
+                      @if(auth()->user()->level=='bendahara')
                       <td><a href="{{ route('backend.form.pengeluaran.rutin.via.bendahara', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
-                      <td>{{ number_format($item->volume,0,",",".") }}</td>
+                      @elseif(auth()->user()->level=='super-admin')
+                      <td><a href="{{ route('backend.form.pengeluaran.rutin.via.ketua', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      @elseif(auth()->user()->level=='spi')
+                      <td><a href="{{ route('backend.form.pengeluaran.rutin.via.spi', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      @endif
+                      <td>{{ $item->volume }}</td>
                       <td>{{ $item->satuan }}</td>
-                      <td>{{ number_format($item->harga_satuan,0,",",".") }}</td>
-                      <td>{{ number_format($item->jumlah,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->harga_satuan,0,",",".") }}</td>
+                      <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
+                      <td>{{ $item->status_verifikasi_bendahara }}</td>
+                      <td>{{ $item->status_verifikasi_ketua }}</td>
+                      <td>{{ $item->status_verifikasi_spi }}</td>
+                      <td>{{ $item->alasan_ditolak }}</td>
                       <td>
                           <a href="{{ route('backend.form.edit.pengeluaran.rutin', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
                           <form action="{{ route('backend.post.pengeluaran.rutin.destroy', $item->id) }}" method="POST" class="d-inline">
@@ -144,7 +161,13 @@
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
-                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi</a>
+                          @if(auth()->user()->level=='spi')
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          @elseif(auth()->user()->level=='super-admin')
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          @elseif(auth()->user()->level=='bendahara')
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
                           <!-- Modal Alasan Start-->
                           <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

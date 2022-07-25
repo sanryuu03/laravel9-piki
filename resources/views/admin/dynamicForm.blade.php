@@ -24,10 +24,10 @@
       {{ session('unapproved') }}
   </div>
   @endif
-  .<div class="container-fluid landingpage-anggota">
+  <div class="container-fluid landingpage-anggota">
         <div class="row">
           <div class="col-md-4">
-              <a href="{{ route('backend.form.add.master.menu.navbar.keuangan') }}" class="mb-1 btn btn-warning btn-sm">Tambah Menu Navbar</a>
+              <a href="{{ route('backend.add.dinamis.form') }}" class="mb-1 btn btn-warning btn-sm">Tambah Form</a>
           </div>
       </div>
       <div class="card-body">
@@ -35,27 +35,31 @@
               <thead>
                   <tr>
                       <th width="0.1%">NO</th>
-                      <th width="1%">Nama Navbar</th>
+                      <th width="1%">Master Menu</th>
+                      <th width="1%">Sub Menu</th>
+                      <th width="1%">Nama Form Input</th>
                       <th width="1%">Created At</th>
                       <th width="1%">Updated At</th>
                       <th width="0.01%">OPSI</th>
                   </tr>
               </thead>
               <tbody>
-                  @foreach($masterMenuNavbarKeuangan as $item)
+                  @foreach($dynamic as $item)
                   <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ ucwords($item->nama_menu) }}</td>
+                      <td>{{ $item->nama_menu }}</td>
+                      <td>{{ $item->nama_sub_menu }}</td>
+                      <td>{{ $item->jenis_setoran }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->updated_at)) }} WIB</td>
                       <td>
-                          <a href="{{ route('backend.form.edit.master.menu.navbar.keuangan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
-                          {{-- <form action="{{ route('backend.destroy.master.menu.navbar.keuangan', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('backend.form.edit.pos.anggaran', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <form action="{{ route('backend.pos.anggaran.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
-                          </form> --}}
+                          </form>
                       </td>
                   </tr>
                   @endforeach

@@ -11,7 +11,12 @@ use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use App\Models\DataBankIuran;
 use App\Models\DataRekening;
+use App\Models\DynamicForm;
+use App\Models\DynamicTable;
 use App\Models\jenisPemasukan;
+use App\Models\JenisSetoran;
+use App\Models\MasterMenuNavbar;
+use App\Models\StaticField;
 use Illuminate\Database\Seeder;
 use Database\Seeders\IndoRegionSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -538,5 +543,20 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        MasterMenuNavbar::create([
+            'nama_menu' => 'pemasukan',
+        ]);
+
+        MasterMenuNavbar::create([
+            'nama_menu' => 'pengeluaran',
+        ]);
+
+        JenisSetoran::create([
+            'jenis_setoran' => 'pemasukan',
+        ]);
+
+        JenisSetoran::create([
+            'jenis_setoran' => 'pengeluaran',
+        ]);
     }
 }

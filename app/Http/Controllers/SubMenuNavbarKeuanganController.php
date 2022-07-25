@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MasterMenuNavbar;
 use App\Models\SubMenuNavbarKeuangan;
 use Illuminate\Http\Request;
+use LaravelLang\Lang\Plugins\Jetstream\Master;
 
 class SubMenuNavbarKeuanganController extends Controller
 {
@@ -79,9 +80,22 @@ class SubMenuNavbarKeuanganController extends Controller
      * @param  \App\Models\SubMenuNavbarKeuangan  $subMenuNavbarKeuangan
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubMenuNavbarKeuangan $subMenuNavbarKeuangan)
+    public function edit(SubMenuNavbarKeuangan $subMenuNavbarKeuangan, $id)
     {
-        //
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
+        $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($id);
+        return view('admin/formSubMenuNavbarKeuangan', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form edit sub menu navbar PIKI SUMUT'),
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'masterMenu$masterMenuNavbarKeuangan' => $masterMenuNavbarKeuangan,
+            'subMenuNavbarKeuangan' => $subMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+        ]);
     }
 
     /**

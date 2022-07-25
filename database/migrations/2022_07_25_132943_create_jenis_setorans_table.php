@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_izins', function (Blueprint $table) {
+        Schema::create('jenis_setorans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('users_id')->nullable();
-            $table->string('permission')->nullable();
-            $table->string('status')->nullable();
+            $table->string('jenis_setoran')->nullable();
             $table->string('post_by')->nullable();
             $table->string('edited_by')->nullable();
             $table->timestamps();
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_izins');
+        Schema::dropIfExists('jenis_setorans');
     }
 };

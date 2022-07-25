@@ -9,8 +9,8 @@
   </style>
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a>{{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a>{{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -87,19 +87,19 @@
                         @php
                             $totalPemasukan=0;$totalPengeluaran=0;
                         @endphp
-                          @foreach($iuranPiki as $iuran)
-                          @if ($iuran->jenis_setoran=='sumbangan')
+                          @foreach($pendapatan as $pemasukan)
+                          @if ($pemasukan->jenis_setoran=='sumbangan')
                           @php
-                          $iuran->sum += $sumbangan;
+                          $pemasukan->sum += $sumbangan;
                           @endphp
                           @endif
-                          @php $totalPemasukan += $iuran->sum; @endphp
+                          @php $totalPemasukan += $pemasukan->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
-                              <td>{{ date('F', strtotime($iuran->tanggal)) }}</td>
-                              {{-- <td>{{ $iuran->tanggal }}</td> --}}
-                              <td>{{ $iuran->jenis_setoran }}</td>
-                              <td>{{ $iuran->sum }}</td>
+                              <td>{{ date('F', strtotime($pemasukan->tanggal)) }}</td>
+                              {{-- <td>{{ $pemasukan->tanggal }}</td> --}}
+                              <td>{{ $pemasukan->jenis_pendapatan }}</td>
+                              <td>{{ $pemasukan->sum }}</td>
                           </tr>
                           @endforeach
                       </tbody>
@@ -121,7 +121,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          @foreach($pengeluaranRutin as $pengeluaran)
+                          @foreach($Pengeluaran as $pengeluaran)
                           @php $totalPengeluaran += $pengeluaran->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
@@ -136,10 +136,13 @@
                     <table class="table table-bordered table-striped table-anggota">
               <thead>
                   <tr>
-                      <th width="32%" class="text-center">Total Pendapatan</th>
-                      <td width="15%" class="text-center">{{ $totalPemasukan }}</th>
-                      <th width="20%" class="text-center">Total Pengeluaran</th>
-                      <td width="20%" class="text-center">{{ $totalPengeluaran }}</th>
+                      <th width="34%" class="text-center">Total Pendapatan</th>
+                      <td width="10%" class="text-center">{{ $totalPemasukan }}</th>
+                      <th width="25%" class="text-center">Total Pengeluaran</th>
+                      <td width="25%" class="text-center">{{ $totalPengeluaran }}</th>
+                  </tr>
+                  <tr>
+                      <th width="32%" class="text-center">{{ ucwords('sisa kas') }}</th>
                       <th width="10%" class="text-center">{{ $totalPemasukan-$totalPengeluaran }}</th>
 
                   </tr>

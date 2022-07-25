@@ -8,7 +8,8 @@ use App\Models\PosAnggaran;
 use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
 use App\Models\LaporanKeuangan;
-use App\Models\PengeluaranRutin;
+use App\Models\Pendapatan;
+use App\Models\Pengeluaran;
 use App\Models\SumbanganPiki;
 
 class LaporanKeuanganController extends Controller
@@ -105,11 +106,15 @@ class LaporanKeuanganController extends Controller
         ->get();
 
         $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
-        $pengeluaranRutin = PengeluaranRutin::groupBy('pos_anggaran','tanggal')
+        $pendapatan = Pendapatan::groupBy('jenis_pendapatan','tanggal')
+        ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
+        ->get();
+
+        $Pengeluaran = Pengeluaran::groupBy('pos_anggaran','tanggal')
         ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
 
-        // return $pengeluaranRutin;
+        // return $Pengeluaran;
         // $sumbangan = SumbanganPiki::sum('jumlah');
         // dd($sumbangan);
         // dd($iuranPiki);
@@ -135,7 +140,8 @@ class LaporanKeuanganController extends Controller
             'jenisPemasukan' => $jenisPemasukan,
             'iuranPiki' => $iuranPiki,
             'sumbangan' => $sumbangan,
-            'pengeluaranRutin' => $pengeluaranRutin,
+            'Pengeluaran' => $Pengeluaran,
+            'pendapatan' => $pendapatan,
         ]);
     }
 }

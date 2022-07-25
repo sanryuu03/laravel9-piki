@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatusIzin;
+use App\Models\JenisSetoran;
 use Illuminate\Http\Request;
 
-class StatusIzinController extends Controller
+class JenisSetoranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class StatusIzinController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\StatusIzin  $statusIzin
+     * @param  \App\Models\JenisSetoran  $jenisSetoran
      * @return \Illuminate\Http\Response
      */
-    public function show(StatusIzin $statusIzin)
+    public function show(JenisSetoran $jenisSetoran)
     {
         //
     }
@@ -52,10 +52,10 @@ class StatusIzinController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\StatusIzin  $statusIzin
+     * @param  \App\Models\JenisSetoran  $jenisSetoran
      * @return \Illuminate\Http\Response
      */
-    public function edit(StatusIzin $statusIzin)
+    public function edit(JenisSetoran $jenisSetoran)
     {
         //
     }
@@ -64,10 +64,10 @@ class StatusIzinController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StatusIzin  $statusIzin
+     * @param  \App\Models\JenisSetoran  $jenisSetoran
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StatusIzin $statusIzin)
+    public function update(Request $request, JenisSetoran $jenisSetoran)
     {
         //
     }
@@ -75,10 +75,10 @@ class StatusIzinController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StatusIzin  $statusIzin
+     * @param  \App\Models\JenisSetoran  $jenisSetoran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StatusIzin $statusIzin)
+    public function destroy(JenisSetoran $jenisSetoran)
     {
         //
     }

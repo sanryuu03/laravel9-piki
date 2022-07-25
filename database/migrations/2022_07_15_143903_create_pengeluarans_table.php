@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pengeluaran_rutins', function (Blueprint $table) {
+        Schema::create('pengeluarans', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('pos_anggaran')->nullable();
-            $table->text('nama_kegiatan')->nullable();
+            $table->string('pos_anggaran')->nullable();
             $table->string('tanggal')->nullable();
             $table->text('uraian_pengeluaran')->nullable();
             $table->string('volume')->nullable();

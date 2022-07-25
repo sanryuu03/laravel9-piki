@@ -34,6 +34,7 @@
 
 </head>
 @auth
+
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
@@ -42,9 +43,9 @@
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('img/logo/logo.png') }}">
                 </div>
-                <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+                <div class="mx-3 sidebar-brand-text">RuangAdmin</div>
             </a>
-            <hr class="sidebar-divider my-0">
+            <hr class="my-0 sidebar-divider">
             <li class="nav-item active">
                 <a class="nav-link" href="{{  url('/admin') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -217,33 +218,33 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
-                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                <nav class="mb-4 navbar navbar-expand navbar-light bg-navbar topbar static-top">
+                    <button id="sidebarToggleTop" class="mr-3 btn btn-link rounded-circle">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="ml-auto navbar-nav">
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="{{ asset('img/boy.png') }}" style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">{{ auth()->user()->name }}</span>
+                                <span class="ml-2 text-white d-none d-lg-inline small">{{ auth()->user()->name }}</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">
                                 {{-- <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
                                     Activity Log
                                 </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
                                     Logout
                                 </a>
                             </div>
@@ -251,20 +252,20 @@
                     </ul>
                 </nav>
                 <!-- Topbar Keuangan -->
-                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.data.iuran' || request()->route()->getName() === 'backend.data.biaya.iuran' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan' || request()->route()->getName() === 'backend.pengeluaran.rutin' || request()->route()->getName() === 'backend.pengeluaran.rutin.baru' || request()->route()->getName() === 'backend.pengeluaran.rutin.diproses' || request()->route()->getName() === 'backend.pengeluaran.rutin.ditolak' || request()->route()->getName() === 'backend.pengeluaran.rutin.diterima' || request()->route()->getName() === 'backend.laporan.pengeluaran' || request()->route()->getName() === 'backend.pos.anggaran' || request()->route()->getName() === 'backend.nama.kegiatan' || request()->route()->getName() === 'backend.form.add.pengeluaran.rutin' || request()->route()->getName() === 'backend.pendapatan' || request()->route()->getName() === 'backend.master.menu.navbar.keuangan' || request()->route()->getName() === 'backend.sub.menu.navbar.keuangan')
+                @if(request()->route()->getName() === 'backend.keuangan' || request()->route()->getName() === 'backend.pemasukan' || request()->route()->getName() === 'backend.data.iuran' || request()->route()->getName() === 'backend.data.biaya.iuran' || request()->route()->getName() === 'backend.iuran' || request()->route()->getName() === 'backend.iuran.baru' || request()->route()->getName() === 'backend.iuran.diproses' || request()->route()->getName() === 'backend.iuran.ditolak' || request()->route()->getName() === 'backend.iuran.diterima' || request()->route()->getName() === 'backend.sumbangan' || request()->route()->getName() === 'backend.sumbangan.baru' || request()->route()->getName() === 'backend.sumbangan.diproses' || request()->route()->getName() === 'backend.sumbangan.ditolak' || request()->route()->getName() === 'backend.sumbangan.diterima' || request()->route()->getName() === 'backend.rekap.pemasukan' || request()->route()->getName() === 'backend.pengeluaran.rutin' || request()->route()->getName() === 'backend.pengeluaran.rutin.baru' || request()->route()->getName() === 'backend.pengeluaran.rutin.diproses' || request()->route()->getName() === 'backend.pengeluaran.rutin.ditolak' || request()->route()->getName() === 'backend.pengeluaran.rutin.diterima' || request()->route()->getName() === 'backend.laporan.pengeluaran' || request()->route()->getName() === 'backend.pos.anggaran' || request()->route()->getName() === 'backend.nama.kegiatan' || request()->route()->getName() === 'backend.form.add.pengeluaran.rutin' || request()->route()->getName() === 'backend.pendapatan' || request()->route()->getName() === 'backend.master.menu.navbar.keuangan' || request()->route()->getName() === 'backend.sub.menu.navbar.keuangan' || request()->route()->getName() === 'backend.dinamis.form' || request()->route()->getName() === 'backend.dinamis.url.navbar.keuangan' || request()->route()->getName() === 'backend.dinamis.isi.menu.keuangan.baru' || request()->route()->getName() === 'backend.dinamis.isi.menu.keuangan.diproses' || request()->route()->getName() === 'backend.dinamis.isi.menu.keuangan.diterima' || request()->route()->getName() === 'backend.dinamis.isi.menu.keuangan.ditolak')
                 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
                     <div class="container">
-                        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="order-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                        <div class="order-3 collapse navbar-collapse" id="navbarCollapse">
 
                             <ul class="navbar-nav">
                                 @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
                                 @foreach($masterMenuNavbarKeuangan as $menuNavbarKeuangan)
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">{{ ucwords($menuNavbarKeuangan->nama_menu) }}</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                     @foreach($subMenuNavbarKeuangan as $item)
                                     @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
                                         <li><a href="{!! url('/admin/dinamisUrlNavbarKeuangan', [$item->masterMenuNavbarKeuangan->nama_menu, $item->nama_sub_menu]) !!}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
@@ -273,9 +274,9 @@
                                     </ul>
                                 </li>
                                 @endforeach
-                                <li class="nav-item dropdown">
+                                {{-- <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">Pemasukan</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="{{ url('/admin/rekapPemasukan') }}" class="dropdown-item">Summary</a></li>
                                         <li><a href="{{ url('/admin/pemasukanIuran') }}" class="dropdown-item">Iuran</a></li>
                                         <li><a href="{{ url('/admin/pemasukanSumbangan') }}" class="dropdown-item">Sumbangan</a></li>
@@ -283,13 +284,13 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">Pengeluaran</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="#" class="dropdown-item">Summary</a></li>
                                         <li><a href="#" class="dropdown-item">Investasi</a></li>
                                         <li><a href="{{ route('backend.pengeluaran.rutin') }}" class="dropdown-item">Rutin</a></li>
                                         <li><a href="#" class="dropdown-item">Program</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{  url('/admin/laporanKeuangan') }}" class="nav-link text-primary">Laporan Keuangan</a>
                                 </li>
@@ -306,16 +307,16 @@
                 @if($navbarAnggota == true)
                 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
                     <div class="container">
-                        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="order-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                        <div class="order-3 collapse navbar-collapse" id="navbarCollapse">
 
                             <ul class="navbar-nav">
                                 @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">{{ ucwords('anggota') }}</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="{{ url('/admin/pendaftarBaru') }}" class="dropdown-item">{{ ucwords('anggota baru') }}</a></li>
                                         <li><a href="{{ url('/admin/dalamProses') }}" class="dropdown-item">{{ ucwords('anggota diproses') }}</a></li>
                                         <li><a href="{{ url('/admin/landingpageanggota') }}" class="dropdown-item">{{ ucwords('anggota diterima') }}</a></li>
@@ -325,7 +326,7 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">{{ ucwords('kategori') }}</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="{{ url('admin/kategorianggota') }}" class="dropdown-item">{{ ucwords('kategori anggota') }}</a></li>
                                         <li><a href="{{ url('admin/subkategorianggota') }}" class="dropdown-item">{{ ucwords('sub kategori anggota') }}</a></li>
                                     </ul>
@@ -367,9 +368,9 @@
                 </div>
 
                 <!-- Footer -->
-                <footer class="sticky-footer bg-white">
+                <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
+                        <div class="my-auto text-center copyright">
                             <span>copyright &copy; <script>
                                     document.write(new Date().getFullYear());
 
@@ -405,7 +406,7 @@
 
 
         <!-- Scroll to top -->
-        <a class="scroll-to-top rounded" href="#page-top">
+        <a class="rounded scroll-to-top" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
 
@@ -421,6 +422,7 @@
         <script src="{{ asset('js/mainTanggal.js') }}"></script>
         <script src="{{ asset('js/mainPosAnggaran.js') }}"></script>
         <script src="{{ asset('js/mainPendapatan.js') }}"></script>
+        <script src="{{ asset('js/mainCustomForm.js') }}"></script>
 </body>
 
 </html>
