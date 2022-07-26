@@ -35,12 +35,16 @@
 </head>
 <body>
 
-    <table align="center">
+    <table>
         <tr>
             <td>
-                <img src="assets/images/logo.png" style="width:70px;height:70px;" />
+            {{-- localhost --}}
+                <img src="{{ public_path('images/mobile-device-cover.png') }}" style="width:70px;height:70px;" />
+            {{-- production --}}
+                {{-- <img src="{{ url('/images/mobile-device-cover.png') }}" style="width:70px;height:70px;" /> --}}
             </td>
             <td>
+                <span style="color:blue;font-weight:bold;font-size:22px;">{{ ucwords('daftar anggota') }}</span> <br />
                 <span style="color:blue;font-weight:bold;font-size:22px;">PIKI SUMUT</span> <br />
                 <span style="color:#454647;font-weight:bold;font-size:16px;">{{ $item }}</span>
             </td>
@@ -49,7 +53,6 @@
 
     <hr>
 
-    <h3 align="center">Laporan Anggota</h3>
 
     <table id="customers">
         <tr>
