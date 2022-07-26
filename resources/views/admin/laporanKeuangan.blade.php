@@ -99,7 +99,7 @@
                               <td>{{ date('F', strtotime($pemasukan->tanggal)) }}</td>
                               {{-- <td>{{ $pemasukan->tanggal }}</td> --}}
                               <td>{{ $pemasukan->jenis_pendapatan }}</td>
-                              <td>{{ $pemasukan->sum }}</td>
+                              <td>{{ 'Rp. '.number_format($pemasukan->sum,0,",",".") }}</td>
                           </tr>
                           @endforeach
                       </tbody>
@@ -126,7 +126,7 @@
                           <tr>
                               <td>{{ $loop->iteration }}</td>
                               <td>{{ $pengeluaran->pos_anggaran }}</td>
-                              <td>{{ $pengeluaran->sum }}</td>
+                              <td>{{ 'Rp. '.number_format($pengeluaran->sum,0,",",".") }}</td>
                           </tr>
                           @endforeach
                       </tbody>
@@ -137,13 +137,13 @@
               <thead>
                   <tr>
                       <th width="34%" class="text-center">Total Pendapatan</th>
-                      <td width="10%" class="text-center">{{ $totalPemasukan }}</th>
+                      <td width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</th>
                       <th width="25%" class="text-center">Total Pengeluaran</th>
-                      <td width="25%" class="text-center">{{ $totalPengeluaran }}</th>
+                      <td width="25%" class="text-center">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</th>
                   </tr>
                   <tr>
                       <th width="32%" class="text-center">{{ ucwords('sisa kas') }}</th>
-                      <th width="10%" class="text-center">{{ $totalPemasukan-$totalPengeluaran }}</th>
+                      <th width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan-$totalPengeluaran,0,",",".") }}</th>
 
                   </tr>
               </thead>
