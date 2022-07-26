@@ -314,7 +314,7 @@
 
                             <ul class="navbar-nav">
                                 @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
-                                <li class="nav-item dropdown">
+                                {{-- <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">{{ ucwords('anggota') }}</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="{{ url('/admin/pendaftarBaru') }}" class="dropdown-item">{{ ucwords('anggota baru') }}</a></li>
@@ -330,9 +330,18 @@
                                         <li><a href="{{ url('admin/kategorianggota') }}" class="dropdown-item">{{ ucwords('kategori anggota') }}</a></li>
                                         <li><a href="{{ url('admin/subkategorianggota') }}" class="dropdown-item">{{ ucwords('sub kategori anggota') }}</a></li>
                                     </ul>
+                                </li> --}}
+                                <li class="nav-item">
+                                    <a href="{{  url('/admin/pendaftarBaru') }}" class="nav-link text-primary">{{ ucwords('anggota baru') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{  url('/admin/anggotaYangDitampilkan') }}" class="nav-link text-primary">{{ ucwords('tampilkan anggota di landingpage') }}</a>
+                                    <a href="{{  url('/admin/dalamProses') }}" class="nav-link text-warning">{{ ucwords('anggota diproses') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{  url('/admin/landingpageanggota') }}" class="nav-link text-success">{{ ucwords('anggota diterima') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{  url('/admin/diTolak') }}" class="nav-link text-danger">{{ ucwords('anggota ditolak') }}</a>
                                 </li>
                                 @endif
 
