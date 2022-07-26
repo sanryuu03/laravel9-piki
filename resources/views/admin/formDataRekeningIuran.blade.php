@@ -10,8 +10,8 @@
 
   </style>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">{{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">{{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -19,14 +19,14 @@
       </div>
   </div>
   @if(session()->has('success'))
-  <div class="alert alert-success mt-5" role="alert">
+  <div class="mt-5 alert alert-success" role="alert">
       {{ session('success') }}
   </div>
   @endif
 
 
   <!-- Header Start-->
-  <div class="card mx-3 my-3">
+  <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
               <form method="post" action="{{ route('save.form.data.rekening.iuran') }}" enctype="multipart/form-data">
@@ -70,8 +70,8 @@
                   @endif
                   </div>
 
-                  <a class="btn btn-danger mt-3" href="{{ route('kategori.anggota') }}">Back</a>
-                  <button type="submit" class="btn btn-primary mt-3" name="action" value="{{ $action }}">Save</button>
+                  <a class="mt-3 btn btn-danger" href="{{ route('backend.data.iuran') }}">Back</a>
+                  <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
               </form>
           </div>
       </div>

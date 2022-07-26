@@ -134,7 +134,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
               </a>
           </div>
       </div> --}}
-      <!-- Master Pos Anggaran Rutin Card Example -->
+      {{-- <!-- Master Pos Anggaran Rutin Card Example -->
       <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/posAngaran') }}" class="d-flex">
@@ -167,7 +167,7 @@ li.dropdown-submenu2:hover > .dropdown-menu {
                   </div>
               </a>
           </div>
-      </div>
+      </div> --}}
       <!-- Tambah Pemasukan Card Example -->
       <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
