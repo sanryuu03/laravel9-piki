@@ -154,12 +154,12 @@ class PendapatanController extends Controller
                     // dd($nama_file);
 
                     // isi dengan nama folder tempat kemana file diupload
-                    $tujuan_upload = 'storage/assets/slip/setoran/iuran/';
+                    $tujuan_upload = 'storage/assets/slip/setoran/pendapatan/';
 
                     // upload file
                     $file->move($tujuan_upload, $nama_file);
 
-                    $data['picture_path_slip_setoran_iuran'] = $nama_file;
+                    $data['picture_path_slip_pendapatan'] = $nama_file;
                 }
 
                 Pendapatan::create($data);
@@ -181,12 +181,12 @@ class PendapatanController extends Controller
                     // dd($nama_file);
 
                     // isi dengan nama folder tempat kemana file diupload
-                    $tujuan_upload = 'storage/assets/slip/setoran/sumbangan/';
+                    $tujuan_upload = 'storage/assets/slip/setoran/pendapatan/';
 
                     // upload file
                     $file->move($tujuan_upload, $nama_file);
 
-                    $data['picture_path_slip_setoran_iuran'] = $nama_file;
+                    $data['picture_path_slip_pendapatan'] = $nama_file;
                 }
 
                 $jenisPemasukan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();
@@ -221,7 +221,7 @@ class PendapatanController extends Controller
                     // upload file
                     $file->move($tujuan_upload, $nama_file);
 
-                    $data['picture_path_slip_setoran_iuran'] = $nama_file;
+                    $data['picture_path_slip_pendapatan'] = $nama_file;
                 }
 
                 $jenisPemasukan = SubMenuNavbarKeuangan::where('id', $request->jenis_setoran)->first();

@@ -124,6 +124,10 @@
                       <th width="1%">Nama</th>
                       <th width="1%">Jumlah</th>
                       <th width="1%">Berita</th>
+                      <th width="0.01%">Bendahara</th>
+                      <th width="0.01%">Ketua</th>
+                      <th width="0.01%">SPI</th>
+                      <th width="0.01%">Alasan Ditolak</th>
                       <th width="0.01%">OPSI</th>
                   </tr>
               </thead>
@@ -132,18 +136,34 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
+                      @if(auth()->user()->level=='bendahara')
                       <td><a href="{{ route('backend.form.pendapatan.dinamis.via.bendahara', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->nama_penyetor }}</a></td>
-                      <td>{{ number_format($item->jumlah,0,",",".") }}</td>
+                      @elseif(auth()->user()->level=='super-admin')
+                      <td><a href="{{ route('backend.form.pendapatan.dinamis.via.ketua', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->nama_penyetor }}</a></td>
+                      @elseif(auth()->user()->level=='spi')
+                      <td><a href="{{ route('backend.form.pendapatan.dinamis.via.spi', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->nama_penyetor }}</a></td>
+                      @endif
+                      <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
+                      <td>{{ $item->status_verifikasi_bendahara }}</td>
+                      <td>{{ $item->status_verifikasi_ketua }}</td>
+                      <td>{{ $item->status_verifikasi_spi }}</td>
+                      <td>{{ $item->alasan_ditolak }}</td>
                       <td>
-                          {{-- <a href="{{ route('backend.sumbangan.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
+                          {{-- <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
                           <form action="{{ route('backend.post.pendapatan.dinamis.destroy', [$masterMenu,$subMenu,$item->id]) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
-                          <a href="{{ route('backend.post.pendapatan.dinamis.diverifikasi.bendahara.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi</a>
+                          @if(auth()->user()->level=='spi')
+                          <a href="{{ route('backend.post.pendapatan.dinamis.diverifikasi.spi.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          @elseif(auth()->user()->level=='super-admin')
+                          <a href="{{ route('backend.post.pendapatan.dinamis.diverifikasi.ketua.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          @elseif(auth()->user()->level=='bendahara')
+                          <a href="{{ route('backend.post.pendapatan.dinamis.diverifikasi.bendahara.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
                           <!-- Modal Alasan Start-->
                           <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

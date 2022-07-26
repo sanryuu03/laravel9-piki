@@ -8,6 +8,8 @@ use App\Models\JenisSetoran;
 use Illuminate\Http\Request;
 use App\Models\MasterMenuNavbar;
 use App\Models\SubMenuNavbarKeuangan;
+use App\Models\Pendapatan;
+
 
 class DynamicFormController extends Controller
 {
@@ -459,4 +461,267 @@ class DynamicFormController extends Controller
 
         return redirect()->back()->with('success', 'Pengeluaran Rutin telah dihapus');
     }
+
+        ////////////////////////////////////////////////////////////////////////////////////////
+        public function formPendapatanDinamisViaBendahara($masterMenu, $subMenu,$id)
+        {
+            $idUser = auth()->user()->id;
+            $sumbangan = Pendapatan::find($id);
+            return view('admin/pemasukanDinamisViaBendahara', [
+                "title" => "PIKI - Sangrid",
+                "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
+                "creator" => $idUser,
+                'sumbangan' => $sumbangan,
+                'item' => $sumbangan,
+                'masterMenu' => $masterMenu,
+                'subMenu' => $subMenu,
+            ]);
+        }
+
+        public function postPendapatanViaBendahara(Request $request,$masterMenu, $subMenu)
+        {
+            if (auth()->user()->level=='super-admin') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum diverifikasi karna anda bukan bendahara');
+            }
+            if (auth()->user()->level=='spi') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum diverifikasi karna anda bukan bendahara');
+            }
+            if (auth()->user()->level=='bendahara') {
+                $data = $request->validate([
+                    'jumlah' => 'required',
+                    'nama_penyetor' => 'required',
+                    'telp' => 'required',
+                    'tujuan_penyetor' => 'nullable',
+                    'berita' => 'nullable',
+                    'rekening_pembayaran' => 'required',
+                    'nomor_rekening' => 'required',
+                    'atas_nama' => 'required',
+                ]);
+                $dataRupiah = $request->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                $data['jumlah'] = $rupiahHapusSimbolRp;
+                $data['status'] = 'diproses';
+                $data['status_verifikasi_bendahara'] = 'terverifikasi';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+
+
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi bendahara');
+            }
+        }
+
+        public function postPendapatanViaBendaharaViaForm(Request $request,$masterMenu, $subMenu)
+        {
+            if (auth()->user()->level=='super-admin') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum diverifikasi karna anda bukan bendahara');
+            }
+            if (auth()->user()->level=='spi') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum diverifikasi karna anda bukan bendahara');
+            }
+            if (auth()->user()->level=='bendahara') {
+                $data = Pendapatan::find($request->id);
+                $dataRupiah = $data->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                Pendapatan::where('id', $request->id)
+                ->update(
+                    [
+                        'jumlah' => $rupiahHapusSimbolRp,
+                        'status' => 'diproses',
+                        'status_verifikasi_bendahara' => 'terverifikasi',
+                    ]
+                );
+
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi bendahara');
+            }
+        }
+
+        public function formPendapatanViaKetua($masterMenu, $subMenu, $id)
+        {
+            $idUser = auth()->user()->id;
+            $pemasukanSumbangan = Pendapatan::find($id);
+            return view('admin/pemasukanDinamisViaKetua', [
+                "title" => "PIKI - Sangrid",
+                "menu" => ucwords("Pemasukan ".$subMenu." Detail"),
+                "creator" => $idUser,
+                'sumbangan' => $pemasukanSumbangan,
+                'item' => $pemasukanSumbangan,
+                'masterMenu' => $masterMenu,
+                'subMenu' => $subMenu,
+            ]);
+        }
+
+        public function postPendapatanViaKetua(Request $request,$masterMenu, $subMenu)
+        {
+            $iuran = Pendapatan::find($request->id);
+            if ($iuran->status_verifikasi_bendahara == 'terverifikasi') {
+                $data = $request->validate([
+                    'jumlah' => 'required',
+                    'nama_penyetor' => 'required',
+                    'telp' => 'required',
+                    'tujuan_penyetor' => 'nullable',
+                    'berita' => 'nullable',
+                    'rekening_pembayaran' => 'required',
+                    'nomor_rekening' => 'required',
+                    'atas_nama' => 'required',
+                ]);
+                $dataRupiah = $request->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                // return $rupiahHapusSimbolRp;
+                $data['jumlah'] = $rupiahHapusSimbolRp;
+                $data['status'] = 'diproses';
+                $data['status_verifikasi_ketua'] = 'terverifikasi';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi Ketua');
+            }
+            else {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' gagal diverifikasi Ketua');
+            }
+        }
+
+        public function postPendapatanViaKetuaViaForm(Request $request,$masterMenu, $subMenu)
+        {
+            $data = Pendapatan::find($request->id);
+            if ($data->status_verifikasi_bendahara == 'terverifikasi') {
+                $dataRupiah = $data->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                Pendapatan::where('id', $request->id)
+                ->update(
+                    [
+                        'jumlah' => $rupiahHapusSimbolRp,
+                        'status' => 'diproses',
+                        'status_verifikasi_ketua' => 'terverifikasi',
+                    ]
+                );
+
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi Ketua');
+            }
+            else {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' gagal diverifikasi Ketua');
+            }
+        }
+
+        public function formPendapatanViaSpi($masterMenu, $subMenu, $id)
+        {
+            $idUser = auth()->user()->id;
+            $sumbangan = Pendapatan::find($id);
+            return view('admin/pemasukanDinamisViaSpi', [
+                "title" => "PIKI - Sangrid",
+                "menu" => ucwords("Pemasukan " . $subMenu . " Detail"),
+                "creator" => $idUser,
+                'sumbangan' => $sumbangan,
+                'item' => $sumbangan,
+                'masterMenu' => $masterMenu,
+                'subMenu' => $subMenu,
+            ]);
+        }
+
+        public function postPendapatanViaSpi(Request $request,$masterMenu, $subMenu)
+        {
+            // return $request;
+            $iuran = Pendapatan::find($request->id);
+            if ($iuran->status_verifikasi_bendahara == 'terverifikasi' && $iuran->status_verifikasi_ketua == 'terverifikasi') {
+                $data = $request->validate([
+                    'jumlah' => 'required',
+                    'nama_penyetor' => 'required',
+                    'telp' => 'required',
+                    'tujuan_penyetor' => 'nullable',
+                    'berita' => 'nullable',
+                    'rekening_pembayaran' => 'required',
+                    'nomor_rekening' => 'required',
+                    'atas_nama' => 'required',
+                ]);
+                $dataRupiah = $request->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                // return $rupiahHapusSimbolRp;
+                $data['jumlah'] = $rupiahHapusSimbolRp;
+                $data['status'] = 'terverifikasi';
+                $data['status_verifikasi_spi'] = 'terverifikasi';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi SPI');
+            }
+            else {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' gagal diverifikasi SPI');
+            }
+        }
+
+        public function postPendapatanViaSpiViaForm(Request $request,$masterMenu, $subMenu)
+        {
+            $data = Pendapatan::find($request->id);
+            if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
+                $dataRupiah = $data->jumlah;
+                $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+                $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+                Pendapatan::where('id', $request->id)
+                ->update(
+                    [
+                        'jumlah' => $rupiahHapusSimbolRp,
+                        'status' => 'terverifikasi',
+                        'status_verifikasi_spi' => 'terverifikasi',
+                    ]
+                );
+
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', $subMenu.' telah diverifikasi SPI');
+            }
+            else {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' gagal diverifikasi SPI');
+            }
+        }
+
+        public function postPendapatanDitolak(Request $request,$masterMenu, $subMenu)
+        {
+            // return $request;
+            $data = $request->except('_token');
+            $data['status'] = 'ditolak';
+            $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
+            $sumbangan = Pendapatan::find($request->id);
+            if ($sumbangan->alasan_ditolak == null && auth()->user()->level=='bendahara') {
+                $data['status_verifikasi_bendahara'] = 'ditolak';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak', [$masterMenu, $subMenu])->with('success', $subMenu.' telah ditolak');
+            }
+            elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum bisa ditolak karna belum di verifikasi bendahara');
+            }
+            elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum bisa ditolak karna belum di verifikasi bendahara');
+            }
+            elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' belum bisa ditolak karna belum di verifikasi bendahara');
+            }
+            elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='super-admin') {
+                $data['status_verifikasi_ketua'] = 'ditolak';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak', [$masterMenu, $subMenu])->with('success', $subMenu.' telah ditolak');
+            }
+            elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='spi') {
+                $data['status_verifikasi_spi'] = 'ditolak';
+                Pendapatan::where('id', $request->id)
+                ->update($data);
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak', [$masterMenu, $subMenu])->with('success', $subMenu.' telah ditolak');
+            }
+            else {
+                return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', $subMenu.' sudah pernah telah ditolak');
+            }
+
+        }
+
+        public function postPendapatanDestroy(Request $request)
+        {
+            $data = ['deleted_by' => auth()->user()->name];
+            Pendapatan::where('id', $request->id)
+            ->update($data);
+            $iuran = Pendapatan::find($request->id);
+            $iuran->delete(); //softdeletes
+
+            return redirect()->back()->with('success', 'Pendapatan telah dihapus');
+        }
 }

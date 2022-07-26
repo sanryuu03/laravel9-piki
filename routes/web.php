@@ -119,8 +119,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::get('/admin/addTambahAdmin', [TambahAdminController::class, 'show'])->name('backend.tambah.admin');
     Route::get('/admin/editTambahAdmin/{id}', [TambahAdminController::class, 'edit'])->name('backend.edit.admin');
     Route::get('/admin/formTambahAdmin/{id}', [TambahAdminController::class, 'formTambahAdmin'])->name('backend.form.tambah.admin');
-    Route::match(['get', 'post'],'/admin/saveTambahAdmin', [TambahAdminController::class, 'saveTambahAdmin'])->name('backend.save.tambah.admin');
-    Route::match(['get', 'post'],'/admin/hapusTambahAdmin/{id}', [TambahAdminController::class, 'hapusTambahAdmin'])->name('backend.hapus.tambah.admin');
+    Route::match(['get', 'post'], '/admin/saveTambahAdmin', [TambahAdminController::class, 'saveTambahAdmin'])->name('backend.save.tambah.admin');
+    Route::match(['get', 'post'], '/admin/hapusTambahAdmin/{id}', [TambahAdminController::class, 'hapusTambahAdmin'])->name('backend.hapus.tambah.admin');
 });
 
 // berita
@@ -281,23 +281,23 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::get('/admin/Pengeluaran', [PengeluaranController::class, 'index'])->name('backend.pengeluaran.rutin');
     Route::get('/admin/formAddPengeluaran', [PengeluaranController::class, 'formAddPengeluaran'])->name('backend.form.add.pengeluaran.rutin');
     Route::get('/admin/formEditPengeluaran/{id}', [PengeluaranController::class, 'formEditPengeluaran'])->name('backend.form.edit.pengeluaran.rutin');
-    Route::match(['get', 'post'],'/admin/saveFormPengeluaran', [PengeluaranController::class, 'saveFormPengeluaran'])->name('backend.save.form.pengeluaran.rutin');
+    Route::match(['get', 'post'], '/admin/saveFormPengeluaran', [PengeluaranController::class, 'saveFormPengeluaran'])->name('backend.save.form.pengeluaran.rutin');
     Route::get('/admin/PengeluaranBaru', [PengeluaranController::class, 'PengeluaranBaru'])->name('backend.pengeluaran.rutin.baru');
     Route::get('/admin/PengeluaranDiproses', [PengeluaranController::class, 'PengeluaranDiproses'])->name('backend.pengeluaran.rutin.diproses');
     Route::get('/admin/PengeluaranDitolak', [PengeluaranController::class, 'PengeluaranDitolak'])->name('backend.pengeluaran.rutin.ditolak');
     Route::get('/admin/PengeluaranDiterima', [PengeluaranController::class, 'PengeluaranDiterima'])->name('backend.pengeluaran.rutin.diterima');
 
     Route::get('/admin/formPengeluaranViaBendahara/{id}', [PengeluaranController::class, 'formPengeluaranViaBendahara'])->name('backend.form.pengeluaran.rutin.via.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaBendahara/{id}', [PengeluaranController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaBendaharaViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaBendahara/{id}', [PengeluaranController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaBendaharaViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form');
 
     Route::get('/admin/formPengeluaranViaKetua/{id}', [PengeluaranController::class, 'formPengeluaranViaKetua'])->name('backend.form.pengeluaran.rutin.via.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaKetua/{id}', [PengeluaranController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaKetuaViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua.via.form');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaKetua/{id}', [PengeluaranController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaKetuaViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.ketua.via.form');
 
     Route::get('/admin/formPengeluaranViaSpi/{id}', [PengeluaranController::class, 'formPengeluaranViaSpi'])->name('backend.form.pengeluaran.rutin.via.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaSpi/{id}', [PengeluaranController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaranViaSpiViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi.via.form');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaSpi/{id}', [PengeluaranController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi');
+    Route::match(['get', 'post'], '/admin/postPengeluaranViaSpiViaForm/{id}', [PengeluaranController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.rutin.diverifikasi.spi.via.form');
 
     Route::match(['get', 'post'], '/admin/PengeluaranDitolak/{id}', [PengeluaranController::class, 'postPengeluaranDitolak'])->name('backend.post.pengeluaran.rutin.ditolak');
     Route::match(['get', 'post'], '/admin/PengeluaranDestroy/{id}', [PengeluaranController::class, 'postPengeluaranDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
@@ -309,57 +309,72 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::get('/admin/laporanKeuangan', [LaporanKeuanganController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
 
     Route::get('/admin/posAngaran', [PosAnggaranController::class, 'index'])->name('backend.pos.anggaran');
-    Route::match(['get', 'post'],'/admin/formAddPosAngaran', [PosAnggaranController::class, 'show'])->name('backend.form.add.pos.anggaran');
-    Route::match(['get', 'post'],'/admin/formEditPosAngaran/{id}', [PosAnggaranController::class, 'edit'])->name('backend.form.edit.pos.anggaran');
-    Route::match(['get', 'post'],'/admin/saveFormPosAngaran', [PosAnggaranController::class, 'saveFormPosAngaran'])->name('backend.save.form.pos.anggaran');
-    Route::match(['get', 'post'],'/admin/formPosAngaranDestroy/{id}', [PosAnggaranController::class, 'destroy'])->name('backend.pos.anggaran.destroy');
+    Route::match(['get', 'post'], '/admin/formAddPosAngaran', [PosAnggaranController::class, 'show'])->name('backend.form.add.pos.anggaran');
+    Route::match(['get', 'post'], '/admin/formEditPosAngaran/{id}', [PosAnggaranController::class, 'edit'])->name('backend.form.edit.pos.anggaran');
+    Route::match(['get', 'post'], '/admin/saveFormPosAngaran', [PosAnggaranController::class, 'saveFormPosAngaran'])->name('backend.save.form.pos.anggaran');
+    Route::match(['get', 'post'], '/admin/formPosAngaranDestroy/{id}', [PosAnggaranController::class, 'destroy'])->name('backend.pos.anggaran.destroy');
 
     Route::get('/admin/namaKegiatan', [NamaKegiatanController::class, 'index'])->name('backend.nama.kegiatan');
-    Route::match(['get', 'post'],'/admin/formAddNamaKegiatan', [NamaKegiatanController::class, 'show'])->name('backend.form.add.nama.kegiatan');
-    Route::match(['get', 'post'],'/admin/formEditNamaKegiatan/{id}', [NamaKegiatanController::class, 'edit'])->name('backend.form.edit.nama.kegiatan');
-    Route::match(['get', 'post'],'/admin/saveFormNamaKegiatan', [NamaKegiatanController::class, 'saveFormNamaKegiatan'])->name('backend.save.form.nama.kegiatan');
-    Route::match(['get', 'post'],'/admin/formNamaKegiatanDestroy/{id}', [NamaKegiatanController::class, 'destroy'])->name('backend.nama.kegiatan.destroy');
+    Route::match(['get', 'post'], '/admin/formAddNamaKegiatan', [NamaKegiatanController::class, 'show'])->name('backend.form.add.nama.kegiatan');
+    Route::match(['get', 'post'], '/admin/formEditNamaKegiatan/{id}', [NamaKegiatanController::class, 'edit'])->name('backend.form.edit.nama.kegiatan');
+    Route::match(['get', 'post'], '/admin/saveFormNamaKegiatan', [NamaKegiatanController::class, 'saveFormNamaKegiatan'])->name('backend.save.form.nama.kegiatan');
+    Route::match(['get', 'post'], '/admin/formNamaKegiatanDestroy/{id}', [NamaKegiatanController::class, 'destroy'])->name('backend.nama.kegiatan.destroy');
 
     Route::get('/admin/formInput/', [PendapatanController::class, 'show'])->name('backend.pendapatan');
-    Route::match(['get', 'post'],'/admin/saveFormInput/', [PendapatanController::class, 'saveFormInput'])->name('backend.save.form.input.pendapatan');
+    Route::match(['get', 'post'], '/admin/saveFormInput/', [PendapatanController::class, 'saveFormInput'])->name('backend.save.form.input.pendapatan');
 
     Route::match(['get', 'post'], '/admin/PengeluaranDestroy/{id}', [PengeluaranController::class, 'postPengeluaranDestroy'])->name('backend.post.pengeluaran.rutin.destroy');
 
     Route::get('/admin/masterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'masterMenuNavbarKeuangan'])->name('backend.master.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/formAddMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'formAddMasterMenuNavbarKeuangan'])->name('backend.form.add.master.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/formEditMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'formEditMasterMenuNavbarKeuangan'])->name('backend.form.edit.master.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/saveFormMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'saveFormMasterMenuNavbarKeuangan'])->name('backend.save.form.master.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/destroyMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'destroyMasterMenuNavbarKeuangan'])->name('backend.destroy.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/formAddMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'formAddMasterMenuNavbarKeuangan'])->name('backend.form.add.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/formEditMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'formEditMasterMenuNavbarKeuangan'])->name('backend.form.edit.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/saveFormMasterMenuNavbarKeuangan/', [MasterMenuNavbarController::class, 'saveFormMasterMenuNavbarKeuangan'])->name('backend.save.form.master.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/destroyMasterMenuNavbarKeuangan/{id}', [MasterMenuNavbarController::class, 'destroyMasterMenuNavbarKeuangan'])->name('backend.destroy.master.menu.navbar.keuangan');
 
     Route::get('/admin/subMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'index'])->name('backend.sub.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/formAddSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'show'])->name('backend.form.add.sub.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/formEditSubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'edit'])->name('backend.form.edit.sub.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/saveFormSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'saveFormSubMenuNavbarKeuangan'])->name('backend.save.form.sub.menu.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/destroySubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'destroySubMenuNavbarKeuangan'])->name('backend.destroy.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/formAddSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'show'])->name('backend.form.add.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/formEditSubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'edit'])->name('backend.form.edit.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/saveFormSubMenuNavbarKeuangan/', [SubMenuNavbarKeuanganController::class, 'saveFormSubMenuNavbarKeuangan'])->name('backend.save.form.sub.menu.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/destroySubMenuNavbarKeuangan/{id}', [SubMenuNavbarKeuanganController::class, 'destroySubMenuNavbarKeuangan'])->name('backend.destroy.sub.menu.navbar.keuangan');
 
-    Route::match(['get', 'post'],'/admin/dinamisUrlNavbarKeuangan/{masterMenu?}/{subMenu?}', [DinamisUrlNavbarKeuanganController::class, 'dinamisUrlNavbarKeuangan'])->name('backend.dinamis.url.navbar.keuangan');
-    Route::match(['get', 'post'],'/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Baru', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganBaru'])->name('backend.dinamis.isi.menu.keuangan.baru');
-    Route::match(['get', 'post'],'/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Diproses', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDiproses'])->name('backend.dinamis.isi.menu.keuangan.diproses');
-    Route::match(['get', 'post'],'/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Diterima', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDiterima'])->name('backend.dinamis.isi.menu.keuangan.diterima');
-    Route::match(['get', 'post'],'/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Ditolak', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDitolak'])->name('backend.dinamis.isi.menu.keuangan.ditolak');
-    Route::match(['get', 'post'],'/admin/customForm/', [DynamicFormController::class, 'index'])->name('backend.dinamis.form');
-    Route::match(['get', 'post'],'/admin/addCustomForm/', [DynamicFormController::class, 'create'])->name('backend.add.dinamis.form');
-    Route::match(['get', 'post'],'/admin/saveCustomForm/', [DynamicFormController::class, 'saveCustomForm'])->name('backend.save.dinamis.form');
+    Route::match(['get', 'post'], '/admin/dinamisUrlNavbarKeuangan/{masterMenu?}/{subMenu?}', [DinamisUrlNavbarKeuanganController::class, 'dinamisUrlNavbarKeuangan'])->name('backend.dinamis.url.navbar.keuangan');
+    Route::match(['get', 'post'], '/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Baru', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganBaru'])->name('backend.dinamis.isi.menu.keuangan.baru');
+    Route::match(['get', 'post'], '/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Diproses', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDiproses'])->name('backend.dinamis.isi.menu.keuangan.diproses');
+    Route::match(['get', 'post'], '/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Diterima', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDiterima'])->name('backend.dinamis.isi.menu.keuangan.diterima');
+    Route::match(['get', 'post'], '/admin/dinamisIsiMenuKeuangan/{masterMenu?}/{subMenu?}Ditolak', [DinamisUrlNavbarKeuanganController::class, 'dinamisIsiMenuKeuanganDitolak'])->name('backend.dinamis.isi.menu.keuangan.ditolak');
+    Route::match(['get', 'post'], '/admin/customForm/', [DynamicFormController::class, 'index'])->name('backend.dinamis.form');
+    Route::match(['get', 'post'], '/admin/addCustomForm/', [DynamicFormController::class, 'create'])->name('backend.add.dinamis.form');
+    Route::match(['get', 'post'], '/admin/saveCustomForm/', [DynamicFormController::class, 'saveCustomForm'])->name('backend.save.dinamis.form');
+    // pengeluaran dinamis
+    Route::match(['get', 'post'], '/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaBendahara/{id}', [DynamicFormController::class, 'formPengeluaranDinamisViaBendahara'])->name('backend.form.pengeluaran.dinamis.via.bendahara');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form');
 
-    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaBendahara/{id}', [DynamicFormController::class, 'formPengeluaranDinamisViaBendahara'])->name('backend.form.pengeluaran.dinamis.via.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form');
+    Route::match(['get', 'post'], '/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPengeluaranViaKetua'])->name('backend.form.pengeluaran.dinamis.via.ketua');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua.via.form');
 
-    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPengeluaranViaKetua'])->name('backend.form.pengeluaran.dinamis.via.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua.via.form');
-
-    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPengeluaranViaSpi'])->name('backend.form.pengeluaran.dinamis.via.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi.via.form');
+    Route::match(['get', 'post'], '/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPengeluaranViaSpi'])->name('backend.form.pengeluaran.dinamis.via.spi');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi');
+    Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi.via.form');
 
     Route::match(['get', 'post'], '/admin/Pengeluaran/{masterMenu}/{subMenu}/Ditolak/{id}', [DynamicFormController::class, 'postPengeluaranDitolak'])->name('backend.post.pengeluaran.dinamis.ditolak');
     Route::match(['get', 'post'], '/admin/Pengeluaran/{masterMenu}/{subMenu}/Destroy/{id}', [DynamicFormController::class, 'postPengeluaranDestroy'])->name('backend.post.pengeluaran.dinamis.destroy');
+    // pemasukan dinamis
+    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaBendahara/{id}', [DynamicFormController::class, 'formPendapatanDinamisViaBendahara'])->name('backend.form.pendapatan.dinamis.via.bendahara');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPendapatanViaBendahara'])->name('backend.post.pendapatan.dinamis.diverifikasi.bendahara');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaBendaharaViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.bendahara.via.form');
+
+    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPendapatanViaKetua'])->name('backend.form.pendapatan.dinamis.via.ketua');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPendapatanViaKetua'])->name('backend.post.pendapatan.dinamis.diverifikasi.ketua');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaKetuaViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.ketua.via.form');
+
+    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPendapatanViaSpi'])->name('backend.form.pendapatan.dinamis.via.spi');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPendapatanViaSpi'])->name('backend.post.pendapatan.dinamis.diverifikasi.spi');
+    Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaSpiViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.spi.via.form');
+
+    Route::match(['get', 'post'], '/admin/Pendapatan/{masterMenu}/{subMenu}/Ditolak/{id}', [DynamicFormController::class, 'postPendapatanDitolak'])->name('backend.post.pendapatan.dinamis.ditolak');
+    Route::match(['get', 'post'], '/admin/Pendapatan/{masterMenu}/{subMenu}/Destroy/{id}', [DynamicFormController::class, 'postPendapatanDestroy'])->name('backend.post.pendapatan.dinamis.destroy');
 });
 
 // login khusus anggota
