@@ -25,11 +25,11 @@
   </div>
   @endif
   .<div class="container-fluid landingpage-anggota">
-        <div class="row">
+      {{-- <div class="row">
           <div class="col-md-4">
               <a href="{{ route('backend.form.add.master.menu.navbar.keuangan') }}" class="mb-1 btn btn-warning btn-sm">Tambah Menu Navbar</a>
           </div>
-      </div>
+      </div> --}}
       <div class="card-body">
           <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>
@@ -51,10 +51,10 @@
                       <td>
                           <a href="{{ route('backend.form.edit.master.menu.navbar.keuangan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
                           {{-- <form action="{{ route('backend.destroy.master.menu.navbar.keuangan', $item->id) }}" method="POST" class="d-inline">
-                              {!! method_field('post') . csrf_field() !!}
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
-                                  <i class="fa-solid fa-trash-can"></i>
-                              </button>
+                          {!! method_field('post') . csrf_field() !!}
+                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
+                              <i class="fa-solid fa-trash-can"></i>
+                          </button>
                           </form> --}}
                       </td>
                   </tr>
