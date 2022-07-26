@@ -346,20 +346,20 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'],'/admin/addCustomForm/', [DynamicFormController::class, 'create'])->name('backend.add.dinamis.form');
     Route::match(['get', 'post'],'/admin/saveCustomForm/', [DynamicFormController::class, 'saveCustomForm'])->name('backend.save.dinamis.form');
 
-    Route::get('/admin/formPengeluaran/{$subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'formPengeluaranDinamisViaBendahara'])->name('backend.form.pengeluaran.dinamis.via.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form');
+    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaBendahara/{id}', [DynamicFormController::class, 'formPengeluaranDinamisViaBendahara'])->name('backend.form.pengeluaran.dinamis.via.bendahara');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form');
 
-    Route::get('/admin/formPengeluaran/{$subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'formPengeluaranViaKetua'])->name('backend.form.pengeluaran.dinamis.via.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua.via.form');
+    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPengeluaranViaKetua'])->name('backend.form.pengeluaran.dinamis.via.ketua');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPengeluaranViaKetua'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaKetuaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.ketua.via.form');
 
-    Route::get('/admin/formPengeluaran/{$subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'formPengeluaranViaSpi'])->name('backend.form.pengeluaran.dinamis.via.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi');
-    Route::match(['get', 'post'],'/admin/postPengeluaran/{$subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi.via.form');
+    Route::match(['get', 'post'],'/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPengeluaranViaSpi'])->name('backend.form.pengeluaran.dinamis.via.spi');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPengeluaranViaSpi'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi');
+    Route::match(['get', 'post'],'/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaSpiViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.spi.via.form');
 
-    Route::match(['get', 'post'], '/admin/Pengeluaran/{$subMenu?}/Ditolak/{id}', [DynamicFormController::class, 'postPengeluaranDitolak'])->name('backend.post.pengeluaran.dinamis.ditolak');
-    Route::match(['get', 'post'], '/admin/Pengeluaran/{$subMenu?}/Destroy/{id}', [DynamicFormController::class, 'postPengeluaranDestroy'])->name('backend.post.pengeluaran.dinamis.destroy');
+    Route::match(['get', 'post'], '/admin/Pengeluaran/{masterMenu}/{subMenu}/Ditolak/{id}', [DynamicFormController::class, 'postPengeluaranDitolak'])->name('backend.post.pengeluaran.dinamis.ditolak');
+    Route::match(['get', 'post'], '/admin/Pengeluaran/{masterMenu}/{subMenu}/Destroy/{id}', [DynamicFormController::class, 'postPengeluaranDestroy'])->name('backend.post.pengeluaran.dinamis.destroy');
 });
 
 // login khusus anggota

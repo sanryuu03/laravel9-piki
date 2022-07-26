@@ -277,6 +277,7 @@ class PengeluaranController extends Controller
         }
         if (auth()->user()->level == 'bendahara') {
             $data = Pengeluaran::find($request->id);
+            // return $data;
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);

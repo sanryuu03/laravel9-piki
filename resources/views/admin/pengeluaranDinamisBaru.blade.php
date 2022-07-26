@@ -134,20 +134,20 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.form.pengeluaran.dinamis.via.bendahara', [$subMenu,$item->id]) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      <td><a href="{{ route('backend.form.pengeluaran.dinamis.via.bendahara', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
                       <td>{{ number_format($item->volume,0,",",".") }}</td>
                       <td>{{ $item->satuan }}</td>
                       <td>{{ number_format($item->harga_satuan,0,",",".") }}</td>
                       <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>
-                          <a href="{{ route('backend.form.edit.pengeluaran.rutin', [$subMenu,$item->id]) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
-                          <form action="{{ route('backend.post.pengeluaran.dinamis.destroy', [$subMenu,$item->id]) }}" method="POST" class="d-inline">
+                          <a href="{{ route('backend.form.edit.pengeluaran.rutin', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <form action="{{ route('backend.post.pengeluaran.dinamis.destroy', [$masterMenu,$subMenu,$item->id]) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
-                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form', [$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi</a>
+                          <a href="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi</a>
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
                           <!-- Modal Alasan Start-->
                           <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -160,7 +160,7 @@
                                           </button>
                                       </div>
                                       <div class="modal-body">
-                                          <form action="{{ route('backend.post.pengeluaran.rutin.ditolak', [$subMenu,$item->id]) }}" method="post">
+                                          <form action="{{ route('backend.post.pengeluaran.dinamis.ditolak', [$masterMenu,$subMenu,$item->id]) }}" method="post">
                                               @csrf
                                               <div class="form-group">
                                                   <label for="message-text" class="col-form-label">Message:</label>

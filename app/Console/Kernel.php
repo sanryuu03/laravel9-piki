@@ -16,11 +16,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function () {
+
+            //Pengecekan apakah cronjob berhasil atau tidak
+            //Mencatat info log
+            Log::info('Cronjob berhasil dijalankan');
+        })->everyMinute();
         // $schedule->command('inspire')->hourly();
-        $schedule->command('command:perpindahanTempKeAnggota')->daily();
+        // $schedule->command('command:perpindahanTempKeAnggota')->daily();
+        $schedule->command('command:perpindahanTempKeAnggota')->everyMinute();
         // $schedule->command('command:perpindahanTempKeAnggota')->everyFiveMinutes()->timezone('Asia/Jakarta');
-        $schedule->command('artisan cache:clear')->everyFiveMinutes();
-        $schedule->command('artisan view:clear')->everyFiveMinutes();
+        // $schedule->command('artisan cache:clear')->everyFiveMinutes();
+        // $schedule->command('artisan view:clear')->everyFiveMinutes();
         //Mencatat info log
         Log::info('Cronjob berhasil dijalankan');
     }
@@ -32,7 +39,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

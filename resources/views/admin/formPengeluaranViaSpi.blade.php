@@ -28,7 +28,7 @@
       <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.bendahara', [$masterMenu,$subMenu,$item->id]) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.spi', [$masterMenu,$subMenu,$item->id]) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                   <div class="form-group">
@@ -116,7 +116,7 @@
                       @enderror
                   </div>
 
-                      <button class="mt-3 btn btn-primary">Verifikasi Bendahara</button>
+                      <button class="mt-3 btn btn-primary">Verifikasi SPI</button>
                       <button type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
 
                   </form>

@@ -160,17 +160,16 @@ class DynamicFormController extends Controller
         }
     }
 
-
-
-    public function formPengeluaranDinamisViaBendahara($subMenu, $id)
+    public function formPengeluaranDinamisViaBendahara($masterMenu, $subMenu)
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
-        return $Pengeluaran = Pengeluaran::find($id);
+        $Pengeluaran = Pengeluaran::find(request()->id);
         return view('admin/formPengeluaranDinamisViaBendahara', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => ucwords('form pengeluaran '.$subMenu. ' PIKI SUMUT'),
-            "subemenu" => $subMenu,
+            "masterMenu" => $masterMenu,
+            "subMenu" => $subMenu,
             "creator" => $user,
             'summary' => 'ringkasan',
             'Pengeluaran' => $Pengeluaran,
@@ -180,13 +179,13 @@ class DynamicFormController extends Controller
         ]);
     }
 
-    public function postPengeluaranViaBendahara(Request $request)
+    public function postPengeluaranViaBendahara(Request $request, $masterMenu,$subMenu)
     {
         if (auth()->user()->level == 'super-admin') {
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru',[$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
         if (auth()->user()->level == 'spi') {
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru',[$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
         if (auth()->user()->level == 'bendahara') {
             $data = $request->except('_token');
@@ -200,17 +199,17 @@ class DynamicFormController extends Controller
                 ->update($data);
 
 
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru',[$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
         }
     }
 
-    public function postPengeluaranViaBendaharaViaForm(Request $request)
+    public function postPengeluaranViaBendaharaViaForm(Request $request, $masterMenu, $subMenu)
     {
         if (auth()->user()->level == 'super-admin') {
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
         if (auth()->user()->level == 'spi') {
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum diverifikasi karna anda bukan bendahara');
         }
         if (auth()->user()->level == 'bendahara') {
             $data = Pengeluaran::find($request->id);
@@ -226,7 +225,7 @@ class DynamicFormController extends Controller
                     ]
                 );
 
-            return redirect()->route('backend.pengeluaran.rutin.baru')->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.baru', [$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi bendahara');
         }
     }
 
@@ -244,7 +243,7 @@ class DynamicFormController extends Controller
         ]);
     }
 
-    public function formPengeluaranViaKetua($id)
+    public function formPengeluaranViaKetua($masterMenu,$subMenu,$id)
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
@@ -257,15 +256,17 @@ class DynamicFormController extends Controller
             'Pengeluaran' => $Pengeluaran,
             'item' => $Pengeluaran,
             'namaUser' => $namaUser,
+            'masterMenu' => $masterMenu,
+            'subMenu' => $subMenu,
             'action' => 'edit',
         ]);
     }
 
-    public function postPengeluaranViaKetua(Request $request)
+    public function postPengeluaranViaKetua(Request $request, $masterMenu, $subMenu)
     {
         $Pengeluaran = Pengeluaran::find($request->id);
         if ($Pengeluaran->status_verifikasi_ketua == 'terverifikasi') {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
         }
         if ($Pengeluaran->status_verifikasi_bendahara == 'terverifikasi') {
             $data = $request->except('_token');
@@ -277,20 +278,22 @@ class DynamicFormController extends Controller
             $data['status_verifikasi_ketua'] = 'terverifikasi';
             Pengeluaran::where('id', $request->id)
                 ->update($data);
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
         }
         else {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
         }
     }
 
-    public function postPengeluaranViaKetuaViaForm(Request $request)
+    public function postPengeluaranViaKetuaViaForm(Request $request, $masterMenu, $subMenu)
     {
+        // return $subMenu;
         $data = Pengeluaran::find($request->id);
         if ($data->status_verifikasi_ketua == 'terverifikasi') {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi Ketua');
         }
         if ($data->status_verifikasi_bendahara == 'terverifikasi') {
+            $data = Pengeluaran::find($request->id);
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
@@ -302,14 +305,14 @@ class DynamicFormController extends Controller
                         'status_verifikasi_ketua' => 'terverifikasi',
                     ]
                 );
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi Ketua');
         }
          else {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi Ketua');
         }
     }
 
-    public function formPengeluaranViaSpi($id)
+    public function formPengeluaranViaSpi($masterMenu,$subMenu,$id)
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
@@ -322,16 +325,18 @@ class DynamicFormController extends Controller
             'Pengeluaran' => $Pengeluaran,
             'item' => $Pengeluaran,
             'namaUser' => $namaUser,
+            'masterMenu' => $masterMenu,
+            'subMenu' => $subMenu,
             'action' => 'edit',
         ]);
     }
 
-    public function postPengeluaranViaSpi(Request $request)
+    public function postPengeluaranViaSpi(Request $request, $masterMenu,$subMenu)
     {
         // return $request;
         $Pengeluaran = Pengeluaran::find($request->id);
         if ($Pengeluaran->status_verifikasi_spi == 'terverifikasi') {
-            return redirect()->route('backend.pengeluaran.rutin.diterima')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diterima', [$masterMenu,$subMenu])->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
         }
         if ($Pengeluaran->status_verifikasi_bendahara == 'terverifikasi' && $Pengeluaran->status_verifikasi_ketua == 'terverifikasi') {
             $data = $request->except('_token');
@@ -344,18 +349,18 @@ class DynamicFormController extends Controller
             $data['status_verifikasi_spi'] = 'terverifikasi';
             Pengeluaran::where('id', $request->id)
             ->update($data);
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
         }
         else {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
         }
     }
 
-    public function postPengeluaranViaSpiViaForm(Request $request)
+    public function postPengeluaranViaSpiViaForm(Request $request, $masterMenu, $subMenu)
     {
         $data = Pengeluaran::find($request->id);
         if ($data->status_verifikasi_spi == 'terverifikasi') {
-            return redirect()->route('backend.pengeluaran.rutin.diterima')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diterima')->with('process', 'Pengeluaran Rutin sudah pernah diverifikasi SPI');
         }
         if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
             $dataRupiah = $data->jumlah;
@@ -369,10 +374,10 @@ class DynamicFormController extends Controller
                     'status_verifikasi_spi' => 'terverifikasi',
                     ]
             );
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('success', 'Pengeluaran Rutin telah diverifikasi SPI');
         }
         else {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu, $subMenu])->with('unapproved', 'Pengeluaran Rutin gagal diverifikasi SPI');
         }
     }
 
@@ -404,7 +409,7 @@ class DynamicFormController extends Controller
         ]);
     }
 
-    public function postPengeluaranDitolak(Request $request)
+    public function postPengeluaranDitolak(Request $request, $masterMenu,$subMenu)
     {
         // return $request;
         $data = $request->except('_token');
@@ -415,31 +420,31 @@ class DynamicFormController extends Controller
             $data['status_verifikasi_bendahara'] = 'ditolak';
             Pengeluaran::where('id', $request->id)
             ->update($data);
-            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak',[$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah ditolak');
         }
         elseif ($Pengeluaran->alasan_ditolak == null && $Pengeluaran->status_verifikasi_bendahara == null && $Pengeluaran->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
         }
         elseif ($Pengeluaran->alasan_ditolak == null && $Pengeluaran->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
         }
         elseif ($Pengeluaran->alasan_ditolak == null && $Pengeluaran->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin belum bisa ditolak karna belum di verifikasi bendahara');
         }
         elseif ($Pengeluaran->alasan_ditolak == null && auth()->user()->level=='super-admin') {
             $data['status_verifikasi_ketua'] = 'ditolak';
             Pengeluaran::where('id', $request->id)
             ->update($data);
-            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak', [$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah ditolak');
         }
         elseif ($Pengeluaran->alasan_ditolak == null && auth()->user()->level=='spi') {
             $data['status_verifikasi_spi'] = 'ditolak';
             Pengeluaran::where('id', $request->id)
             ->update($data);
-            return redirect()->route('backend.pengeluaran.rutin.ditolak')->with('success', 'Pengeluaran Rutin telah ditolak');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.ditolak', [$masterMenu,$subMenu])->with('success', 'Pengeluaran Rutin telah ditolak');
         }
         else {
-            return redirect()->route('backend.pengeluaran.rutin.diproses')->with('unapproved', 'Pengeluaran Rutin sudah pernah telah ditolak');
+            return redirect()->route('backend.dinamis.isi.menu.keuangan.diproses', [$masterMenu,$subMenu])->with('unapproved', 'Pengeluaran Rutin sudah pernah telah ditolak');
         }
 
     }

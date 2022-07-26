@@ -139,11 +139,11 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       @if(auth()->user()->level=='bendahara')
-                      <td><a href="{{ route('backend.form.pengeluaran.dinamis.via.bendahara', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      <td><a href="{{ route('backend.form.pengeluaran.rutin.via.bendahara', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
                       @elseif(auth()->user()->level=='super-admin')
-                      <td><a href="{{ route('backend.form.pengeluaran.dinamis.via.ketua', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      <td><a href="{{ route('backend.form.pengeluaran.rutin.via.ketua', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
                       @elseif(auth()->user()->level=='spi')
-                      <td><a href="{{ route('backend.form.pengeluaran.dinamis.via.spi', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
+                      <td><a href="{{ route('backend.form.pengeluaran.rutin.via.spi', $item->id) }}" class="">{{ $item->uraian_pengeluaran }}</a></td>
                       @endif
                       <td>{{ $item->volume }}</td>
                       <td>{{ $item->satuan }}</td>
@@ -162,11 +162,11 @@
                               </button>
                           </form>
                           @if(auth()->user()->level=='spi')
-                          <a href="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.spi.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
                           @elseif(auth()->user()->level=='super-admin')
-                          <a href="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.ketua.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
                           @elseif(auth()->user()->level=='bendahara')
-                          <a href="{{ route('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          <a href="{{ route('backend.post.pengeluaran.rutin.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
                           @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
                           <!-- Modal Alasan Start-->
