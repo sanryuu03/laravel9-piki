@@ -264,7 +264,7 @@
                                 @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
                                 @foreach($masterMenuNavbarKeuangan as $menuNavbarKeuangan)
                                 <li class="nav-item dropdown">
-                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">{{ ucwords($menuNavbarKeuangan->nama_menu) }}</a>
+                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle {{ $menuNavbarKeuangan->id % 2 == 0 ? 'text-warning' : 'text-success' }}">{{ ucwords($menuNavbarKeuangan->nama_menu) }}</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                     @foreach($subMenuNavbarKeuangan as $item)
                                     @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
