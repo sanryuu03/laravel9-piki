@@ -145,9 +145,16 @@ Route::group(['middleware' => ['CekLevel:super-admin,infokom,media']], function 
 
 // program
 Route::group(['middleware' => ['CekLevel:super-admin,admin,organisasi,infokom']], function () {
+    Route::get('/admin/formEditProgram/checkSlug', [NewsPikiController::class, 'checkSlug']);
+
     Route::get('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'index'])->name('program');
     Route::post('/admin/landingpagejenisprogram', [ProgramPikiController::class, 'store'])->name('upload.program');
     Route::post('/admin/landingpagejenisprogram/hapus/{id}', [ProgramPikiController::class, 'destroy'])->name('program.destroy');
+
+    Route::match(['get', 'post'], '/admin/formAddProgram', [ProgramPikiController::class, 'formAddProgram'])->name('backend.form.add.program');
+    Route::match(['get', 'post'], '/admin/formEditProgram/{id}', [ProgramPikiController::class, 'formEditProgram'])->name('backend.form.edit.program');
+    Route::match(['get', 'post'], '/admin/saveFormProgram', [ProgramPikiController::class, 'saveFormProgram'])->name('save.form.program');
+
 });
 
 // agenda

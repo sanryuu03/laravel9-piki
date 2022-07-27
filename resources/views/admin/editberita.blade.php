@@ -9,8 +9,8 @@
 
   </style>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">Landing Page {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Landing {{ $menu }}</li>
@@ -19,7 +19,7 @@
   </div>
 
   <!-- Header Start-->
-  <div class="card mx-3 my-3">
+  <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
 
@@ -72,8 +72,8 @@
                       </select>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mt-3">Update</button>
-                  <a class="btn btn-danger mt-3" href="{{ route('berita') }}">Back</a>
+                  <button type="submit" class="mt-3 btn btn-primary">Update</button>
+                  <a class="mt-3 btn btn-danger" href="{{ route('berita') }}">Back</a>
               </form>
           </div>
       </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProgramPiki;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProgramPikiController extends Controller
 {
@@ -107,8 +108,102 @@ class ProgramPikiController extends Controller
      */
     public function destroy(ProgramPiki $programPiki, $id)
     {
+        $data = ['deleted_by' => auth()->user()->name];
+        ProgramPiki::where('id', request()->id)
+        ->update($data);
         $programPiki = ProgramPiki::find($id);
         $programPiki->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Program telah dihapus');
+    }
+
+    public function formAddProgram(ProgramPiki $programPiki)
+    {
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        return view('admin/formProgram', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Program",
+            "creator" => $user,
+            "namaUser" => $namaUser,
+            "program" => $programPiki,
+            "action" => 'add',
+        ]);
+    }
+
+    public function saveFormProgram(Request $request)
+    {
+        // return $request;
+        // return $request->action;
+        if ($request->action == "add") {
+            // return request();
+            $data = $request->except('_token');
+
+            if ($request->file('picture_path_program')) {
+                // menyimpan data file yang diupload ke variabel $file
+                $file = $request->file('picture_path_program');
+                $nama_file = time() . "_" . $file->getClientOriginalName();
+                // dd($nama_file);
+
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'storage/assets/program/';
+
+                // upload file
+                $file->move($tujuan_upload, $nama_file);
+
+                $data['picture_path_program'] = $nama_file;
+            }
+
+            ProgramPiki::create($data);
+            return redirect()->route('program')->with('success', 'Program Berhasil Dilakukan, Terima Kasih !');
+        }
+        if ($request->action == "edit") {
+            // return $request->id;
+            // return $request;
+            $rules = [
+                'judul_program' => 'required',
+                'keterangan_foto' => 'required',
+                'isi_program' => 'required',
+
+            ];
+
+            if($request->slug != $request->slug)
+            {
+                $rules['slug'] = 'required|unique:program_pikis';
+            }
+
+            // return $request->id;
+            $data = $request->validate($rules);
+            if ($request->file('picture_path_program')) {
+                // menyimpan data file yang diupload ke variabel $file
+                $file = $request->file('picture_path_program');
+                $nama_file = time() . "_" . $file->getClientOriginalName();
+                // dd($nama_file);
+
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'storage/assets/program/';
+
+                // upload file
+                $file->move($tujuan_upload, $nama_file);
+
+                $data['picture_path_program'] = $nama_file;
+            }
+            ProgramPiki::where('id', $request->id)->update($data);
+            return redirect()->route('program')->with('success', 'Program telah diedit');
+        }
+    }
+
+    public function formEditProgram($id)
+    {
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $programPiki = ProgramPiki::find($id);
+        return view('admin/formProgram', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Program",
+            "creator" => $user,
+            "namaUser" => $namaUser,
+            "program" => $programPiki,
+            "action" => 'edit',
+        ]);
     }
 }
