@@ -32,7 +32,7 @@ class FrontEndPikiController extends Controller
         $berita = NewsPiki::latest()->take(3)->get();
         $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
-        $program = ProgramPiki::take(7)->get();
+        $program = ProgramPiki::take(3)->get();
         $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();
         $item = AgendaPiki::latest()->first();
         $anggota = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')->get();
@@ -65,6 +65,16 @@ class FrontEndPikiController extends Controller
             "title" => "PIKI - Sangrid",
             "creator" => "San",
             "news" => $newsPiki,
+        ]);
+    }
+
+    public function program($slug)
+    {
+        $programPiki = ProgramPiki::where('slug', $slug)->first();
+        return view('/program', [
+            "title" => "PIKI - Sangrid",
+            "creator" => "San",
+            "program" => $programPiki,
         ]);
     }
 

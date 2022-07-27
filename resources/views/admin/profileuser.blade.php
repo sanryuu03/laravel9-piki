@@ -50,49 +50,48 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="order-3 collapse navbar-collapse" id="navbarCollapse">
-
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{  url('/admin/profile', $item->id) }}" class="nav-link">Home</a>
+                            <a href="{{  url('/admin/profile', $userid) }}" class="nav-link">Home</a>
                         </li>
                         @if(auth()->user()->level=='anggota' && auth()->user()->status_anggota=='diterima')
                         <li class="nav-item">
-                            <a href="{{  url('/admin/iuran', $item->id) }}" class="nav-link">Iuran</a>
+                            <a href="{{  url('/admin/iuran', $userid) }}" class="nav-link">Iuran</a>
                         </li>
                         @endif
                         @can('header', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/landingpageheader') }}" class="nav-link">{{ ucwords('header') }}</a>
+                            <a href="{{  url('/admin/backendHeaderviaUser', $userid) }}" class="nav-link">{{ ucwords('header') }}</a>
                         </li>
                         @endcan
                         @can('berita', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/landingpageberita') }}" class="nav-link">{{ ucwords('berita') }}</a>
+                            <a href="{{  url('/admin/backendBeritaviaUser', $userid) }}" class="nav-link">{{ ucwords('berita') }}</a>
                         </li>
                         @endcan
                         @can('program', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/landingpagejenisprogram') }}" class="nav-link">{{ ucwords('program') }}</a>
+                            <a href="{{  url('/admin/backendPagejenisprogramviaUser', $userid) }}" class="nav-link">{{ ucwords('program') }}</a>
                         </li>
                         @endcan
                         @can('agenda', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/landingpageagenda') }}" class="nav-link">{{ ucwords('agenda') }}</a>
+                            <a href="{{  url('/admin/backendPageagendaviaUser', $userid) }}" class="nav-link">{{ ucwords('agenda') }}</a>
                         </li>
                         @endcan
                         @can('anggota', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/backendanggota') }}" class="nav-link">{{ ucwords('anggota') }}</a>
+                            <a href="{{  url('/admin/backendAnggotaViaUser', $userid) }}" class="nav-link">{{ ucwords('anggota') }}</a>
                         </li>
                         @endcan
                         @can('community partners', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/communitypartners') }}" class="nav-link">{{ ucwords('community partners') }}</a>
+                            <a href="{{  url('/admin/backendCommunitypartnersViaUser', $userid) }}" class="nav-link">{{ ucwords('community partners') }}</a>
                         </li>
                         @endcan
                         @can('keuangan', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/keuangan') }}" class="nav-link">{{ ucwords('keuangan') }}</a>
+                            <a href="{{  url('/admin/backendKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('keuangan') }}</a>
                         </li>
                         @endcan
                     </ul>

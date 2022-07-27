@@ -161,6 +161,7 @@ class ProgramPikiController extends Controller
             // return $request;
             $rules = [
                 'judul_program' => 'required',
+                'slug' => 'nullable',
                 'keterangan_foto' => 'required',
                 'isi_program' => 'required',
 
@@ -171,8 +172,8 @@ class ProgramPikiController extends Controller
                 $rules['slug'] = 'required|unique:program_pikis';
             }
 
-            // return $request->id;
             $data = $request->validate($rules);
+            // return $data;
             if ($request->file('picture_path_program')) {
                 // menyimpan data file yang diupload ke variabel $file
                 $file = $request->file('picture_path_program');

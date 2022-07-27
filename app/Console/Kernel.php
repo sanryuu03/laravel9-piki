@@ -21,6 +21,7 @@ class Kernel extends ConsoleKernel
             //Pengecekan apakah cronjob berhasil atau tidak
             //Mencatat info log
             Log::info('Cronjob berhasil dijalankan');
+            Log::debug('Cronjob berhasil dijalankan');
         })->everyMinute();
         // $schedule->command('inspire')->hourly();
         // $schedule->command('command:perpindahanTempKeAnggota')->daily();

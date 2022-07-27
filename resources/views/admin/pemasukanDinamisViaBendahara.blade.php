@@ -187,7 +187,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                  <form action="{{ route('backend.post.pendapatan.dinamis.ditolak', [$masterMenu,$subMenu,$item->id]) }}" method="post">
                       @csrf
                       <div class="form-group">
                           <label for="message-text" class="col-form-label">Message:</label>

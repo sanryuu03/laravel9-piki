@@ -173,10 +173,10 @@
 
       </style>
       <header>
-          <div class="img-hero text-center justify-content-center d-flex">
+          <div class="text-center img-hero justify-content-center d-flex">
               @if(count($header) > 0)
               @foreach($header as $item)
-              <img src="{{ url('/storage/assets/header/web/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400 invisible d-sm-inline" />
+              <img src="{{ url('/storage/assets/header/web/'.$item->picture_path) }}" alt="workly" class="invisible object-cover h-full rounded-lg md:rounded-xl w-px400 d-sm-inline" />
               @endforeach
               @else
               <img id="hero" class="header w-px400-desktop d-none d-sm-block d-block" src="images/pikiheader.jpg" alt="">
@@ -204,10 +204,10 @@
   </section>
   <div class="flex -mt-[140px] my-96 py-20 lg:hidden">
       <div id="daftar" class="flex-initial w-full ml-[100px]">
-          <a id="daftar" href="/daftar" class="btn btn-info btn-md mx-auto" target="_blank">daftar</a>
+          <a id="daftar" href="/daftar" class="mx-auto btn btn-info btn-md" target="_blank">daftar</a>
       </div>
       <div class="flex-initial w-full mr-[70px]">
-          <a href="{{ route('admin.login') }}" class="btn btn-primary btn-md mx-auto">login</a>
+          <a href="{{ route('admin.login') }}" class="mx-auto btn btn-primary btn-md">login</a>
       </div>
   </div>
 
@@ -337,7 +337,7 @@
           }
 
       </style>
-      <main class="relative z-30 px-4 pb-0 mx-auto md:pb-28 our-platform pt-3 max-w-screen-2xl lg:px-24">
+      <main class="relative z-30 px-4 pt-3 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24">
           <div class="grid">
               <div class="md:col-span-10">
                   <h1 class="font-semibold leading-snug md:leading-9 text-40">
@@ -345,11 +345,11 @@
                   </h1>
               </div>
           </div>
-          <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 mt-12 md:gap-10 md:mt-12 pb-12 isi-program">
+          <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 pb-12 mt-12 md:gap-10 md:mt-12 isi-program">
               @if(count($program) > 0)
               @foreach($program as $item)
               <div class="row-span-1">
-                  <img src="{{ url('/storage/assets/program/'.$item->picture_path) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
+                  <a href="{{ route('read.more.program', $item->slug) }}"><img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" /></a>
               </div>
               @endforeach
               @else
@@ -361,9 +361,25 @@
                   <img src="images/hrd.jpeg" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" />
               </div>
               @endif
-
           </div>
           <div id="carouselExampleControls" class="d-lg-none carousel slide w-px400" data-bs-ride="carousel">
+              @if(count($program) > 0)
+              @foreach($program as $item)
+              <div class="carousel-inner isi-program-carousel">
+                  <div class="carousel-item active">
+                  <a href="{{ route('read.more.program', $item->slug) }}"><img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" /></a>
+                  </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+              @endforeach
+              @else
               <div class="carousel-inner isi-program-carousel">
                   <div class="carousel-item active">
                       <img src="/images/digital.jpeg" class="d-block w-100" alt="...">
@@ -383,6 +399,7 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
               </button>
+              @endif
           </div>
 
       </main>
@@ -469,7 +486,7 @@
               <div class="">
                   <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-sky-400 judul-berita">{{ $berita->judul_berita }}</a>
               </div>
-              <div class="footer-berita mb-5">
+              <div class="mb-5 footer-berita">
                   <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-primary fs-2">{{ $berita->categoryNews->name }}</a>
                   <a class="ml-5 text-secondary fs-2 waktu-posting-berita">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
                   <hr>
@@ -498,16 +515,16 @@
   <div class="container-fluid">
       <div class="row">
           @foreach($categoryNews as $berita)
-          <div class="col-md-4 mb-3">
+          <div class="mb-3 col-md-4">
               <a href="/categories/{{ $berita->slug }}">
-                  <div class="card bg-dark text-white">
-                  @if($berita->picture_path_kategori_berita !== NULL)
+                  <div class="text-white card bg-dark">
+                      @if($berita->picture_path_kategori_berita !== NULL)
                       <img src="{{ url('/storage/assets/categorynews/'.$berita->picture_path_kategori_berita) }}" class="card-img img-fluid" alt="{{ $berita->name }}" style="width:500px; height:395px;">
-                  @else
+                      @else
                       <img src="https://source.unsplash.com/500x500?{{ $berita->slug }}" class="card-img" alt="{{ $berita->name }}">
-                  @endif
-                      <div class="card-img-overlay d-flex align-items-center p-0">
-                          <h5 class="card-title text-center flex-fill p-4 fs-3" style="background-color:rgba(0,0,0,0.7)">{{ $berita->name }}</h5>
+                      @endif
+                      <div class="p-0 card-img-overlay d-flex align-items-center">
+                          <h5 class="p-4 text-center card-title flex-fill fs-3" style="background-color:rgba(0,0,0,0.7)">{{ $berita->name }}</h5>
                       </div>
                   </div>
               </a>
@@ -664,22 +681,22 @@
 
       </style>
       <h1 class="title-text-h1">Agenda</h1>
-      <div class="content-3-2-agenda container-xxl mx-auto  position-relative p-96" style="font-family: 'Poppins', sans-serif">
+      <div class="mx-auto content-3-2-agenda container-xxl position-relative p-96" style="font-family: 'Poppins', sans-serif">
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               <div class="container-fluid d-flex w-px400 w-px400-desktop">
                   <div class="card-berita">
-                      <div class="card bg-dark text-white">
-                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="card-img object-fill" alt="...">
+                      <div class="text-white card bg-dark">
+                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="object-fill card-img" alt="...">
                       </div>
-                      <div class="card card-body mt-3 isi-berita">
+                      <div class="mt-3 card card-body isi-berita">
                           {!! $item->keterangan_agenda !!}.
                       </div>
                   </div>
               </div>
 
               <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start text-center">
+              <div class="text-center right-column d-flex flex-column align-items-lg-start align-items-center text-sm-start">
                   <h6 class="title-text title-text-agenda-lainnya">Agenda Lainnya</h6>
                   <ul style="padding: 0; margin: 0">
                       <?php $no = 0;?>
@@ -687,7 +704,7 @@
                       <?php $no++ ;?>
                       <li class="list-unstyled" style="margin-bottom: 1rem">
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                              <span class="circle text-white d-flex align-items-center justify-content-center">
+                              <span class="text-white circle d-flex align-items-center justify-content-center">
                                   {{ $no }}
 
                               </span>
@@ -696,7 +713,7 @@
                       </li>
                       @endforeach
                   </ul>
-                  <button class="btn btn-learn-agenda text-white">Lihat lebih banyak agenda</button>
+                  <button class="text-white btn btn-learn-agenda">Lihat lebih banyak agenda</button>
               </div>
           </div>
       </div>
@@ -795,15 +812,15 @@
           }
 
       </style>
-      <div class="content-3-2-anggota container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center">Anggota</h2>
+      <div class="mx-auto content-3-2-anggota container-xxl position-relative" style="font-family: 'Poppins', sans-serif">
+          <h2 class="text-center title-text">Anggota</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               <!-- Left Column -->
               @if(count($anggota) != 0)
-              <div class="img-hero left-column text-center d-flex justify-content-center mx-auto">
+              <div class="mx-auto text-center img-hero left-column d-flex justify-content-center">
                   <div class="container-fluid">
                       @foreach($anggota as $item)
-                      <div class="card mb-3">
+                      <div class="mb-3 card">
                           <div class="row g-0">
                               <div class="col-md-3">
                                   @if($item->userPiki->photo_profile)
@@ -827,10 +844,10 @@
 
               @else
               <!-- Right Column -->
-              <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
+              <div class="text-center right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
                   <ul style="padding: 0; margin: 0">
                       <div class="md:container md:mx-auto">
-                          <div class="card mb-3" style="max-width: 540px;">
+                          <div class="mb-3 card" style="max-width: 540px;">
                               <div class="row g-0">
                                   <div class="col-md-4">
                                       <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
@@ -844,7 +861,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="card mb-3" style="max-width: 540px;">
+                          <div class="mb-3 card" style="max-width: 540px;">
                               <div class="row g-0">
                                   <div class="col-md-4">
                                       <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
@@ -858,7 +875,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="card mb-3" style="max-width: 540px;">
+                          <div class="mb-3 card" style="max-width: 540px;">
                               <div class="row g-0">
                                   <div class="col-md-4">
                                       <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
@@ -1006,16 +1023,16 @@
           }
 
       </style>
-      <div class="content-sponsor container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-          <h2 class="title-text text-center text-slate-500">Community Partners</h2>
+      <div class="mx-auto content-sponsor container-xxl position-relative" style="font-family: 'Poppins', sans-serif">
+          <h2 class="text-center title-text text-slate-500">Community Partners</h2>
           <div class="d-flex flex-lg-row flex-column align-items-center">
               @foreach($sponsor as $item)
 
               <!-- Left Column -->
-              <div class="container-fluid left-column text-center d-flex">
+              <div class="text-center container-fluid left-column d-flex">
                   <div class="">
                       <div class="card bg-dark">
-                          <img src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}" class="card-img object-fill" alt="...">
+                          <img src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}" class="object-fill card-img" alt="...">
                       </div>
                   </div>
               </div>
@@ -1148,7 +1165,7 @@
       <div id="accordion">
 
           <div class="card faq-card">
-              <div class="card-header text-center">
+              <div class="text-center card-header">
                   {{-- <a class="card-link" data-bs-toggle="collapse" href="#collapseOne">
                         FAQ's
                     </a> --}}
@@ -1206,4 +1223,3 @@
   <!-- End Faq's-->
 
   @endsection
-

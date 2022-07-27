@@ -6,16 +6,26 @@ use App\Models\User;
 use App\Models\Regency;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\NewsPiki;
 use App\Models\Province;
 use App\Models\IuranPiki;
+use App\Models\AgendaPiki;
+use App\Models\HeaderPiki;
 use App\Models\AnggotaPiki;
+use App\Models\ProgramPiki;
+use App\Models\SponsorPiki;
 use App\Models\TempAnggota;
+use App\Models\CategoryNews;
 use App\Models\DataRekening;
 use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
 use App\Models\DataBiayaIuran;
 use App\Models\jenisPemasukan;
 use App\Models\ProfileAnggota;
+use App\Models\KategoriAnggota;
+use App\Models\HeaderPikiMobile;
+use App\Models\SubKategoriAnggota;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -27,6 +37,53 @@ class ProfileAnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $user = User::where('id', request()->userid)->first();
+        // dd($pendaftarBaru);
+        $this->userBaru = User::where('status_anggota', 'belum di proses')-> get();
+        $this->userDalamProses = User::where('status_anggota', 'dalam proses')-> get();
+        $this->userDiTolak = User::where('status_anggota', 'tidak sesuai')-> get();
+        $this->userDiterima = User::where('status_anggota', 'diterima')-> get();
+        $Anggota = AnggotaPiki::all();
+        $this->anggotaYangDitampilkan = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')-> get();
+        $this->kategoriAnggota = KategoriAnggota::get();
+        $this->subKategoriAnggota = SubKategoriAnggota::get();
+
+        $hitungUserBaru = count($this->userBaru);
+        $hitungUseruserDalamProses = count($this->userDalamProses);
+        $hitungUserDiTolak = count($this->userDiTolak);
+        $hitungUserDiterima = count($this->userDiterima->skip(8));
+        $hitungjabatanPikiSumut = count($Anggota);
+        $this->hitunganggotaYangDitampilkan = count($this->anggotaYangDitampilkan);
+        $hitungKategoriAnggota = count($this->kategoriAnggota);
+        $hitungSubKategoriAnggota = count($this->subKategoriAnggota);
+        // return $hitungUserDiterima;
+        $pendaftarBaru = $hitungUserBaru > 0 ? $hitungUserBaru:0;
+        $dalamProses = $hitungUseruserDalamProses > 0 ? $hitungUseruserDalamProses:0;
+        $diTolak = $hitungUserDiTolak > 0 ? $hitungUserDiTolak:0;
+        $anggotaDiterima = $hitungUserDiterima > 0 ? $hitungUserDiterima:0;
+        $jabatanPikiSumut = $hitungjabatanPikiSumut > 0 ? $hitungjabatanPikiSumut:0;
+        $anggotaYangDitampilkan = $this->hitunganggotaYangDitampilkan > 0 ? $this->hitunganggotaYangDitampilkan:0;
+        $kategoriAnggota = $hitungKategoriAnggota > 0 ? $hitungKategoriAnggota:0;
+        $subKategoriAnggota = $hitungSubKategoriAnggota > 0 ? $hitungSubKategoriAnggota:0;
+        // dd($pendaftarBaru);
+        // $navbarAnggota = request()->route()->getName() === 'backendanggota';
+        $navbarAnggota = true;
+        View::share([
+            "user" => $user,
+            'pendaftarBaru' => $pendaftarBaru,
+            'dalamProses' => $dalamProses,
+            'diTolak' => $diTolak,
+            'anggotaDiterima' => $anggotaDiterima,
+            'jabatanPikiSumut' => $jabatanPikiSumut,
+            'anggotaYangDitampilkan' => $anggotaYangDitampilkan,
+            'kategoriAnggota' => $kategoriAnggota,
+            'subKategoriAnggota' => $subKategoriAnggota,
+            "navbarAnggota" => $navbarAnggota,
+        ]);
+
+    }
     public function index()
     {
         //
@@ -59,17 +116,20 @@ class ProfileAnggotaController extends Controller
      * @param  \App\Models\ProfileAnggota  $profileAnggota
      * @return \Illuminate\Http\Response
      */
-    public function show(ProfileAnggota $profileAnggota, AnggotaPiki $anggotaPiki, $id)
+    public function show(AnggotaPiki $anggotaPiki, $userid)
     {
-        $anggotaPiki = AnggotaPiki::find($id);
-        $user = User::find($id);
+        // return $userid;
+        $user = User::where('id', $userid)->first();
+        // return $user;
+        $anggotaPiki = AnggotaPiki::find($userid);
         return view('admin/profileuser', [
             "title" => "PIKI - Sangrid",
             "menu" => "PIKI - CV Anggota",
-            "user" => $user,
             "anggotaPiki" => $anggotaPiki,
-            "item" => $user,
             "action" => "view",
+            "user" => $user,
+            "item" => $user,
+            "userid" => $userid,
         ]);
     }
 
@@ -79,10 +139,9 @@ class ProfileAnggotaController extends Controller
      * @param  \App\Models\ProfileAnggota  $profileAnggota
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, AnggotaPiki $anggotaPiki, $id)
+    public function edit(Request $request, AnggotaPiki $anggotaPiki, $userid)
     {
-        $anggotaPiki = AnggotaPiki::find($id);
-        $user = User::find($id);
+        $user = User::where('id', $userid)->first();;
         $id = $request->value;
         $provinces = Province::all();
         // penggunaan http://192.168.1.7:8000/admin/landingpageanggota/edit/1?value=heheh
@@ -95,6 +154,9 @@ class ProfileAnggotaController extends Controller
             "id" => $id,
             "action" => "edit",
             "provinces" => $provinces,
+            "user" => $user,
+            "item" => $user,
+            "userid" => $userid,
         ]);
     }
 
@@ -105,8 +167,9 @@ class ProfileAnggotaController extends Controller
      * @param  \App\Models\ProfileAnggota  $profileAnggota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProfileAnggota $profileAnggota)
+    public function update(Request $request, ProfileAnggota $profileAnggota, $userid)
     {
+        // return $request;
         if ($request->file('picture_path')) {
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('picture_path');
@@ -119,11 +182,11 @@ class ProfileAnggotaController extends Controller
             // upload file
             $file->move($tujuan_upload, $nama_file);
 
-            User::where('id', $request->id)->update([
+            User::where('id', $userid)->update([
                 'photo_profile' => $nama_file,
             ]);
 
-            return redirect()->route('anggota.index')->with('success', 'profile berhasil di update');
+            return redirect()->route('profile', $userid)->with('success', 'profile berhasil di update');
         }
 
         if ($request->file('picture_path_ktp')) {
@@ -138,13 +201,13 @@ class ProfileAnggotaController extends Controller
             // upload file
             $file->move($tujuan_upload, $nama_file);
 
-            User::where('id', $request->id)->update([
+            User::where('id', $userid)->update([
                 'photo_ktp' => $nama_file,
             ]);
 
-            return redirect()->route('anggota.index')->with('success', 'ktp berhasil di update');
+            return redirect()->route('profile', $userid)->with('success', 'ktp berhasil di update');
         }
-        // return $request;
+        // return $request->village;
         $rules = [
             'name' => 'required|max:255',
             'phone_number' => 'required',
@@ -165,56 +228,80 @@ class ProfileAnggotaController extends Controller
         //     'district' => 'required',
         //     'village' => 'required',
         // ]);
-
-        $province = request()->input('province');
-        if ($province) {
-            $province = Province::where('id', $province)->first();
-            $namaProvince = $province->name;
-            $data['province'] = $namaProvince;
+        if ($request->province != 'Pilih Provinsi Anda') {
+            $province = request()->input('province');
+            if ($province) {
+                $province = Province::where('id', $province)->first();
+                $namaProvince = $province->name;
+                $data['province'] = $namaProvince;
+                TempAnggota::create(
+                    [
+                        'province' => $namaProvince,
+                    ]
+                );
+            }
         }
 
-        $regencies = request()->input('city');
-        if ($regencies) {
-            $kota = Regency::where('id', $regencies)->first();
-            $namaKota = $kota->name;
-            $data['city'] = $namaKota;
+        if ($request->city != 'Pilih Kabupaten / Kota Anda') {
+            $regencies = request()->input('city');
+            if ($regencies) {
+                $kota = Regency::where('id', $regencies)->first();
+                $namaKota = $kota->name;
+                $data['city'] = $namaKota;
+                TempAnggota::create(
+                    [
+                        'city' => $namaKota,
+                    ]
+                );
+            }
+        }
+        if ($request->district != 'Pilih Kecamatan Anda') {
+            $districts = request()->input('district');
+            if ($districts) {
+                $kecamatan = District::where('id', $districts)->first();
+                $namaKecamatan = $kecamatan->name;
+                $data['district'] = $namaKecamatan;
+                TempAnggota::create(
+                    [
+                        'district' => $namaKecamatan,
+                    ]
+                );
+            }
         }
 
-        $districts = request()->input('district');
-        if ($districts) {
-            $kecamatan = District::where('id', $districts)->first();
-            $namaKecamatan = $kecamatan->name;
-            $data['district'] = $namaKecamatan;
+        if ($request->village != 'Pilih Desa / Kelurahan Anda') {
+            $villages = request()->input('village');
+            if ($villages) {
+                $desa = Village::where('id', $villages)->first();
+                $namaDesa = $desa->name;
+                $data['village'] = $namaDesa;
+                TempAnggota::create(
+                    [
+                        'village' => $namaDesa,
+                    ]
+                );
+            }
         }
 
-        $villages = request()->input('village');
-        if ($villages) {
-            $desa = Village::where('id', $villages)->first();
-            $namaDesa = $desa->name;
-            $data['village'] = $namaDesa;
-        }
 
-        // return $data;
+        // return $request;
+        $userProfileId = User::where('id', $userid)->first();
+        // return $userProfileId->id;
         TempAnggota::create(
             [
-                'users_id' => $request->id,
+                'users_id' => $userProfileId->id,
                 'name' => $request->name,
-                'province' => $namaProvince,
-                'city' => $namaKota,
-                'district' => $namaKecamatan,
-                'village' => $namaDesa,
                 'job' => $request->job,
                 'address' => $request->address,
                 'phone_number' => $request->phone_number,
                 'jabatan_piki_sumut' => 'anggota',
             ]
         );
-
-        User::where('id', $request->id)
+        User::where('id', $userProfileId->id)
             ->update($data);
 
 
-        return redirect()->route('profile', $request->id)->with('success', 'CV telah diperbarui');
+        return redirect()->route('profile', $userid)->with('success', 'CV telah diperbarui');
     }
 
     /**
@@ -228,21 +315,23 @@ class ProfileAnggotaController extends Controller
         //
     }
 
-    public function iuran($id)
+    public function iuran($userid)
     {
-        $anggotaPiki = AnggotaPiki::where('users_id', $id)->get();
-        $user = User::find($id);
+        $anggotaPiki = AnggotaPiki::where('users_id', $userid)->first();
+        $user = User::where('id', $userid)->first();
         $dataRekening = DataRekening::latest()->first();
         $jenisPemasukan = jenisPemasukan::all();
         $dataBiayaIuran = DataBiayaIuran::latest()->first();
-        // return $anggotaPiki[0]->name;
+        // return $anggotaPiki[0]->userid;
         return view('admin/iuranatausumbanganPiki', [
             "title" => "PIKI - Iuran",
             "menu" => "Iuran",
             "creator" => "San",
             'dataRekening' => $dataRekening,
-            "anggotaPiki" => $anggotaPiki[0],
+            "anggotaPiki" => $anggotaPiki,
             "item" => $user,
+            "user" => $user,
+            "userid" => $userid,
             'jenisPemasukan' => $jenisPemasukan,
             'dataBiayaIuran' => $dataBiayaIuran,
         ]);
@@ -259,14 +348,14 @@ class ProfileAnggotaController extends Controller
             $data['tanggal'] = now();
             $namaBulan = $_POST['bulan'];
             $arrBulan = [];
-            foreach ($namaBulan as $bulan){
+            foreach ($namaBulan as $bulan) {
                 array_push($arrBulan, $bulan);
             }
             // return $arrBulan;
             // return $data['iuran_bulan'] = $arrBulan;
             // return implode(", ",$arrBulan);
             // return implode(", ",$data['iuran_bulan'] = $arrBulan);
-            $data['iuran_bulan'] = implode(", ",$arrBulan);
+            $data['iuran_bulan'] = implode(", ", $arrBulan);
             if (request()->input('jumlah')) {
                 $dataRupiah = $request->jumlah;
                 $rupiah = str_replace(".", "", $dataRupiah);
@@ -298,7 +387,7 @@ class ProfileAnggotaController extends Controller
             $data = $request->except('_token');
             $data['tanggal'] = now();
             $dataRupiah = $request->jumlah;
-            $rupiah = str_replace(".","",$dataRupiah);
+            $rupiah = str_replace(".", "", $dataRupiah);
             $data['jumlah'] = $rupiah;
 
             if ($request->file('picture_path_slip_setoran_iuran')) {
@@ -326,6 +415,167 @@ class ProfileAnggotaController extends Controller
             IuranPiki::create($data);
             return redirect()->route('iuran', $request->id)->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
         }
+    }
 
+    public function backendHeader($userid)
+    {
+        $header = HeaderPiki::get();
+        $headerMobile = HeaderPikiMobile::get();
+        $userId = auth()->user()->id;
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendHeaderViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => ucwords('header admin'),
+            "creator" => $userId,
+            'header' => $header,
+            'headerMobile' => $headerMobile,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+
+        ]);
+    }
+
+    public function landingpageberita($userid)
+    {
+        // return $userid;
+        $berita = NewsPiki::all();
+        $categoryNews = CategoryNews::all();
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendBeritaViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Berita",
+            "creator" => auth()->user()->id,
+            "berita" => $berita,
+            "categoryNews" => $categoryNews,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function editberita(NewsPiki $newsPiki, $userid, $newsid)
+    {
+        // $newsPiki = NewsPiki::where('id',$id)->get();
+        // return $id;
+        $newsPiki = NewsPiki::find($newsid);
+        // return $newsPiki;
+        // return $newsPiki->id;
+        $categoryNews = CategoryNews::all();
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendFormBeritaViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Berita",
+            "creator" => "San",
+            "newsPiki" => $newsPiki,
+            "categoryNews" => $categoryNews,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function landingpagejenisprogram($userid)
+    {
+        $program = ProgramPiki::get();
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendFormProgramViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Program",
+            "creator" => auth()->user()->id,
+            "program" => $program,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function landingpageagenda($userid)
+    {
+        $agenda = AgendaPiki::get();
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendAgendaViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Agenda",
+            "creator" => auth()->user()->id,
+            "agenda" => $agenda,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function editAgendaViaUser(AgendaPiki $agendaPiki, $userid, $agendaid)
+    {
+        // return $agendaid;
+        $agendaPiki = AgendaPiki::find($agendaid);
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendFormAgendaViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Agenda",
+            "creator" => "San",
+            "agendaPiki" => $agendaPiki,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function backendanggota($userid)
+    {
+
+        $idUser = auth()->user()->id;
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendAnggotaViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Anggota",
+            "creator" => $idUser,
+            'item' => $user,
+            'user' => $user,
+            'userid' => $userid,
+        ]);
+    }
+
+    public function backendCommunitypartnersViaUser($userid)
+    {
+        $sponsor = SponsorPiki::take(7)->get();
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendCommunityPartnersViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Community Partners",
+            "creator" => auth()->user()->id,
+            "sponsor" => $sponsor,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function editCommunityPartnersViaUser(SponsorPiki $sponsorPiki, $userid, $partnersid)
+    {
+        $sponsorPiki = SponsorPiki::find($partnersid);
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendFormCommunityPartnersViaUser', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Community Partners",
+            "creator" => "San",
+            "sponsorPiki" => $sponsorPiki,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendKeuanganViaUser($userid)
+    {
+        $user = User::where('id', $userid)->first();
+        return view('admin/backendKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Keuangan PIKI SUMUT',
+            "creator" => auth()->user()->id,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
     }
 }

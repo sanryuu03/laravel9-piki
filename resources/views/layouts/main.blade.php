@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link type="text/tailwindcss" href="{{ asset('css/customTailwind.css') }}" rel="stylesheet">
     <title>{{ $title }}</title>
@@ -28,7 +30,7 @@
 </style>
 <body>
     <!-- Navbar -->
-    <section class="h-full w-full border-box transition-all duration-500 linear lg:px-24 md:px-20 px-8 py-3 bg-blue-800 navbar navbar-fixed-top">
+    <section class="w-full h-full px-8 py-3 transition-all duration-500 bg-blue-800 border-box linear lg:px-24 md:px-20 navbar navbar-fixed-top">
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -150,23 +152,23 @@
 
         </style>
         <div class="navbar-1-1" style="font-family: 'Poppins', sans-serif">
-            <div class="container mx-auto flex flex-wrap flex-row items-center justify-between">
-                <a href="" class="flex font-medium items-center logo-navbar">
+            <div class="container flex flex-row flex-wrap items-center justify-between mx-auto">
+                <a href="" class="flex items-center font-medium logo-navbar">
                     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 15.75C3.5 8.98451 8.98451 3.5 15.75 3.5H29.75C30.7165 3.5 31.5 4.2835 31.5 5.25C31.5 6.2165 30.7165 7 29.75 7H15.75C10.9175 7 7 10.9175 7 15.75V29.75C7 30.7165 6.2165 31.5 5.25 31.5C4.2835 31.5 3.5 30.7165 3.5 29.75V15.75Z" fill="#0EC8F8" />
                         <path d="M10.5 17.5C10.5 13.634 13.634 10.5 17.5 10.5H31.5C35.366 10.5 38.5 13.634 38.5 17.5V31.5C38.5 35.366 35.366 38.5 31.5 38.5H17.5C13.634 38.5 10.5 35.366 10.5 31.5V17.5Z" fill="#0EC8F8" />
                     </svg>
                 </a>
-                <label for="menu-toggle" class="mx-auto cursor-pointer lg:hidden block">
+                <label for="menu-toggle" class="block mx-auto cursor-pointer lg:hidden">
                     <svg class="w-6 h-6 menu-burger" fill="none" stroke="#092A33" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </label>
                 <input class="hidden" type="checkbox" id="menu-toggle" />
-                <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center" id="menu">
-                    <nav class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
-                        <a href="{{ route('index') }}" class="block nav-link active font-medium text-white">Home</a>
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="flex-wrap items-center justify-center hidden w-full text-base lg:flex lg:items-center lg:w-auto lg:ml-auto lg:mr-auto" id="menu">
+                    <nav class="items-center justify-between pt-8 space-x-0 space-y-6 text-base lg:space-x-12 lg:flex lg:pt-0 lg:space-y-0">
+                        <a href="{{ route('index') }}" class="block font-medium text-white nav-link active">Home</a>
+                        <a class="text-white nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tentang
                         </a>
                         <ul class="dropdown-menu dropdown-menu-mobile" aria-labelledby="navbarDropdown">
@@ -186,14 +188,14 @@
                                 </div>
                             </li>
                         </ul>
-                        <a href="{{ route('index') }}#program" class="block nav-link text-white">Program</a>
-                        <a href="{{ route('kategori.berita') }}" class="block nav-link text-white">Berita</a>
-                        <a href="{{ route('sumbangan.frontend') }}" class="block nav-link text-white">Donasi</a>
+                        <a href="{{ route('index') }}#program" class="block text-white nav-link">Program</a>
+                        <a href="{{ route('kategori.berita') }}" class="block text-white nav-link">Berita</a>
+                        <a href="{{ route('sumbangan.frontend') }}" class="block text-white nav-link">Donasi</a>
                     </nav>
                 </div>
 
-                <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
-                    <button class="btn-fill text-white items-center border-0 py-1 px-7 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0" onClick="window.open('{{ route('register') }}','_blank')">
+                <div class="hidden w-full lg:flex lg:items-center lg:w-auto" id="menu">
+                    <button class="items-center py-1 mt-6 text-base font-medium text-white border-0 btn-fill px-7 focus:outline-none rounded-2xl lg:mt-0" onClick="window.open('{{ route('register') }}','_blank')">
                         Daftar/Login
                     </button>
                 </div>
@@ -203,9 +205,9 @@
 
     @yield('menuContent')
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <!-- Scroll Up ketika tombol FAQ's ditekan-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        <!-- Scroll Up ketika tombol FAQ's ditekan
+        -->
     <script>
         var accordionItems = document.querySelectorAll('#accordion');
         accordionItems.forEach(item => {
@@ -261,8 +263,8 @@
 
     </script>
 
-        <script src="{{ asset('js/mainProvinsi.js') }}"></script>
-        <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
+    <script src="{{ asset('js/mainProvinsi.js') }}"></script>
+    <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
 
 
 </body>

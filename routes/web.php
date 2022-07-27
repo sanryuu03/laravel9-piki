@@ -88,6 +88,8 @@ Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 // halaman single berita
 Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->name('read.more.berita');
+// halaman single program
+Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
 
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
@@ -386,9 +388,40 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
 
 // login khusus anggota
 Route::group(['middleware' => ['CekLevel:anggota']], function () {
-    Route::get('/admin/profile/{id}', [ProfileAnggotaController::class, 'show'])->name('profile');
-    Route::get('/admin/profile/edit/{id}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');
-    Route::put('/admin/profile/update/{id}', [ProfileAnggotaController::class, 'update'])->name('profile.update');
-    Route::get('/admin/iuran/{id}', [ProfileAnggotaController::class, 'iuran'])->name('iuran');
-    Route::post('/admin/saveiuran/{id}', [ProfileAnggotaController::class, 'saveIuran'])->name('save.form.iuran');
+    Route::get('/admin/profile/{userid}', [ProfileAnggotaController::class, 'show'])->name('profile');
+    Route::get('/admin/profile/edit/{userid}', [ProfileAnggotaController::class, 'edit'])->name('profile.edit');
+    Route::put('/admin/profile/update/{userid}', [ProfileAnggotaController::class, 'update'])->name('profile.update');
+    Route::get('/admin/iuran/{userid}', [ProfileAnggotaController::class, 'iuran'])->name('iuran');
+    Route::post('/admin/saveiuran/{userid}', [ProfileAnggotaController::class, 'saveIuran'])->name('save.form.iuran');
+});
+
+Route::group(['middleware' => ['permission:header']], function () {
+    Route::get('/admin/backendHeaderviaUser/{userid}', [ProfileAnggotaController::class, 'backendHeader']);
+});
+
+Route::group(['middleware' => ['permission:berita']], function () {
+    Route::get('/admin/backendBeritaviaUser/{userid}', [ProfileAnggotaController::class, 'landingpageberita']);
+    Route::get('/admin/editberitaviaUser/{userid}/berita/{newsid}', [ProfileAnggotaController::class, 'editberita'])->name('crud.berita.via.user');
+});
+
+Route::group(['middleware' => ['permission:program']], function () {
+    Route::get('/admin/backendPagejenisprogramviaUser/{userid}', [ProfileAnggotaController::class, 'landingpagejenisprogram']);
+});
+
+Route::group(['middleware' => ['permission:agenda']], function () {
+    Route::get('/admin/backendPageagendaviaUser/{userid}', [ProfileAnggotaController::class, 'landingpageagenda']);
+    Route::get('/admin/editAgendaViaUser/{userid}/agenda/{agendaid}', [ProfileAnggotaController::class, 'editagendaViaUser'])->name('agenda.edit.via.user');
+});
+
+Route::group(['middleware' => ['permission:anggota']], function () {
+    Route::get('/admin/backendAnggotaViaUser/{userid}', [ProfileAnggotaController::class, 'backendanggota']);
+});
+
+Route::group(['middleware' => ['permission:community partners']], function () {
+    Route::get('/admin/backendCommunitypartnersViaUser/{userid}', [ProfileAnggotaController::class, 'backendCommunitypartnersViaUser']);
+    Route::get('/admin/editCommunityPartnersViaUser/{userid}/communityPartners/{partnersid}', [ProfileAnggotaController::class, 'editCommunityPartnersViaUser'])->name('communitypartners.edit.via.user');
+});
+
+Route::group(['middleware' => ['permission:keuangan']], function () {
+    Route::get('/admin/backendKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendKeuanganViaUser']);
 });

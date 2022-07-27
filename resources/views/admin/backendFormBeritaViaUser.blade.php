@@ -1,24 +1,36 @@
-  @extends('admin.layouts.main')
+  @extends('admin.layouts.mainAnggota')
 
-  @section('menuContent')
-  <!-- Container Fluid-->
+  @section('menuContentAnggota')
+
+
+  <!-- header Start-->
   <style>
-      trix-toolbar [data-trix-button-group="file-tools"] {
-          display: none;
+        .bg-gradient-primary {
+            background: rgb(30, 64, 174);
+        }
+
+        .card {
+            background-color: #fff;
+        }
+      @media (max-width: 480px) {
+          h1 {
+              margin-top: 25px !important;
+          }
       }
 
-  </style>
-  <div class="container-fluid" id="container-wrapper">
-      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <h1 class="mb-0 text-gray-800 h3">Landing Page {{ $menu }}</h1>
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Landing {{ $menu }}</li>
-          </ol>
-      </div>
-  </div>
 
-  <!-- Header Start-->
+      @media (min-width: 992px) {}
+
+  </style>
+  @if(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+      {{ session('success') }}
+  </div>
+  @elseif(session()->has('unapproved'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('unapproved') }}
+  </div>
+  @endif
   <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
@@ -73,12 +85,11 @@
                   </div>
 
                   <button type="submit" class="mt-3 btn btn-primary">Update</button>
-                  <a class="mt-3 btn btn-danger" href="{{ route('berita') }}">Back</a>
+                  <a class="mt-3 btn btn-danger" href="{{ url('/admin/backendBeritaviaUser', $userid) }}">Back</a>
               </form>
           </div>
       </div>
   </div>
-  <!-- Header End-->
 
-  <!---Container Fluid-->
+  <!-- header End-->
   @endsection

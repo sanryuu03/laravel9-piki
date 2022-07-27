@@ -66,7 +66,6 @@
           </table>
       </div>
   </div>
-  </div>
   <div class="mb-4 col-xl-8 col-lg-7">
       <div class="card">
           <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
@@ -102,6 +101,7 @@
               <thead>
                   <tr>
                       <th width="1px">Judul Program</th>
+                      <th width="1px">Slug</th>
                       <th width="1px">Foto Program</th>
                       <th width="1px">Keterangan Foto</th>
                       <th width="1px">Isi Program</th>
@@ -114,6 +114,7 @@
                   @foreach($program as $item)
                   <tr>
                       <td>{{ $item->judul_program }}</td>
+                      <td>{{ $item->slug }}</td>
                       <td><img width="150px" src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}"></td>
                       <td>{!! $item->keterangan_foto !!}</td>
                       <td>{!! $item->isi_program !!}</td>

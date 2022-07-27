@@ -44,14 +44,14 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                <div class="my-5 border-0 shadow-lg card o-hidden">
+                    <div class="p-0 card-body">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ $menu }}</h1>
+                                        <h1 class="mb-4 text-gray-900 h4">{{ $menu }}</h1>
                                         <p class="text-gray-900">Selamat Datang</p>
                                     </div>
                                     @if(session('success'))
@@ -63,7 +63,7 @@
                                     @endforeach
                                     @endif
 
-                                    <form action="{{ route('profile.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update', $userid) }}" method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <div class="row no-gutters">
@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="mb-3 col-md-4">
                                                 <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">

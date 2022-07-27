@@ -97,6 +97,7 @@ class NewsPikiController extends Controller
     public function edit(NewsPiki $newsPiki, $id)
     {
         // $newsPiki = NewsPiki::where('id',$id)->get();
+        // return $id;
         $newsPiki = NewsPiki::find($id);
         // return $newsPiki;
         // return $newsPiki->id;
@@ -105,7 +106,7 @@ class NewsPikiController extends Controller
             "title" => "PIKI - Sangrid",
             "menu" => "Berita",
             "creator" => "San",
-            "item" => $newsPiki,
+            "newsPiki" => $newsPiki,
             "categoryNews" => $categoryNews,
         ]);
     }
