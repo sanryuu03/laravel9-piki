@@ -33,7 +33,7 @@
   @endif
 
   <div class="container-fluid landingpage-anggota">
-        <div class="row">
+      <div class="row">
           <div class="col-md-4">
               <a href="{{ url('/admin/backendFormAddSubMenuNavbarKeuanganViaUser', $userid) }}" class="mb-1 btn btn-warning btn-sm">Tambah Sub Menu Navbar Keuangan</a>
           </div>
@@ -59,6 +59,9 @@
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->updated_at)) }} WIB</td>
                       <td>
+                          @if($item->id == 1 || $item->id == 2)
+                          <a href="{{ route('backend.form.edit.sub.menu.navbar.keuangan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          @else
                           <a href="{{ route('backend.form.edit.sub.menu.navbar.keuangan.via.user', [$userid,$item->id]) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
                           <form action="{{ route('backend.destroy.sub.menu.navbar.keuangan', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
@@ -66,6 +69,7 @@
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
+                          @endif
                       </td>
                   </tr>
                   @endforeach
