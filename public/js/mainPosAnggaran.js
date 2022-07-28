@@ -55,5 +55,23 @@ $(document).ready(function () {
             tablePengeluaran.search("");
         }
     });
+
+    $("#start").on("change", function () {
+        var date = new Date($('#start').val());
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        let bulan = $("#start :selected").text();
+        let search = this.value;
+        // console.log(`filter month ${month}`);
+        // console.log(`filter full year ${[year, month, day].join('-')}`);
+        // console.log(`filter bulan ${bulan}`);
+        console.log(`ini search ${search}`);
+        console.log(`######################################`);
+        tablePemasukan.search(search).draw();
+        tablePemasukan.search("");
+        tablePengeluaran.search(search).draw();
+        tablePengeluaran.search("");
+    });
 });
 

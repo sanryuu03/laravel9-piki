@@ -7,6 +7,7 @@ use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
 use App\Models\Pengeluaran;
 use App\Models\SubMenuNavbarKeuangan;
+use DateTime;
 
 class PengeluaranController extends Controller
 {
@@ -180,6 +181,7 @@ class PengeluaranController extends Controller
             $data['picture_path_bukti_pengeluaran_rutin'] = $nama_file;
 
             $data['pos_anggaran'] = $jenisSetoran->nama_sub_menu;
+            $data['tanggal'] = str_replace('/', '-', request()->tanggal);
             Pengeluaran::create($data);
             return redirect()->route('backend.form.add.pengeluaran.rutin')->with('success', 'Pengeluaran Rutin telah ditambahkan');
         }
