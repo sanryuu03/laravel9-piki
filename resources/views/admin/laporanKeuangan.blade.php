@@ -59,14 +59,6 @@
                       <input class="form-control" type="month" id="start" min="2022-01" value="2022-07" name="bulan" placeholder="pilih Bulan" value="" />
                   </div>
               </div>
-              <div class="row">
-                  <div class="col-md-1">
-                      Uraian:
-                  </div>
-                  <div class="col-md-3">
-                      <input id="uraian" class="form-control" type="text" name="uraian" placeholder="cari uraian" value="" />
-                  </div>
-              </div>
               {{-- <div class="row">
                   <div class="col-md-4">
                     <button type="submit" class="btn btn-info">Print Table</button>
@@ -158,8 +150,14 @@
   <table class="table table-bordered table-striped table-anggota">
       <thead>
           <tr>
+              <th width="34%" class="text-center">Total Pendapatan</th>
+              <td width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</th>
+              <th width="25%" class="text-center">Total Pengeluaran</th>
+              <td width="25%" class="text-center">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</th>
+          </tr>
+          <tr>
               <th width="32%" class="text-center">{{ ucwords('sisa kas') }}</th>
-              <th width="10%" class="text-right">{{ 'Rp. '.number_format($totalPemasukan-$totalPengeluaran,0,",",".") }}</th>
+              <th width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan-$totalPengeluaran,0,",",".") }}</th>
           </tr>
       </thead>
   </table>

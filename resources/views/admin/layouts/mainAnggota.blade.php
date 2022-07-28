@@ -144,6 +144,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
+    <script src="{{ asset('js/mainPosAnggaran.js') }}"></script>
     <script src="{{ asset('js/mainPendapatan.js') }}"></script>
     <script src="{{ asset('js/mainCustomForm.js') }}"></script>
 </body>

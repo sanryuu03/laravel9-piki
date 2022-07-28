@@ -851,7 +851,7 @@ class ProfileAnggotaController extends Controller
     public function backendLaporanKeuanganViaUser(NamaKegiatan $namaKegiatan, $userid)
     {
         $user = User::where('id', $userid)->first();
-        $posAnggaran = PosAnggaran::get();
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $laporanKeuangan = LaporanKeuangan::get();
         $jenisPemasukan = jenisPemasukan::get();
         $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
@@ -867,7 +867,7 @@ class ProfileAnggotaController extends Controller
             'menu' => 'Laporan Keuangan PIKI SUMUT',
             "creator" => auth()->user()->id,
             'keuangan' => 'keuangan',
-            'posAnggaran' => $posAnggaran,
+            'posAnggaran' => $masterMenuNavbarKeuangan,
             'namaKegiatan' => $namaKegiatan,
             'laporanKeuangan' => $laporanKeuangan,
             'jenisPemasukan' => $jenisPemasukan,
