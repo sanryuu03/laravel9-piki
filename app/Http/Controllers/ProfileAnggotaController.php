@@ -856,10 +856,12 @@ class ProfileAnggotaController extends Controller
         $jenisPemasukan = jenisPemasukan::get();
         $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
         $pendapatan = Pendapatan::groupBy('jenis_pendapatan','tanggal')
+        ->where('status', 'terverifikasi')
         ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
 
         $Pengeluaran = Pengeluaran::groupBy('pos_anggaran','tanggal')
+        ->where('status_pengeluaran', 'pengeluaran terverifikasi')
         ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
         return view('admin/backendLaporanKeuanganViaUser', [

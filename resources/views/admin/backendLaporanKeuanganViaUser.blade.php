@@ -12,6 +12,11 @@
           background-color: #fff;
       }
 
+      .hide {
+          visibility: hidden;
+          border: none;
+      }
+
       @media (max-width: 480px) {
           h1 {
               margin-top: 25px !important;
@@ -78,19 +83,6 @@
               <div class='col-md-6'>
                   <table id="" class="table display table-bordered table-striped table-pemasukan">
                       <thead>
-                          <tr>
-                              <th width="0.1%">No</th>
-                              <th width="1%">Bulan</th>
-                              <th width="1%" colspan="2" class="text-center">Pemasukan</th>
-                          </tr>
-                          <tr>
-                              <th width="0.1%"></th>
-                              <th width="1%"></th>
-                              <th width="1%">Nama Pemasukan</th>
-                              <th width="1%">Jumlah Pemasukan</th>
-                          </tr>
-                      </thead>
-                      <tbody>
                           @php
                           $totalPemasukan=0;$totalPengeluaran=0;
                           @endphp
@@ -102,10 +94,23 @@
                           @endif
                           @php $totalPemasukan += $pemasukan->sum; @endphp
                           <tr>
+                              <th width="0.1%">No</th>
+                              <th width="0.1%">Bulan</th>
+                              <th width="1%" colspan="2" class="text-center">Pemasukan</th>
+                          </tr>
+                          <tr>
+                              <th width="0.1%"></th>
+                              <th width="0.1%"></th>
+                              <th width="1%">Nama Pemasukan</th>
+                              <th width="1%">Jumlah</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                          <tr>
                               <td>{{ $loop->iteration }}</td>
                               <td>{{ date('F', strtotime($pemasukan->tanggal)) }}</td>
-                              {{-- <td>{{ $pemasukan->tanggal }}</td> --}}
-                              <td>{{ $pemasukan->jenis_pendapatan }}</td>
+                              <td>{{ $pemasukan->jenis_pendapatan }}<span class="hide">{{ $pemasukan->tanggal }}</span></td>
                               <td>{{ 'Rp. '.number_format($pemasukan->sum,0,",",".") }}</td>
                           </tr>
                           @endforeach
@@ -130,7 +135,7 @@
                           <tr>
                               <th width="0.1%"></th>
                               <th width="1%">Nama Pengeluaran</th>
-                              <th width="1%">Jumlah Pengeluaran</th>
+                              <th width="1%">Jumlah</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -138,7 +143,7 @@
                           @php $totalPengeluaran += $pengeluaran->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
-                              <td>{{ $pengeluaran->pos_anggaran }}</td>
+                              <td>{{ $pengeluaran->pos_anggaran }}<span class="hide">{{ date('Y-m', strtotime($pengeluaran->tanggal)) }}</span></td>
                               <td>{{ 'Rp. '.number_format($pengeluaran->sum,0,",",".") }}</td>
                           </tr>
                           @endforeach
