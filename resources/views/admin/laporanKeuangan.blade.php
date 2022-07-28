@@ -6,7 +6,12 @@
           display: none;
       }
 
+      div.dataTables_wrapper {
+          margin-bottom: 3em;
+      }
+
   </style>
+
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="mb-4 d-sm-flex align-items-center justify-content-between">
@@ -17,6 +22,7 @@
           </ol>
       </div>
   </div>
+
 
   <div class="container-fluid">
       <div class="card-body">
@@ -29,9 +35,9 @@
                           <option selected>Pilih Pos Anggaran</option>
                           @foreach($posAnggaran as $pos)
                           @if(old('pos_anggarans_id') == $pos->id)
-                          <option value="{{ $pos->id }}" selected>{{ $pos->nama_pos_anggaran }}</option>
+                          <option value="{{ $pos->id }}" selected>{{ $pos->nama_menu }}</option>
                           @else
-                          <option value="{{ $pos->id }}">{{ $pos->nama_pos_anggaran }}</option>
+                          <option value="{{ $pos->id }}">{{ $pos->nama_menu }}</option>
                           @endif
                           @endforeach
                       </select>
@@ -69,7 +75,7 @@
           </form>
           <div class='row'>
               <div class='col-md-6'>
-                  <table class="table table-bordered table-striped table-anggota">
+                  <table id="" class="table display table-bordered table-striped table-pemasukan">
                       <thead>
                           <tr>
                               <th width="0.1%">No</th>
@@ -84,9 +90,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                        @php
-                            $totalPemasukan=0;$totalPengeluaran=0;
-                        @endphp
+                          @php
+                          $totalPemasukan=0;$totalPengeluaran=0;
+                          @endphp
                           @foreach($pendapatan as $pemasukan)
                           @if ($pemasukan->jenis_setoran=='sumbangan')
                           @php
@@ -103,21 +109,27 @@
                           </tr>
                           @endforeach
                       </tbody>
+                      <tfoot>
+                          <tr>
+                              <th></th>
+                              <th></th>
+                              <th class="text-center">Total Pendapatan</th>
+                              <td class="text-right">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</th>
+                          </tr>
+                      </tfoot>
                   </table>
               </div>
               <div class='col-md-6'>
-                  <table class="table table-bordered table-striped table-anggota">
+                  <table id="" class="table display table-striped table-bordered table-pengeluaran">
                       <thead>
                           <tr>
                               <th width="0.1%">No</th>
                               <th width="1%" colspan="2" class="text-center">Pengeluaran</th>
-                              <th width="0.1%">Kas</th>
                           </tr>
                           <tr>
                               <th width="0.1%"></th>
                               <th width="1%">Nama Pengeluaran</th>
                               <th width="1%">Jumlah Pengeluaran</th>
-                              <th width="1%"></th>
                           </tr>
                       </thead>
                       <tbody>
@@ -130,26 +142,28 @@
                           </tr>
                           @endforeach
                       </tbody>
+                      <tfoot>
+                          <tr>
+                              <th></th>
+                              <th class="text-center">Total Pengeluaran</th>
+                              <td class="text-right">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</th>
+                          </tr>
+                      </tfoot>
                   </table>
               </div>
           </div>
-                    <table class="table table-bordered table-striped table-anggota">
-              <thead>
-                  <tr>
-                      <th width="34%" class="text-center">Total Pendapatan</th>
-                      <td width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</th>
-                      <th width="25%" class="text-center">Total Pengeluaran</th>
-                      <td width="25%" class="text-center">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</th>
-                  </tr>
-                  <tr>
-                      <th width="32%" class="text-center">{{ ucwords('sisa kas') }}</th>
-                      <th width="10%" class="text-center">{{ 'Rp. '.number_format($totalPemasukan-$totalPengeluaran,0,",",".") }}</th>
-
-                  </tr>
-              </thead>
-          </table>
-
       </div>
   </div>
+
+  <table class="table table-bordered table-striped table-anggota">
+      <thead>
+          <tr>
+              <th width="32%" class="text-center">{{ ucwords('sisa kas') }}</th>
+              <th width="10%" class="text-right">{{ 'Rp. '.number_format($totalPemasukan-$totalPengeluaran,0,",",".") }}</th>
+          </tr>
+      </thead>
+  </table>
+
   <!---Container Fluid-->
+
   @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NamaKegiatan;
 use App\Models\PosAnggaran;
+use App\Models\SubMenuNavbarKeuangan;
 use Illuminate\Http\Request;
 
 class PosAnggaranController extends Controller
@@ -151,11 +152,11 @@ class PosAnggaranController extends Controller
     {
         $pos_anggarans_id = $request->pos_anggarans_id;
         // return request()->input('provinsi');
-        $posAnggaran = NamaKegiatan::where('pos_anggarans_id', $pos_anggarans_id)->get();
+        $posAnggaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', $pos_anggarans_id)->get();
         // return $posAnggaran;
         $option = "<option>==Pilih Kegiatan==</option>";
         foreach($posAnggaran as $namaKegiatan){
-            $option .= "<option value='$namaKegiatan->id'>$namaKegiatan->nama_kegiatan</option>";
+            $option .= "<option value='$namaKegiatan->id'>$namaKegiatan->nama_sub_menu</option>";
         }
         echo $option;
     }

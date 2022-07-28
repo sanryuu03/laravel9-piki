@@ -8,6 +8,7 @@ use App\Models\PosAnggaran;
 use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
 use App\Models\LaporanKeuangan;
+use App\Models\MasterMenuNavbar;
 use App\Models\Pendapatan;
 use App\Models\Pengeluaran;
 use App\Models\SumbanganPiki;
@@ -93,7 +94,7 @@ class LaporanKeuanganController extends Controller
     public function laporanKeuangan(NamaKegiatan $namaKegiatan)
     {
         $user = auth()->user()->id;
-        $posAnggaran = PosAnggaran::get();
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $laporanKeuangan = LaporanKeuangan::get();
         $jenisPemasukan = jenisPemasukan::get();
         // $iuran = IuranPiki::select();
@@ -133,7 +134,7 @@ class LaporanKeuanganController extends Controller
             'menu' => 'Laporan Keuangan PIKI SUMUT',
             "creator" => $user,
             'keuangan' => 'keuangan',
-            'posAnggaran' => $posAnggaran,
+            'posAnggaran' => $masterMenuNavbarKeuangan,
             'namaKegiatan' => $namaKegiatan,
             'laporanKeuangan' => $laporanKeuangan,
             'pemasukan' => $clear_array_arrJenisSetoran,

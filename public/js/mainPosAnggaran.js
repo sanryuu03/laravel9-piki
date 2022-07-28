@@ -27,3 +27,33 @@ $(function () {
         });
     });
 });
+
+$(document).ready(function () {
+    var tablePemasukan = $("table.table-pemasukan").DataTable();
+    var tablePengeluaran = $("table.table-pengeluaran").DataTable();
+
+    $("#pos-anggaran").on("change", function () {
+        let posAnggaran = $("#pos-anggaran :selected").text();
+        let search = this.value;
+        console.log(`filter pos anggaran ${posAnggaran}`);
+        console.log(`ini search ${search}`);
+        console.log(`======================================`);
+    });
+
+    $("#nama_kegiatan").on("change", function () {
+        let posAnggaran = $("#pos-anggaran :selected").text();
+        let namaKegiatan = $("#nama_kegiatan :selected").text();
+        let search = this.value;
+        console.log(`filter nama kegiatan ${namaKegiatan}`);
+        console.log(`ini search ${search}`);
+        console.log(`######################################`);
+        if (posAnggaran == 'pemasukan') {
+            tablePemasukan.search(namaKegiatan).draw();
+            tablePemasukan.search("");
+        } else {
+            tablePengeluaran.search(namaKegiatan).draw();
+            tablePengeluaran.search("");
+        }
+    });
+});
+
