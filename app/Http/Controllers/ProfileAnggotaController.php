@@ -540,10 +540,26 @@ class ProfileAnggotaController extends Controller
 
         $idUser = auth()->user()->id;
         $user = User::where('id', $userid)->first();
-        return view('admin/backendAnggotaViaUser', [
+        // return $user->city;
+        // return view('admin/backendAnggotaViaUser', [
+        //     "title" => "PIKI - Sangrid",
+        //     "menu" => "Anggota",
+        //     "creator" => $idUser,
+        //     'item' => $user,
+        //     'user' => $user,
+        //     'userid' => $userid,
+        // ]);
+        $provinces = Province::where('name', $user->province)->first();
+        $cities = Regency::where('name', $user->city)->first();
+        $userDiterima = User::where('status_anggota', 'diterima')->where('city', $cities->name)->get();
+        // return $cities;
+        return view('admin/backendAnggotaViaUserPerKabupaten', [
             "title" => "PIKI - Sangrid",
             "menu" => "Anggota",
             "creator" => $idUser,
+            "provinces" => $provinces,
+            "cities" => $cities,
+            'userDiterima' => $userDiterima,
             'item' => $user,
             'user' => $user,
             'userid' => $userid,

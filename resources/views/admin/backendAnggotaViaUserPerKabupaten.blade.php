@@ -1,16 +1,36 @@
-  @extends('admin.layouts.main')
+  @extends('admin.layouts.mainAnggota')
 
-  @section('menuContent')
-  <!-- Container Fluid-->
-  <div class="container-fluid" id="container-wrapper">
-      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backendanggota') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page"> {{ $menu }}</li>
-          </ol>
-      </div>
+  @section('menuContentAnggota')
+
+
+  <style>
+      .bg-gradient-primary {
+          background: #fff;
+      }
+
+      .card {
+          background-color: #fff;
+      }
+
+      @media (max-width: 480px) {
+          h1 {
+              margin-top: 25px !important;
+          }
+      }
+
+
+      @media (min-width: 992px) {}
+
+  </style>
+  @if(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+      {{ session('success') }}
   </div>
+  @elseif(session()->has('unapproved'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('unapproved') }}
+  </div>
+  @endif
 
   <div class="container-fluid landingpage-anggota">
       <div class="card-body">
@@ -20,10 +40,7 @@
                   <div class="col-md-4">
                       Filter Provinsi:
                       <select id="table-filter" class="filter-province" name="province">
-                          <option value="">All</option>
-                          @foreach ($provinces as $provinsi)
-                          <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
-                          @endforeach
+                          <option value="{{ $provinces->id }}">{{ $provinces->name }}</option>
                       </select>
                   </div>
               </div>
@@ -31,10 +48,7 @@
                   <div class="col-md-4">
                       Filter Kabupaten / Kota:
                       <select id="table-filter" class="filter-kota" name="kota">
-                          <option value="">All</option>
-                          @foreach ($cities as $city)
-                          <option value="{{ $city->name }}">{{ $city->name }}</option>
-                          @endforeach
+                          <option value="{{ $cities->id }}">{{ $cities->name }}</option>
                       </select>
                   </div>
               </div>
@@ -54,11 +68,11 @@
                       <th width="1%">Telp / WA</th>
                       <th width="1%">Email</th>
                       <th width="1%">Created At</th>
-                      <th width="1%">OPSI</th>
+                      <th width="2%">OPSI</th>
                   </tr>
               </thead>
               <tbody>
-                  @foreach($user as $item)
+                  @foreach($userDiterima as $item)
                   <tr>
                       <td><a href="{{ route('anggota.cv', $item->id) }}" class="">{{ $item->name }}</a></td>
                       <td>{{ $item->address }}</td>
@@ -68,14 +82,14 @@
                       <td>{{ $item->email }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>
-                          <a href="{{ route('anggota.cv', $item->id) }}" class="mb-1 btn btn-primary btn-sm">View</a>
-                          <a href="{{ route('anggota.export', $item->id) }}" class="mb-1 btn btn-success btn-sm">Print CV</a>
-                          <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <a href="{{ route('anggota.cv', $item->id) }}" class="mb-1 btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                          <a href="{{ route('anggota.export', $item->id) }}" class="mb-1 btn btn-success btn-sm"><i class="fa-solid fa-print"></i></a>
+                          {{-- <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   Delete
                               </button>
-                          </form>
+                          </form> --}}
                       </td>
                   </tr>
                   @endforeach
@@ -83,5 +97,4 @@
           </table>
       </div>
   </div>
-  <!---Container Fluid-->
   @endsection
