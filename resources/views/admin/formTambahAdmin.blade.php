@@ -79,6 +79,16 @@
                       <label for="hakAkses6"> Community Partners</label><br>
                       <input type="checkbox" id="hakAkses7" name="hakAkses[]" value="keuangan">
                       <label for="hakAkses7"> Keuangan</label><br>
+                      <input type="checkbox" id="hakAkses8" name="hakAkses[]" value="keuangan-pengaturan rekening bank">
+                      <label for="hakAkses8"> keuangan: pengaturan rekening bank</label><br>
+                      <input type="checkbox" id="hakAkses9" name="hakAkses[]" value="keuangan-pengaturan besaran iuran">
+                      <label for="hakAkses9"> keuangan: pengaturan besaran iuran</label><br>
+                      <input type="checkbox" id="hakAkses10" name="hakAkses[]" value="keuangan-pengaturan master menu dan sub menu">
+                      <label for="hakAkses10"> keuangan: pengaturan master menu dan sub menu</label><br>
+                      <input type="checkbox" id="hakAkses11" name="hakAkses[]" value="keuangan-pengaturan form input pemasukan">
+                      <label for="hakAkses11"> keuangan: pengaturan form input pemasukan</label><br>
+                      <input type="checkbox" id="hakAkses12" name="hakAkses[]" value="keuangan-pengaturan form input pengeluaran">
+                      <label for="hakAkses12"> keuangan: pengaturan form input pengeluaran</label><br>
                   </div>
 
                   <div class="form-group">

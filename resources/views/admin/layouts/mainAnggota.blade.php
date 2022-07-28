@@ -35,7 +35,7 @@
         }
 
     </style>
-        {{-- trix editor --}}
+    {{-- trix editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
     <script type="text/javascript" src="/js/trix.js"></script>
 </head>
@@ -51,54 +51,85 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/profile', $userid) }}" class="nav-link">Home</a>
-                        </li>
-                        @if(auth()->user()->level=='anggota' && auth()->user()->status_anggota=='diterima')
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/iuran', $userid) }}" class="nav-link">Iuran</a>
-                        </li>
-                        @endif
-                        @can('header', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendHeaderviaUser', $userid) }}" class="nav-link">{{ ucwords('header') }}</a>
-                        </li>
-                        @endcan
-                        @can('berita', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendBeritaviaUser', $userid) }}" class="nav-link">{{ ucwords('berita') }}</a>
-                        </li>
-                        @endcan
-                        @can('program', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendPagejenisprogramviaUser', $userid) }}" class="nav-link">{{ ucwords('program') }}</a>
-                        </li>
-                        @endcan
-                        @can('agenda', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendPageagendaviaUser', $userid) }}" class="nav-link">{{ ucwords('agenda') }}</a>
-                        </li>
-                        @endcan
-                        @can('anggota', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendAnggotaViaUser', $userid) }}" class="nav-link">{{ ucwords('anggota') }}</a>
-                        </li>
-                        @endcan
-                        @can('community partners', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendCommunitypartnersViaUser', $userid) }}" class="nav-link">{{ ucwords('community partners') }}</a>
-                        </li>
-                        @endcan
-                        @can('keuangan', $user)
-                        <li class="nav-item">
-                            <a href="{{  url('/admin/backendKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('keuangan') }}</a>
-                        </li>
-                        @endcan
-                    </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/profile', $userid) }}" class="nav-link">Home</a>
+                    </li>
+                    @if(auth()->user()->level=='anggota' && auth()->user()->status_anggota=='diterima')
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/iuran', $userid) }}" class="nav-link">Iuran</a>
+                    </li>
+                    @endif
+                    @can('header', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendHeaderviaUser', $userid) }}" class="nav-link">{{ ucwords('header') }}</a>
+                    </li>
+                    @endcan
+                    @can('berita', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendBeritaviaUser', $userid) }}" class="nav-link">{{ ucwords('berita') }}</a>
+                    </li>
+                    @endcan
+                    @can('program', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendPagejenisprogramviaUser', $userid) }}" class="nav-link">{{ ucwords('program') }}</a>
+                    </li>
+                    @endcan
+                    @can('agenda', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendPageagendaviaUser', $userid) }}" class="nav-link">{{ ucwords('agenda') }}</a>
+                    </li>
+                    @endcan
+                    @can('anggota', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendAnggotaViaUser', $userid) }}" class="nav-link">{{ ucwords('anggota') }}</a>
+                    </li>
+                    @endcan
+                    @can('community partners', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendCommunitypartnersViaUser', $userid) }}" class="nav-link">{{ ucwords('community partners') }}</a>
+                    </li>
+                    @endcan
+                    @can('keuangan', $user)
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('keuangan') }}</a>
+                    </li>
+                    @endcan
+                </ul>
             </div>
         </nav>
+        <hr />
     </div>
+    <!-- Topbar Keuangan -->
+    @if($urlNavbarKeuanganViaUser == true)
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+        <div class="container">
+            <button class="order-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="order-3 collapse navbar-collapse" id="navbarCollapse">
+
+                <ul class="navbar-nav">
+                    @foreach($masterMenuNavbarKeuangan as $menuNavbarKeuangan)
+                    <li class="nav-item dropdown">
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="font-weight-bold nav-link dropdown-toggle {{ $menuNavbarKeuangan->id % 2 == 0 ? 'text-warning' : 'text-success' }}">{{ ucwords($menuNavbarKeuangan->nama_menu) }}</a>
+                        <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
+                            @foreach($subMenuNavbarKeuangan as $item)
+                            @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
+                            <li><a href="{!! url('/admin/dinamisUrlNavbarKeuangan', [$item->masterMenuNavbarKeuangan->nama_menu, $item->nama_sub_menu]) !!}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
+                            @endif
+                            @endforeach
+                        </ul>
+                    </li>
+                    @endforeach
+                    <li class="nav-item">
+                        <a href="{{  url('/admin/backendLaporanKeuanganViaUser', $userid) }}" class="nav-link text-primary">Laporan Keuangan</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @endif
 
     @yield('menuContentAnggota')
     @endauth
@@ -113,8 +144,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
-
-
+    <script src="{{ asset('js/mainPendapatan.js') }}"></script>
+    <script src="{{ asset('js/mainCustomForm.js') }}"></script>
 </body>
-
 </html>

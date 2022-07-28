@@ -424,4 +424,17 @@ Route::group(['middleware' => ['permission:community partners']], function () {
 
 Route::group(['middleware' => ['permission:keuangan']], function () {
     Route::get('/admin/backendKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendKeuanganViaUser']);
+    Route::get('/admin/backendDataRekeningBankViaUser/{userid}', [ProfileAnggotaController::class, 'backendDataRekeningBankViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormEditDataRekeningBankViaUser/{userid}/dataRekeningBank/{datarekeningid}', [ProfileAnggotaController::class, 'backendFormEditDataRekeningBankViaUser'])->name('backend.form.edit.data.rekening.bank.via.user');
+    Route::get('/admin/backendDataBiayaIuranViaUser/{userid}', [ProfileAnggotaController::class, 'backendDataBiayaIuranViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormAddDataBiayaIuranViaUser/{userid}', [ProfileAnggotaController::class, 'backendFormAddDataBiayaIuranViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormEditDataBiayaIuranViaUser/{userid}/dataBiayaIuran/{dataiuranid}', [ProfileAnggotaController::class, 'backendFormEditDataBiayaIuranViaUser'])->name('backend.form.edit.data.biaya.iuran.via.user');
+    Route::get('/admin/backendMasterMenuNavbarKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendMasterMenuNavbarKeuanganViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormEditMasterMenuNavbarKeuanganViaUser/{userid}/menuNavbar/{menunavbarid}', [ProfileAnggotaController::class, 'backendFormEditMasterMenuNavbarKeuanganViaUser'])->name('backend.form.edit.master.menu.navbar.keuangan.via.user');
+    Route::get('/admin/backendSubMenuNavbarKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendSubMenuNavbarKeuanganViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormAddSubMenuNavbarKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendFormAddSubMenuNavbarKeuanganViaUser']);
+    Route::match(['get', 'post'], '/admin/backendFormEditSubMenuNavbarKeuanganViaUser/{userid}/{submenuid}', [ProfileAnggotaController::class, 'backendFormEditSubMenuNavbarKeuanganViaUser'])->name('backend.form.edit.sub.menu.navbar.keuangan.via.user');
+    Route::get('/admin/backendFormInputViaUser/{userid}', [ProfileAnggotaController::class, 'backendFormInputViaUser']);
+    Route::get('/admin/backendFormAddPengeluaranViaUser/{userid}', [ProfileAnggotaController::class, 'backendFormAddPengeluaranViaUser']);
+    Route::get('/admin/backendLaporanKeuanganViaUser/{userid}', [ProfileAnggotaController::class, 'backendLaporanKeuanganViaUser']);
 });

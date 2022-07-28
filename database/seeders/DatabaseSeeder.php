@@ -543,6 +543,36 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        Permission::create([
+            'name' => 'keuangan-pengaturan rekening bank',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'keuangan-pengaturan besaran iuran',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'keuangan-pengaturan master menu dan sub menu',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'keuangan-pengaturan form input pemasukan',
+            'guard_name' => 'web'
+
+        ]);
+
+        Permission::create([
+            'name' => 'keuangan-pengaturan form input pengeluaran',
+            'guard_name' => 'web'
+
+        ]);
+
         MasterMenuNavbar::create([
             'nama_menu' => 'pemasukan',
         ]);

@@ -11,21 +11,29 @@ use App\Models\Province;
 use App\Models\IuranPiki;
 use App\Models\AgendaPiki;
 use App\Models\HeaderPiki;
+use App\Models\Pendapatan;
 use App\Models\AnggotaPiki;
+use App\Models\Pengeluaran;
+use App\Models\PosAnggaran;
 use App\Models\ProgramPiki;
 use App\Models\SponsorPiki;
 use App\Models\TempAnggota;
 use App\Models\CategoryNews;
 use App\Models\DataRekening;
+use App\Models\NamaKegiatan;
 use Illuminate\Http\Request;
+use App\Models\DataBankIuran;
 use App\Models\SumbanganPiki;
 use App\Models\DataBiayaIuran;
 use App\Models\jenisPemasukan;
 use App\Models\ProfileAnggota;
 use App\Models\KategoriAnggota;
+use App\Models\LaporanKeuangan;
 use App\Models\HeaderPikiMobile;
+use App\Models\MasterMenuNavbar;
 use App\Models\SubKategoriAnggota;
 use Illuminate\Support\Facades\View;
+use App\Models\SubMenuNavbarKeuangan;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -70,6 +78,9 @@ class ProfileAnggotaController extends Controller
         // dd($pendaftarBaru);
         // $navbarAnggota = request()->route()->getName() === 'backendanggota';
         $navbarAnggota = true;
+        $urlNavbarKeuanganViaUser = false;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
+        $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::get();
         View::share([
             "user" => $user,
             'pendaftarBaru' => $pendaftarBaru,
@@ -81,6 +92,9 @@ class ProfileAnggotaController extends Controller
             'kategoriAnggota' => $kategoriAnggota,
             'subKategoriAnggota' => $subKategoriAnggota,
             "navbarAnggota" => $navbarAnggota,
+            "urlNavbarKeuanganViaUser" => $urlNavbarKeuanganViaUser,
+            "masterMenuNavbarKeuangan" => $masterMenuNavbarKeuangan,
+            "subMenuNavbarKeuangan" => $subMenuNavbarKeuangan,
         ]);
 
     }
@@ -568,11 +582,282 @@ class ProfileAnggotaController extends Controller
 
     public function backendKeuanganViaUser($userid)
     {
+        $urlNavbarKeuanganViaUser = true;
         $user = User::where('id', $userid)->first();
         return view('admin/backendKeuanganViaUser', [
+            "urlNavbarKeuanganViaUser" => $urlNavbarKeuanganViaUser,
             "title" => "PIKI - Sangrid CRUD",
             'menu' => 'Keuangan PIKI SUMUT',
             "creator" => auth()->user()->id,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendDataRekeningBankViaUser($userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $dataIuran = DataBankIuran::all();
+        return view('admin/backendDataRekeningBankViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('Pengaturan Rekening Bank PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'dataIuran' => $dataIuran,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormEditDataRekeningBankViaUser($userid, $datarekeningid)
+    {
+        $user = User::where('id', $userid)->first();
+        $dataIuran = DataBankIuran::find($datarekeningid);
+        // return $dataIuran;
+        $namaUser = auth()->user()->name;
+        return view('admin/backendFormDataRekeningBankViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'dataIuran' => $dataIuran,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendDataBiayaIuranViaUser($userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $dataIuran = DataBiayaIuran::all();
+        return view('admin/backendDataBiayaIuranViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('pengaturan besaran Biaya Iuran PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'dataIuran' => $dataIuran,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormAddDataBiayaIuranViaUser(DataBiayaIuran $dataBiayaIuran, $userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        return view('admin/backendFormDataBiayaIuranViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'dataIuran' => $dataBiayaIuran,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormEditDataBiayaIuranViaUser($userid, $dataiuranid)
+    {
+        $user = User::where('id', $userid)->first();
+        $dataIuran = DataBiayaIuran::find($dataiuranid);
+        $namaUser = auth()->user()->name;
+        return view('admin/backendFormDataBiayaIuranViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'dataIuran' => $dataIuran,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendMasterMenuNavbarKeuanganViaUser($userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
+        return view('admin/backendMasterMenuNavbarKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('master menu navbar PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'masterMenuNavbarKeuangan' => $masterMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormEditMasterMenuNavbarKeuanganViaUser($userid,$menunavbarid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::find($menunavbarid);
+        return view('admin/backendFormEditMasterMenuNavbarKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form edit menu navbar PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'masterMenuNavbarKeuangan' => $masterMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendSubMenuNavbarKeuanganViaUser($userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::with('masterMenuNavbarKeuangan')->get();
+        return view('admin/backendSubMenuNavbarKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('sub menu navbar PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'subMenuNavbarKeuangan' => $subMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormAddSubMenuNavbarKeuanganViaUser(SubMenuNavbarKeuangan $subMenuNavbarKeuangan, $userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
+        return view('admin/backendFormSubMenuNavbarKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('tambah sub menu navbar PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'masterMenuNavbarKeuangan' => $masterMenuNavbarKeuangan,
+            'subMenuNavbarKeuangan' => $subMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormEditSubMenuNavbarKeuanganViaUser($userid, $submenuid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
+        $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($submenuid);
+        return view('admin/backendFormSubMenuNavbarKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('tambah sub menu navbar PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'masterMenuNavbarKeuangan' => $masterMenuNavbarKeuangan,
+            'subMenuNavbarKeuangan' => $subMenuNavbarKeuangan,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormInputViaUser(Pendapatan $pendapatan, $userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $dataRekening = DataRekening::latest()->first();
+        $jenisPemasukan = jenisPemasukan::all();
+        $dataBiayaIuran = DataBiayaIuran::latest()->first();
+        $userDiterima = User::where('status_anggota', 'diterima')->get();
+        $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
+        return view('admin/backendFormInputViaUser', [
+            "title" => "PIKI - Iuran",
+            "menu" => ucwords("input pendapatan"),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'userDiterima' => $userDiterima,
+            'pendapatan' => $pendapatan,
+            'dataRekening' => $dataRekening,
+            'jenisPemasukan' => $jenisPemasukan,
+            'dataBiayaIuran' => $dataBiayaIuran,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'jenisPengeluaran' => $jenisPengeluaran,
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendFormAddPengeluaranViaUser(Pengeluaran $Pengeluaran, $userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $namaUser = auth()->user()->name;
+        $posAnggaran = PosAnggaran::get();
+        $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
+        return view('admin/backendFormAddPengeluaranViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form tambah pengeluaran rutin PIKI SUMUT'),
+            "creator" => auth()->user()->id,
+            'summary' => 'ringkasan',
+            'posAnggaran' => $posAnggaran,
+            'Pengeluaran' => $Pengeluaran,
+            'jenisPengeluaran' => $jenisPengeluaran,
+            'namaUser' => $namaUser,
+            'action' => 'add',
+            'userid' => $userid,
+            'item' => $user,
+            'user' => $user,
+        ]);
+    }
+
+    public function backendLaporanKeuanganViaUser(NamaKegiatan $namaKegiatan, $userid)
+    {
+        $user = User::where('id', $userid)->first();
+        $posAnggaran = PosAnggaran::get();
+        $laporanKeuangan = LaporanKeuangan::get();
+        $jenisPemasukan = jenisPemasukan::get();
+        $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
+        $pendapatan = Pendapatan::groupBy('jenis_pendapatan','tanggal')
+        ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
+        ->get();
+
+        $Pengeluaran = Pengeluaran::groupBy('pos_anggaran','tanggal')
+        ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
+        ->get();
+        return view('admin/backendLaporanKeuanganViaUser', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => 'Laporan Keuangan PIKI SUMUT',
+            "creator" => auth()->user()->id,
+            'keuangan' => 'keuangan',
+            'posAnggaran' => $posAnggaran,
+            'namaKegiatan' => $namaKegiatan,
+            'laporanKeuangan' => $laporanKeuangan,
+            'jenisPemasukan' => $jenisPemasukan,
+            'sumbangan' => $sumbangan,
+            'Pengeluaran' => $Pengeluaran,
+            'pendapatan' => $pendapatan,
             'userid' => $userid,
             'item' => $user,
             'user' => $user,

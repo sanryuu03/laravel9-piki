@@ -121,88 +121,88 @@ li.dropdown-submenu2:hover > .dropdown-menu {
       <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/customForm') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="mr-2 col">
-                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('custom form') }}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-table-list fa-2x text-info"></i>
-                          </div>
-                      </div>
-                  </div>
-              </a>
+      <div class="card-body">
+          <div class="row no-gutters align-items-center">
+              <div class="mr-2 col">
+                  <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('custom form') }}</div>
+              </div>
+              <div class="col-auto">
+                  <i class="fas fa-table-list fa-2x text-info"></i>
+              </div>
           </div>
-      </div> --}}
-      {{-- <!-- Master Pos Anggaran Rutin Card Example -->
+      </div>
+      </a>
+  </div>
+  </div> --}}
+  {{-- <!-- Master Pos Anggaran Rutin Card Example -->
       <div class="mb-4 col-xl-3 col-md-6">
           <div class="card h-100">
               <a href="{{  url('/admin/posAngaran') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="mr-2 col">
-                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Master Pos Anggaran') }}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-clipboard-list fa-2x text-primary"></i>
-                          </div>
-                      </div>
-                  </div>
-              </a>
+  <div class="card-body">
+      <div class="row no-gutters align-items-center">
+          <div class="mr-2 col">
+              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Master Pos Anggaran') }}</div>
+          </div>
+          <div class="col-auto">
+              <i class="fas fa-clipboard-list fa-2x text-primary"></i>
           </div>
       </div>
-      <!-- Nama Kegiatan Rutin Card Example -->
-      <div class="mb-4 col-xl-3 col-md-6">
-          <div class="card h-100">
-              <a href="{{  url('/admin/namaKegiatan') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="mr-2 col">
-                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Nama Kegiatan') }}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-clipboard-list fa-2x text-info"></i>
-                          </div>
+  </div>
+  </a>
+  </div>
+  </div>
+  <!-- Nama Kegiatan Rutin Card Example -->
+  <div class="mb-4 col-xl-3 col-md-6">
+      <div class="card h-100">
+          <a href="{{  url('/admin/namaKegiatan') }}" class="d-flex">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="mr-2 col">
+                          <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Nama Kegiatan') }}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-clipboard-list fa-2x text-info"></i>
                       </div>
                   </div>
-              </a>
-          </div>
-      </div> --}}
-      <!-- Tambah Pemasukan Card Example -->
-      <div class="mb-4 col-xl-3 col-md-6">
-          <div class="card h-100">
-              <a href="{{  url('/admin/formInput') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="mr-2 col">
-                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pemasukan') }}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-file-invoice-dollar fa-2x text-success"></i>
-                          </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
+              </div>
+          </a>
       </div>
-      <!-- Tambah Pengeluaran Card Example -->
-      <div class="mb-4 col-xl-3 col-md-6">
-          <div class="card h-100">
-              <a href="{{  url('/admin/formAddPengeluaran') }}" class="d-flex">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="mr-2 col">
-                              <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pengeluaran') }}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
-                          </div>
+  </div> --}}
+  <!-- Tambah Pemasukan Card Example -->
+  <div class="mb-4 col-xl-3 col-md-6">
+      <div class="card h-100">
+          <a href="{{  url('/admin/formInput') }}" class="d-flex">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="mr-2 col">
+                          <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pemasukan') }}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-file-invoice-dollar fa-2x text-success"></i>
                       </div>
                   </div>
-              </a>
-          </div>
+              </div>
+          </a>
       </div>
-      @endif
+  </div>
+  <!-- Tambah Pengeluaran Card Example -->
+  <div class="mb-4 col-xl-3 col-md-6">
+      <div class="card h-100">
+          <a href="{{  url('/admin/formAddPengeluaran') }}" class="d-flex">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="mr-2 col">
+                          <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords('Input Pengeluaran') }}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
+                      </div>
+                  </div>
+              </div>
+          </a>
+      </div>
+  </div>
+  @endif
   </div>
   </div>
   </div>

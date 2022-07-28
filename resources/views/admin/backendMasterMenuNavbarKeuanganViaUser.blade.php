@@ -1,35 +1,38 @@
-  @extends('admin.layouts.main')
+  @extends('admin.layouts.mainAnggota')
 
-  @section('menuContent')
-  <!-- Container Fluid-->
-  <div class="container-fluid" id="container-wrapper">
-      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.keuangan') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
-          </ol>
-      </div>
-  </div>
+  @section('menuContentAnggota')
+
+
+  <style>
+      .bg-gradient-primary {
+          background: #fff;
+      }
+
+      .card {
+          background-color: #fff;
+      }
+
+      @media (max-width: 480px) {
+          h1 {
+              margin-top: 25px !important;
+          }
+      }
+
+
+      @media (min-width: 992px) {}
+
+  </style>
   @if(session()->has('success'))
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
-  </div>
-  @elseif(session()->has('process'))
-  <div class="alert alert-info" role="alert">
-      {{ session('process') }}
   </div>
   @elseif(session()->has('unapproved'))
   <div class="alert alert-danger" role="alert">
       {{ session('unapproved') }}
   </div>
   @endif
+
   <div class="container-fluid landingpage-anggota">
-      {{-- <div class="row">
-          <div class="col-md-4">
-              <a href="{{ route('backend.form.add.master.menu.navbar.keuangan') }}" class="mb-1 btn btn-warning btn-sm">Tambah Menu Navbar</a>
-          </div>
-      </div> --}}
       <div class="card-body">
           <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>
@@ -49,7 +52,7 @@
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->updated_at)) }} WIB</td>
                       <td>
-                          <a href="{{ route('backend.form.edit.master.menu.navbar.keuangan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <a href="{{ route('backend.form.edit.master.menu.navbar.keuangan.via.user', [$userid,$item->id]) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
                           {{-- <form action="{{ route('backend.destroy.master.menu.navbar.keuangan', $item->id) }}" method="POST" class="d-inline">
                           {!! method_field('post') . csrf_field() !!}
                           <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
@@ -63,5 +66,4 @@
           </table>
       </div>
   </div>
-  <!---Container Fluid-->
   @endsection

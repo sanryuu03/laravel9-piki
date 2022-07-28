@@ -3,15 +3,15 @@
   @section('menuContent')
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ url()->previous() }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
           </ol>
       </div>
   </div>
-      <div class="container-fluid" id="container-wrapper">
+  <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between">
           <a href="{{ route('backend.form.add.data.biaya.iuran') }}" class="btn btn-warning btn-sm">Tambah Data Biaya Iuran</a>
       </div>
@@ -29,7 +29,7 @@
       {{ session('unapproved') }}
   </div>
   @endif
-  .<div class="container-fluid landingpage-anggota">
+  <div class="container-fluid landingpage-anggota">
       <div class="card-body">
           <table id="table_id" class="table table-bordered table-striped table-anggota">
               <thead>

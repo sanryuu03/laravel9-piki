@@ -22,11 +22,6 @@
       @media (min-width: 992px) {}
 
   </style>
-  <div class="mt-3 container-fluid" id="container-wrapper">
-      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <a href="{{ route('backend.form.add.program') }}" class="btn btn-info btn-sm">Tambah Program</a>
-      </div>
-  </div>
   @if(session()->has('success'))
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
