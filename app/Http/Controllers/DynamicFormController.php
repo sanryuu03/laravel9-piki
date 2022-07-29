@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterMenuNavbar;
 use App\Models\SubMenuNavbarKeuangan;
 use App\Models\Pendapatan;
-
+use App\Models\SumbanganPiki;
 
 class DynamicFormController extends Controller
 {
@@ -466,16 +466,32 @@ class DynamicFormController extends Controller
         public function formPendapatanDinamisViaBendahara($masterMenu, $subMenu,$id)
         {
             $idUser = auth()->user()->id;
+            // return $subMenu;
             $sumbangan = Pendapatan::find($id);
-            return view('admin/pemasukanDinamisViaBendahara', [
-                "title" => "PIKI - Sangrid",
-                "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
-                "creator" => $idUser,
-                'sumbangan' => $sumbangan,
-                'item' => $sumbangan,
-                'masterMenu' => $masterMenu,
-                'subMenu' => $subMenu,
-            ]);
+            $sumbanganPiki = SumbanganPiki::find($id);
+            if ($masterMenu == 'pemasukan' && $subMenu == 'sumbangan') {
+                return view('admin/pemasukanDinamisViaBendahara', [
+                    "title" => "PIKI - Sangrid",
+                    "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
+                    "creator" => $idUser,
+                    'sumbangan' => $sumbanganPiki,
+                    'item' => $sumbanganPiki,
+                    'masterMenu' => $masterMenu,
+                    'subMenu' => $subMenu,
+                ]);
+            } else {
+                return view('admin/pemasukanDinamisViaBendahara', [
+                    "title" => "PIKI - Sangrid",
+                    "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
+                    "creator" => $idUser,
+                    'sumbangan' => $sumbangan,
+                    'item' => $sumbangan,
+                    'masterMenu' => $masterMenu,
+                    'subMenu' => $subMenu,
+                ]);
+            }
+
+
         }
 
         public function postPendapatanViaBendahara(Request $request,$masterMenu, $subMenu)

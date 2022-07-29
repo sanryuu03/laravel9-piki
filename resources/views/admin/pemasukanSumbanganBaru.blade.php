@@ -1,18 +1,20 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
+  <!-- Container Fluid-->
+
   <div class="container-fluid">
       <div class="card-body">
-          <div class="row mb-3">
+          <div class="mb-3 row">
               <!-- New User Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganBaru') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Baru']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan Baru</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' baru') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Belum di proses</span>
                                       </div>
                                   </div>
@@ -25,14 +27,14 @@
                   </div>
               </div>
               <!-- Dalam Proses Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDiproses') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diproses']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan Diproses</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' Diproses') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sedang di verifikasi</span>
                                       </div>
                                   </div>
@@ -45,14 +47,14 @@
                   </div>
               </div>
               <!-- Ditolak Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDitolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Ditolak']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan ditolak</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' ditolak') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Verifikasi gagal</span>
                                       </div>
                                   </div>
@@ -66,14 +68,14 @@
               </div>
 
               <!-- Diterima Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanSumbanganDiterima') }}" class="d-flex">
+                      <a href="{{  url('/admin/dinamisIsiMenuKeuangan', [$masterMenu,$subMenu.'Diterima']) }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan terverifikasi</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">{{ ucwords($subMenu.' terverifikasi') }}</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sumbangan diterima</span>
                                       </div>
                                   </div>
@@ -88,10 +90,11 @@
           </div>
       </div>
   </div>
-  <!-- Container Fluid-->
+
+  <!---Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.sumbangan') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.sumbangan') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -125,11 +128,11 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach($rekapSumbangan as $item)
+                  @foreach($pendapatan as $item)
                   <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.sumbangan.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td>{{ date('d-M-Y H:i', $item->tanggal) }} WIB</td>
+                      <td><a href="{{ route('backend.form.pendapatan.dinamis.via.bendahara', [$masterMenu,$subMenu,$item->id]) }}" class="">{{ $item->nama_penyumbang }}</a></td>
                       <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>

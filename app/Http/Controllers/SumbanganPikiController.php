@@ -10,6 +10,7 @@ use App\Models\DataRekening;
 use App\Models\IuranPiki;
 use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
+use DateTime;
 
 class SumbanganPikiController extends Controller
 {
@@ -54,6 +55,7 @@ class SumbanganPikiController extends Controller
             $dataRupiah = $request->jumlah;
             $rupiah = str_replace(".","",$dataRupiah);
             $data = $request->except(['_token', 'provinsi', 'kabupaten', 'kecamatan', 'desa']);
+            $data['tanggal'] = time();
             $data['jumlah'] = $rupiah;
 
             if ($request->file('picture_path_slip_setoran_sumbangan')) {
@@ -71,7 +73,7 @@ class SumbanganPikiController extends Controller
                 $data['picture_path_slip_setoran_sumbangan'] = $nama_file;
             }
 
-            IuranPiki::create($data);
+            SumbanganPiki::create($data);
             return redirect('/sumbanganPiki')->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
         }
 
@@ -122,7 +124,7 @@ class SumbanganPikiController extends Controller
             $data['picture_path_slip_setoran_sumbangan'] = $nama_file;
         }
 
-        IuranPiki::create($data);
+        SumbanganPiki::create($data);
         return redirect('/sumbanganPiki')->with('success', 'Sumbangan Berhasil Dilakukan, Terima Kasih !');
     }
 
