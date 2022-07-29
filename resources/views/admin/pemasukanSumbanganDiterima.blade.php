@@ -11,7 +11,7 @@
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan Baru</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">baru</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
                                           <span>Belum di proses</span>
                                       </div>
@@ -31,7 +31,7 @@
                           <div class="card-body">
                               <div class="row align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan Diproses</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">diproses</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
                                           <span>Sedang di verifikasi</span>
                                       </div>
@@ -51,7 +51,7 @@
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan ditolak</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">ditolak</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
                                           <span>Verifikasi gagal</span>
                                       </div>
@@ -72,7 +72,7 @@
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sumbangan terverifikasi</div>
+                                      <div class="text-xs font-weight-bold text-uppercase mb-1">terverifikasi</div>
                                       <div class="mt-2 mb-0 text-muted text-xs">
                                           <span>Sumbangan diterima</span>
                                       </div>
@@ -134,11 +134,11 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       @if(auth()->user()->level=='bendahara')
-                      <td><a href="{{ route('backend.sumbangan.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('backend.sumbangan.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @elseif(auth()->user()->level=='super-admin')
-                      <td><a href="{{ route('backend.sumbangan.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('backend.sumbangan.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @elseif(auth()->user()->level=='spi')
-                      <td><a href="{{ route('backend.sumbangan.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('backend.sumbangan.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @endif
                       <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>

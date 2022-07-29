@@ -423,7 +423,7 @@ class ProfileAnggotaController extends Controller
             $namaJenisPemasukan = $jenisPemasukan[0]->jenis_pemasukan;
             $data['jenis_setoran'] = $namaJenisPemasukan;
 
-            $data['status'] = 'sumbangan baru';
+            $data['status'] = 'baru';
 
 
             IuranPiki::create($data);
@@ -854,7 +854,7 @@ class ProfileAnggotaController extends Controller
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $laporanKeuangan = LaporanKeuangan::get();
         $jenisPemasukan = jenisPemasukan::get();
-        $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
+        $sumbangan = SumbanganPiki::where('status','terverifikasi')->sum('jumlah');
         $pendapatan = Pendapatan::groupBy('jenis_pendapatan','tanggal')
         ->where('status', 'terverifikasi')
         ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))

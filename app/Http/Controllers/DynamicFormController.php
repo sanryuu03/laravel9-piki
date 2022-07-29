@@ -469,27 +469,15 @@ class DynamicFormController extends Controller
             // return $subMenu;
             $sumbangan = Pendapatan::find($id);
             $sumbanganPiki = SumbanganPiki::find($id);
-            if ($masterMenu == 'pemasukan' && $subMenu == 'sumbangan') {
-                return view('admin/pemasukanDinamisViaBendahara', [
-                    "title" => "PIKI - Sangrid",
-                    "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
-                    "creator" => $idUser,
-                    'sumbangan' => $sumbanganPiki,
-                    'item' => $sumbanganPiki,
-                    'masterMenu' => $masterMenu,
-                    'subMenu' => $subMenu,
-                ]);
-            } else {
-                return view('admin/pemasukanDinamisViaBendahara', [
-                    "title" => "PIKI - Sangrid",
-                    "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
-                    "creator" => $idUser,
-                    'sumbangan' => $sumbangan,
-                    'item' => $sumbangan,
-                    'masterMenu' => $masterMenu,
-                    'subMenu' => $subMenu,
-                ]);
-            }
+            return view('admin/pemasukanDinamisViaBendahara', [
+                "title" => "PIKI - Sangrid",
+                "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
+                "creator" => $idUser,
+                'sumbangan' => $sumbangan,
+                'item' => $sumbangan,
+                'masterMenu' => $masterMenu,
+                'subMenu' => $subMenu,
+            ]);
 
 
         }
@@ -553,7 +541,7 @@ class DynamicFormController extends Controller
             }
         }
 
-        public function formPendapatanViaKetua($masterMenu, $subMenu, $id)
+        public function formPendapatanDinamisViaKetua($masterMenu, $subMenu, $id)
         {
             $idUser = auth()->user()->id;
             $pemasukanSumbangan = Pendapatan::find($id);
@@ -621,7 +609,7 @@ class DynamicFormController extends Controller
             }
         }
 
-        public function formPendapatanViaSpi($masterMenu, $subMenu, $id)
+        public function formPendapatanDinamisViaSpi($masterMenu, $subMenu, $id)
         {
             $idUser = auth()->user()->id;
             $sumbangan = Pendapatan::find($id);

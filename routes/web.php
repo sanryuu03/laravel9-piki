@@ -287,6 +287,29 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'], '/admin/pemasukanSumbanganDitolak/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDitolak'])->name('backend.post.sumbangan.ditolak');
     Route::match(['get', 'post'], '/admin/pemasukanSumbanganDestroy/{id}', [SumbanganPikiController::class, 'postPemasukanSumbanganDestroy'])->name('backend.post.sumbangan.destroy');
 
+    #donasi#
+    Route::get('/admin/pemasukanDonasi', [BackendPikiController::class, 'pemasukanDonasi'])->name('backend.donasi');
+    Route::get('/admin/pemasukanDonasiDetail', [BackendPikiController::class, 'pemasukanDonasiDetail'])->name('backend.donasi.detail');
+    Route::get('/admin/pemasukanDonasiBaru', [BackendPikiController::class, 'pemasukanDonasiBaru'])->name('backend.donasi.baru');
+    Route::get('/admin/pemasukanDonasiDiproses', [BackendPikiController::class, 'pemasukanDonasiDiproses'])->name('backend.donasi.diproses');
+    Route::get('/admin/pemasukanDonasiDitolak', [BackendPikiController::class, 'pemasukanDonasiDitolak'])->name('backend.donasi.ditolak');
+    Route::get('/admin/pemasukanDonasiDiterima', [BackendPikiController::class, 'pemasukanDonasiDiterima'])->name('backend.donasi.diterima');
+
+    Route::get('/admin/pemasukanDonasiViaBendahara/{id}', [SumbanganPikiController::class, 'pemasukanDonasiViaBendahara'])->name('backend.donasi.detail.via.bendahara');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiBendahara/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiBendahara'])->name('backend.post.donasi.diverifikasi.bendahara');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiBendaharaViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiBendaharaViaForm'])->name('backend.post.donasi.diverifikasi.bendahara.via.form');
+
+    Route::get('/admin/pemasukanDonasiViaKetua/{id}', [SumbanganPikiController::class, 'pemasukanDonasiViaKetua'])->name('backend.donasi.detail.via.ketua');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiKetua/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiKetua'])->name('backend.post.donasi.diverifikasi.ketua');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiKetuaViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiKetuaViaForm'])->name('backend.post.donasi.diverifikasi.ketua.via.form');
+
+    Route::get('/admin/pemasukanDonasiViaSpi/{id}', [SumbanganPikiController::class, 'pemasukanDonasiViaSpi'])->name('backend.donasi.detail.via.spi');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiSpi/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiSpi'])->name('backend.post.donasi.diverifikasi.spi');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDiverifikasiSpiViaForm/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDiverifikasiSpiViaForm'])->name('backend.post.donasi.diverifikasi.spi.via.form');
+
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDitolak/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDitolak'])->name('backend.post.donasi.ditolak');
+    Route::match(['get', 'post'], '/admin/pemasukanDonasiDestroy/{id}', [SumbanganPikiController::class, 'postPemasukanDonasiDestroy'])->name('backend.post.donasi.destroy');
+
     Route::get('/admin/Pengeluaran', [PengeluaranController::class, 'index'])->name('backend.pengeluaran.rutin');
     Route::get('/admin/formAddPengeluaran', [PengeluaranController::class, 'formAddPengeluaran'])->name('backend.form.add.pengeluaran.rutin');
     Route::get('/admin/formEditPengeluaran/{id}', [PengeluaranController::class, 'formEditPengeluaran'])->name('backend.form.edit.pengeluaran.rutin');
@@ -374,11 +397,11 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPendapatanViaBendahara'])->name('backend.post.pendapatan.dinamis.diverifikasi.bendahara');
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaBendaharaViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.bendahara.via.form');
 
-    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPendapatanViaKetua'])->name('backend.form.pendapatan.dinamis.via.ketua');
+    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaKetua/{id}', [DynamicFormController::class, 'formPendapatanDinamisViaKetua'])->name('backend.form.pendapatan.dinamis.via.ketua');
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaKetua/{id}', [DynamicFormController::class, 'postPendapatanViaKetua'])->name('backend.post.pendapatan.dinamis.diverifikasi.ketua');
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu}/ViaKetuaViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaKetuaViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.ketua.via.form');
 
-    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPendapatanViaSpi'])->name('backend.form.pendapatan.dinamis.via.spi');
+    Route::match(['get', 'post'], '/admin/formPendapatanDinamis/{masterMenu}/{subMenu}/ViaSpi/{id}', [DynamicFormController::class, 'formPendapatanDinamisViaSpi'])->name('backend.form.pendapatan.dinamis.via.spi');
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaSpi/{id}', [DynamicFormController::class, 'postPendapatanViaSpi'])->name('backend.post.pendapatan.dinamis.diverifikasi.spi');
     Route::match(['get', 'post'], '/admin/postPendapatan/{masterMenu}/{subMenu?}/ViaSpiViaForm/{id}', [DynamicFormController::class, 'postPendapatanViaSpiViaForm'])->name('backend.post.pendapatan.dinamis.diverifikasi.spi.via.form');
 

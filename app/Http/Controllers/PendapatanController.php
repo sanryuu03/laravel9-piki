@@ -126,8 +126,8 @@ class PendapatanController extends Controller
             if ($jenisPendapatan->nama_sub_menu == 'iuran') {
                 $data = $request->except('_token');
                 $data['tanggal'] = now();
-                $data['nama_penyetor'] = $request->nama_penyumbang;
-                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
+                $data['nama_penyetor'] = $request->nama_penyetor;
+                $data['tujuan_penyetor'] = $request->tujuan_penyetor;
                 $namaBulan = $_POST['bulan'];
                 $arrBulan = [];
                 foreach ($namaBulan as $bulan){
@@ -171,8 +171,8 @@ class PendapatanController extends Controller
                 $dataRupiah = $request->jumlah;
                 $rupiah = str_replace(".","",$dataRupiah);
                 $data['jumlah'] = $rupiah;
-                $data['nama_penyetor'] = $request->nama_penyumbang;
-                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
+                $data['nama_penyetor'] = $request->nama_penyetor;
+                $data['tujuan_penyetor'] = $request->tujuan_penyetor;
 
                 if ($request->file('picture_path_slip_setoran_iuran')) {
                     // menyimpan data file yang diupload ke variabel $file
@@ -193,7 +193,7 @@ class PendapatanController extends Controller
                 $namaJenisPemasukan = $jenisPemasukan->nama_sub_menu;
                 $data['jenis_pendapatan'] = $namaJenisPemasukan;
 
-                $data['status'] = 'sumbangan baru';
+                $data['status'] = 'baru';
 
 
                 Pendapatan::create($data);
@@ -206,8 +206,8 @@ class PendapatanController extends Controller
                 $dataRupiah = $request->jumlah;
                 $rupiah = str_replace(".","",$dataRupiah);
                 $data['jumlah'] = $rupiah;
-                $data['nama_penyetor'] = $request->nama_penyumbang;
-                $data['tujuan_penyetor'] = $request->tujuan_sumbangan;
+                $data['nama_penyetor'] = $request->nama_penyetor;
+                $data['tujuan_penyetor'] = $request->tujuan_penyetor;
 
                 if ($request->file('picture_path_slip_setoran_iuran')) {
                     // menyimpan data file yang diupload ke variabel $file
@@ -245,7 +245,7 @@ class PendapatanController extends Controller
 
     public function dataUser(Request $request)
     {
-        $nama = $request->nama_penyumbang;
+        $nama = $request->nama_penyetor;
         // return request()->input('provinsi');
         $namaPenyumbang = User::where('name', $nama)->get();
         // return $namaPenyumbang;

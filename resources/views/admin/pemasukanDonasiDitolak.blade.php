@@ -1,17 +1,19 @@
   @extends('admin.layouts.main')
 
   @section('menuContent')
+  <!-- Container Fluid-->
+
   <div class="container-fluid">
       <div class="card-body">
           <div class="mb-3 row">
               <!-- New User Card Example -->
               <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanIuranBaru') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanDonasiBaru') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="mr-2 col">
-                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran Baru</div>
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">baru</div>
                                       <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Belum di proses</span>
                                       </div>
@@ -27,11 +29,11 @@
               <!-- Dalam Proses Card Example -->
               <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanIuranDiproses') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanDonasiDiproses') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
                                   <div class="mr-2 col">
-                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran Diproses</div>
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">diproses</div>
                                       <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sedang di verifikasi</span>
                                       </div>
@@ -47,11 +49,11 @@
               <!-- Ditolak Card Example -->
               <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanIuranDitolak') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanDonasiDitolak') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="mr-2 col">
-                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran ditolak</div>
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">ditolak</div>
                                       <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Verifikasi gagal</span>
                                       </div>
@@ -68,13 +70,13 @@
               <!-- Diterima Card Example -->
               <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
-                      <a href="{{  url('/admin/pemasukanIuranDiterima') }}" class="d-flex">
+                      <a href="{{  url('/admin/pemasukanDonasiDiterima') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                   <div class="mr-2 col">
-                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran terverifikasi</div>
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">terverifikasi</div>
                                       <div class="mt-2 mb-0 text-xs text-muted">
-                                          <span>Iuran diterima</span>
+                                          <span>Sumbangan diterima</span>
                                       </div>
                                   </div>
                                   <div class="col-auto">
@@ -88,10 +90,11 @@
           </div>
       </div>
   </div>
-  <!-- Container Fluid-->
+
+  <!---Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.iuran') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.donasi') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -119,7 +122,7 @@
                       <th width="0.1%">NO</th>
                       <th width="1%">Tanggal</th>
                       <th width="1%">Nama</th>
-                      <th width="1%">Jumlah Iuran</th>
+                      <th width="1%">Jumlah Sumbangan</th>
                       <th width="1%">Berita</th>
                       <th width="0.01%">Bendahara</th>
                       <th width="0.01%">Ketua</th>
@@ -129,16 +132,16 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach($pemasukanIuran as $item)
+                  @foreach($rekapSumbangan as $item)
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
                       @if(auth()->user()->level=='bendahara')
-                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
+                      <td><a href="{{ route('backend.donasi.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @elseif(auth()->user()->level=='super-admin')
-                      <td><a href="{{ route('backend.iuran.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
+                      <td><a href="{{ route('backend.donasi.detail.via.ketua', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @elseif(auth()->user()->level=='spi')
-                      <td><a href="{{ route('backend.iuran.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
+                      <td><a href="{{ route('backend.donasi.detail.via.spi', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       @endif
                       <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
@@ -148,20 +151,47 @@
                       <td>{{ $item->alasan_ditolak }}</td>
                       <td>
                           <a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                          <form action="{{ route('backend.post.iuran.destroy', $item->id) }}" method="POST" class="d-inline">
+                          <form action="{{ route('backend.post.donasi.destroy', $item->id) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
                                   <i class="fa-solid fa-trash-can"></i>
                               </button>
                           </form>
                           @if(auth()->user()->level=='spi')
-                          <a href="{{ route('backend.post.iuran.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
+                          <a href="{{ route('backend.post.donasi.diverifikasi.spi.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi SPI</a>
                           @elseif(auth()->user()->level=='super-admin')
-                          <a href="{{ route('backend.post.iuran.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
+                          <a href="{{ route('backend.post.donasi.diverifikasi.ketua.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Ketua</a>
                           @elseif(auth()->user()->level=='bendahara')
-                          <a href="{{ route('backend.post.iuran.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
+                          <a href="{{ route('backend.post.donasi.diverifikasi.bendahara.via.form', $item->id) }}" class="btn btn-success btn-sm">Verifikasi Bendahara</a>
                           @endif
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showIuranBaruModal">Tolak</button>
+                          <!-- Modal Alasan Start-->
+                          <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form action="{{ route('backend.post.donasi.ditolak', $item->id) }}" method="post">
+                                              @csrf
+                                              <div class="form-group">
+                                                  <label for="message-text" class="col-form-label">Message:</label>
+                                                  <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
+                                              </div>
+                                              <button type="submit" class="btn btn-info">Send message</button>
+                                          </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Modal Alasan End-->
                       </td>
                   </tr>
                   @endforeach
@@ -170,35 +200,4 @@
       </div>
   </div>
   <!---Container Fluid-->
-  <!-- Modal Alasan Start-->
-                  @foreach($pemasukanIuran as $item)
-
-  <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <form action="{{ route('backend.post.iuran.ditolak', $item->id) }}" method="post">
-                      @csrf
-                      <div class="form-group">
-                          <label for="message-text" class="col-form-label">Message:</label>
-                          <textarea class="form-control" id="message-text" name="alasan_ditolak"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-info">Send message</button>
-                  </form>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
-  </div>
-                  @endforeach
-
-  <!-- Modal Alasan End-->
   @endsection

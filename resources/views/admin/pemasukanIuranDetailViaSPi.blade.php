@@ -3,8 +3,8 @@
   @section('menuContent')
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.iuran.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -25,7 +25,7 @@
   </div>
   @endif
   <div class="container-fluid">
-      <div class="card mx-3 my-3">
+      <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
                   <form method="post" action="{{ route('backend.post.iuran.diverifikasi.spi', $item->id) }}" enctype="multipart/form-data">
@@ -35,7 +35,7 @@
                           <div class="row">
                               <div class="col-md-12">
                                   Jenis Setoran:
-                                  <input id="jenis_setoran" readonly type="text" name="jenis_setoran" class="form-control @error('jenis_setoran') is-invalid @enderror" value="{{ old('jenis_pemasukan', $pemasukanIuran->jenis_setoran) }}">
+                                  <input id="jenis_setoran" readonly type="text" name="jenis_pendapatan" class="form-control @error('jenis_pendapatan') is-invalid @enderror" value="{{ old('jenis_pendapatan', $pemasukanIuran->jenis_pendapatan) }}">
                               </div>
                           </div>
                       </div>
@@ -59,8 +59,8 @@
                       </div>
                       <div class="form-group">
                           <label>Nama Penyumbang </label>
-                          <input type="text" readonly name="nama_penyumbang" class="form-control @error('nama_penyumbang') is-invalid @enderror" value="{{ old('nama_penyumbang', $pemasukanIuran->nama_penyumbang) }}">
-                          @error('nama_penyumbang')
+                          <input type="text" readonly name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor', $pemasukanIuran->nama_penyetor) }}">
+                          @error('nama_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
@@ -77,8 +77,8 @@
                       </div>
                       <div class="form-group">
                           <label>Tujuan Sumbangan</label>
-                          <input type="text" readonly name="tujuan_sumbangan" class="form-control @error('tujuan_sumbangan') is-invalid @enderror" value="{{ old('tujuan_sumbangan', $pemasukanIuran->tujuan_sumbangan) }}">
-                          @error('tujuan_sumbangan')
+                          <input type="text" readonly name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor', $pemasukanIuran->tujuan_penyetor) }}">
+                          @error('tujuan_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
@@ -122,7 +122,7 @@
                       </div>
                       <div class="form-group">
                           <div><label>Slip Setoran</label></div>
-                          <img class="" width="550px" height="350px" src="{{ url('/storage/assets/slip/setoran/iuran/'.$pemasukanIuran->picture_path_slip_setoran_iuran) }}">
+                          <img class="" width="550px" height="350px" src="{{ url('/storage/assets/slip/setoran/pendapatan/'.$pemasukanIuran->picture_path_slip_pendapatan) }}">
                           @error('picture_path_slip_setoran_iuran')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -130,8 +130,8 @@
                           @enderror
                       </div>
 
-                      <button class="btn btn-primary mt-3">Verifikasi SPI</button>
-                      <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
+                      <button class="mt-3 btn btn-primary">Verifikasi SPI</button>
+                      <button type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
 
                   </form>
               </div>

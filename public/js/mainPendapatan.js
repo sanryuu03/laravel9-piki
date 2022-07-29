@@ -7,12 +7,12 @@ $(function () {
 
     $(function () {
         $("#nama-penyumbang").on("keyup", function () {
-            let nama_penyumbang = $("#nama-penyumbang").val();
-            console.log(`filter namaPenyumbang ${nama_penyumbang}`);
+            let nama_penyetor = $("#nama-penyumbang").val();
+            console.log(`filter namaPenyumbang ${nama_penyetor}`);
             let namaPenyumbang = document.querySelector("#nama-penyumbang");
             let telpSelectUser = document.querySelector(".telp-select");
             let telpInputUser = document.querySelector(".telp");
-            if (nama_penyumbang !== "") {
+            if (nama_penyetor !== "") {
                 telpSelectUser.classList.remove("d-none");
                 telpInputUser.classList.add("d-none");
             }
@@ -20,7 +20,7 @@ $(function () {
                 type: "POST",
                 url: '/dataUser',
                 data: {
-                    nama_penyumbang,
+                    nama_penyetor,
                 },
                 cache: false,
                 success: function (msg) {

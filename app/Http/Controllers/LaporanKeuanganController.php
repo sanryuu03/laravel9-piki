@@ -102,11 +102,11 @@ class LaporanKeuanganController extends Controller
 
         $iuranPiki = IuranPiki::groupBy('jenis_setoran','tanggal')
         ->where('status', 'iuran terverifikasi')
-        ->orWhere('status', 'sumbangan terverifikasi')
+        ->orWhere('status', 'terverifikasi')
         ->selectRaw('tanggal,jenis_setoran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
 
-        $sumbangan = SumbanganPiki::where('status','sumbangan terverifikasi')->sum('jumlah');
+        $sumbangan = SumbanganPiki::where('status','terverifikasi')->sum('jumlah');
         $pendapatan = Pendapatan::groupBy('jenis_pendapatan','tanggal')
         ->where('status', 'terverifikasi')
         ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))

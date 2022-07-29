@@ -68,7 +68,7 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('anggota.cv', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('anggota.cv', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>

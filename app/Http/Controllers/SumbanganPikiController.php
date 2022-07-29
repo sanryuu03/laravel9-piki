@@ -7,7 +7,7 @@ use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
 use App\Models\DataRekening;
-use App\Models\IuranPiki;
+use App\Models\Pendapatan;
 use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
 use DateTime;
@@ -176,7 +176,7 @@ class SumbanganPikiController extends Controller
     public function pemasukanSumbanganViaBendahara($id)
     {
         $idUser = auth()->user()->id;
-        $sumbangan = IuranPiki::find($id);
+        $sumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaBendahara', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Sumbangan Detail",
@@ -197,9 +197,9 @@ class SumbanganPikiController extends Controller
         if (auth()->user()->level=='bendahara') {
             $data = $request->validate([
                 'jumlah' => 'required',
-                'nama_penyumbang' => 'required',
+                'nama_penyetor' => 'required',
                 'telp' => 'required',
-                'tujuan_sumbangan' => 'nullable',
+                'tujuan_penyetor' => 'nullable',
                 'berita' => 'nullable',
                 'rekening_pembayaran' => 'required',
                 'nomor_rekening' => 'required',
@@ -209,9 +209,9 @@ class SumbanganPikiController extends Controller
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             $data['jumlah'] = $rupiahHapusSimbolRp;
-            $data['status'] = 'sumbangan diproses';
+            $data['status'] = 'diproses';
             $data['status_verifikasi_bendahara'] = 'terverifikasi';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
 
 
@@ -228,15 +228,15 @@ class SumbanganPikiController extends Controller
             return redirect()->route('backend.sumbangan.baru')->with('unapproved', 'Sumbangan belum diverifikasi karna anda bukan bendahara');
         }
         if (auth()->user()->level=='bendahara') {
-            $data = IuranPiki::find($request->id);
+            $data = Pendapatan::find($request->id);
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update(
                 [
                     'jumlah' => $rupiahHapusSimbolRp,
-                    'status' => 'sumbangan diproses',
+                    'status' => 'diproses',
                     'status_verifikasi_bendahara' => 'terverifikasi',
                 ]
             );
@@ -248,7 +248,7 @@ class SumbanganPikiController extends Controller
     public function pemasukanSumbanganViaKetua($id)
     {
         $idUser = auth()->user()->id;
-        $pemasukanSumbangan = IuranPiki::find($id);
+        $pemasukanSumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaKetua', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Sumbangan Detail",
@@ -260,13 +260,13 @@ class SumbanganPikiController extends Controller
 
     public function postPemasukanSumbanganDiverifikasiKetua(Request $request)
     {
-        $iuran = IuranPiki::find($request->id);
+        $iuran = Pendapatan::find($request->id);
         if ($iuran->status_verifikasi_bendahara == 'terverifikasi') {
             $data = $request->validate([
                 'jumlah' => 'required',
-                'nama_penyumbang' => 'required',
+                'nama_penyetor' => 'required',
                 'telp' => 'required',
-                'tujuan_sumbangan' => 'nullable',
+                'tujuan_penyetor' => 'nullable',
                 'berita' => 'nullable',
                 'rekening_pembayaran' => 'required',
                 'nomor_rekening' => 'required',
@@ -277,9 +277,9 @@ class SumbanganPikiController extends Controller
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             // return $rupiahHapusSimbolRp;
             $data['jumlah'] = $rupiahHapusSimbolRp;
-            $data['status'] = 'sumbangan diproses';
+            $data['status'] = 'diproses';
             $data['status_verifikasi_ketua'] = 'terverifikasi';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.diproses')->with('success', 'Sumbangan telah diverifikasi Ketua');
         }
@@ -290,16 +290,16 @@ class SumbanganPikiController extends Controller
 
     public function postPemasukanSumbanganDiverifikasiKetuaViaForm(Request $request)
     {
-        $data = IuranPiki::find($request->id);
+        $data = Pendapatan::find($request->id);
         if ($data->status_verifikasi_bendahara == 'terverifikasi') {
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update(
                 [
                     'jumlah' => $rupiahHapusSimbolRp,
-                    'status' => 'sumbangan diproses',
+                    'status' => 'diproses',
                     'status_verifikasi_ketua' => 'terverifikasi',
                 ]
             );
@@ -314,7 +314,7 @@ class SumbanganPikiController extends Controller
     public function pemasukanSumbanganViaSpi($id)
     {
         $idUser = auth()->user()->id;
-        $sumbangan = IuranPiki::find($id);
+        $sumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaSpi', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Sumbangan Detail",
@@ -327,13 +327,13 @@ class SumbanganPikiController extends Controller
     public function postPemasukanSumbanganDiverifikasiSpi(Request $request)
     {
         // return $request;
-        $iuran = IuranPiki::find($request->id);
+        $iuran = Pendapatan::find($request->id);
         if ($iuran->status_verifikasi_bendahara == 'terverifikasi' && $iuran->status_verifikasi_ketua == 'terverifikasi') {
             $data = $request->validate([
                 'jumlah' => 'required',
-                'nama_penyumbang' => 'required',
+                'nama_penyetor' => 'required',
                 'telp' => 'required',
-                'tujuan_sumbangan' => 'nullable',
+                'tujuan_penyetor' => 'nullable',
                 'berita' => 'nullable',
                 'rekening_pembayaran' => 'required',
                 'nomor_rekening' => 'required',
@@ -344,9 +344,9 @@ class SumbanganPikiController extends Controller
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
             // return $rupiahHapusSimbolRp;
             $data['jumlah'] = $rupiahHapusSimbolRp;
-            $data['status'] = 'sumbangan terverifikasi';
+            $data['status'] = 'terverifikasi';
             $data['status_verifikasi_spi'] = 'terverifikasi';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.diproses')->with('success', 'Sumbangan telah diverifikasi SPI');
         }
@@ -357,16 +357,16 @@ class SumbanganPikiController extends Controller
 
     public function postPemasukanSumbanganDiverifikasiSpiViaForm(Request $request)
     {
-        $data = IuranPiki::find($request->id);
+        $data = Pendapatan::find($request->id);
         if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
             $dataRupiah = $data->jumlah;
             $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
             $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update(
                 [
                     'jumlah' => $rupiahHapusSimbolRp,
-                    'status' => 'sumbangan terverifikasi',
+                    'status' => 'terverifikasi',
                     'status_verifikasi_spi' => 'terverifikasi',
                 ]
             );
@@ -382,12 +382,12 @@ class SumbanganPikiController extends Controller
     {
         // return $request;
         $data = $request->except('_token');
-        $data['status'] = 'sumbangan ditolak';
+        $data['status'] = 'ditolak';
         $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
-        $sumbangan = IuranPiki::find($request->id);
+        $sumbangan = Pendapatan::find($request->id);
         if ($sumbangan->alasan_ditolak == null && auth()->user()->level=='bendahara') {
             $data['status_verifikasi_bendahara'] = 'ditolak';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.ditolak')->with('success', 'Sumbangan telah ditolak');
         }
@@ -402,13 +402,13 @@ class SumbanganPikiController extends Controller
         }
         elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='super-admin') {
             $data['status_verifikasi_ketua'] = 'ditolak';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.ditolak')->with('success', 'Sumbangan telah ditolak');
         }
         elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='spi') {
             $data['status_verifikasi_spi'] = 'ditolak';
-            IuranPiki::where('id', $request->id)
+            Pendapatan::where('id', $request->id)
             ->update($data);
             return redirect()->route('backend.sumbangan.ditolak')->with('success', 'Sumbangan telah ditolak');
         }
@@ -421,9 +421,266 @@ class SumbanganPikiController extends Controller
     public function postPemasukanSumbanganDestroy(Request $request)
     {
         $data = ['deleted_by' => auth()->user()->name];
-        IuranPiki::where('id', $request->id)
+        Pendapatan::where('id', $request->id)
         ->update($data);
-        $iuran = IuranPiki::find($request->id);
+        $iuran = Pendapatan::find($request->id);
+        $iuran->delete(); //softdeletes
+
+        return redirect()->back()->with('success', 'Sumbangan telah dihapus');
+    }
+
+    #donasi#
+    public function pemasukanDonasiViaBendahara($id)
+    {
+        $idUser = auth()->user()->id;
+        $sumbangan = SumbanganPiki::find($id);
+        return view('admin/pemasukanDonasiViaBendahara', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Sumbangan Detail",
+            "creator" => $idUser,
+            'sumbangan' => $sumbangan,
+            'item' => $sumbangan,
+        ]);
+    }
+
+    public function postPemasukanDonasiDiverifikasiBendahara(Request $request)
+    {
+        if (auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.donasi.baru')->with('unapproved', 'Sumbangan belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='spi') {
+            return redirect()->route('backend.donasi.baru')->with('unapproved', 'Sumbangan belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='bendahara') {
+            $data = $request->validate([
+                'jumlah' => 'required',
+                'nama_penyetor' => 'required',
+                'telp' => 'required',
+                'tujuan_penyetor' => 'nullable',
+                'berita' => 'nullable',
+                'rekening_pembayaran' => 'required',
+                'nomor_rekening' => 'required',
+                'atas_nama' => 'required',
+            ]);
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'diproses';
+            $data['status_verifikasi_bendahara'] = 'terverifikasi';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+
+
+            return redirect()->route('backend.donasi.baru')->with('success', 'Sumbangan telah diverifikasi bendahara');
+        }
+    }
+
+    public function postPemasukanDonasiDiverifikasiBendaharaViaForm(Request $request)
+    {
+        if (auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.donasi.baru')->with('unapproved', 'Sumbangan belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='spi') {
+            return redirect()->route('backend.donasi.baru')->with('unapproved', 'Sumbangan belum diverifikasi karna anda bukan bendahara');
+        }
+        if (auth()->user()->level=='bendahara') {
+            $data = SumbanganPiki::find($request->id);
+            $dataRupiah = $data->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            SumbanganPiki::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'diproses',
+                    'status_verifikasi_bendahara' => 'terverifikasi',
+                ]
+            );
+
+            return redirect()->route('backend.donasi.baru')->with('success', 'Sumbangan telah diverifikasi bendahara');
+        }
+    }
+
+    public function pemasukanDonasiViaKetua($id)
+    {
+        $idUser = auth()->user()->id;
+        $pemasukanSumbangan = SumbanganPiki::find($id);
+        return view('admin/pemasukanDonasiViaKetua', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Sumbangan Detail",
+            "creator" => $idUser,
+            'sumbangan' => $pemasukanSumbangan,
+            'item' => $pemasukanSumbangan,
+        ]);
+    }
+
+    public function postPemasukanDonasiDiverifikasiKetua(Request $request)
+    {
+        $iuran = SumbanganPiki::find($request->id);
+        if ($iuran->status_verifikasi_bendahara == 'terverifikasi') {
+            $data = $request->validate([
+                'jumlah' => 'required',
+                'nama_penyetor' => 'required',
+                'telp' => 'required',
+                'tujuan_penyetor' => 'nullable',
+                'berita' => 'nullable',
+                'rekening_pembayaran' => 'required',
+                'nomor_rekening' => 'required',
+                'atas_nama' => 'required',
+            ]);
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            // return $rupiahHapusSimbolRp;
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'diproses';
+            $data['status_verifikasi_ketua'] = 'terverifikasi';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.donasi.diproses')->with('success', 'Sumbangan telah diverifikasi Ketua');
+        }
+        else {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan gagal diverifikasi Ketua');
+        }
+    }
+
+    public function postPemasukanDonasiDiverifikasiKetuaViaForm(Request $request)
+    {
+        $data = SumbanganPiki::find($request->id);
+        if ($data->status_verifikasi_bendahara == 'terverifikasi') {
+            $dataRupiah = $data->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            SumbanganPiki::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'diproses',
+                    'status_verifikasi_ketua' => 'terverifikasi',
+                ]
+            );
+
+            return redirect()->route('backend.donasi.diproses')->with('success', 'Sumbangan telah diverifikasi Ketua');
+        }
+        else {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan gagal diverifikasi Ketua');
+        }
+    }
+
+    public function pemasukanDonasiViaSpi($id)
+    {
+        $idUser = auth()->user()->id;
+        $sumbangan = SumbanganPiki::find($id);
+        return view('admin/pemasukanDonasiViaSpi', [
+            "title" => "PIKI - Sangrid",
+            "menu" => "Pemasukan Sumbangan Detail",
+            "creator" => $idUser,
+            'sumbangan' => $sumbangan,
+            'item' => $sumbangan,
+        ]);
+    }
+
+    public function postPemasukanDonasiDiverifikasiSpi(Request $request)
+    {
+        // return $request;
+        $iuran = SumbanganPiki::find($request->id);
+        if ($iuran->status_verifikasi_bendahara == 'terverifikasi' && $iuran->status_verifikasi_ketua == 'terverifikasi') {
+            $data = $request->validate([
+                'jumlah' => 'required',
+                'nama_penyetor' => 'required',
+                'telp' => 'required',
+                'tujuan_penyetor' => 'nullable',
+                'berita' => 'nullable',
+                'rekening_pembayaran' => 'required',
+                'nomor_rekening' => 'required',
+                'atas_nama' => 'required',
+            ]);
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            // return $rupiahHapusSimbolRp;
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+            $data['status'] = 'terverifikasi';
+            $data['status_verifikasi_spi'] = 'terverifikasi';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.donasi.diproses')->with('success', 'Sumbangan telah diverifikasi SPI');
+        }
+        else {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan gagal diverifikasi SPI');
+        }
+    }
+
+    public function postPemasukanDonasiDiverifikasiSpiViaForm(Request $request)
+    {
+        $data = SumbanganPiki::find($request->id);
+        if ($data->status_verifikasi_bendahara == 'terverifikasi' && $data->status_verifikasi_ketua == 'terverifikasi') {
+            $dataRupiah = $data->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            SumbanganPiki::where('id', $request->id)
+            ->update(
+                [
+                    'jumlah' => $rupiahHapusSimbolRp,
+                    'status' => 'terverifikasi',
+                    'status_verifikasi_spi' => 'terverifikasi',
+                ]
+            );
+
+            return redirect()->route('backend.donasi.diproses')->with('success', 'Sumbangan telah diverifikasi SPI');
+        }
+        else {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan gagal diverifikasi SPI');
+        }
+    }
+
+    public function postPemasukanDonasiDitolak(Request $request)
+    {
+        // return $request;
+        $data = $request->except('_token');
+        $data['status'] = 'ditolak';
+        $data['alasan_ditolak'] = $request->alasan_ditolak . ' OLEH '. strtoupper(auth()->user()->name);
+        $sumbangan = SumbanganPiki::find($request->id);
+        if ($sumbangan->alasan_ditolak == null && auth()->user()->level=='bendahara') {
+            $data['status_verifikasi_bendahara'] = 'ditolak';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.donasi.ditolak')->with('success', 'Sumbangan telah ditolak');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_ketua == null && auth()->user()->level=='spi') {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && $sumbangan->status_verifikasi_bendahara == null && auth()->user()->level=='super-admin') {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan belum bisa ditolak karna belum di verifikasi bendahara');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='super-admin') {
+            $data['status_verifikasi_ketua'] = 'ditolak';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.donasi.ditolak')->with('success', 'Sumbangan telah ditolak');
+        }
+        elseif ($sumbangan->alasan_ditolak == null && auth()->user()->level=='spi') {
+            $data['status_verifikasi_spi'] = 'ditolak';
+            SumbanganPiki::where('id', $request->id)
+            ->update($data);
+            return redirect()->route('backend.donasi.ditolak')->with('success', 'Sumbangan telah ditolak');
+        }
+        else {
+            return redirect()->route('backend.donasi.diproses')->with('unapproved', 'Sumbangan sudah pernah telah ditolak');
+        }
+
+    }
+
+    public function postPemasukanDonasiDestroy(Request $request)
+    {
+        $data = ['deleted_by' => auth()->user()->name];
+        SumbanganPiki::where('id', $request->id)
+        ->update($data);
+        $iuran = SumbanganPiki::find($request->id);
         $iuran->delete(); //softdeletes
 
         return redirect()->back()->with('success', 'Sumbangan telah dihapus');

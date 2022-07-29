@@ -3,16 +3,16 @@
   @section('menuContent')
   <div class="container-fluid">
       <div class="card-body">
-          <div class="row mb-3">
+          <div class="mb-3 row">
               <!-- New User Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
                       <a href="{{  url('/admin/pemasukanIuranBaru') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Iuran Baru</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran Baru</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Belum di proses</span>
                                       </div>
                                   </div>
@@ -25,14 +25,14 @@
                   </div>
               </div>
               <!-- Dalam Proses Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
                       <a href="{{  url('/admin/pemasukanIuranDiproses') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Iuran Diproses</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran Diproses</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Sedang di verifikasi</span>
                                       </div>
                                   </div>
@@ -45,14 +45,14 @@
                   </div>
               </div>
               <!-- Ditolak Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
                       <a href="{{  url('/admin/pemasukanIuranDitolak') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Iuran ditolak</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran ditolak</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Verifikasi gagal</span>
                                       </div>
                                   </div>
@@ -66,14 +66,14 @@
               </div>
 
               <!-- Diterima Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <div class="mb-4 col-xl-3 col-md-6">
                   <div class="card h-100">
                       <a href="{{  url('/admin/pemasukanIuranDiterima') }}" class="d-flex">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
-                                  <div class="col mr-2">
-                                      <div class="text-xs font-weight-bold text-uppercase mb-1">Iuran terverifikasi</div>
-                                      <div class="mt-2 mb-0 text-muted text-xs">
+                                  <div class="mr-2 col">
+                                      <div class="mb-1 text-xs font-weight-bold text-uppercase">Iuran terverifikasi</div>
+                                      <div class="mt-2 mb-0 text-xs text-muted">
                                           <span>Iuran diterima</span>
                                       </div>
                                   </div>
@@ -90,8 +90,8 @@
   </div>
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.iuran') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.iuran') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -129,7 +129,7 @@
                   <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ date('d-M-y H:i', strtotime($item->created_at)) }} WIB</td>
-                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyumbang }}</a></td>
+                      <td><a href="{{ route('backend.iuran.detail.via.bendahara', $item->id) }}" class="">{{ $item->nama_penyetor }}</a></td>
                       <td>Rp. {{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>{{ $item->berita }}</td>
                       <td>

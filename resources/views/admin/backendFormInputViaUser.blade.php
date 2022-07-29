@@ -124,13 +124,13 @@
                       </div>
                   <div class="form-group">
                       <label>Nama penyetor <span class="text-danger">*</span></label>
-                      <input id='nama-penyumbang' list="datalistOptions" type="text" name="nama_penyumbang" class="form-control @error('nama_penyumbang') is-invalid @enderror" value="{{ old('nama_penyumbang') }}">
+                      <input id='nama-penyumbang' list="datalistOptions" type="text" name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor') }}">
                       <datalist id="datalistOptions">
                       @foreach($userDiterima as $user)
                           <option value="{{ $user->name }}">
                       @endforeach
                       </datalist>
-                      @error('nama_penyumbang')
+                      @error('nama_penyetor')
                       <div class="invalid-feedback">
                           {{ $message }}
                       </div>
@@ -150,8 +150,8 @@
                   </div>
                   <div class="form-group">
                       <label>Tujuan Penyetoran</label>
-                      <input type="text" name="tujuan_sumbangan" class="form-control @error('tujuan_sumbangan') is-invalid @enderror" value="{{ old('tujuan_sumbangan') }}">
-                      @error('tujuan_sumbangan')
+                      <input type="text" name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor') }}">
+                      @error('tujuan_penyetor')
                       <div class="invalid-feedback">
                           {{ $message }}
                       </div>

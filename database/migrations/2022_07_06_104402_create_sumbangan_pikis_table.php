@@ -17,9 +17,9 @@ return new class extends Migration
             $table->increments('id');
             $table->date('tanggal')->nullable();
             $table->text('jumlah')->nullable();
-            $table->text('nama_penyumbang')->nullable();
+            $table->text('nama_penyetor')->nullable();
             $table->string('telp')->nullable();
-            $table->text('tujuan_sumbangan')->nullable();
+            $table->text('tujuan_penyetor')->nullable();
             $table->string('email')->nullable();
             $table->string('provinsi')->nullable();
             $table->string('kabupaten')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('nomor_rekening')->nullable();
             $table->string('atas_nama')->nullable();
             $table->text('picture_path_slip_setoran_sumbangan')->nullable();
-            $table->string('status')->default('sumbangan baru');
+            $table->string('status')->default('baru');
             $table->string('status_verifikasi_bendahara')->nullable();
             $table->string('status_verifikasi_ketua')->nullable();
             $table->string('status_verifikasi_spi')->nullable();

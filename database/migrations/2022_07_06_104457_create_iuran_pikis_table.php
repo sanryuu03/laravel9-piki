@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('jenis_setoran')->nullable();
             $table->string('iuran_bulan')->nullable();
             $table->string('jumlah')->nullable();
-            $table->string('nama_penyumbang')->nullable();
+            $table->string('nama_penyetor')->nullable();
             $table->string('telp')->nullable();
-            $table->string('tujuan_sumbangan')->nullable();
+            $table->string('tujuan_penyetor')->nullable();
             $table->string('berita')->nullable();
             $table->string('rekening_pembayaran')->default('Bank Sumut');
             $table->string('nomor_rekening')->default('1000.104.000.7722');

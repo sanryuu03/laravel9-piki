@@ -39,8 +39,8 @@
                       </div>
                       <div class="form-group">
                           <label>Nama Penyumbang <span class="text-danger">*</span></label>
-                          <input type="text" name="nama_penyumbang" class="form-control @error('nama_penyumbang') is-invalid @enderror" value="{{ old('nama_penyumbang') }}">
-                          @error('nama_penyumbang')
+                          <input type="text" name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor') }}">
+                          @error('nama_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
@@ -57,8 +57,8 @@
                       </div>
                       <div class="form-group">
                           <label>Tujuan Sumbangan</label>
-                          <input type="text" name="tujuan_sumbangan" class="form-control @error('tujuan_sumbangan') is-invalid @enderror" value="{{ old('tujuan_sumbangan') }}">
-                          @error('tujuan_sumbangan')
+                          <input type="text" name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor') }}">
+                          @error('tujuan_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
