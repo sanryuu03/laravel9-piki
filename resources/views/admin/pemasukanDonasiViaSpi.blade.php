@@ -3,8 +3,8 @@
   @section('menuContent')
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.sumbangan.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.donasi.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -25,15 +25,15 @@
   </div>
   @endif
   <div class="container-fluid">
-      <div class="card mx-3 my-3">
+      <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('backend.post.sumbangan.diverifikasi.spi', $item->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('backend.post.donasi.diverifikasi.spi', $item->id) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group jumlah-iuran">
                           <label>Jumlah Sumbangan </label>
-                          <input id="uang" readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($sumbangan->jumlah,0,",",".")) }}">
+                          <input id="uang" readonly type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah', 'Rp. '.number_format($donasi->jumlah,0,",",".")) }}">
                           @error('jumlah')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -42,7 +42,7 @@
                       </div>
                       <div class="form-group">
                           <label>Nama Penyumbang </label>
-                          <input type="text" readonly name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor', $sumbangan->nama_penyetor) }}">
+                          <input type="text" readonly name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor', $donasi->nama_penyetor) }}">
                           @error('nama_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -51,7 +51,7 @@
                       </div>
                       <div class="form-group">
                           <label>Telp </label>
-                          <input type="text" readonly name="telp" class="form-control @error('telp') is-invalid @enderror" value="{{ old('telp', $sumbangan->telp) }}">
+                          <input type="text" readonly name="telp" class="form-control @error('telp') is-invalid @enderror" value="{{ old('telp', $donasi->telp) }}">
                           @error('telp')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -60,7 +60,7 @@
                       </div>
                       <div class="form-group">
                           <label>Tujuan Sumbangan</label>
-                          <input type="text" readonly name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor', $sumbangan->tujuan_penyetor) }}">
+                          <input type="text" readonly name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor', $donasi->tujuan_penyetor) }}">
                           @error('tujuan_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -69,7 +69,7 @@
                       </div>
                       <div class="form-group">
                           <label>Email</label>
-                          <input type="text" readonly name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $sumbangan->email) }}">
+                          <input type="text" readonly name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $donasi->email) }}">
                           @error('email')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -78,7 +78,7 @@
                       </div>
                       <div class="form-group">
                           <label>Provinsi</label>
-                          <input type="text" readonly name="provinsi" class="form-control @error('provinsi') is-invalid @enderror" value="{{ old('provinsi', $sumbangan->provinsi) }}">
+                          <input type="text" readonly name="provinsi" class="form-control @error('provinsi') is-invalid @enderror" value="{{ old('provinsi', $donasi->provinsi) }}">
                           @error('provinsi')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -167,8 +167,8 @@
                           @enderror
                       </div>
 
-                      <button class="btn btn-primary mt-3">Verifikasi SPI</button>
-                      <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
+                      <button class="mt-3 btn btn-primary">Verifikasi SPI</button>
+                      <button type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
                       <!-- Modal Alasan Start-->
                       <div class="modal fade" id="showIuranBaruModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -180,7 +180,7 @@
                                       </button>
                                   </div>
                                   <div class="modal-body">
-                                      <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                                      <form action="{{ route('backend.post.donasi.ditolak', $item->id) }}" method="post">
                                           @csrf
                                           <div class="form-group">
                                               <label for="message-text" class="col-form-label">Message:</label>

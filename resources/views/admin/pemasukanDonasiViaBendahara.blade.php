@@ -4,7 +4,7 @@
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
       <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.sumbangan.baru') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.donasi.baru') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -28,7 +28,7 @@
       <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('backend.post.sumbangan.diverifikasi.bendahara', $item->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('backend.post.donasi.diverifikasi.bendahara', $item->id) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group jumlah-iuran">
@@ -187,7 +187,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                  <form action="{{ route('backend.post.donasi.ditolak', $item->id) }}" method="post">
                       @csrf
                       <div class="form-group">
                           <label for="message-text" class="col-form-label">Message:</label>

@@ -3,8 +3,8 @@
   @section('menuContent')
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><a href="{{ route('backend.sumbangan.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3"><a href="{{ route('backend.donasi.diproses') }}" class="fas fa-arrow-circle-left text-danger"></a> {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -25,10 +25,10 @@
   </div>
   @endif
   <div class="container-fluid">
-      <div class="card mx-3 my-3">
+      <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
-                  <form method="post" action="{{ route('backend.post.sumbangan.diverifikasi.ketua', $item->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('backend.post.donasi.diverifikasi.ketua', $item->id) }}" enctype="multipart/form-data">
                       {{ csrf_field() }}
 
                       <div class="form-group jumlah-iuran">
@@ -167,8 +167,8 @@
                           @enderror
                       </div>
 
-                      <button class="btn btn-primary mt-3">Verifikasi Ketua</button>
-                      <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
+                      <button class="mt-3 btn btn-primary">Verifikasi Ketua</button>
+                      <button type="button" class="mt-3 btn btn-danger" data-toggle="modal" data-target="#showIuranBaruModal">tidak sesuai</button>
 
                   </form>
               </div>
@@ -187,7 +187,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="{{ route('backend.post.sumbangan.ditolak', $item->id) }}" method="post">
+                  <form action="{{ route('backend.post.donasi.ditolak', $item->id) }}" method="post">
                       @csrf
                       <div class="form-group">
                           <label for="message-text" class="col-form-label">Message:</label>
