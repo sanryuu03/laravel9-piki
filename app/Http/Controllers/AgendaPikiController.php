@@ -169,4 +169,24 @@ class AgendaPikiController extends Controller
         // return $agenda;
         echo json_encode($agenda);
     }
+    public function moreAgenda()
+    {
+        $agenda = AgendaPiki::get();
+        return view('moreAgenda', [
+            "title" => "PIKI - Kategori Berita",
+            "menu" => ucwords('agenda lainnya'),
+            "creator" => "San",
+            "agendaPiki" => $agenda,
+        ]);
+    }
+
+    public function isiMoreAgenda($id)
+    {
+        $agendaPiki = AgendaPiki::where('id', $id)->first();
+        return view('isiMoreAgenda', [
+            "title" => "PIKI - Sangrid",
+            "creator" => "San",
+            "agendaPiki" => $agendaPiki,
+        ]);
+    }
 }

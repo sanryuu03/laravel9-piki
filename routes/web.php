@@ -95,6 +95,8 @@ Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kateg
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
 Route::post('/selectAgenda', [AgendaPikiController::class, 'selectAgenda']);
+Route::get('/moreAgenda', [AgendaPikiController::class, 'moreAgenda']);
+Route::get('/isiMoreAgenda/{id}', [AgendaPikiController::class, 'isiMoreAgenda']);
 
 Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
 Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('save.form.sumbangan.frontend');

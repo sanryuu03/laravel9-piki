@@ -48,7 +48,7 @@ class FrontEndPikiController extends Controller
             "categoryNews" => $categoryNews,
             "program" => $program,
             "agenda" => $agenda,
-            "item" => $item,
+            "itemAgenda" => $item,
             "anggota" => $anggota,
             "user" => $user,
             "sponsor" => $sponsor,

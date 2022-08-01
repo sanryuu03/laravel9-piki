@@ -687,10 +687,10 @@
               <div class="container-fluid d-flex w-px400 w-px400-desktop">
                   <div class="card-berita">
                       <div class="text-white card bg-dark">
-                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="flayer_agenda card-img" alt="..." style="width:100%;height: 400px;">
+                          <img src="{{ url('/storage/assets/agenda/'.$itemAgenda->picture_path) }}" class="flayer_agenda card-img" alt="..." style="width:100%;height: 400px;">
                       </div>
                       <div class="mt-3 card card-body isi-berita keterangan_agenda">
-                          {!! $item->keterangan_agenda !!}
+                          {!! $itemAgenda->keterangan_agenda !!}
                       </div>
                   </div>
               </div>
@@ -714,7 +714,7 @@
                       </li>
                       @endforeach
                   </ul>
-                  <button class="text-white btn btn-learn-agenda">Lihat lebih banyak agenda</button>
+                  <a class="text-white btn btn-learn-agenda" href="/moreAgenda">Lihat lebih banyak agenda</a>
               </div>
           </div>
       </div>
