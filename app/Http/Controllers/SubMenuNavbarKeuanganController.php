@@ -147,4 +147,15 @@ class SubMenuNavbarKeuanganController extends Controller
             return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah diedit');
         }
     }
+
+    public function destroySubMenuNavbarKeuangan(Request $request)
+    {
+        $data = ['deleted_by' => auth()->user()->name];
+        SubMenuNavbarKeuangan::where('id', $request->id)
+        ->update($data);
+        $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($request->id);
+        $subMenuNavbarKeuangan->delete(); //softdeletes
+
+        return redirect()->back()->with('success', 'Sub Menu Navbar telah dihapus');
+    }
 }

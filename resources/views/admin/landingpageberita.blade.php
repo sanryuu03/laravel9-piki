@@ -10,8 +10,8 @@
 
   </style>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">Landing Page {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Landing {{ $menu }}</li>
@@ -19,7 +19,7 @@
       </div>
   </div>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
           <a href="{{ route('backend.kategori.berita') }}" class="btn btn-info btn-sm">List Kategori Berita</a>
       </div>
   </div>
@@ -31,7 +31,7 @@
 
 
   <!-- Header Start-->
-  <div class="card mx-3 my-3">
+  <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
               <form method="post" action="{{ route('berita.post') }}" enctype="multipart/form-data">
@@ -93,14 +93,14 @@
                       </select>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mt-3">Save</button>
+                  <button type="submit" class="mt-3 btn btn-primary">Save</button>
               </form>
           </div>
       </div>
   </div>
   <!-- Header End-->
 
-  .<div class="container-fluid">
+  <div class="container-fluid">
       <div class="card-body table-responsive">
           <table class="table table-bordered table-striped">
               <thead>
