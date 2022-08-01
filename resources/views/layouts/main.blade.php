@@ -265,7 +265,6 @@
 
     <script src="{{ asset('js/mainProvinsi.js') }}"></script>
     <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
-
-
+    <script src="{{ asset('js/mainAgendaFrontEnd.js') }}"></script>
 </body>
 </html>

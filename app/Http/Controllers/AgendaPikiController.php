@@ -160,4 +160,13 @@ class AgendaPikiController extends Controller
         $agendaPiki->delete();
         return redirect()->back()->with('success', 'Data has been deleted !');
     }
+
+    public function selectAgenda(Request $request)
+    {
+        // echo $request->judulAgenda;
+        // return request()->input('provinsi');
+        $agenda = AgendaPiki::where('nama_agenda', $request->judulAgenda)->first();
+        // return $agenda;
+        echo json_encode($agenda);
+    }
 }

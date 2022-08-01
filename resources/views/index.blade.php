@@ -681,16 +681,16 @@
 
       </style>
       <h1 class="title-text-h1">Agenda</h1>
-      <div class="mx-auto content-3-2-agenda container-xxl position-relative p-96" style="font-family: 'Poppins', sans-serif">
-          <div class="d-flex flex-lg-row flex-column align-items-center">
+      <div class="content-3-2-agenda" style="font-family: 'Poppins', sans-serif">
+          <div class="d-flex flex-lg-row flex-column">
               <!-- Left Column -->
               <div class="container-fluid d-flex w-px400 w-px400-desktop">
                   <div class="card-berita">
                       <div class="text-white card bg-dark">
-                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="object-fill card-img" alt="...">
+                          <img src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}" class="flayer_agenda card-img" alt="..." style="width:100%;height: 400px;">
                       </div>
-                      <div class="mt-3 card card-body isi-berita">
-                          {!! $item->keterangan_agenda !!}.
+                      <div class="mt-3 card card-body isi-berita keterangan_agenda">
+                          {!! $item->keterangan_agenda !!}
                       </div>
                   </div>
               </div>
@@ -706,9 +706,10 @@
                           <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                               <span class="text-white circle d-flex align-items-center justify-content-center">
                                   {{ $no }}
-
                               </span>
-                              {{ $item->nama_agenda }}.
+                      <a class='judul_agenda'>
+                              {{ $item->nama_agenda }}
+                        </a>
                           </h4>
                       </li>
                       @endforeach

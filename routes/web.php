@@ -94,6 +94,8 @@ Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name(
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
+Route::post('/selectAgenda', [AgendaPikiController::class, 'selectAgenda']);
+
 Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
 Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('save.form.sumbangan.frontend');
 
