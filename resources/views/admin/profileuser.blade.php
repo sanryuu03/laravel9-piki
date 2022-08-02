@@ -91,7 +91,8 @@
                         @endcan
                         @can('keuangan', $user)
                         <li class="nav-item">
-                            <a href="{{  url('/admin/backendKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('keuangan') }}</a>
+                            {{-- <a href="{{  url('/admin/backendKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('keuangan') }}</a> --}}
+                        <a href="{{  url('/admin/backendLaporanKeuanganViaUser', $userid) }}" class="nav-link">{{ ucwords('laporan keuangan') }}</a>
                         </li>
                         @endcan
                     </ul>
