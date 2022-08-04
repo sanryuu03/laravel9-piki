@@ -337,14 +337,13 @@
           }
 
       </style>
-      <main class="relative z-30 px-4 pt-3 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24">
-          <div class="grid">
-              <div class="md:col-span-10">
-                  <h1 class="font-semibold leading-snug md:leading-9 text-40">
-                      Program
-                  </h1>
-              </div>
-          </div>
+                  <h1 class="mt-1 text-center">Program</h1>
+
+      <main class="relative z-30 px-4 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24">
+          {{-- <div class="grid"> --}}
+              {{-- <div class="md:col-span-10"> --}}
+              {{-- </div> --}}
+          {{-- </div> --}}
           <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 pb-12 mt-12 md:gap-10 md:mt-12 isi-program">
               @if(count($program) > 0)
               @foreach($program as $item)

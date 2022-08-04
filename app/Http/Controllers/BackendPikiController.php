@@ -559,7 +559,7 @@ class BackendPikiController extends Controller
     public function pemasukanDonasiBaru()
     {
         $user = auth()->user()->id;
-        $rekapSumbangan = SumbanganPiki::where('status', 'baru')->get();
+        $rekapSumbangan = SumbanganPiki::where('status', 'sumbangan baru')->get();
         return view('admin/pemasukanDonasiBaru', [
             "title" => "PIKI - Sangrid CRUD",
             'menu' => ucwords('Pemasukan donasi baru'),
@@ -605,6 +605,21 @@ class BackendPikiController extends Controller
             "creator" => $user,
             'summary' => 'ringkasan',
             'rekapSumbangan' => $rekapSumbangan,
+        ]);
+    }
+
+    public function pemasukanDonasiEdit($id)
+    {
+        $idUser = auth()->user()->id;
+        $sumbangan = SumbanganPiki::find($id);
+        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
+        return view('admin/editPemasukanDonasi', [
+            "title" => "PIKI - Sangrid",
+            "menu" => ucwords('edit donasi'),
+            "creator" => $idUser,
+            'sumbangan' => $sumbangan,
+            'item' => $sumbangan,
+            'tujuanSumbangan' => $tujuan,
         ]);
     }
 }

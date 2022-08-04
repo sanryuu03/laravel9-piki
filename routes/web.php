@@ -293,6 +293,8 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
 
     #donasi#
     Route::get('/admin/pemasukanDonasi', [BackendPikiController::class, 'pemasukanDonasi'])->name('backend.donasi');
+    Route::get('/admin/pemasukanDonasiEdit/{id}', [BackendPikiController::class, 'pemasukanDonasiEdit'])->name('backend.donasi.edit');
+    Route::post('/admin/updatePemasukanDonasi/{id}', [SumbanganPikiController::class, 'update'])->name('update.form.sumbangan.frontend');
     Route::get('/admin/pemasukanDonasiDetail', [BackendPikiController::class, 'pemasukanDonasiDetail'])->name('backend.donasi.detail');
     Route::get('/admin/pemasukanDonasiBaru', [BackendPikiController::class, 'pemasukanDonasiBaru'])->name('backend.donasi.baru');
     Route::get('/admin/pemasukanDonasiDiproses', [BackendPikiController::class, 'pemasukanDonasiDiproses'])->name('backend.donasi.diproses');

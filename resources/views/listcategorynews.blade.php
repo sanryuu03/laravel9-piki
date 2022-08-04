@@ -4,9 +4,10 @@
 
 
   <!-- Kategory Berita PIKI Terbaru Start-->
-  <div class="container-fluid pt-5">
+  <div class="pt-5 container-fluid">
+          <h1 class='items-center py-1 mt-2 text-base font-medium border-0 btn btn-primary btn-fill px-7 focus:outline-none rounded-2xl lg:mt-0'>{{ $category }}</h1>
+
       <div class="row justify-content-center">
-          <h1>News Category: {{ $category }}</h1>
           <div class="col-md-10">
               @foreach($posts as $berita)
               <h1 class="fs-1">

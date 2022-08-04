@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Village;
 use App\Models\DataRekening;
 use App\Models\Pendapatan;
+use App\Models\SubMenuNavbarKeuangan;
 use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
 use DateTime;
@@ -23,12 +24,14 @@ class SumbanganPikiController extends Controller
     {
         $provinces = Province::all();
         $dataRekening = DataRekening::latest()->first();
+        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
         return view('sumbanganPiki', [
             "title" => "PIKI - Sumbangan",
             "menu" => "Sumbangan",
             "creator" => "San",
             'provinces' => $provinces,
             'dataRekening' => $dataRekening,
+            'tujuanSumbangan' => $tujuan,
         ]);
     }
 
@@ -55,8 +58,9 @@ class SumbanganPikiController extends Controller
             $dataRupiah = $request->jumlah;
             $rupiah = str_replace(".","",$dataRupiah);
             $data = $request->except(['_token', 'provinsi', 'kabupaten', 'kecamatan', 'desa']);
-            $data['tanggal'] = time();
+            $data['tanggal'] = date('Y-m-d');
             $data['jumlah'] = $rupiah;
+            $data['nama_penyumbang'] = $request->nama_penyetor;
 
             if ($request->file('picture_path_slip_setoran_sumbangan')) {
                 // menyimpan data file yang diupload ke variabel $file
@@ -157,9 +161,86 @@ class SumbanganPikiController extends Controller
      * @param  \App\Models\SumbanganPiki  $sumbanganPiki
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SumbanganPiki $sumbanganPiki)
+    public function update(Request $request, $id)
     {
-        //
+        // return $id;
+        if ($request->provinsi == 'Pilih Provinsi Anda') {
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            $data = $request->except(['_token', 'provinsi', 'kabupaten', 'kecamatan', 'desa']);
+            $data['tanggal'] = date('Y-m-d');
+            $data['jumlah'] = $rupiahHapusSimbolRp;
+
+            if ($request->file('picture_path_slip_setoran_sumbangan')) {
+                // menyimpan data file yang diupload ke variabel $file
+                $file = $request->file('picture_path_slip_setoran_sumbangan');
+                $nama_file = time() . "_" . $file->getClientOriginalName();
+                // dd($nama_file);
+
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'storage/assets/slip/setoran/sumbangan/';
+
+                // upload file
+                $file->move($tujuan_upload, $nama_file);
+
+                $data['picture_path_slip_setoran_sumbangan'] = $nama_file;
+            }
+
+            SumbanganPiki::where('id', $id)->update($data);
+            return redirect('/admin/pemasukanDonasiBaru')->with('success', 'Sumbangan Berhasil Diedit, Terima Kasih !');
+        }
+
+        $dataRupiah = $request->jumlah;
+        $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+        $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+        $data = $request->except('_token');
+        $data['jumlah'] = $rupiahHapusSimbolRp;
+        $province = request()->input('provinsi');
+        if ($province) {
+            $province = Province::where('id', $province)->first();
+            $namaProvince = $province->name;
+            $data['provinsi'] = $namaProvince;
+        }
+
+        $regencies = request()->input('kota');
+        if ($regencies) {
+            $kota = Regency::where('id', $regencies)->first();
+            $namaKota = $kota->name;
+            $data['kabupaten'] = $namaKota;
+        }
+
+        $districts = request()->input('kecamatan');
+        if ($districts) {
+            $kecamatan = District::where('id', $districts)->first();
+            $namaKecamatan = $kecamatan->name;
+            $data['kecamatan'] = $namaKecamatan;
+        }
+
+        $villages = request()->input('desa');
+        if ($villages) {
+            $desa = Village::where('id', $villages)->first();
+            $namaDesa = $desa->name;
+            $data['desa'] = $namaDesa;
+        }
+
+        if ($request->file('picture_path_slip_setoran_sumbangan')) {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('picture_path_slip_setoran_sumbangan');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            // dd($nama_file);
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'storage/assets/slip/setoran/sumbangan/';
+
+            // upload file
+            $file->move($tujuan_upload, $nama_file);
+
+            $data['picture_path_slip_setoran_sumbangan'] = $nama_file;
+        }
+
+        SumbanganPiki::where('id', $id)->update($data);;
+        return redirect('/admin/pemasukanDonasiBaru')->with('success', 'Sumbangan Berhasil Diedit, Terima Kasih !');
     }
 
     /**

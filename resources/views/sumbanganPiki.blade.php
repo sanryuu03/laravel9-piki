@@ -16,13 +16,13 @@
 
   </style>
   <h1 class="pt-5 mb-3 text-center fs-3">Sumbangan</h1>
-    @if(session()->has('success'))
+  @if(session()->has('success'))
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
   </div>
   @endif
   <div class="container-fluid">
-      <div class="card mx-3 my-3">
+      <div class="mx-3 my-3 card">
           <div class="card-body">
               <div class="container-fluid">
                   <form method="post" action="{{ route('save.form.sumbangan.frontend') }}" enctype="multipart/form-data">
@@ -56,8 +56,18 @@
                           @enderror
                       </div>
                       <div class="form-group">
-                          <label>Tujuan Sumbangan</label>
-                          <input type="text" name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor') }}">
+                          <label>Tujuan Sumbangan <span class="text-danger">*</span></label>
+                          {{-- <input type="text" name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor') }}"> --}}
+                          <select class="form-select" name="tujuan_sumbangan">
+                              <option value="" selected>{{ ucwords('pilih menu navbar') }}</option>
+                              @foreach($tujuanSumbangan as $tujuan)
+                              @if(old('tujuan_sumbangan'))
+                              <option value="{{ $tujuan->id }}" selected>{{ $tujuan->nama_sub_menu }}</option>
+                              @else
+                              <option value="{{ $tujuan->id }}">{{ $tujuan->nama_sub_menu }}</option>
+                              @endif
+                              @endforeach
+                          </select>
                           @error('tujuan_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -157,7 +167,7 @@
                           @enderror
                       </div>
 
-                      <button class="btn btn-primary mt-3">Save</button>
+                      <button class="mt-3 btn btn-primary">Save</button>
                   </form>
               </div>
           </div>
