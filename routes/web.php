@@ -8,6 +8,7 @@ use App\Http\Controllers\AgendaPikiController;
 use App\Http\Controllers\HeaderPikiController;
 use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\AnggotaPikiController;
+use App\Http\Controllers\BackendFaqController;
 use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\PosAnggaranController;
 use App\Http\Controllers\ProgramPikiController;
@@ -127,6 +128,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::get('/admin/formTambahAdmin/{id}', [TambahAdminController::class, 'formTambahAdmin'])->name('backend.form.tambah.admin');
     Route::match(['get', 'post'], '/admin/saveTambahAdmin', [TambahAdminController::class, 'saveTambahAdmin'])->name('backend.save.tambah.admin');
     Route::match(['get', 'post'], '/admin/hapusTambahAdmin/{id}', [TambahAdminController::class, 'hapusTambahAdmin'])->name('backend.hapus.tambah.admin');
+
+    Route::resource('/admin/faq', BackendFaqController::class);
 });
 
 // berita

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\NewsPiki;
 use App\Models\AgendaPiki;
 use App\Models\AnggotaPiki;
+use App\Models\BackendFaq;
 use App\Models\SponsorPiki;
 use App\Models\CategoryNews;
 use App\Models\DataBankIuran;
@@ -587,6 +588,21 @@ class DatabaseSeeder extends Seeder
 
         JenisSetoran::create([
             'jenis_setoran' => 'pengeluaran',
+        ]);
+
+        BackendFaq::create([
+            'pertanyaan' => 'apa itu piki',
+            'jawaban' => 'piki adalah blablabla',
+        ]);
+
+        BackendFaq::create([
+            'pertanyaan' => 'question 2',
+            'jawaban' => 'answer 2',
+        ]);
+
+        BackendFaq::create([
+            'pertanyaan' => 'question 3',
+            'jawaban' => 'answer 3',
         ]);
     }
 }

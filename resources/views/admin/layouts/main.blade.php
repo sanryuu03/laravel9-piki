@@ -104,6 +104,12 @@
                     <span>Keuangan</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/faq') }}">
+                    <i class="fas fa-fw fa-circle-question"></i>
+                    <span>FAQ</span>
+                </a>
+            </li>
             @endif
 
             @if(auth()->user()->level=='admin')
