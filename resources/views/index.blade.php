@@ -1066,81 +1066,69 @@
   <!-- Faq's-->
   <section class="faq-container" id="faq" class="collapse">
       <style>
-          .faq-container {
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: center;
-              -ms-flex-pack: center;
-              justify-content: center;
-              -webkit-box-orient: vertical;
-              -webkit-box-direction: normal;
-              -ms-flex-direction: column;
-              flex-direction: column;
-              background-color: #fff;
-              margin-top: -50px;
-              padding-top: 20px;
-              padding-bottom: 10px;
-              border-bottom: #777;
-          }
+.faq-heading{
+    border-bottom: #777;
+    padding: 20px 60px;
+}
+.faq-container{
+display: flex;
+justify-content: center;
+flex-direction: column;
 
-          .faq-container .card-link {
-              color: #bd5b24;
-          }
+}
+.hr-line{
+  width: 60%;
+  margin: auto;
+}
+/* Style the buttons that are used to open and close the faq-page body */
+.faq-page {
+    /* background-color: #eee; */
+    color: #444;
+    cursor: pointer;
+    padding: 30px 20px;
+    width: 60%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: auto;
 
-          .hr-line {
-              width: 80%;
-              margin: auto;
-          }
+}
+.faq-body{
+    margin: auto;
+    /* text-align: center; */
+   width: 50%;
+   padding: auto;
 
-          /* Style the buttons that are used to open and close the faq-page body */
-          .faq-page {
-              /* background-color: #eee; */
-              color: #444;
-              cursor: pointer;
-              padding: 30px 20px;
-              width: 80%;
-              -webkit-transition: 0.4s;
-              transition: 0.4s;
-              margin: auto;
-              font-size: 17px;
-          }
-
-          .faq-body {
-              margin: auto;
-              /* text-align: center; */
-              width: 50%;
-              padding: auto;
-          }
-
-          /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-          .faq-page:hover {
-              background-color: #F9F9F9;
-          }
-
-          /* Style the faq-page panel. Note: hidden by default */
-          .faq-body {
-              padding: 0 18px;
-              background-color: white;
-              display: none;
-              overflow: hidden;
-          }
+}
 
 
-          .faq-page:after {
-              content: '\02795';
-              /* Unicode character for "plus" sign (+) */
-              font-size: 13px;
-              color: #777;
-              float: right;
-              margin-left: 5px;
-          }
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.faq-page:hover {
+    background-color: #F9F9F9;
+}
 
-          .faq-page.active:after {
-              content: "\2796";
-              /* Unicode character for "minus" sign (-) */
-          }
+/* Style the faq-page panel. Note: hidden by default */
+.faq-body {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
 
+.faq-page:after {
+    content: '\02795';
+    /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796";
+    /* Unicode character for "minus" sign (-) */
+}
           @media only screen and (max-width: 480px) {
               .faq-card {
                   margin-top: 200px !important;
@@ -1174,50 +1162,22 @@
                   </a>
               </div>
               <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
+              @foreach($backendFaq as $faq)
                   <div class="faq-one">
-
                       <!-- faq question -->
-                      <h1 class="faq-page">question 1 ?
+                      <h1 class="faq-page">
+                      {{ ucwords($faq->pertanyaan) }} ?
                       </h1>
 
                       <!-- faq answer -->
                       <div class="faq-body">
-                          <p>answer 1.</p>
+                          <p>{{ ucwords($faq->jawaban) }}</p>
                       </div>
                   </div>
                   <hr class="hr-line">
-
-                  <div class="faq-two">
-
-                      <!-- faq question -->
-                      <h1 class="faq-page">question 2 ?
-                      </h1>
-
-                      <!-- faq answer -->
-
-                      <div class="faq-body">
-                          <p>answer 2.</p>
-                      </div>
-                  </div>
-                  <hr class="hr-line">
-
-
-                  <div class="faq-three">
-
-                      <!-- faq question -->
-                      <h1 class="faq-page">question 3 ?</h1>
-
-                      <!-- faq answer -->
-                      <div class="faq-body">
-                          <p>answer 3.
-                          </p>
-                      </div>
-                  </div>
-                  <hr class="hr-line">
-              </div>
+              @endforeach
           </div>
       </div>
-
 
   </section>
   <!-- End Faq's-->

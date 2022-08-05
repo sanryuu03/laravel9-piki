@@ -16,7 +16,7 @@ use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
-
+use App\Models\BackendFaq;
 
 class FrontEndPikiController extends Controller
 {
@@ -39,6 +39,7 @@ class FrontEndPikiController extends Controller
         // return $anggota;
         $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
+        $backendFaq = BackendFaq::get();
         return view('/index', [
             "title" => "PIKI - Sangrid",
             "creator" => "San",
@@ -52,6 +53,7 @@ class FrontEndPikiController extends Controller
             "anggota" => $anggota,
             "user" => $user,
             "sponsor" => $sponsor,
+            "backendFaq" => $backendFaq,
         ]);
     }
 

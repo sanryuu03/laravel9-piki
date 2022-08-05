@@ -176,6 +176,8 @@
 
   <!-- Kategory Berita End-->
 
-
+@push('mainFormatRupiah')
+    <script src="{{ asset('js/mainFormatRupiah.js') }}"></script>
+@endpush
 
   @endsection
