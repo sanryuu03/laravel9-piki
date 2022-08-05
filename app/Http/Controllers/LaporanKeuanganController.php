@@ -107,12 +107,12 @@ class LaporanKeuanganController extends Controller
             ->get();
 
         $sumbangan = SumbanganPiki::where('status', 'terverifikasi')->sum('jumlah');
-        $pendapatan = Pendapatan::groupBy('jenis_pendapatan', 'tanggal')
+        $pendapatan = Pendapatan::orderBy('tanggal', 'asc')->groupBy('jenis_pendapatan', 'tanggal')
             ->where('status', 'terverifikasi')
             ->selectRaw('tanggal,jenis_pendapatan, sum(jumlah) as sum')
             ->get();
 
-            $Pengeluaran = Pengeluaran::groupBy('pos_anggaran', 'tanggal')
+            $Pengeluaran = Pengeluaran::orderBy('tanggal', 'asc')->groupBy('pos_anggaran', 'tanggal')
             ->where('status_pengeluaran', 'pengeluaran terverifikasi')
             ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')
             ->get();
@@ -204,13 +204,14 @@ class LaporanKeuanganController extends Controller
         $Pengeluaran = Pengeluaran::where('pos_anggaran', $request->namaKegiatan)
         ->get();
         // return $cities;
-        $option = "<thead><tr><th>No</th><th colspan='2' class='text-center'>Pengeluaran</th></tr><tr><th></th><th>Nama Pengeluaran</th><th >Jumlah</th></tr></thead>";
+        $option = "<thead><tr><th>No</th><th>Bulan</th><th colspan='2' class='text-center'>Pengeluaran</th></tr><tr><th><th></th></th><th>Nama Pengeluaran</th><th >Jumlah</th></tr></thead>";
         $no = 0;
         $aRupiah = [];
         if (count($Pengeluaran) > 0) {
             foreach ($Pengeluaran as $pendapatanItem) {
                 $no++;
-                $option .= "<tr><td>$no</td><td>$pendapatanItem->uraian_pengeluaran</td><td>Rp. $pendapatanItem->jumlah</td></tr>";
+                $tanggalku = date('F', strtotime($pendapatanItem->tanggal));
+                $option .= "<tr><td>$no</td><td>$tanggalku</td><td>$pendapatanItem->uraian_pengeluaran</td><td>Rp. $pendapatanItem->jumlah</td></tr>";
                 $aRupiah = array($pendapatanItem->jumlah);
             }
         } else {
@@ -219,7 +220,7 @@ class LaporanKeuanganController extends Controller
 
         // echo array_sum($a);
         $rupiah = 'Rp. ' . number_format(array_sum($aRupiah), 0, ",", ".");
-        $option .= "<tfoot><tr><th></th><th>Total Pengeluaran</th><td>$rupiah</span></th></tr></tfoot>";
+        $option .= "<tfoot><tr><th></th><th></th><th>Total Pengeluaran</th><td>$rupiah</span></th></tr></tfoot>";
         echo $option;
     }
 

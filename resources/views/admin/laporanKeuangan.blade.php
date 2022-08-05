@@ -75,13 +75,13 @@
                   <table id="" class="table display table-bordered table-striped table-pemasukan">
                       <thead>
                           <tr>
-                              <th width="0.1%">No</th>
-                              <th width="0.1%">Bulan</th>
+                              <th width="0.01%">No</th>
+                              <th width="0.01%">Bulan</th>
                               <th width="1%" colspan="2" class="text-center">Pemasukan</th>
                           </tr>
                           <tr>
-                              <th width="0.1%"></th>
-                              <th width="0.1%"></th>
+                              <th width="0.01%"></th>
+                              <th width="0.01%"></th>
                               <th width="1%">Nama Pemasukan</th>
                               <th width="1%">Jumlah</th>
                           </tr>
@@ -119,11 +119,13 @@
                   <table id="" class="table display table-striped table-bordered table-pengeluaran">
                       <thead>
                           <tr>
-                              <th width="0.1%">No</th>
+                              <th width="0.01%">No</th>
+                              <th width="0.01%">Bulan</th>
                               <th width="1%" colspan="2" class="text-center">Pengeluaran</th>
                           </tr>
                           <tr>
-                              <th width="0.1%"></th>
+                              <th width="0.01%"></th>
+                              <th width="0.01%"></th>
                               <th width="1%">Nama Pengeluaran</th>
                               <th width="1%">Jumlah</th>
                           </tr>
@@ -133,6 +135,7 @@
                           @php $totalPengeluaran += $pengeluaran->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
+                              <td>{{ date('F', strtotime($pengeluaran->tanggal)) }}</td>
                               <td>{{ $pengeluaran->subMenuNavbarKeuangan->nama_sub_menu }}<span class="hide">{{ date('Y-m', strtotime($pengeluaran->tanggal)) }}</span></td>
                               <td>{{ 'Rp. '.number_format($pengeluaran->sum,0,",",".") }}</td>
                           </tr>
@@ -140,6 +143,7 @@
                       </tbody>
                       <tfoot>
                           <tr>
+                              <th></th>
                               <th></th>
                               <th class="text-center">Total Pengeluaran</th>
                               <td class="text-right"><span id="totalPengeluaran">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</span></th>

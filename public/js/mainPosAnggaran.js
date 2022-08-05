@@ -33,6 +33,28 @@ $(document).ready(function () {
     var tablePemasukan = $("table.table-pemasukan").DataTable();
     var tablePengeluaran = $("table.table-pengeluaran").DataTable();
 
+    $("#start").on("change", function () {
+        let posAnggaran = $("#pos-anggaran :selected").val();
+        console.log(`ini filter tanggal tanpa pos anggaran ${posAnggaran}`);
+        if (posAnggaran != 1 && posAnggaran != 2) {
+        var date = new Date($('#start').val());
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        let bulan = $("#start :selected").datepicker("getDate");
+        let search = this.value;
+        // console.log(`filter month ${month}`);
+        // console.log(`filter full year ${[year, month, day].join('-')}`);
+        // console.log(`filter bulan ${bulan}`);
+        console.log(`ini search ${search}`);
+        console.log(`######################################`);
+        tablePemasukan.search(search).draw();
+        tablePemasukan.search("");
+        tablePengeluaran.search(search).draw();
+        tablePengeluaran.search("");
+    }
+    });
+
     $("#nama_kegiatan").on("change", function () {
         let posAnggaran = $("#pos-anggaran :selected").val();
         let namaKegiatan = $("#nama_kegiatan :selected").val();
@@ -123,23 +145,6 @@ $(document).ready(function () {
             });
         }
     });
-
-    $("#start").on("change", function () {
-        var date = new Date($('#start').val());
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-        let bulan = $("#start :selected").datepicker("getDate");
-        let search = this.value;
-        // console.log(`filter month ${month}`);
-        // console.log(`filter full year ${[year, month, day].join('-')}`);
-        // console.log(`filter bulan ${bulan}`);
-        console.log(`ini search ${search}`);
-        console.log(`######################################`);
-        tablePemasukan.search(month).draw();
-        tablePemasukan.search("");
-        tablePengeluaran.search(search).draw();
-        tablePengeluaran.search("");
-    });
 });
+
 
