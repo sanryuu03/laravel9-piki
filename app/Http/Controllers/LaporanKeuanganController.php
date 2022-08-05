@@ -226,8 +226,8 @@ class LaporanKeuanganController extends Controller
 
     public function cariPengeluaranLaporanKeuanganFilterTanggal(Request $request)
     {
-        // echo $request->namaKegiatan;
-        $Pengeluaran = Pengeluaran::whereMonth('tanggal', date($request->month))
+        // echo 'cariPengeluaranLaporanKeuanganFilterTanggal'.$request->namaKegiatan;
+        $Pengeluaran = Pengeluaran::whereMonth('tanggal', date($request->month))->where('pos_anggaran', $request->namaKegiatan)
         ->get();
         // return $cities;
         $option = "<thead><tr><th>No</th><th colspan='2' class='text-center'>Pengeluaran</th></tr><tr><th></th><th>Nama Pengeluaran</th><th >Jumlah</th></tr></thead>";

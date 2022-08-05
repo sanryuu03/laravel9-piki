@@ -162,6 +162,27 @@ class DynamicFormController extends Controller
         }
     }
 
+    public function formPengeluaranDinamisEdit($masterMenu, $subMenu)
+    {
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        $Pengeluaran = Pengeluaran::find(request()->id);
+        $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
+        return view('admin/formPengeluaranDinamisEdit', [
+            "title" => "PIKI - Sangrid CRUD",
+            'menu' => ucwords('form pengeluaran '.$subMenu. ' PIKI SUMUT'),
+            "masterMenu" => $masterMenu,
+            "subMenu" => $subMenu,
+            "creator" => $user,
+            'summary' => 'ringkasan',
+            'Pengeluaran' => $Pengeluaran,
+            'item' => $Pengeluaran,
+            'namaUser' => $namaUser,
+            'action' => 'edit',
+            'jenisPengeluaran' => $jenisPengeluaran,
+        ]);
+    }
+
     public function formPengeluaranDinamisViaBendahara($masterMenu, $subMenu)
     {
         $user = auth()->user()->id;

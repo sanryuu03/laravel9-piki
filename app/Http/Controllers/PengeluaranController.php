@@ -180,7 +180,8 @@ class PengeluaranController extends Controller
             $file->move($tujuan_upload, $nama_file);
             $data['picture_path_bukti_pengeluaran_rutin'] = $nama_file;
 
-            $data['pos_anggaran'] = $jenisSetoran->nama_sub_menu;
+            // $data['pos_anggaran'] = $jenisSetoran->nama_sub_menu;
+            $data['pos_anggaran'] = $request->pos_anggarans_id;
             $data['tanggal'] = str_replace('/', '-', request()->tanggal);
             Pengeluaran::create($data);
             return redirect()->route('backend.form.add.pengeluaran.rutin')->with('success', 'Pengeluaran Rutin telah ditambahkan');
@@ -206,7 +207,12 @@ class PengeluaranController extends Controller
                 return redirect()->route('backend.keuangan')->with('success', 'Gambar Bukti Pengeluaran telah diedit');
             }
 
-            $data = $request->except(['_token', 'action']);
+            $data = $request->except(['_token', 'action', 'pos_anggarans_id']);
+            $data['pos_anggaran'] = $request->pos_anggarans_id;
+            $dataRupiah = $request->jumlah;
+            $rupiahHapusTitik = str_replace(".", "", $dataRupiah);
+            $rupiahHapusSimbolRp = str_replace("Rp ", "", $rupiahHapusTitik);
+            $data['jumlah'] = $rupiahHapusSimbolRp;
             Pengeluaran::where('id', $request->id)->update($data);
             return redirect()->route('backend.keuangan')->with('success', 'Pengeluaran Rutin telah diedit');
         }

@@ -388,6 +388,7 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
     Route::match(['get', 'post'], '/admin/addCustomForm/', [DynamicFormController::class, 'create'])->name('backend.add.dinamis.form');
     Route::match(['get', 'post'], '/admin/saveCustomForm/', [DynamicFormController::class, 'saveCustomForm'])->name('backend.save.dinamis.form');
     // pengeluaran dinamis
+    Route::match(['get', 'post'], '/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/edit/{id}', [DynamicFormController::class, 'formPengeluaranDinamisEdit'])->name('backend.form.pengeluaran.dinamis.edit');
     Route::match(['get', 'post'], '/admin/formPengeluaranDinamis/{masterMenu}/{subMenu}/ViaBendahara/{id}', [DynamicFormController::class, 'formPengeluaranDinamisViaBendahara'])->name('backend.form.pengeluaran.dinamis.via.bendahara');
     Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendahara/{id}', [DynamicFormController::class, 'postPengeluaranViaBendahara'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara');
     Route::match(['get', 'post'], '/admin/postPengeluaran/{masterMenu}/{subMenu?}/ViaBendaharaViaForm/{id}', [DynamicFormController::class, 'postPengeluaranViaBendaharaViaForm'])->name('backend.post.pengeluaran.dinamis.diverifikasi.bendahara.via.form');

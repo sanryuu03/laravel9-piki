@@ -140,7 +140,7 @@
                       <td>{{ number_format($item->harga_satuan,0,",",".") }}</td>
                       <td>{{ number_format($item->jumlah,0,",",".") }}</td>
                       <td>
-                          <a href="{{ route('backend.form.edit.pengeluaran.rutin', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                          <a href="{{ route('backend.form.pengeluaran.dinamis.edit', [$masterMenu,$subMenu,$item->id]) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
                           <form action="{{ route('backend.post.pengeluaran.dinamis.destroy', [$masterMenu,$subMenu,$item->id]) }}" method="POST" class="d-inline">
                               {!! method_field('post') . csrf_field() !!}
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">

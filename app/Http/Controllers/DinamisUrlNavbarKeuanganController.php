@@ -7,6 +7,7 @@ use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
 use App\Models\DinamisUrlNavbarKeuangan;
+use App\Models\SubMenuNavbarKeuangan;
 
 class DinamisUrlNavbarKeuanganController extends Controller
 {
@@ -110,9 +111,10 @@ class DinamisUrlNavbarKeuanganController extends Controller
     public function dinamisIsiMenuKeuanganBaru($masterMenu, $subMenu)
     {
         $user = auth()->user()->id;
+        // return $subMenu;
+        $subMenuId = SubMenuNavbarKeuangan::where('nama_sub_menu', $subMenu)->first();
         if ($masterMenu == 'pemasukan') {
             // return $masterMenu;
-            // return $subMenu;
             $pendapatan = Pendapatan::where('jenis_pendapatan', $subMenu)->where('status', 'baru')->get();
             $sumbangan = SumbanganPiki::where('status', 'baru')->get();
             if ($subMenu == 'iuran') {
@@ -160,7 +162,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
                 ]);
             }
         } else {
-            $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenu)->where('status_pengeluaran', 'pengeluaran baru')->get();
+            $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenuId->id)->where('status_pengeluaran', 'pengeluaran baru')->get();
             return view('admin/pengeluaranDinamisBaru', [
                 "title" => "PIKI - Sangrid CRUD",
                 'menu' => ucwords('Pengeluaran ' . $subMenu . ' Baru'),

@@ -37,6 +37,7 @@ $(document).ready(function () {
         let posAnggaran = $("#pos-anggaran :selected").val();
         console.log(`ini filter tanggal tanpa pos anggaran ${posAnggaran}`);
         if (posAnggaran != 1 && posAnggaran != 2) {
+            console.log(`if filter tanggal tanpa pos anggaran ${posAnggaran}`);
         var date = new Date($('#start').val());
         var day = date.getDate();
         var month = date.getMonth() + 1;
@@ -85,7 +86,7 @@ $(document).ready(function () {
             $("#start").on("change", function () {
                 var date = new Date($('#start').val());
                 var month = date.getMonth() + 1;
-                console.log(`filter month ${month}`);
+                console.log(`filter month via pos anggaran ${month}`);
                 console.log(`######################################`);
                 $.ajax({
                     type: "GET",
@@ -125,13 +126,14 @@ $(document).ready(function () {
             $("#start").on("change", function () {
                 var date = new Date($('#start').val());
                 var month = date.getMonth() + 1;
-                console.log(`filter month ${month}`);
+                console.log(`filter month via pos anggaran ${month}`);
                 console.log(`######################################`);
                 $.ajax({
                     type: "GET",
                     url: '/admin/cariPengeluaranLaporanKeuanganFilterTanggal',
                     data: {
                         month,
+                        namaKegiatan,
                     },
                     cache: false,
                     success: function (msg) {
