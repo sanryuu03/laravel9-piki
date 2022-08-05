@@ -47,14 +47,15 @@
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
 }
-
-  var rupiah = document.getElementById('jumlah');
-  rupiah.addEventListener('keyup', function(e){
-      // tambahkan 'Rp.' pada saat form di ketik
-      // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-      rupiah.value = formatRupiah(this.value, 'Rp. ');
-  });
-
+  let rupiah = document.getElementById('jumlah');
+  console.log(rupiah);
+  if (rupiah != null) {
+      rupiah.addEventListener('keyup', function(e){
+          // tambahkan 'Rp.' pada saat form di ketik
+          // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+          rupiah.value = formatRupiah(this.value, 'Rp. ');
+      });
+  }
   /* Fungsi formatRupiah */
   function formatRupiah(angka, prefix){
       var number_string = angka.replace(/[^,\d]/g, '').toString(),
