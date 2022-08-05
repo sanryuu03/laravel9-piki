@@ -56,12 +56,12 @@
                       </select>
                   </div>
               </div>
-              <div class="row">
+              <div class="mt-3 row">
                   <div class="col-md-1" for="start">
                       Bulan:
                   </div>
                   <div class="col-md-3">
-                      <input class="form-control" type="month" id="start" min="2022-01" value="2022-07" name="bulan" placeholder="pilih Bulan" value="" />
+                      <input class="form-control" type="month" id="start" min="2022-01" value="2022-00" name="bulan" placeholder="pilih Bulan" value="" />
                   </div>
               </div>
               {{-- <div class="row">
@@ -74,16 +74,6 @@
               <div class='col-md-6'>
                   <table id="" class="table display table-bordered table-striped table-pemasukan">
                       <thead>
-                          @php
-                          $totalPemasukan=0;$totalPengeluaran=0;
-                          @endphp
-                          @foreach($pendapatan as $pemasukan)
-                          @if ($pemasukan->jenis_setoran=='sumbangan')
-                          @php
-                          $pemasukan->sum += $sumbangan;
-                          @endphp
-                          @endif
-                          @php $totalPemasukan += $pemasukan->sum; @endphp
                           <tr>
                               <th width="0.1%">No</th>
                               <th width="0.1%">Bulan</th>
@@ -97,12 +87,21 @@
                           </tr>
                       </thead>
                       <tbody>
-
+                        @php
+                          $totalPemasukan=0;$totalPengeluaran=0;
+                          @endphp
+                          @foreach($pendapatan as $pemasukan)
+                          @if ($pemasukan->jenis_setoran=='sumbangan')
+                          @php
+                          $pemasukan->sum += $sumbangan;
+                          @endphp
+                          @endif
+                          @php $totalPemasukan += $pemasukan->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
                               <td>{{ date('F', strtotime($pemasukan->tanggal)) }}</td>
                               <td>{{ $pemasukan->jenis_pendapatan }}<span class="hide">{{ $pemasukan->tanggal }}</span></td>
-                              <td>{{ 'Rp. '.number_format($pemasukan->sum,0,",",".") }}</td>
+                              <td><span id='sum-pemasukan'>{{ 'Rp. '.number_format($pemasukan->sum,0,",",".") }}</span></td>
                           </tr>
                           @endforeach
                       </tbody>
@@ -111,7 +110,7 @@
                               <th></th>
                               <th></th>
                               <th class="text-center">Total Pendapatan</th>
-                              <td class="text-right">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</th>
+                              <td class="text-right"><span id="totalPemasukan">{{ 'Rp. '.number_format($totalPemasukan,0,",",".") }}</span></th>
                           </tr>
                       </tfoot>
                   </table>
@@ -134,7 +133,7 @@
                           @php $totalPengeluaran += $pengeluaran->sum; @endphp
                           <tr>
                               <td>{{ $loop->iteration }}</td>
-                              <td>{{ $pengeluaran->pos_anggaran }}<span class="hide">{{ date('Y-m', strtotime($pengeluaran->tanggal)) }}</span></td>
+                              <td>{{ $pengeluaran->subMenuNavbarKeuangan->nama_sub_menu }}<span class="hide">{{ date('Y-m', strtotime($pengeluaran->tanggal)) }}</span></td>
                               <td>{{ 'Rp. '.number_format($pengeluaran->sum,0,",",".") }}</td>
                           </tr>
                           @endforeach
@@ -143,7 +142,7 @@
                           <tr>
                               <th></th>
                               <th class="text-center">Total Pengeluaran</th>
-                              <td class="text-right">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</th>
+                              <td class="text-right"><span id="totalPengeluaran">{{ 'Rp. '.number_format($totalPengeluaran,0,",",".") }}</span></th>
                           </tr>
                       </tfoot>
                   </table>

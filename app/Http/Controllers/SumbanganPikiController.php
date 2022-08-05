@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\SumbanganPiki;
 use DateTime;
 
+
 class SumbanganPikiController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class SumbanganPikiController extends Controller
     {
         $provinces = Province::all();
         $dataRekening = DataRekening::latest()->first();
-        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
+        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
         return view('sumbanganPiki', [
             "title" => "PIKI - Sumbangan",
             "menu" => "Sumbangan",
@@ -515,12 +516,14 @@ class SumbanganPikiController extends Controller
     {
         $idUser = auth()->user()->id;
         $sumbangan = SumbanganPiki::find($id);
+        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
         return view('admin/pemasukanDonasiViaBendahara', [
             "title" => "PIKI - Sangrid",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $sumbangan,
             'item' => $sumbangan,
+            "tujuanSumbangan" => $tujuan,
         ]);
     }
 

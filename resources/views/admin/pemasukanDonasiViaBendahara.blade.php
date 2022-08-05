@@ -42,8 +42,8 @@
                       </div>
                       <div class="form-group">
                           <label>Nama Penyumbang </label>
-                          <input type="text" readonly name="nama_penyetor" class="form-control @error('nama_penyetor') is-invalid @enderror" value="{{ old('nama_penyetor', $sumbangan->nama_penyetor) }}">
-                          @error('nama_penyetor')
+                          <input type="text" readonly name="nama_penyumbang" class="form-control @error('nama_penyumbang') is-invalid @enderror" value="{{ old('nama_penyumbang', $sumbangan->nama_penyumbang) }}">
+                          @error('nama_penyumbang')
                           <div class="invalid-feedback">
                               {{ $message }}
                           </div>
@@ -60,7 +60,13 @@
                       </div>
                       <div class="form-group">
                           <label>Tujuan Sumbangan</label>
-                          <input type="text" readonly name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor', $sumbangan->tujuan_penyetor) }}">
+                          {{-- <input type="text" readonly name="tujuan_penyetor" class="form-control @error('tujuan_penyetor') is-invalid @enderror" value="{{ old('tujuan_penyetor', $sumbangan->tujuan_penyetor) }}"> --}}
+                                                    <select class="custom-select" name="tujuan_sumbangan">
+                              <option value="" selected>{{ ucwords('pilih menu navbar') }}</option>
+                              @foreach($tujuanSumbangan as $tujuan)
+                              <option value="{{ $tujuan->id }}" {{ $sumbangan->tujuan_sumbangan==$tujuan->id?'selected':'' }}>{{ $tujuan->nama_sub_menu }}</option>
+                              @endforeach
+                          </select>
                           @error('tujuan_penyetor')
                           <div class="invalid-feedback">
                               {{ $message }}

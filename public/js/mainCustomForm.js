@@ -8,7 +8,7 @@ $(function () {
     $(function () {
         $("#master-menu-navbar").on("change", function () {
             let master_menu_navbars_id = $("#master-menu-navbar").val();
-            console.log(`ini pos anggaran ${master_menu_navbars_id}`);
+            console.log(`ini master menu navbar ${master_menu_navbars_id}`);
             $.ajax({
                 type: "POST",
                 url: '/customForm',

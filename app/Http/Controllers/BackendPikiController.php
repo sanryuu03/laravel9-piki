@@ -612,7 +612,7 @@ class BackendPikiController extends Controller
     {
         $idUser = auth()->user()->id;
         $sumbangan = SumbanganPiki::find($id);
-        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
+        $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
         return view('admin/editPemasukanDonasi', [
             "title" => "PIKI - Sangrid",
             "menu" => ucwords('edit donasi'),

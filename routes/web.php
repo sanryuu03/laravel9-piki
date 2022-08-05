@@ -345,6 +345,10 @@ Route::group(['middleware' => ['CekLevel:super-admin,bendahara,spi']], function 
 
     Route::get('/admin/pengeluaranKeuangan', [BackendPikiController::class, 'pengeluaran'])->name('backend.pengeluaran');
     Route::get('/admin/laporanKeuangan', [LaporanKeuanganController::class, 'laporanKeuangan'])->name('backend.laporan.pengeluaran');
+    Route::get('/admin/cariPemasukanLaporanKeuangan', [LaporanKeuanganController::class, 'cariPemasukan']);
+    Route::get('/admin/cariPemasukanLaporanKeuanganFilterTanggal', [LaporanKeuanganController::class, 'cariPemasukanLaporanKeuanganFilterTanggal']);
+    Route::get('/admin/cariPengeluaranLaporanKeuangan', [LaporanKeuanganController::class, 'cariPengeluaran']);
+    Route::get('/admin/cariPengeluaranLaporanKeuanganFilterTanggal', [LaporanKeuanganController::class, 'cariPengeluaranLaporanKeuanganFilterTanggal']);
 
     Route::get('/admin/posAngaran', [PosAnggaranController::class, 'index'])->name('backend.pos.anggaran');
     Route::match(['get', 'post'], '/admin/formAddPosAngaran', [PosAnggaranController::class, 'show'])->name('backend.form.add.pos.anggaran');
