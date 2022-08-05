@@ -155,20 +155,21 @@ class LaporanKeuanganController extends Controller
         // return $cities;
         $option = "<thead><tr><th>No</th><th>Bulan</th><th colspan='2' class='text-center'>Pemasukan</th></tr><tr><th></th><th></th><th >Nama Pemasukan</th><th >Jumlah</th></tr></thead>";
         $no = 0;
-        $aRupiah = [];
+        $sum = 0;
         if (count($pemasukan) > 0) {
             foreach ($pemasukan as $pendapatan) {
                 $no++;
                 $tanggalku = date('F', strtotime($pendapatan->tanggal));
-                $option .= "<tr><td>$no</td><td>$tanggalku</td><td>$pendapatan->nama_penyetor</td><td>Rp. $pendapatan->jumlah</td></tr>";
-                $aRupiah = array($pendapatan->jumlah);
+                $jumlahku = number_format(($pendapatan->jumlah), 0, ",", ".");
+                $option .= "<tr><td>$no</td><td>$tanggalku</td><td>$pendapatan->nama_penyetor</td><td>Rp. $jumlahku</td></tr>";
             }
         } else {
             $option .= "<tr><td colspan='4' class='text-center'>tidak ada data</td></tr>";
         }
 
         // echo array_sum($a);
-        $rupiah = 'Rp. ' . number_format(array_sum($aRupiah), 0, ",", ".");
+        $sum += $pemasukan->sum('jumlah');
+        $rupiah = 'Rp. ' . number_format(($sum), 0, ",", ".");
         $option .= "<tfoot><tr><th></th><th></th><th>Total Pendapatan</th><td>$rupiah</span></th></tr></tfoot>";
         echo $option;
     }
