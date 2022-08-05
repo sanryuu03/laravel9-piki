@@ -151,7 +151,7 @@ class LaporanKeuanganController extends Controller
     public function cariPemasukan(Request $request)
     {
         // echo $request->namaKegiatan;
-        $pemasukan = Pendapatan::whereMonth('tanggal', date('m'))->get();
+        $pemasukan = Pendapatan::where('jenis_pendapatan', $request->namaKegiatan)->get();
         // return $cities;
         $option = "<thead><tr><th>No</th><th>Bulan</th><th colspan='2' class='text-center'>Pemasukan</th></tr><tr><th></th><th></th><th >Nama Pemasukan</th><th >Jumlah</th></tr></thead>";
         $no = 0;
@@ -206,20 +206,24 @@ class LaporanKeuanganController extends Controller
         // return $cities;
         $option = "<thead><tr><th>No</th><th>Bulan</th><th colspan='2' class='text-center'>Pengeluaran</th></tr><tr><th><th></th></th><th>Nama Pengeluaran</th><th >Jumlah</th></tr></thead>";
         $no = 0;
-        $aRupiah = [];
+        $sum = 0;
         if (count($Pengeluaran) > 0) {
             foreach ($Pengeluaran as $pendapatanItem) {
                 $no++;
                 $tanggalku = date('F', strtotime($pendapatanItem->tanggal));
-                $option .= "<tr><td>$no</td><td>$tanggalku</td><td>$pendapatanItem->uraian_pengeluaran</td><td>Rp. $pendapatanItem->jumlah</td></tr>";
-                $aRupiah = array($pendapatanItem->jumlah);
+                $jumlahku = number_format(($pendapatanItem->jumlah), 0, ",", ".");
+                $option .= "<tr><td>$no</td><td>$tanggalku</td><td>$pendapatanItem->uraian_pengeluaran</td><td>Rp. $jumlahku</td></tr>";
+                // $sum+= $pendapatanItem;
+                // $sum+= $pendapatanItem->sum('jumlah');
             }
         } else {
             $option .= "<tr><td colspan='4' class='text-center'>tidak ada data</td></tr>";
         }
 
-        // echo array_sum($a);
-        $rupiah = 'Rp. ' . number_format(array_sum($aRupiah), 0, ",", ".");
+        $sum += $Pengeluaran->sum('jumlah');
+        // echo $sum;
+        // echo array_sum($Pengeluaran);
+        $rupiah = 'Rp. ' . number_format(($sum), 0, ",", ".");
         $option .= "<tfoot><tr><th></th><th></th><th>Total Pengeluaran</th><td>$rupiah</span></th></tr></tfoot>";
         echo $option;
     }
