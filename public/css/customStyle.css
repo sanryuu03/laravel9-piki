@@ -46,3 +46,13 @@
         min-width: 380px !important;
     }
 }
+html, body, svg, div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#foo {
+    /* background:salmon; */
+    margin-top: -5px !important;
+    vertical-align:top;
+}

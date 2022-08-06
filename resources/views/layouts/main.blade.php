@@ -167,7 +167,7 @@
                 <input class="hidden" type="checkbox" id="menu-toggle" />
                 <div class="flex-wrap items-center justify-center hidden w-full text-base lg:flex lg:items-center lg:w-auto lg:ml-auto lg:mr-auto" id="menu">
                     <nav class="items-center justify-between pt-8 space-x-0 space-y-6 text-base lg:space-x-12 lg:flex lg:pt-0 lg:space-y-0">
-                        <a href="{{ route('index') }}" class="block font-medium text-white nav-link active">Home</a>
+                        <a href="{{ route('index') }}" class="block font-medium text-white nav-link">Home</a>
                         <a class="text-white nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tentang
                         </a>
@@ -211,5 +211,30 @@
     <script src="{{ asset('js/mainProvinsi.js') }}"></script>
     @stack('mainFormatRupiah')
     <script src="{{ asset('js/mainAgendaFrontEnd.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            // carousel ketika layar mobile
+            let lebarPonsel = window.innerWidth;
+            let myCarousel = document.getElementById('myCarousel')
+            if (lebarPonsel <= 480) {
+                $('#tes .isi-program').hide();
+                accordionItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        setTimeout(function () {
+                            let top = e.target.getBoundingClientRect().top + document.documentElement.scrollTop;
+                            window.scroll({
+                                top: top - 5
+                                , behavior: 'smooth'
+                            });
+                        }, 200);
+                    });
+                });
+            } else {
+                $('#tes .isi-program').show();
+            }
+        });
+
+    </script>
 </body>
 </html>

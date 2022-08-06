@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // carousel ketika layar mobile
     let lebarPonsel = window.innerWidth;
+    console.log(lebarPonsel);
     let myCarousel = document.getElementById('myCarousel')
     if (lebarPonsel <= 480) {
         accordionItems.forEach(item => {

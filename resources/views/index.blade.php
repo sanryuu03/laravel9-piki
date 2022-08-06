@@ -256,7 +256,7 @@
               .isi-program {
                   margin-top: -885px !important;
                   padding-bottom: 50px !important;
-                  visibility: hidden !important
+                  visibility: hidden !important;
               }
 
               .program {
@@ -264,8 +264,8 @@
               }
 
               .w-px400 {
-                  min-width: 380px !important;
-                  margin-left: -20px !important;
+                  /*min-width: 380px !important;*/
+                  /*margin-left: -20px !important;*/
               }
 
               #carouselExampleControls {
@@ -339,7 +339,10 @@
       </style>
                   <h1 class="mt-1 text-center">Program</h1>
 
-      <main class="relative z-30 px-4 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24">
+
+
+
+      <main class="relative z-30 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24" id="tes">
           {{-- <div class="grid"> --}}
               {{-- <div class="md:col-span-10"> --}}
               {{-- </div> --}}
@@ -361,45 +364,23 @@
               </div>
               @endif
           </div>
-          <div id="carouselExampleControls" class="d-lg-none carousel slide w-px400" data-bs-ride="carousel">
-              @if(count($program) > 0)
-              @foreach($program as $item)
-              <div class="carousel-inner isi-program-carousel">
-                  <div class="carousel-item active">
-                  <a href="{{ route('read.more.program', $item->slug) }}"><img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" alt="workly" class="object-cover h-full rounded-lg md:rounded-xl w-px400" /></a>
-                  </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-              </button>
-              @endforeach
-              @else
-              <div class="carousel-inner isi-program-carousel">
-                  <div class="carousel-item active">
-                      <img src="/images/digital.jpeg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="/images/jurnal.jpeg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="images/hrd.jpeg" class="d-block w-100" alt="...">
-                  </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-              </button>
-              @endif
-          </div>
+          <div id="carouselExampleIndicators" class="d-lg-none carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+      @foreach($program as $key => $item)
+    <div class="carousel-item {{ $key==0?'active':'' }}">
+      <img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" class="d-block w-100" alt="...">
+    </div>
+    @endforeach
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
       </main>
   </section>
