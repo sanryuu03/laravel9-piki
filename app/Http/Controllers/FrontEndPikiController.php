@@ -40,7 +40,7 @@ class FrontEndPikiController extends Controller
         $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
         $backendFaq = BackendFaq::get();
-        return view('/index', [
+        return view('/2ndIndex', [
             "title" => "PIKI - Sangrid",
             "creator" => "San",
             'header' => $header,
