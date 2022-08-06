@@ -22,18 +22,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="mb-2 navbar-nav me-auto mb-lg-0">
+                <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index') }}#program" class="block text-white nav-link">Program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('kategori.berita') }}" class="block text-white nav-link">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('sumbangan.frontend') }}" class="block text-white nav-link">Donasi</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div><button type="button" class="btn btn-outline-dark" onClick="window.open('{{ route('register') }}','_blank')">{{ ucwords('Daftar/Login') }}</button></div>
             </div>
         </div>
     </nav>
