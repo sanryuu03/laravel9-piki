@@ -241,15 +241,15 @@
           }
 
           @media only screen and (max-width: 480px) {
-              .program h1 {
+              .header-program h1 {
                   margin-top: -455px !important;
                   padding-top: 15px !important;
-                  margin-bottom: -20px !important;
+                  margin-bottom: -10px !important;
                   padding-bottom: 20px !important;
                   text-align: center;
                   font-size: 30px !important;
                   background-color: #f7f7f7;
-                  margin-left: -350px !important;
+                  margin-left: -335px !important;
                   min-width: 1024px !important;
               }
 
@@ -263,14 +263,12 @@
                   padding-bottom: 50px !important;
               }
 
-              .w-px400 {
-                  /*min-width: 380px !important;*/
-                  /*margin-left: -20px !important;*/
-              }
 
-              #carouselExampleControls {
+              #carouselExampleIndicators {
                   margin-bottom: -50px !important;
               }
+
+
           }
 
           @media (min-width: 768px) {
@@ -337,16 +335,15 @@
           }
 
       </style>
-                  <h1 class="mt-1 text-center">Program</h1>
+    <div class="container-fluid header-program">
+      <h1 class="mb-3 text-center fs-1">Program</h1>
+  </div>
 
 
 
 
       <main class="relative z-30 pb-0 mx-auto md:pb-28 our-platform max-w-screen-2xl lg:px-24" id="tes">
-          {{-- <div class="grid"> --}}
-              {{-- <div class="md:col-span-10"> --}}
-              {{-- </div> --}}
-          {{-- </div> --}}
+
           <div id="myCarousel" class="grid grid-flow-col grid-rows-1 gap-4 pb-12 mt-12 md:gap-10 md:mt-12 isi-program">
               @if(count($program) > 0)
               @foreach($program as $item)
@@ -368,7 +365,7 @@
   <div class="carousel-inner">
       @foreach($program as $key => $item)
     <div class="carousel-item {{ $key==0?'active':'' }}">
-      <img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" class="d-block w-100" alt="...">
+      <a href="{{ route('read.more.program', $item->slug) }}"><img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" class="d-block w-100" alt="..."></a>
     </div>
     @endforeach
   </div>
@@ -745,6 +742,7 @@
           @media only screen and (max-width: 480px) {
               .content-3-2-anggota .title-text {
                   margin-top: -70px !important;
+                  margin-bottom: 50px !important;
                   background-color: #f7f7f7;
                   margin-left: -350px !important;
                   min-width: 1024px !important;
@@ -1021,7 +1019,7 @@
               <!-- Right Column -->
               <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
                   <ul style="padding: 0; margin: 0">
-                      <div class="container-fluid justify-content-center d-flex">
+                      <div class="container-fluid">
                           <div class="card card-body d-lg-none isi-konten-sponsor">
                               {!! str()->limit($item->konten_sponsor, 250) !!}.
                               <br />
@@ -1116,17 +1114,22 @@ flex-direction: column;
               }
 
               /* Style the faq-page panel. Note: hidden by default */
+
               .faq-page {
-                  margin-top: -30px !important;
+                  margin-top: 30px !important;
+                  width: 100% !important;
+
               }
 
               .faq-page.active:after {
                   /* Unicode character for "minus" sign (-) */
-                  margin-bottom: 100px !important;
+                  margin-bottom: 50px !important;
               }
 
               .faq-body {
-                  margin-top: -250px !important;
+                  margin-top: 0px !important;
+                  padding-top: 0px !important;
+                  width: 100% !important;
               }
           }
 
