@@ -149,4 +149,7 @@
     <script src="{{ asset('js/mainPendapatan.js') }}"></script>
     <script src="{{ asset('js/mainCustomForm.js') }}"></script>
 </body>
+<footer>
+  <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
+</footer>
 </html>

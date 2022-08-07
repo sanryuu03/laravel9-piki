@@ -237,4 +237,7 @@
 
     </script>
 </body>
+<footer>
+  <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
+</footer>
 </html>
