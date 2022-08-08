@@ -8,6 +8,7 @@
     window.addEventListener('load', function() {
         if (navigator != undefined && navigator.userAgent != undefined) {
             if (user_agent.indexOf('android') > -1) { // Is Android.
+                body.classList.add('d-none');
                 window.location.href = "{{ url('/mobile') }}";
             }
         }
