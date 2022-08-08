@@ -75,12 +75,19 @@
         <div class="container-fluid header-program">
         <h1 class="mb-3 text-center fs-1">Berita</h1>
     </div>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+      @foreach($news as $berita)
+
+    <div class="mt-2 card" style="width: 100% ">
+        <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="..." style="height: 100%;">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="{{ route('read.more.berita', $berita->slug) }}" class="">{{ $berita->judul_berita }}</a>
+        <br/>
+        <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
+            <p class="card-text">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</p>
         </div>
     </div>
+      @endforeach
+
 </body>
 <footer>
     <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
