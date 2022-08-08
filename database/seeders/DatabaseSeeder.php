@@ -14,9 +14,11 @@ use App\Models\DataBankIuran;
 use App\Models\DataRekening;
 use App\Models\DynamicForm;
 use App\Models\DynamicTable;
+use App\Models\HeaderPikiMobile;
 use App\Models\jenisPemasukan;
 use App\Models\JenisSetoran;
 use App\Models\MasterMenuNavbar;
+use App\Models\ProgramPiki;
 use App\Models\StaticField;
 use Illuminate\Database\Seeder;
 use Database\Seeders\IndoRegionSeeder;
@@ -40,9 +42,42 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        HeaderPikiMobile::create([
+            'picture_path' => '1659926313_mobile device cut cover.png',
+            'created_at' => Carbon::parse(Carbon::now())->timestamp,
+        ]);
+
+        ProgramPiki::create([
+            'judul_program' => 'digital library',
+            'slug' => 'digital-library',
+            'picture_path_program' => '1659927735_digital.jpeg',
+            'keterangan_foto' => '<div>digital library</div>',
+            'isi_program' => '<div>digital library yang dimiliki PIKI SUMUT</div>',
+            'created_at' => Carbon::parse(Carbon::now())->timestamp,
+        ]);
+
+        ProgramPiki::create([
+            'judul_program' => 'jurnal ilmiah',
+            'slug' => 'jurnal-ilmiah',
+            'picture_path_program' => '1659927935_jurnal.jpeg',
+            'keterangan_foto' => '<div>jurnal ilmiah</div>',
+            'isi_program' => '<div>jurnal ilmiah yang di lakukan oleh PIKI SUMUT</div>',
+            'created_at' => Carbon::parse(Carbon::now())->timestamp,
+        ]);
+
+        ProgramPiki::create([
+            'judul_program' => 'human development',
+            'slug' => 'human-development',
+            'picture_path_program' => '1659928051_hrd.jpeg',
+            'keterangan_foto' => '<div>human development</div>',
+            'isi_program' => '<div>Indeks Pembangunan Manusia atau Human Development Index adalah pengukuran perbandingan dari harapan hidup, melek huruf, pendidikan dan standar hidup. IPM menjelaskan bagaimana penduduk dapat mengakses hasil pembangunan dalam memperoleh pendapatan, kesehatan, pendidikan, dan sebagainya.</div>',
+            'created_at' => Carbon::parse(Carbon::now())->timestamp,
+        ]);
+
         NewsPiki::create([
             'judul_berita' => 'PIKI Inisiasi Cara Kurangi Ikan Red Devil di Danau Toba, Ini Solusinya',
             'slug' => 'piki-inisiasi-cara-kurangi-ikan-red-devil-di-danau-toba-ini-solusinya',
+            'picture_path' => '1659927213_WhatsApp Image 2022-06-06 at 13.31.12.jpeg',
             'category_news_id' => 1,
             'keterangan_foto' => '<div><em>Ketua DPD PIKI Sumut, Naslindo Sirait bersama Dierektur TB. Silalahi Centre dalam pertemuan dengan Wakil Bupati Toba,Tonny Simanjuntak memberi pemaparan sekaitan rencana pengurangan ikan red devil di Danau Toba.</em></div>',
             'excerpt'    => '<div><em>DPD Persatuan Intelegensia Kristen Indonesia (PIKI) Provinsi Sumatra Utara bekerja sama dengan pegiat pupuk organik menginisiasi solusi pengurangan keberadaan ikan predator (red devil) di Danau Toba. Mereka menawarkan solusi berupa penangkapan oleh nelayan atau masyarakat dan nantinya ikan tersebut akan dijadikan bahan pupuk organik.<br><br>"Tujuan utama bagaimana keberadaan ikan konsumsi sejenis ikan nila, mujahir, lele dan ikan mas bisa kembali seperti sedia kala di perairan Danau Toba yang dijadikan nelayan sebagai pendapatan keluarga untuk dijual sebagai kebutuhan pangan bagi masyarakat. Sekarang sudah berkurang bahkan nyaris sulit didapat karena dimangsa oleh....</em></div>',
@@ -53,6 +88,7 @@ class DatabaseSeeder extends Seeder
         NewsPiki::create([
             'judul_berita' => 'Dr Naslindo Sirait Terpilih Jadi Ketua DPD PIKI Sumut',
             'slug' => 'Dr-Naslindo-Sirait-Terpilih-Jadi-Ketua-DPD-PIKI-Sumut',
+            'picture_path' => '1659927286_9844_Dr-Naslindo-Sirait-Terpilih-Jadi-Ketua-DPD-PIKI-Sumut.jpg',
             'category_news_id' => 5,
             'keterangan_foto' => '<p>DIULOSI: Ketua DPP PIKI Dr Badikenita Sitepu, Ketua DPD PIKI Sumut Jhon Eron Lumban Gaol SE, penasehat Dr RE Nainggolan, Ir GM Chandra Panggabean, Dr Edward Simanjuntak, JA Ferdinandus, Marnix Hutabarat dan tokoh tokoh Kristen lainnya foto bersama usai diulosi pada pembukaan Konferda DPD PIKI Sumut, Sabtu (27/11) di GBI Tabernacle of David Hotel JW Marriot, Medan.</p>',
             'excerpt'    => 'Dr Naslindo Sirait MM terpilih menjadi Ketua DPD Persatuan Inteligensia Kristen Indonesia (PIKI) Sumut, pada Konferensi Daerah PIKI Sumut, Sabtu (27/11), di Gereja GBI Tabernacle of David Hotel JW Marriot, Jalan Perintis Kemerdekaan Medan. Naslindo terpilih secara aklamasi setelah panitia, senior dan 4 orang calon bermusyawarah. Keempat calon tersebut adalan Dr Adolfina Elisabeth Komaesakh, Prof Dr Marihot Manullang, Piliaman Simarmata SH dan Dr Naslindo Sirait. Setelah musyawarah selama 2 jam lebih, maka disepakatilah Nasindo Sirait menjadi Ketua Umum DPD PIKI Sumut periode 2021-2026 menggantikan Jhon Eron Lumban Gaol SE. Konferda dibuka dan ditutup oleh Ketua Umum DPP PIKI Dr Badikenita Putri Sitepu yang juga anggota DPD RI asal Sumut. Acara diawali dengan ibadah dipimpin Pdt Edy Prayitno, ibadah penutup oleh Pdt Stevent Kumenit MTh',
@@ -63,6 +99,7 @@ class DatabaseSeeder extends Seeder
         NewsPiki::create([
             'judul_berita' => 'Naslindo Sirait Dilantik Jadi Ketua PIKI Sumut',
             'slug' => 'Naslindo-Sirait-Dilantik-Jadi-Ketua-PIKI-Sumut',
+            'picture_path' => '1659927341_1609_Naslindo-Sirait-Dilantik-Jadi-Ketua-PIKI-Sumut.jpg',
             'category_news_id' => 3,
             'keterangan_foto' => '<p>PIKI: Ketum DPP PIKI, Dr Badikenita Putri Sitepu MSi (tengah) diapit Ketua SU Dr Naslindo Sirait MM, Sekretaris Kamser M Sitanggang SAk dan Bendahara Dr Bertha M Silalahi MSi (di barisan depan) di HKBP Tanjung Sari Medan, Sabtu (19/3) dan unsur DPP Sekjen Pdt Audy MR Wuisang MTh, Waketum Iwan Butar-butar SE MSi serta Drs Anton Panggabean MM (dua dari kiri). Di barisan belakang cendikiawan Kristen Dr Chandra Situmeang MEAk, Drs Bantors Sihombing MSi, Dra Nurhawati Simamora MSi, Pdt Dr Rosiany Hutagalung SP MTh dan Dra Odorlin Sihite MPdK.</p>',
             'excerpt'    => 'Ketua Umum Dewan Pimpinan Pusat (DPP) Persatuan Intelegensia Kristen (PIKI), Dr Badikenita Putri Sitepu MSi melantik Dewan Pimpinan Daerah (DPD) PIKI Sumatera Utara (SU) periode 2021-2026',

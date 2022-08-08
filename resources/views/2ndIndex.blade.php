@@ -45,13 +45,44 @@
         </div>
     </nav>
     {{-- header --}}
-    <img src="images/mobile-device-cover.png" class="img-fluid header-mobile" alt="...">
-    <div class="top-0 position-absolute start-50 translate-middle container-fluid">
-        <button type="button" class="btn btn-primary">{{ ucwords('daftar') }}</button>
+    <img src="{{ url('/storage/assets/header/mobile/'.$headerMobile->picture_path) }}" class="img-fluid header-mobile" alt="...">
+    <div class="d-flex align-items-center container-fluid">
+        <button type="button" class="btn btn-primary me-auto">{{ ucwords('daftar') }}</button>
         <button type="button" class="btn btn-outline-primary">{{ ucwords('login') }}</button>
+    </div>
+    {{-- program --}}
+    <div class="container-fluid header-program">
+        <h1 class="mb-3 text-center fs-1">Program</h1>
+    </div>
+    <div id="carouselExampleIndicators" class="d-lg-none carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($program as $key => $item)
+            <div class="carousel-item {{ $key==0?'active':'' }}">
+                <a href="{{ route('read.more.program', $item->slug) }}"><img src="{{ url('/storage/assets/program/'.$item->picture_path_program) }}" class="d-block w-100" alt="..."></a>
+            </div>
+            @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {{-- berita --}}
+        <div class="container-fluid header-program">
+        <h1 class="mb-3 text-center fs-1">Berita</h1>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
     </div>
 </body>
 <footer>
-  <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
+    <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
 </footer>
 </html>

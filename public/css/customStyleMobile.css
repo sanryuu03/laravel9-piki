@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 html,
 body,
 svg,
@@ -9,4 +10,18 @@ div {
 
 .header-mobile {
     margin-top: 60px;
+}
+
+.header-program h1 {
+    padding-top: 15px !important;
+    margin-bottom: -10px !important;
+    padding-bottom: 20px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight:400;
+    font-size: 25px !important;
+    width: 100% !important;
+    background-color: #f7f7f7;
 }

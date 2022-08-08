@@ -272,19 +272,19 @@
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle {{ $menuNavbarKeuangan->id % 2 == 0 ? 'text-warning' : 'text-success' }}">{{ ucwords($menuNavbarKeuangan->nama_menu) }}</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
-                                    @foreach($subMenuNavbarKeuangan as $item)
-                                    @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
-                                    @if($item->id == 1)
+                                        @foreach($subMenuNavbarKeuangan as $item)
+                                        @if($item->master_menu_navbars_id == $menuNavbarKeuangan->id)
+                                        @if($item->id == 1)
                                         <li><a href="{{ url('/admin/pemasukanIuran') }}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
-                                    @elseif($item->id == 2)
+                                        @elseif($item->id == 2)
                                         <li><a href="{{ url('/admin/pemasukanSumbangan') }}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
-                                    @elseif($item->id ==3)
+                                        @elseif($item->id ==3)
                                         <li><a href="{{ url('/admin/pemasukanDonasi') }}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
-                                    @else
+                                        @else
                                         <li><a href="{!! url('/admin/dinamisUrlNavbarKeuangan', [$item->masterMenuNavbarKeuangan->nama_menu, $item->nama_sub_menu]) !!}" class="dropdown-item">{{ ucwords($item->nama_sub_menu) }}</a></li>
-                                    @endif
-                                    @endif
-                                    @endforeach
+                                        @endif
+                                        @endif
+                                        @endforeach
                                     </ul>
                                 </li>
                                 @endforeach
@@ -292,23 +292,23 @@
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">Pemasukan</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
                                         <li><a href="{{ url('/admin/rekapPemasukan') }}" class="dropdown-item">Summary</a></li>
-                                        <li><a href="{{ url('/admin/pemasukanIuran') }}" class="dropdown-item">Iuran</a></li>
-                                        <li><a href="{{ url('/admin/pemasukanSumbangan') }}" class="dropdown-item">Sumbangan</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">Pengeluaran</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
-                                        <li><a href="#" class="dropdown-item">Summary</a></li>
-                                        <li><a href="#" class="dropdown-item">Investasi</a></li>
-                                        <li><a href="{{ route('backend.pengeluaran.rutin') }}" class="dropdown-item">Rutin</a></li>
-                                        <li><a href="#" class="dropdown-item">Program</a></li>
-                                    </ul>
-                                </li> --}}
-                                <li class="nav-item">
-                                    <a href="{{  url('/admin/laporanKeuangan') }}" class="nav-link text-primary">Laporan Keuangan</a>
-                                </li>
-                                @endif
+                                <li><a href="{{ url('/admin/pemasukanIuran') }}" class="dropdown-item">Iuran</a></li>
+                                <li><a href="{{ url('/admin/pemasukanSumbangan') }}" class="dropdown-item">Sumbangan</a></li>
+                            </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">Pengeluaran</a>
+                                <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
+                                    <li><a href="#" class="dropdown-item">Summary</a></li>
+                                    <li><a href="#" class="dropdown-item">Investasi</a></li>
+                                    <li><a href="{{ route('backend.pengeluaran.rutin') }}" class="dropdown-item">Rutin</a></li>
+                                    <li><a href="#" class="dropdown-item">Program</a></li>
+                                </ul>
+                            </li> --}}
+                            <li class="nav-item">
+                                <a href="{{  url('/admin/laporanKeuangan') }}" class="nav-link text-primary">Laporan Keuangan</a>
+                            </li>
+                            @endif
 
                             </ul>
 
@@ -317,7 +317,7 @@
                 </nav>
                 @endif
 
-                                <!-- Topbar Anggota -->
+                <!-- Topbar Anggota -->
                 @if($navbarAnggota == true)
                 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
                     <div class="container">
@@ -330,13 +330,13 @@
                                 @if(auth()->user()->level=='super-admin' || auth()->user()->level=='bendahara' || auth()->user()->level=='spi')
                                 {{-- <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-success">{{ ucwords('anggota') }}</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
-                                        <li><a href="{{ url('/admin/pendaftarBaru') }}" class="dropdown-item">{{ ucwords('anggota baru') }}</a></li>
-                                        <li><a href="{{ url('/admin/dalamProses') }}" class="dropdown-item">{{ ucwords('anggota diproses') }}</a></li>
-                                        <li><a href="{{ url('/admin/landingpageanggota') }}" class="dropdown-item">{{ ucwords('anggota diterima') }}</a></li>
-                                        <li><a href="{{ url('/admin/diTolak') }}" class="dropdown-item">{{ ucwords('anggota ditolak') }}</a></li>
-                                        <li><a href="{{ url('/admin/jabatanPIKISUMUT') }}" class="dropdown-item">{{ ucwords('jabatan anggota di PIKI SUMUT') }}</a></li>
-                                    </ul>
+                                <ul aria-labelledby="dropdownSubMenu1" class="border-0 shadow dropdown-menu">
+                                    <li><a href="{{ url('/admin/pendaftarBaru') }}" class="dropdown-item">{{ ucwords('anggota baru') }}</a></li>
+                                    <li><a href="{{ url('/admin/dalamProses') }}" class="dropdown-item">{{ ucwords('anggota diproses') }}</a></li>
+                                    <li><a href="{{ url('/admin/landingpageanggota') }}" class="dropdown-item">{{ ucwords('anggota diterima') }}</a></li>
+                                    <li><a href="{{ url('/admin/diTolak') }}" class="dropdown-item">{{ ucwords('anggota ditolak') }}</a></li>
+                                    <li><a href="{{ url('/admin/jabatanPIKISUMUT') }}" class="dropdown-item">{{ ucwords('jabatan anggota di PIKI SUMUT') }}</a></li>
+                                </ul>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-warning">{{ ucwords('kategori') }}</a>
@@ -400,6 +400,7 @@
                                 </script> - developed by
                                 <b><a href="https://itdevacademy.com/" target="_blank">IT Dev Academy</a></b>
                             </span>
+                            <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
                         </div>
                     </div>
                 </footer>
@@ -447,9 +448,7 @@
         <script src="{{ asset('js/mainPendapatan.js') }}"></script>
         <script src="{{ asset('js/mainCustomForm.js') }}"></script>
 </body>
-<footer>
-  <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
-</footer>
+
 </html>
 @else
 {{-- {{ dd(auth()->user()->id) }} --}}

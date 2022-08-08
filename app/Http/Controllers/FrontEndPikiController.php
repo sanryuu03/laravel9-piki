@@ -60,7 +60,7 @@ class FrontEndPikiController extends Controller
     public function mobile()
     {
         $header = HeaderPiki::latest()->get();
-        $headerMobile = HeaderPikiMobile::latest()->get();
+        $headerMobile = HeaderPikiMobile::latest()->first();
         $berita = NewsPiki::latest()->take(3)->get();
         $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
