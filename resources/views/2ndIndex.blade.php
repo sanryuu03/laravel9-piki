@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tentang</a>

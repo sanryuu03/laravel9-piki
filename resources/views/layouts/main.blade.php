@@ -1,5 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
+<script>
+    var body = document.body;
+    let agent = navigator.userAgent;
+    let user_agent = navigator.userAgent.toLowerCase();
+    window.addEventListener('load', function() {
+        if (navigator != undefined && navigator.userAgent != undefined) {
+            if (user_agent.indexOf('android') > -1) { // Is Android.
+                window.location.href = "{{ url('/mobile') }}";
+            }
+        }
+    })
+</script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +42,7 @@
 
 </style>
 <body>
+
     <!-- Navbar -->
     <section class="w-full h-full px-8 py-3 transition-all duration-500 bg-blue-800 border-box linear lg:px-24 md:px-20 navbar navbar-fixed-top">
         <style>
@@ -206,14 +220,16 @@
     @yield('menuContent')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <script src="{{ asset('js/mainMobileCarousel.js') }}"></script>
+        <script src="{{ asset('js/mainMobileCarousel.js') }}">
+
+    </script>
     <script src="{{ asset('js/mainFaq.js') }}"></script>
     <script src="{{ asset('js/mainProvinsi.js') }}"></script>
     @stack('mainFormatRupiah')
     <script src="{{ asset('js/mainAgendaFrontEnd.js') }}"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // carousel ketika layar mobile
             let lebarPonsel = window.innerWidth;
             let myCarousel = document.getElementById('myCarousel')
@@ -221,7 +237,7 @@
                 $('#tes .isi-program').hide();
                 accordionItems.forEach(item => {
                     item.addEventListener('click', (e) => {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             let top = e.target.getBoundingClientRect().top + document.documentElement.scrollTop;
                             window.scroll({
                                 top: top - 5
@@ -238,6 +254,6 @@
     </script>
 </body>
 <footer>
-  <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
+    <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
 </footer>
 </html>

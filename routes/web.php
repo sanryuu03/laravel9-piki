@@ -79,6 +79,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
+Route::get('/mobile', [FrontEndPikiController::class, 'mobile']);
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');
 
 Route::get('/daftar', [RegisterController::class, 'index'])->middleware('guest')->name('register');

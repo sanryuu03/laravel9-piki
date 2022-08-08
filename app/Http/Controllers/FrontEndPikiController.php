@@ -40,6 +40,38 @@ class FrontEndPikiController extends Controller
         $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
         $backendFaq = BackendFaq::get();
+        return view('/index', [
+            "title" => "PIKI - Sangrid",
+            "creator" => "San",
+            'header' => $header,
+            'headerMobile' => $headerMobile,
+            "news" => $berita,
+            "categoryNews" => $categoryNews,
+            "program" => $program,
+            "agenda" => $agenda,
+            "itemAgenda" => $item,
+            "anggota" => $anggota,
+            "user" => $user,
+            "sponsor" => $sponsor,
+            "backendFaq" => $backendFaq,
+        ]);
+    }
+
+    public function mobile()
+    {
+        $header = HeaderPiki::latest()->get();
+        $headerMobile = HeaderPikiMobile::latest()->get();
+        $berita = NewsPiki::latest()->take(3)->get();
+        $categoryNews = CategoryNews::all();
+        // return Carbon::parse(Carbon::now())->timestamp;
+        $program = ProgramPiki::take(3)->get();
+        $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();
+        $item = AgendaPiki::latest()->first();
+        $anggota = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')->get();
+        // return $anggota;
+        $user = User::all();
+        $sponsor = SponsorPiki::take(7)->get();
+        $backendFaq = BackendFaq::get();
         return view('/2ndIndex', [
             "title" => "PIKI - Sangrid",
             "creator" => "San",
