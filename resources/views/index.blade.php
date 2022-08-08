@@ -1,7 +1,18 @@
   @extends('layouts.main')
 
   @section('menuContent')
-
+<script>
+    var body = document.body;
+    let agent = navigator.userAgent;
+    let user_agent = navigator.userAgent.toLowerCase();
+    window.addEventListener('load', function() {
+        if (navigator != undefined && navigator.userAgent != undefined) {
+            if (user_agent.indexOf('android') > -1) { // Is Android.
+                window.location.href = "{{ url('/mobile') }}";
+            }
+        }
+    })
+</script>
   <!-- Header -->
   <section class="header">
       <style>
