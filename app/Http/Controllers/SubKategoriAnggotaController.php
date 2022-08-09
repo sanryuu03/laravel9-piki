@@ -29,7 +29,7 @@ class SubKategoriAnggotaController extends Controller
         $user = auth()->user()->id;
         $kategoriAnggota = KategoriAnggota::get();
         return view('admin/subkategorianggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("sub kategori anggota"),
             "creator" => $user,
             "kategoriAnggota" => $kategoriAnggota,
@@ -70,7 +70,7 @@ class SubKategoriAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $kategoriAnggota = KategoriAnggota::get();
         return view('admin/formsubkategorianggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("form tambah sub Kategori anggota"),
             "userId" => $userId,
             "namaUser" => $namaUser,

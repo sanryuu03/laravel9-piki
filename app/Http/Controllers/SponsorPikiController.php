@@ -17,7 +17,7 @@ class SponsorPikiController extends Controller
         $sponsor = SponsorPiki::take(7)->get();
         $user = auth()->user()->id;
         return view('admin/communitypartners', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Community Partners",
             "creator" => $user,
             "sponsor" => $sponsor,
@@ -88,7 +88,7 @@ class SponsorPikiController extends Controller
     {
         $sponsorPiki = SponsorPiki::find($id);
         return view('admin/editcommunitypartners', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Community Partners",
             "creator" => "San",
             "item" => $sponsorPiki,

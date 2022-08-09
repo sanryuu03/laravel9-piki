@@ -19,7 +19,7 @@ class HeaderPikiController extends Controller
         $headerMobile = HeaderPikiMobile::get();
         $user = auth()->user()->id;
         return view('admin/landingpageheader', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => $user,
             'header' => $header,
             'headerMobile' => $headerMobile,

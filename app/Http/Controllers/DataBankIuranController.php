@@ -17,7 +17,7 @@ class DataBankIuranController extends Controller
         $user = auth()->user()->id;
         $dataIuran = DataBankIuran::all();
         return view('admin/dataIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('Pengaturan Rekening Bank PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -56,7 +56,7 @@ class DataBankIuranController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formDataRekeningIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -79,7 +79,7 @@ class DataBankIuranController extends Controller
         $dataIuran = DataBankIuran::find($id);
         $namaUser = auth()->user()->name;
         return view('admin/formDataRekeningIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',

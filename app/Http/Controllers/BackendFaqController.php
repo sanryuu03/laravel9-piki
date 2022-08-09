@@ -17,7 +17,7 @@ class BackendFaqController extends Controller
         $backendFaq = BackendFaq::get();
         $user = auth()->user()->id;
         return view('admin/backendFaq', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('backend faq'),
             "creator" => $user,
             "backendFaq" => $backendFaq,
@@ -34,7 +34,7 @@ class BackendFaqController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/backendFormFaq', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('backend faq'),
             "creator" => $user,
             "namaUser" => $namaUser,
@@ -91,7 +91,7 @@ class BackendFaqController extends Controller
         $namaUser = auth()->user()->name;
         // return BackendFaq::find($id);
         return view('admin/backendFormFaq', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('backend faq'),
             "creator" => $user,
             "namaUser" => $namaUser,

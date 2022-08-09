@@ -19,15 +19,15 @@
 
   <!-- Kategory Berita PIKI Terbaru Start-->
   <div class="p-0 container-fluid list-kategori-berita">
-      <h1 class="mb-3 text-center fs-1">{{ ucwords('berita ') }}{{ $category }}</h1>
+      <h1 class="mb-3 text-center fs-1">{{ ucwords('berita lainnya') }}</h1>
   </div>
   <div class="container-fluid">
       <div class="row justify-content-center">
           <div class="col-md-10">
-              @foreach($posts as $berita)
+              @foreach($newsPiki as $news)
               <h1 class="mb-3 fs-6">
-              <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400">
-                  {{ $berita->judul_berita }}
+              <a href="/berita/{{ $news->slug }}" class="read-more text-sky-400">
+                  {{ $news->judul_berita }}
               </a>
               </h1>
               <hr class="mb-1">

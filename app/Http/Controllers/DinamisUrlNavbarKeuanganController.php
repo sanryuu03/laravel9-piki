@@ -98,7 +98,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
         $rekapSumbangan = SumbanganPiki::get();
         // return $masterMenu;
         return view('admin/dinamisKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('Pemasukan' . $subMenu . 'PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -119,7 +119,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             $sumbangan = SumbanganPiki::where('status', 'baru')->get();
             if ($subMenu == 'iuran') {
                 return view('admin/pemasukanIuranBaru', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' Baru'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -130,7 +130,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             if ($subMenu == 'sumbangan') {
                 return view('admin/pemasukanSumbanganBaru', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' Baru'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -141,7 +141,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             if ($subMenu == 'donasi') {
                 return view('admin/pemasukanSumbanganBaru', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' Baru'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -152,7 +152,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             else {
                 return view('admin/pemasukanDinamisBaru', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' Baru'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -164,7 +164,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
         } else {
             $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenuId->id)->where('status_pengeluaran', 'pengeluaran baru')->get();
             return view('admin/pengeluaranDinamisBaru', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('Pengeluaran ' . $subMenu . ' Baru'),
                 "creator" => $user,
                 'summary' => 'ringkasan',
@@ -184,7 +184,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             $sumbangan = SumbanganPiki::where('status', 'baru')->get();
             if ($subMenu == 'Iuran') {
                 return view('admin/pemasukanDinamisDiproses', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' diproses'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -195,7 +195,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             if ($subMenu == 'sumbangan') {
                 return view('admin/pemasukanSumbanganDiproses', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' diproses'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -206,7 +206,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             if ($subMenu == 'donasi') {
                 return view('admin/pemasukanSumbanganDiproses', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' diproses'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -217,7 +217,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             }
             else {
                 return view('admin/pemasukanDinamisBaru', [
-                    "title" => "PIKI - Sangrid CRUD",
+                    "title" => "PIKI - SUMUT CRUD",
                     'menu' => ucwords('pendapatan ' . $subMenu . ' diproses'),
                     "creator" => $user,
                     'summary' => 'ringkasan',
@@ -230,7 +230,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
         else {
             $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenu)->where('status_pengeluaran', 'pengeluaran diproses')->get();
             return view('admin/pengeluaranDinamisDiproses', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('Pengeluaran ' . $subMenu . ' diproses'),
                 "creator" => $user,
                 'summary' => 'ringkasan',
@@ -248,7 +248,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             // return $masterMenu;
             $pendapatan = Pendapatan::where('jenis_pendapatan', $subMenu)->where('status', 'ditolak')->get();
             return view('admin/pemasukanDinamisDitolak', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('pendapatan ' . $subMenu . ' ditolak'),
                 "creator" => $user,
                 'summary' => 'ringkasan',
@@ -259,7 +259,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
         } else {
             $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenu)->where('status_pengeluaran', 'pengeluaran ditolak')->get();
             return view('admin/pengeluaranDinamisDitolak', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('Pengeluaran ' . $subMenu . ' ditolak'),
                 "creator" => $user,
                 'summary' => 'ringkasan',
@@ -277,7 +277,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
             // return $masterMenu;
             $pendapatan = Pendapatan::where('jenis_pendapatan', $subMenu)->where('status', 'terverifikasi')->get();
             return view('admin/pemasukanDinamisDiterima', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('pendapatan ' . $subMenu . ' diterima'),
                 "creator" => $user,
                 'summary' => 'ringkasan',
@@ -288,7 +288,7 @@ class DinamisUrlNavbarKeuanganController extends Controller
         } else {
             $Pengeluaran = Pengeluaran::where('pos_anggaran', $subMenu)->where('status_pengeluaran', 'pengeluaran terverifikasi')->get();
             return view('admin/pengeluaranDinamisDiterima', [
-                "title" => "PIKI - Sangrid CRUD",
+                "title" => "PIKI - SUMUT CRUD",
                 'menu' => ucwords('Pengeluaran ' . $subMenu . ' diterima'),
                 "creator" => $user,
                 'summary' => 'ringkasan',

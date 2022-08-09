@@ -80,7 +80,7 @@ class AnggotaPikiController extends Controller
         $idUser = auth()->user()->id;
 
         return view('admin/backendanggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Anggota",
             "creator" => $idUser,
         ]);
@@ -103,7 +103,7 @@ class AnggotaPikiController extends Controller
         // return $user;
 
         return view('admin/landingpageanggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Anggota diterima"),
             "creator" => $idUser,
             "user" => $user,
@@ -122,7 +122,7 @@ class AnggotaPikiController extends Controller
         $idUser = auth()->user()->id;
         // return $user;
         return view('admin/pendaftarBaru', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Pendaftar baru"),
             "creator" => $idUser,
             "user" => $user,
@@ -140,7 +140,7 @@ class AnggotaPikiController extends Controller
         $idUser = auth()->user()->id;
         // return $user;
         return view('admin/prosesPendaftarBaru', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Proses Pendaftar baru"),
             "creator" => $idUser,
             "user" => $user,
@@ -158,7 +158,7 @@ class AnggotaPikiController extends Controller
         $idUser = auth()->user()->id;
         // return $user;
         return view('admin/tidakSesuaiPendaftarBaru', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Pendaftar baru tidak sesuai"),
             "creator" => $idUser,
             "user" => $user,
@@ -180,7 +180,7 @@ class AnggotaPikiController extends Controller
         //     return $a->userPiki->id ;
         // }
         return view('admin/jabatanpikisumut', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Jabatan PIKI SUMUT"),
             "creator" => $idUser,
             "user" => $user,
@@ -197,7 +197,7 @@ class AnggotaPikiController extends Controller
         $idUser = auth()->user()->id;
 
         return view('admin/editjabatanpikisumut', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Jabatan PIKI SUMUT"),
             "creator" => $idUser,
             "item" => $anggotaPiki,
@@ -238,7 +238,7 @@ class AnggotaPikiController extends Controller
         //     return $a->userPiki->id ;
         // }
         return view('admin/anggotaYangDitampilkan', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Anggota Yang Ditampilkan Pada Landing Page"),
             "creator" => $idUser,
             "anggota" => $anggota,
@@ -254,7 +254,7 @@ class AnggotaPikiController extends Controller
         //     return $a->userPiki->id ;
         // }
         return view('admin/pilihAnggotaYangDitampilkan', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Pilih Anggota Yang Ditampilkan Pada Landing Page"),
             "creator" => $idUser,
             "anggota" => $anggota,
@@ -326,7 +326,7 @@ class AnggotaPikiController extends Controller
         $user = User::find($id);
         $provinces = Province::all();
         return view('admin/anggotacv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("CV Pendaftar Baru"),
             "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
@@ -369,7 +369,7 @@ class AnggotaPikiController extends Controller
         $user = User::find($id);
         $provinces = Province::all();
         return view('admin/anggotacv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Proses CV Pendaftar Baru"),
             "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
@@ -441,7 +441,7 @@ class AnggotaPikiController extends Controller
         $user = User::find($id);
         $provinces = Province::all();
         return view('admin/anggotacv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("CV Yang Di Tolak"),
             "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
@@ -517,7 +517,7 @@ class AnggotaPikiController extends Controller
         $user = User::find($id);
         $provinces = Province::all();
         return view('admin/anggotacv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("CV Anggota"),
             "creator" => $user,
             "anggotaPiki" => $anggotaPiki,
@@ -541,7 +541,7 @@ class AnggotaPikiController extends Controller
         $provinces = Province::all();
         // penggunaan http://192.168.1.7:8000/admin/landingpageanggota/edit/1?value=heheh
         return view('admin/anggotacv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Edit CV Anggota"),
             "creator" => "San",
             "anggotaPiki" => $anggotaPiki,
@@ -652,7 +652,7 @@ class AnggotaPikiController extends Controller
         $user = User::find($id);
 
         return view('admin/printcv', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Print CV Anggota"),
             "creator" => "San",
             "item" => $user,

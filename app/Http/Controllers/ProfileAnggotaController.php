@@ -137,7 +137,7 @@ class ProfileAnggotaController extends Controller
         // return $user;
         $anggotaPiki = AnggotaPiki::find($userid);
         return view('admin/profileuser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "PIKI - CV Anggota",
             "anggotaPiki" => $anggotaPiki,
             "action" => "view",
@@ -160,7 +160,7 @@ class ProfileAnggotaController extends Controller
         $provinces = Province::all();
         // penggunaan http://192.168.1.7:8000/admin/landingpageanggota/edit/1?value=heheh
         return view('admin/edituser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Edit CV Anda",
             "creator" => "San",
             "anggotaPiki" => $anggotaPiki,
@@ -438,7 +438,7 @@ class ProfileAnggotaController extends Controller
         $userId = auth()->user()->id;
         $user = User::where('id', $userid)->first();
         return view('admin/backendHeaderViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('header admin'),
             "creator" => $userId,
             'header' => $header,
@@ -457,7 +457,7 @@ class ProfileAnggotaController extends Controller
         $categoryNews = CategoryNews::all();
         $user = User::where('id', $userid)->first();
         return view('admin/backendBeritaViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Berita",
             "creator" => auth()->user()->id,
             "berita" => $berita,
@@ -478,7 +478,7 @@ class ProfileAnggotaController extends Controller
         $categoryNews = CategoryNews::all();
         $user = User::where('id', $userid)->first();
         return view('admin/backendFormBeritaViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Berita",
             "creator" => "San",
             "newsPiki" => $newsPiki,
@@ -494,7 +494,7 @@ class ProfileAnggotaController extends Controller
         $program = ProgramPiki::get();
         $user = User::where('id', $userid)->first();
         return view('admin/backendFormProgramViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Program",
             "creator" => auth()->user()->id,
             "program" => $program,
@@ -509,7 +509,7 @@ class ProfileAnggotaController extends Controller
         $agenda = AgendaPiki::get();
         $user = User::where('id', $userid)->first();
         return view('admin/backendAgendaViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Agenda",
             "creator" => auth()->user()->id,
             "agenda" => $agenda,
@@ -525,7 +525,7 @@ class ProfileAnggotaController extends Controller
         $agendaPiki = AgendaPiki::find($agendaid);
         $user = User::where('id', $userid)->first();
         return view('admin/backendFormAgendaViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Agenda",
             "creator" => "San",
             "agendaPiki" => $agendaPiki,
@@ -542,7 +542,7 @@ class ProfileAnggotaController extends Controller
         $user = User::where('id', $userid)->first();
         // return $user->city;
         // return view('admin/backendAnggotaViaUser', [
-        //     "title" => "PIKI - Sangrid",
+        //     "title" => "PIKI - SUMUT",
         //     "menu" => "Anggota",
         //     "creator" => $idUser,
         //     'item' => $user,
@@ -554,7 +554,7 @@ class ProfileAnggotaController extends Controller
         $userDiterima = User::where('status_anggota', 'diterima')->where('city', $cities->name)->get();
         // return $cities;
         return view('admin/backendAnggotaViaUserPerKabupaten', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Anggota",
             "creator" => $idUser,
             "provinces" => $provinces,
@@ -571,7 +571,7 @@ class ProfileAnggotaController extends Controller
         $sponsor = SponsorPiki::take(7)->get();
         $user = User::where('id', $userid)->first();
         return view('admin/backendCommunityPartnersViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Community Partners",
             "creator" => auth()->user()->id,
             "sponsor" => $sponsor,
@@ -586,7 +586,7 @@ class ProfileAnggotaController extends Controller
         $sponsorPiki = SponsorPiki::find($partnersid);
         $user = User::where('id', $userid)->first();
         return view('admin/backendFormCommunityPartnersViaUser', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Community Partners",
             "creator" => "San",
             "sponsorPiki" => $sponsorPiki,
@@ -602,7 +602,7 @@ class ProfileAnggotaController extends Controller
         $user = User::where('id', $userid)->first();
         return view('admin/backendKeuanganViaUser', [
             "urlNavbarKeuanganViaUser" => $urlNavbarKeuanganViaUser,
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Keuangan PIKI SUMUT',
             "creator" => auth()->user()->id,
             'userid' => $userid,
@@ -616,7 +616,7 @@ class ProfileAnggotaController extends Controller
         $user = User::where('id', $userid)->first();
         $dataIuran = DataBankIuran::all();
         return view('admin/backendDataRekeningBankViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('Pengaturan Rekening Bank PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -634,7 +634,7 @@ class ProfileAnggotaController extends Controller
         // return $dataIuran;
         $namaUser = auth()->user()->name;
         return view('admin/backendFormDataRekeningBankViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -652,7 +652,7 @@ class ProfileAnggotaController extends Controller
         $user = User::where('id', $userid)->first();
         $dataIuran = DataBiayaIuran::all();
         return view('admin/backendDataBiayaIuranViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('pengaturan besaran Biaya Iuran PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -668,7 +668,7 @@ class ProfileAnggotaController extends Controller
         $user = User::where('id', $userid)->first();
         $namaUser = auth()->user()->name;
         return view('admin/backendFormDataBiayaIuranViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -687,7 +687,7 @@ class ProfileAnggotaController extends Controller
         $dataIuran = DataBiayaIuran::find($dataiuranid);
         $namaUser = auth()->user()->name;
         return view('admin/backendFormDataBiayaIuranViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -706,7 +706,7 @@ class ProfileAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         return view('admin/backendMasterMenuNavbarKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('master menu navbar PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -725,7 +725,7 @@ class ProfileAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::find($menunavbarid);
         return view('admin/backendFormEditMasterMenuNavbarKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit menu navbar PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -744,7 +744,7 @@ class ProfileAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::with('masterMenuNavbarKeuangan')->get();
         return view('admin/backendSubMenuNavbarKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('sub menu navbar PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -763,7 +763,7 @@ class ProfileAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         return view('admin/backendFormSubMenuNavbarKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('tambah sub menu navbar PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -784,7 +784,7 @@ class ProfileAnggotaController extends Controller
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($submenuid);
         return view('admin/backendFormSubMenuNavbarKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('tambah sub menu navbar PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -833,7 +833,7 @@ class ProfileAnggotaController extends Controller
         $posAnggaran = PosAnggaran::get();
         $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
         return view('admin/backendFormAddPengeluaranViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form tambah pengeluaran rutin PIKI SUMUT'),
             "creator" => auth()->user()->id,
             'summary' => 'ringkasan',
@@ -865,7 +865,7 @@ class ProfileAnggotaController extends Controller
         ->selectRaw('tanggal,pos_anggaran, sum(jumlah) as sum')->whereMonth('tanggal',date('m'))
         ->get();
         return view('admin/backendLaporanKeuanganViaUser', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Laporan Keuangan PIKI SUMUT',
             "creator" => auth()->user()->id,
             'keuangan' => 'keuangan',

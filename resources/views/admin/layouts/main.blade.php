@@ -400,7 +400,7 @@
                                 </script> - developed by
                                 <b><a href="https://itdevacademy.com/" target="_blank">IT Dev Academy</a></b>
                             </span>
-                            <small>© 2022 <span translate="no">PIKI SUMUT</span></small>
+    <small><a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center rounded-0" href="https://itdevacademy.com/">© 2022 &nbsp;<span translate="no">{{ ucwords('ITDev academy') }}</span></a></small>
                         </div>
                     </div>
                 </footer>

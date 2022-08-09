@@ -21,7 +21,7 @@ class NewsPikiController extends Controller
         $categoryNews = CategoryNews::all();
         $user = auth()->user()->id;
         return view('admin/landingpageberita', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Berita",
             "creator" => $user,
             "berita" => $berita,
@@ -103,7 +103,7 @@ class NewsPikiController extends Controller
         // return $newsPiki->id;
         $categoryNews = CategoryNews::all();
         return view('admin/editberita', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Berita",
             "creator" => "San",
             "newsPiki" => $newsPiki,

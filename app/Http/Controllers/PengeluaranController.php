@@ -21,7 +21,7 @@ class PengeluaranController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::get();
         return view('admin/pengeluaranRutin', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -100,7 +100,7 @@ class PengeluaranController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran baru')->get();
         return view('admin/pengeluaranRutinBaru', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Baru',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -115,7 +115,7 @@ class PengeluaranController extends Controller
         $posAnggaran = PosAnggaran::get();
         $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
         return view('admin/formPengeluaranRutin', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form tambah pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -224,7 +224,7 @@ class PengeluaranController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -240,7 +240,7 @@ class PengeluaranController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaranRutinViaBendahara', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -307,7 +307,7 @@ class PengeluaranController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran diproses')->get();
         return view('admin/pengeluaranRutinDiproses', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Diproses',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -322,7 +322,7 @@ class PengeluaranController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaranViaKetua', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -387,7 +387,7 @@ class PengeluaranController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaranViaSpi', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -453,7 +453,7 @@ class PengeluaranController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran terverifikasi')->get();
         return view('admin/pengeluaranDiterima', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Diterima',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -467,7 +467,7 @@ class PengeluaranController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran ditolak')->get();
         return view('admin/pengeluaranDitolak', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Ditolak',
             "creator" => $user,
             'summary' => 'ringkasan',

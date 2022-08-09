@@ -20,7 +20,7 @@ class AgendaPikiController extends Controller
         $agenda = AgendaPiki::get();
         $user = auth()->user()->id;
         return view('admin/landingpageagenda', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Agenda",
             "creator" => $user,
             "agenda" => $agenda,
@@ -93,7 +93,7 @@ class AgendaPikiController extends Controller
     {
         $agendaPiki = AgendaPiki::find($id);
         return view('admin/editagenda', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Agenda",
             "creator" => "San",
             "item" => $agendaPiki,
@@ -184,7 +184,7 @@ class AgendaPikiController extends Controller
     {
         $agendaPiki = AgendaPiki::where('id', $id)->first();
         return view('isiMoreAgenda', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => "San",
             "agendaPiki" => $agendaPiki,
         ]);

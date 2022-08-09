@@ -52,6 +52,7 @@ class CategoryNewsController extends Controller
      */
     public function show(CategoryNews $categoryNews)
     {
+        // return $categoryNews;
         return view('listcategorynews', [
             "title" => $categoryNews->name,
             "menu" => "Kategori Berita",
@@ -102,7 +103,7 @@ class CategoryNewsController extends Controller
         $categoryNews = CategoryNews::all();
         $user = auth()->user()->id;
         return view('admin/kategoriberita', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Kategori Berita",
             "creator" => $user,
             "categoryNews" => $categoryNews,
@@ -114,7 +115,7 @@ class CategoryNewsController extends Controller
         $userId = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/addeditkategoriberita', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Form Tambah Kategori Berita",
             "userId" => $userId,
             "namaUser" => $namaUser,
@@ -129,7 +130,7 @@ class CategoryNewsController extends Controller
         $userId = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/addeditkategoriberita', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Form Edit Kategori Berita",
             "userId" => $userId,
             "namaUser" => $namaUser,

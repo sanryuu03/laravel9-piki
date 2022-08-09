@@ -22,7 +22,7 @@ class TambahAdminController extends Controller
         $izin = Permission::get();
         $users = User::permission($izin)->get();
         return view('admin/backendTambahAdmin', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('tambah admin'),
             "creator" => $idUser,
             "users" => $users,
@@ -65,7 +65,7 @@ class TambahAdminController extends Controller
         //     return $a->userPiki->id ;
         // }
         return view('admin/pilihAnggotaHakAkses', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords('tambah admin'),
             "creator" => $idUser,
             "anggota" => $anggota,

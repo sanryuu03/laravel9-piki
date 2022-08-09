@@ -2,18 +2,17 @@
 
   @section('menuContent')
 <script>
-    var body = document.body;
     let agent = navigator.userAgent;
     let user_agent = navigator.userAgent.toLowerCase();
     window.addEventListener('load', function() {
         if (navigator != undefined && navigator.userAgent != undefined) {
             if (user_agent.indexOf('android') > -1) { // Is Android.
-                body.classList.add('d-none');
-                window.location.href = "{{ url('/mobile') }}";
+                window.location = "{{ url('/mobile') }}";
             }
         }
     })
 </script>
+<div id="desktop">
   <!-- Header -->
   <section class="header">
       <style>
@@ -500,7 +499,7 @@
       @media (min-width: 992px) {}
 
   </style>
-  <h1 class="mb-3 text-center fs-3">News Category:</h1>
+  <h1 class="mb-3 text-center fs-3">News Category</h1>
   <div class="container-fluid">
       <div class="row">
           @foreach($categoryNews as $berita)
@@ -1177,5 +1176,6 @@ flex-direction: column;
 
   </section>
   <!-- End Faq's-->
+  </div>
 
   @endsection

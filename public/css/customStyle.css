@@ -56,3 +56,9 @@ html, body, svg, div {
     margin-top: -5px !important;
     vertical-align:top;
 }
+
+footer #footer {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}

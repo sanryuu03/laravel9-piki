@@ -41,7 +41,7 @@ class FrontEndPikiController extends Controller
         $sponsor = SponsorPiki::take(7)->get();
         $backendFaq = BackendFaq::get();
         return view('/index', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => "San",
             'header' => $header,
             'headerMobile' => $headerMobile,
@@ -62,6 +62,7 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->first();
         $berita = NewsPiki::latest()->take(3)->get();
+        $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
         $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(3)->get();
@@ -73,15 +74,16 @@ class FrontEndPikiController extends Controller
         $sponsor = SponsorPiki::take(7)->get();
         $backendFaq = BackendFaq::get();
         return view('/2ndIndex', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => "San",
             'header' => $header,
             'headerMobile' => $headerMobile,
             "news" => $berita,
+            "beritaLainnya" => $beritaLainnya,
             "categoryNews" => $categoryNews,
             "program" => $program,
             "agenda" => $agenda,
-            "itemAgenda" => $item,
+            "agendaItem" => $item,
             "anggota" => $anggota,
             "user" => $user,
             "sponsor" => $sponsor,
@@ -95,10 +97,17 @@ class FrontEndPikiController extends Controller
         // return $newsPiki->categoryNews;
         // return $newsPiki->judul_berita;
         // return $newsPiki->categoryNews->name;
+        $categoryNewsId = CategoryNews::where('name', $newsPiki->categoryNews->name)->get();
+        $listberita = $newsPiki->where('category_news_id',$newsPiki->category_news_id)->get();
+        // return
+        $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
+
         return view('/news', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => "San",
             "news" => $newsPiki,
+            "category" => $categoryNews[0]->name,
+            "categoryNews" => $listberita,
         ]);
     }
 
@@ -106,9 +115,29 @@ class FrontEndPikiController extends Controller
     {
         $programPiki = ProgramPiki::where('slug', $slug)->first();
         return view('/program', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "creator" => "San",
             "program" => $programPiki,
+        ]);
+    }
+
+    public function communityPartners($id)
+    {
+        $communityPartners = SponsorPiki::where('id', $id)->first();
+        return view('/communityPartners', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "communityPartners" => $communityPartners,
+        ]);
+    }
+
+    public function beritaLainnya()
+    {
+        $newsPiki = NewsPiki::latest()->get();
+        return view('/beritaLainnya', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "newsPiki" => $newsPiki,
         ]);
     }
 

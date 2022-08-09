@@ -89,7 +89,7 @@ class MasterMenuNavbarController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         return view('admin/masterMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('master menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -104,7 +104,7 @@ class MasterMenuNavbarController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formMasterMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form tambah menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -120,7 +120,7 @@ class MasterMenuNavbarController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::find($id);
         return view('admin/formMasterMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',

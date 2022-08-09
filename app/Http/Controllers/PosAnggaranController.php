@@ -20,7 +20,7 @@ class PosAnggaranController extends Controller
         $namaUser = auth()->user()->name;
         $posAnggaran = PosAnggaran::get();
         return view('admin/posAnggaran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('pos anggaran PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -62,7 +62,7 @@ class PosAnggaranController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formPosAnggaran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form tambah pos anggaran PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -84,7 +84,7 @@ class PosAnggaranController extends Controller
         $namaUser = auth()->user()->name;
         $posAnggaran = PosAnggaran::find($id);
         return view('admin/formPosAnggaran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit pos anggaran PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',

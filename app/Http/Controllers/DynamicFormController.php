@@ -23,7 +23,7 @@ class DynamicFormController extends Controller
         $user = auth()->user()->id;
         $dynamic = DynamicForm::get();
         return view('admin/dynamicForm', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('tambah custom form PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -44,7 +44,7 @@ class DynamicFormController extends Controller
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $jenisSetoran = JenisSetoran::get();
         return view('admin/formDynamicForm', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('tambah custom form PIKI SUMUT'),
             "creator" => $user,
             "namaUser" => $namaUser,
@@ -169,7 +169,7 @@ class DynamicFormController extends Controller
         $Pengeluaran = Pengeluaran::find(request()->id);
         $jenisPengeluaran = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 2)->get();
         return view('admin/formPengeluaranDinamisEdit', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran '.$subMenu. ' PIKI SUMUT'),
             "masterMenu" => $masterMenu,
             "subMenu" => $subMenu,
@@ -189,7 +189,7 @@ class DynamicFormController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find(request()->id);
         return view('admin/formPengeluaranDinamisViaBendahara', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran '.$subMenu. ' PIKI SUMUT'),
             "masterMenu" => $masterMenu,
             "subMenu" => $subMenu,
@@ -257,7 +257,7 @@ class DynamicFormController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran diproses')->get();
         return view('admin/pengeluaranRutinDiproses', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Diproses',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -272,7 +272,7 @@ class DynamicFormController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaranViaKetua', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -341,7 +341,7 @@ class DynamicFormController extends Controller
         $namaUser = auth()->user()->name;
         $Pengeluaran = Pengeluaran::find($id);
         return view('admin/formPengeluaranViaSpi', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form pengeluaran rutin PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -409,7 +409,7 @@ class DynamicFormController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran terverifikasi')->get();
         return view('admin/pengeluaranDiterima', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Diterima',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -423,7 +423,7 @@ class DynamicFormController extends Controller
         $user = auth()->user()->id;
         $Pengeluaran = Pengeluaran::where('status_pengeluaran', 'pengeluaran ditolak')->get();
         return view('admin/pengeluaranDitolak', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Pengeluaran Rutin Ditolak',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -491,7 +491,7 @@ class DynamicFormController extends Controller
             $sumbangan = Pendapatan::find($id);
             $sumbanganPiki = SumbanganPiki::find($id);
             return view('admin/pemasukanDinamisViaBendahara', [
-                "title" => "PIKI - Sangrid",
+                "title" => "PIKI - SUMUT",
                 "menu" => ucwords("Pemasukan " .$subMenu. " Detail"),
                 "creator" => $idUser,
                 'sumbangan' => $sumbangan,
@@ -567,7 +567,7 @@ class DynamicFormController extends Controller
             $idUser = auth()->user()->id;
             $pemasukanSumbangan = Pendapatan::find($id);
             return view('admin/pemasukanDinamisViaKetua', [
-                "title" => "PIKI - Sangrid",
+                "title" => "PIKI - SUMUT",
                 "menu" => ucwords("Pemasukan ".$subMenu." Detail"),
                 "creator" => $idUser,
                 'sumbangan' => $pemasukanSumbangan,
@@ -635,7 +635,7 @@ class DynamicFormController extends Controller
             $idUser = auth()->user()->id;
             $sumbangan = Pendapatan::find($id);
             return view('admin/pemasukanDinamisViaSpi', [
-                "title" => "PIKI - Sangrid",
+                "title" => "PIKI - SUMUT",
                 "menu" => ucwords("Pemasukan " . $subMenu . " Detail"),
                 "creator" => $idUser,
                 'sumbangan' => $sumbangan,

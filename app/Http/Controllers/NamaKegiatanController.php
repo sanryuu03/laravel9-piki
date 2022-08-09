@@ -20,7 +20,7 @@ class NamaKegiatanController extends Controller
         $namaKegiatan = NamaKegiatan::all();
         $posAnggaran = PosAnggaran::get();
         return view('admin/namaKegiatan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('nama kegiatan PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -63,7 +63,7 @@ class NamaKegiatanController extends Controller
         $namaUser = auth()->user()->name;
         $posAnggaran = PosAnggaran::get();
         return view('admin/formNamaKegiatan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form tambah nama kegiatan PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -87,7 +87,7 @@ class NamaKegiatanController extends Controller
         $namaKegiatan = NamaKegiatan::find($id);
         $posAnggaran = PosAnggaran::get();
         return view('admin/formNamaKegiatan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit nama kegiatan PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',

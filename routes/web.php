@@ -90,6 +90,7 @@ Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 // halaman single berita
 Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->name('read.more.berita');
+Route::get('/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnya']);
 // halaman single program
 Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
 
@@ -99,6 +100,8 @@ Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 's
 Route::post('/selectAgenda', [AgendaPikiController::class, 'selectAgenda']);
 Route::get('/moreAgenda', [AgendaPikiController::class, 'moreAgenda']);
 Route::get('/isiMoreAgenda/{id}', [AgendaPikiController::class, 'isiMoreAgenda']);
+// community partners
+Route::get('/communityPartners/{id}', [FrontEndPikiController::class, 'communityPartners']);
 
 Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
 Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('save.form.sumbangan.frontend');

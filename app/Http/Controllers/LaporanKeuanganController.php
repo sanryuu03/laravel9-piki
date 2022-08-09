@@ -132,7 +132,7 @@ class LaporanKeuanganController extends Controller
         echo "\n";
         $clear_array_arrJenisSetoran = array_unique($arrJenisSetoran);
         return view('admin/laporanKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Laporan Keuangan PIKI SUMUT',
             "creator" => $user,
             'keuangan' => 'keuangan',

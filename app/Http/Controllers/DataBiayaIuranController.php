@@ -17,7 +17,7 @@ class DataBiayaIuranController extends Controller
         $user = auth()->user()->id;
         $dataIuran = DataBiayaIuran::all();
         return view('admin/dataBiayaIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('pengaturan besaran Biaya Iuran PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -57,7 +57,7 @@ class DataBiayaIuranController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formDataBiayaIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -79,7 +79,7 @@ class DataBiayaIuranController extends Controller
         $dataIuran = DataBiayaIuran::find($id);
         $namaUser = auth()->user()->name;
         return view('admin/formDataBiayaIuran', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => 'Edit Data Rekening Iuran PIKI SUMUT',
             "creator" => $user,
             'summary' => 'ringkasan',

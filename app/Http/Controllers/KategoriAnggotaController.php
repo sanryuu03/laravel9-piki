@@ -28,7 +28,7 @@ class KategoriAnggotaController extends Controller
         $kategoriAnggota = KategoriAnggota::all();
         $user = auth()->user()->id;
         return view('admin/kategorianggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Kategori Anggota",
             "creator" => $user,
             "kategoriAnggota" => $kategoriAnggota,
@@ -40,7 +40,7 @@ class KategoriAnggotaController extends Controller
         $userId = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formkategorianggota', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => ucwords("Form Tambah Kategori anggota"),
             "userId" => $userId,
             "namaUser" => $namaUser,
@@ -93,7 +93,7 @@ class KategoriAnggotaController extends Controller
         $namaUser = auth()->user()->name;
         $kategoriAnggota = KategoriAnggota::find($id);
         return view('admin/formkategorianggota', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit kategori anggota PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',

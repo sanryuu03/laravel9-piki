@@ -18,7 +18,7 @@ class ProgramPikiController extends Controller
         $program = ProgramPiki::take(7)->get();
         $user = auth()->user()->id;
         return view('admin/program', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Program",
             "creator" => $user,
             "program" => $program,
@@ -121,7 +121,7 @@ class ProgramPikiController extends Controller
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/formProgram', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Program",
             "creator" => $user,
             "namaUser" => $namaUser,
@@ -199,7 +199,7 @@ class ProgramPikiController extends Controller
         $namaUser = auth()->user()->name;
         $programPiki = ProgramPiki::find($id);
         return view('admin/formProgram', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Program",
             "creator" => $user,
             "namaUser" => $namaUser,

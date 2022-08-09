@@ -260,7 +260,7 @@ class SumbanganPikiController extends Controller
         $idUser = auth()->user()->id;
         $sumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaBendahara', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $sumbangan,
@@ -332,7 +332,7 @@ class SumbanganPikiController extends Controller
         $idUser = auth()->user()->id;
         $pemasukanSumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaKetua', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $pemasukanSumbangan,
@@ -398,7 +398,7 @@ class SumbanganPikiController extends Controller
         $idUser = auth()->user()->id;
         $sumbangan = Pendapatan::find($id);
         return view('admin/pemasukanSumbanganViaSpi', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $sumbangan,
@@ -518,7 +518,7 @@ class SumbanganPikiController extends Controller
         $sumbangan = SumbanganPiki::find($id);
         $tujuan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', 1)->get();
         return view('admin/pemasukanDonasiViaBendahara', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $sumbangan,
@@ -591,7 +591,7 @@ class SumbanganPikiController extends Controller
         $idUser = auth()->user()->id;
         $pemasukanSumbangan = SumbanganPiki::find($id);
         return view('admin/pemasukanDonasiViaKetua', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $pemasukanSumbangan,
@@ -657,7 +657,7 @@ class SumbanganPikiController extends Controller
         $idUser = auth()->user()->id;
         $sumbangan = SumbanganPiki::find($id);
         return view('admin/pemasukanDonasiViaSpi', [
-            "title" => "PIKI - Sangrid",
+            "title" => "PIKI - SUMUT",
             "menu" => "Pemasukan Sumbangan Detail",
             "creator" => $idUser,
             'sumbangan' => $sumbangan,

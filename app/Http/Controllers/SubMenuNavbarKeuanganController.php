@@ -20,7 +20,7 @@ class SubMenuNavbarKeuanganController extends Controller
         $namaUser = auth()->user()->name;
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::with('masterMenuNavbarKeuangan')->get();
         return view('admin/subMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('sub menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -63,7 +63,7 @@ class SubMenuNavbarKeuanganController extends Controller
         $namaUser = auth()->user()->name;
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         return view('admin/formSubMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('tambah sub menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',
@@ -87,7 +87,7 @@ class SubMenuNavbarKeuanganController extends Controller
         $masterMenuNavbarKeuangan = MasterMenuNavbar::get();
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($id);
         return view('admin/formSubMenuNavbarKeuangan', [
-            "title" => "PIKI - Sangrid CRUD",
+            "title" => "PIKI - SUMUT CRUD",
             'menu' => ucwords('form edit sub menu navbar PIKI SUMUT'),
             "creator" => $user,
             'summary' => 'ringkasan',

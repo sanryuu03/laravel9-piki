@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+    /* background: #ff0000; */
+    font-family: 'Poppins', sans-serif !important;
+  }
 html,
 body,
 svg,
@@ -9,7 +13,8 @@ div {
 }
 
 .header-mobile {
-    margin-top: 60px;
+    margin-top: 65px;
+    margin-bottom: 30px;
 }
 
 .header-program h1 {
@@ -19,9 +24,102 @@ div {
     margin-left: 0px !important;
     margin-right: 0px !important;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
     font-weight:400;
     font-size: 25px !important;
     width: 100% !important;
-    background-color: #f7f7f7;
+    /* background-color: #f7f7f7; */
+    background-color: #61c7ff;
+}
+
+footer #footer {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+/* faq  */
+.faq-heading{
+    border-bottom: #777;
+    padding: 20px 60px;
+}
+.faq-container{
+display: flex;
+justify-content: center;
+flex-direction: column;
+
+}
+.hr-line{
+  width: 60%;
+  margin: auto;
+}
+/* Style the buttons that are used to open and close the faq-page body */
+.faq-page {
+    /* background-color: #eee; */
+    color: #444;
+    cursor: pointer;
+    padding: 30px 20px;
+    width: 60%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: auto;
+
+}
+.faq-body{
+    margin: auto;
+    /* text-align: center; */
+   width: 50%;
+   padding: auto;
+
+}
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.faq-page:hover {
+    background-color: #F9F9F9;
+}
+
+/* Style the faq-page panel. Note: hidden by default */
+.faq-body {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+.faq-page:after {
+    content: '\02795';
+    /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796";
+    /* Unicode character for "minus" sign (-) */
+}
+.faq-card {
+    margin-top: 10px !important;
+}
+
+/* Style the faq-page panel. Note: hidden by default */
+
+.faq-page {
+    margin-top: 5px !important;
+    width: 100% !important;
+
+}
+
+.faq-page.active:after {
+    /* Unicode character for "minus" sign (-) */
+    margin-bottom: 50px !important;
+}
+
+.faq-body {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    width: 100% !important;
 }
