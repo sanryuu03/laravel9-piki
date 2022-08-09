@@ -164,8 +164,28 @@ class SubMenuNavbarKeuanganController extends Controller
             // return $request->id;
             // return $request;
             $data = $request->except(['_token', 'action']);
-            SubMenuNavbarKeuangan::where('id', $request->id)->update($data);
-            return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah diedit');
+            if ($request->master_menu_navbars_id == 1) {
+                $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', $request->master_menu_navbars_id)->where('nama_sub_menu', $request->nama_sub_menu)->first();
+                if ($subMenuNavbarKeuangan == null) {
+                    SubMenuNavbarKeuangan::where('id', $request->id)->update($data);
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah diedit');
+                }
+                if ($request->nama_sub_menu == $subMenuNavbarKeuangan->nama_sub_menu) {
+                    $rules['nama_sub_menu'] = 'required|unique:nama_sub_menu';
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('unapproved', 'Sub Menu sudah ada');
+                }
+            }
+            if ($request->master_menu_navbars_id == 2) {
+                $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', $request->master_menu_navbars_id)->where('nama_sub_menu', $request->nama_sub_menu)->first();
+                if ($subMenuNavbarKeuangan == null) {
+                    SubMenuNavbarKeuangan::where('id', $request->id)->update($data);
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah diedit');
+                }
+                if ($request->nama_sub_menu == $subMenuNavbarKeuangan->nama_sub_menu) {
+                    $rules['nama_sub_menu'] = 'required|unique:nama_sub_menu';
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('unapproved', 'Sub Menu sudah ada');
+                }
+            }
         }
     }
 
