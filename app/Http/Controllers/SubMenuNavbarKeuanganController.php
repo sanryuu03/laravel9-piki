@@ -125,19 +125,40 @@ class SubMenuNavbarKeuanganController extends Controller
     {
         // return $request;
         // return $request->action;
+        // return $request->nama_sub_menu;
         if ($request->action == "add") {
             $pesanError = [
                 'nama_sub_menu' => 'wajib di isi',
             ];
             // $data = request()->except(['_token'], $pesanError);
-            $data = $request->validate([
+            $rules = [
                 'master_menu_navbars_id' => 'required',
                 'nama_sub_menu' => 'required',
                 'post_by' => 'required',
-            ], $pesanError);
-
-            SubMenuNavbarKeuangan::create($data);
-            return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah ditambahkan');
+            ];
+            $data = $request->validate($rules, $pesanError);
+            if ($request->master_menu_navbars_id == 1) {
+                $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', $request->master_menu_navbars_id)->where('nama_sub_menu', $request->nama_sub_menu)->first();
+                if ($subMenuNavbarKeuangan == null) {
+                    SubMenuNavbarKeuangan::create($data);
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah ditambahkan');
+                }
+                if ($request->nama_sub_menu == $subMenuNavbarKeuangan->nama_sub_menu) {
+                    $rules['nama_sub_menu'] = 'required|unique:nama_sub_menu';
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('unapproved', 'Sub Menu sudah ada');
+                }
+            }
+            if ($request->master_menu_navbars_id == 2) {
+                $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::where('master_menu_navbars_id', $request->master_menu_navbars_id)->where('nama_sub_menu', $request->nama_sub_menu)->first();
+                if ($subMenuNavbarKeuangan == null) {
+                    SubMenuNavbarKeuangan::create($data);
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('success', 'Sub Menu telah ditambahkan');
+                }
+                if ($request->nama_sub_menu == $subMenuNavbarKeuangan->nama_sub_menu) {
+                    $rules['nama_sub_menu'] = 'required|unique:nama_sub_menu';
+                    return redirect()->route('backend.sub.menu.navbar.keuangan')->with('unapproved', 'Sub Menu sudah ada');
+                }
+            }
         }
         if ($request->action == "edit") {
             // return $request->id;
@@ -152,7 +173,7 @@ class SubMenuNavbarKeuanganController extends Controller
     {
         $data = ['deleted_by' => auth()->user()->name];
         SubMenuNavbarKeuangan::where('id', $request->id)
-        ->update($data);
+            ->update($data);
         $subMenuNavbarKeuangan = SubMenuNavbarKeuangan::find($request->id);
         $subMenuNavbarKeuangan->delete(); //softdeletes
 
