@@ -240,22 +240,22 @@ class DatabaseSeeder extends Seeder
         AgendaPiki::create([
             'nama_agenda' => 'Persatuan Intelegensia Kristen Indonesia (PIKI) Sumut Gelar Rapat Pleno',
             'keterangan_agenda' => 'Dewan Perwakilan Daerah Persatuan Intelegensia Kristen Indonesia (PIKI) Sumatera Utara 2021-2026 menggelar Rapat Pleno I Sumut di Politeknik Wilmar Bisnis Indonesia pada hari Sabtu tanggal 9 April 2021',
-            'picture_path' => '1659934657_IMG-20220409-WA0139.jpg,'
+            'picture_path' => '1659934657_IMG-20220409-WA0139.jpg'
         ]);
         AgendaPiki::create([
             'nama_agenda' => 'PIKI Inisiasi Cara Kurangi Ikan Red Devil di Danau Toba, Ini Solusinya',
             'keterangan_agenda' => 'DPD Persatuan Intelegensia Kristen Indonesia (PIKI) Provinsi Sumatra Utara bekerja sama dengan pegiat pupuk organik menginisiasi solusi pengurangan keberadaan ikan predator (red devil) di Danau Toba. Mereka menawarkan solusi berupa penangkapan oleh nelayan atau masyarakat dan nantinya ikan tersebut akan dijadikan bahan pupuk organik.',
-            'picture_path' => '1659934705_WhatsApp Image 2022-06-06 at 13.31.12.jpeg,'
+            'picture_path' => '1659934705_WhatsApp Image 2022-06-06 at 13.31.12.jpeg'
         ]);
         AgendaPiki::create([
             'nama_agenda' => 'Naslindo Sirait Dilantik Jadi Ketua PIKI Sumut',
             'keterangan_agenda' => 'Naslindo Sirait Dilantik Jadi Ketua PIKI Sumut',
-            'picture_path' => '1659934732_1609_Naslindo-Sirait-Dilantik-Jadi-Ketua-PIKI-Sumut.jpg,'
+            'picture_path' => '1659934732_1609_Naslindo-Sirait-Dilantik-Jadi-Ketua-PIKI-Sumut.jpg'
         ]);
         AgendaPiki::create([
             'nama_agenda' => 'Dr Naslindo Sirait Terpilih Jadi Ketua DPD PIKI Sumut',
             'keterangan_agenda' => 'Dr Naslindo Sirait MM terpilih menjadi Ketua DPD Persatuan Inteligensia Kristen Indonesia (PIKI) Sumut, pada Konferensi Daerah PIKI Sumut, Sabtu (27/11), di Gereja GBI Tabernacle of David Hotel JW Marriot, Jalan Perintis Kemerdekaan Medan. Naslindo terpilih secara aklamasi setelah panitia, senior dan 4 orang calon bermusyawarah. Keempat calon tersebut adalan Dr Adolfina Elisabeth Komaesakh, Prof Dr Marihot Manullang, Piliaman Simarmata SH dan Dr Naslindo Sirait. Setelah musyawarah selama 2 jam lebih, maka disepakatilah Nasindo Sirait menjadi Ketua Umum DPD PIKI Sumut periode 2021-2026 menggantikan Jhon Eron Lumban Gaol SE. Konferda dibuka dan ditutup oleh Ketua Umum DPP PIKI Dr Badikenita Putri Sitepu yang juga anggota DPD RI asal Sumut. Acara diawali dengan ibadah dipimpin Pdt Edy Prayitno, ibadah penutup oleh Pdt Stevent Kumenit MTh',
-            'picture_path' => '1659934748_9844_Dr-Naslindo-Sirait-Terpilih-Jadi-Ketua-DPD-PIKI-Sumut.jpg,'
+            'picture_path' => '1659934748_9844_Dr-Naslindo-Sirait-Terpilih-Jadi-Ketua-DPD-PIKI-Sumut.jpg'
         ]);
 
         User::create([

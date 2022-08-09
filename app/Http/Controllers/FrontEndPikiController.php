@@ -32,6 +32,7 @@ class FrontEndPikiController extends Controller
         $berita = NewsPiki::latest()->take(3)->get();
         $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
         $categoryNews = CategoryNews::all();
+        $beritaSejenis = NewsPiki::latest()->take(5)->get();
         // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(3)->get();
         $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();
@@ -49,6 +50,7 @@ class FrontEndPikiController extends Controller
             "news" => $berita,
             "beritaLainnya" => $beritaLainnya,
             "categoryNews" => $categoryNews,
+            "beritaSejenis" => $beritaSejenis,
             "program" => $program,
             "agenda" => $agenda,
             "itemAgenda" => $item,

@@ -152,3 +152,40 @@ body .header .content .button-header .btn-listing {
     padding-top: 0px !important;
 }
 
+/* agenda */
+.content-3-2-agenda {
+    padding-top: 2.5rem;
+}
+
+.content-3-2-agenda .title-text {
+    font-weight:400;
+    font-size: 25px !important;
+    color: #121212;
+}
+
+/* anggota */
+.header-anggota {
+    margin-top: 0px !important;
+    width: 100%;
+}
+.header-anggota h1 {
+    padding-top: 15px !important;
+    padding-bottom: 20px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    text-align: center;
+    font-weight:400;
+    font-size: 25px !important;
+    width: 100% !important;
+    /* background-color: #f7f7f7; */
+    background-color: #61c7ff;
+}
+
+.content-3-2-anggota {
+    padding: 0rem;
+}
+
+.content-3-2-anggota .img-hero {
+    width: 50%;
+    margin-bottom: 0;
+}
