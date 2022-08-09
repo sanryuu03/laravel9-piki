@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tentang</a>
@@ -80,7 +80,7 @@
     <div class="mt-2 card" style="width: 100% ">
         <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="..." style="width:100%;height: 100%;">
         <div class="card-body">
-            <a href="{{ route('read.more.berita', $berita->slug) }}" class="fs-3">{{ $berita->judul_berita }}</a>
+            <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-decoration-none fs-3">{{ $berita->judul_berita }}</a>
             <br />
             <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
             <p class="card-text fs-6">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</p>

@@ -27,9 +27,10 @@ class FrontEndPikiController extends Controller
      */
     public function index()
     {
-        $header = HeaderPiki::latest()->get();
+        $header = HeaderPiki::latest()->first();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->take(3)->get();
+        $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
         $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(3)->get();
@@ -46,6 +47,7 @@ class FrontEndPikiController extends Controller
             'header' => $header,
             'headerMobile' => $headerMobile,
             "news" => $berita,
+            "beritaLainnya" => $beritaLainnya,
             "categoryNews" => $categoryNews,
             "program" => $program,
             "agenda" => $agenda,
