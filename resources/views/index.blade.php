@@ -216,6 +216,13 @@
                               </a>
                               @endif
                           </div>
+                          <div class="mt-1 mb-1 card text-bg-dark">
+                              @if($sponsorShipTiga->picture_path ?? '')
+                              <a href="{{ $sponsorShipTiga->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshiptiga/'.$sponsorShipTiga->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
                       </div>
                   </div>
               </div>

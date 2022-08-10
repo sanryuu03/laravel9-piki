@@ -44,14 +44,14 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                <div class="my-5 border-0 shadow-lg card o-hidden">
+                    <div class="p-0 card-body">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ $menu }}</h1>
+                                        <h1 class="mb-4 text-gray-900 h4">{{ $menu }}</h1>
                                         <p class="text-gray-900">Selamat Datang</p>
                                     </div>
                                     @if(session('success'))
@@ -133,7 +133,7 @@
 
                                             <input disabled class="form-control" type="text" name="address" value="{{ $item->address }}" placeholder="Alamat" />
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="mb-3 col-md-4">
                                                 <input disabled class="form-control" type="text" name="email" value="{{ $item->email }}" placeholder="Email" />
                                             </div>
                                             <div class="col-md-8">
@@ -164,21 +164,21 @@
                                     @elseif($action == 'edit')
                                     <button type="submit" class="btn btn-info">Update</button>
                                     @elseif($action == 'showPendaftarBaru')
-                                    <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">Back</a>
-                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
-                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
+                                    <a class="btn btn-danger" href="{{ route('pendaftarBaru') }}">{{ ucwords('Back') }}</a>
+                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">{{ ucwords('process') }}</a>
+                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">{{ ucwords('approve') }}</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">{{ ucwords('tidak sesuai') }}</button>
                                     @elseif($action == 'showProsesPendaftarBaru')
                                     <a class="btn btn-danger" href="{{ route('dalamProses') }}">Back</a>
-                                    <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">tidak sesuai</button>
+                                    <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">{{ ucwords('approve') }}</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">{{ ucwords('tidak sesuai') }}</button>
                                     @elseif($action == 'showUserTidakSesuai')
                                     <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
                                     @else
                                     <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
-                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">process</a>
-                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">approve</a>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">tidak sesuai</button>
+                                    <a class="btn btn-primary" href="{{ route('process.pendaftarBaru.cv', $item->id) }}">{{ ucwords('process') }}</a>
+                                    <a class="btn btn-success" href="{{ route('approve.pendaftarBaru.cv', $item->id) }}">{{ ucwords('approve') }}</a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showPendaftarBaruModal">{{ ucwords('tidak sesuai') }}</button>
                                     @endif
                                 </div>
                                 </form>

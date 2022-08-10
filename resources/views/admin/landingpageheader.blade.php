@@ -62,7 +62,7 @@
           <div class="mb-4 col-xl-8 col-lg-7">
               <div class="card">
                   <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Upload Gambar Header Web</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">{{ ucwords('Upload Gambar Header Web') }}</h6>
 
                       @if(count($errors) > 0)
                       <div class="alert alert-danger">
@@ -76,7 +76,7 @@
                           {{ csrf_field() }}
 
                           <div class="form-group">
-                              <b>Pilih Gambar Header</b><br />
+                              <b>Pilih Gambar Header Web</b><br />
                               <p>1366 x 615</p>
                               <input type="file" name="picture_path">
                           </div>
@@ -95,7 +95,7 @@
           <div class="col">
               <div class="mb-4 card">
                   <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">gambar header Mobile</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">{{ ucwords('gambar header Mobile') }}</h6>
                       <div class="dropdown no-arrow">
                           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="text-gray-400 fas fa-ellipsis-v fa-sm fa-fw"></i>
@@ -153,7 +153,7 @@
                           {{ csrf_field() }}
 
                           <div class="form-group">
-                              <b>Pilih Gambar Header</b><br />
+                              <b>{{ ucwords('Pilih Gambar Header mobile') }}</b><br />
                               <p>720 x 952</p>
                               <input type="file" name="picture_path">
                           </div>
