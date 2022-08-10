@@ -61,7 +61,7 @@
           <div class="col-md-10">
               @foreach($categoryNews as $berita)
               <h1 class="fs-6">
-              <a href="/berita/{{ $berita->slug }}" class="read-more text-sky-400 text-decoration-none">
+              <a href="/webView/berita/{{ $berita->slug }}" class="read-more text-sky-400 text-decoration-none">
                   {{ $berita->judul_berita }}
               </a>
               </h1>
