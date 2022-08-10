@@ -68,7 +68,7 @@ footer #footer {
 }
 
 /* header */
-body .header {
+.header {
     /* background: #291586; */
     /* background-size: contain; */
     height: 100%!important;

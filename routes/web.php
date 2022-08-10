@@ -30,6 +30,10 @@ use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\DinamisUrlNavbarKeuanganController;
 use App\Http\Controllers\DynamicFormController;
 use App\Http\Controllers\MasterMenuNavbarController;
+use App\Http\Controllers\PartnerShipController;
+use App\Http\Controllers\SponsorShipDuaController;
+use App\Http\Controllers\SponsorShipSatuController;
+use App\Http\Controllers\SponsorShipTigaController;
 use App\Http\Controllers\SubKategoriAnggotaController;
 use App\Http\Controllers\SubMenuNavbarKeuanganController;
 use App\Http\Controllers\TambahAdminController;
@@ -93,6 +97,8 @@ Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->
 Route::get('/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnya']);
 // halaman single program
 Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
+Route::get('/artikel/webView/{judul}', [FrontEndPikiController::class, 'artikelWebView'])->name('read.more.artikel.web.view');
+Route::get('/artikel/Lainnya/webView/', [FrontEndPikiController::class, 'artikelLainnya']);
 
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
@@ -108,7 +114,7 @@ Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
-Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+// Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
@@ -134,6 +140,12 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::match(['get', 'post'], '/admin/hapusTambahAdmin/{id}', [TambahAdminController::class, 'hapusTambahAdmin'])->name('backend.hapus.tambah.admin');
 
     Route::resource('/admin/faq', BackendFaqController::class);
+
+    Route::resource('/admin/partnerShip', PartnerShipController::class);
+    Route::resource('/admin/sponsorShipSatu', SponsorShipSatuController::class);
+    Route::resource('/admin/sponsorShipDua', SponsorShipDuaController::class);
+    Route::resource('/admin/sponsorShipTiga', SponsorShipTigaController::class);
+
 });
 
 // berita

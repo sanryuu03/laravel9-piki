@@ -18,7 +18,7 @@
       <section class="header">
           <header>
               <div class="text-center">
-                  <img src="{{ url('/storage/assets/header/web/'.$header->picture_path) }}" alt="workly" class="" />
+                  <img src="{{ url('/storage/assets/header/web/'.$header->picture_path) }}" alt="workly" class="" style="height: 100%; width:100%;" />
               </div>
           </header>
           <div class="container text-center">
@@ -55,21 +55,21 @@
           <div class="row">
               <div class="col-8">
                   <div class="row g-0">
-                  @foreach($news as $berita)
+                      @foreach($news as $berita)
                       <div class="col-lg-6">
                           <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="mt-5 col-lg-5 ms-5 ">
                           <div class="card-body">
-                          <a href="{{ route('read.more.berita', $berita->slug) }}" class="judul-berita text-decoration-none">{{ $berita->judul_berita }}</a>
-                          <br>
-                          <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
-                          <br>
-                          <a class="text-secondary fs-6 text-decoration-none">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
+                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="judul-berita text-decoration-none">{{ $berita->judul_berita }}</a>
+                              <br>
+                              <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
+                              <br>
+                              <a class="text-secondary fs-6 text-decoration-none">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
                           </div>
                       </div>
                       <hr>
-                  @endforeach
+                      @endforeach
                   </div>
               </div>
               <div class="col-4">
@@ -82,13 +82,20 @@
                       @endforeach
                       <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
                   </ul>
+                  <!-- ITDev Academy Start-->
+                  <div class="mt-1 card text-bg-dark">
+                      <a href="{{ $partnerShip->link_web }}">
+                          <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="card-img" alt="..." style="width:100%; heigh: 100%;">
+                      </a>
+                  </div>
+                  <!-- ITDev Academy End-->
               </div>
           </div>
       </div>
       <!-- Berita End-->
       <!-- Kategory Berita Start-->
-            <div class="header-berita">
-          <h1 class="mb-3 text-center fs-1">{{ ucwords('News Category') }}</h1>
+      <div class="header-berita">
+          <h1 class="mb-3 text-center fs-1">{{ ucwords('kategori berita') }}</h1>
       </div>
       <div class="container-fluid">
           <div class="row">
@@ -118,8 +125,9 @@
       </div>
       <!-- Kategory Berita End-->
 
+
       <!-- Agenda-->
-                  <div class="header-berita">
+      <div class="header-berita">
           <h1 class="mb-3 text-center fs-1">{{ ucwords('agenda') }}</h1>
       </div>
       <section class="" style="">
@@ -160,205 +168,98 @@
       </section>
 
       <!-- Anggota-->
-    <div class="header-anggota">
+      <div class="header-anggota">
           <h1 class="mb-3 text-center fs-1">{{ ucwords('anggota') }}</h1>
       </div>
       <section class="" style="">
 
           <div class="mx-auto content-3-2-anggota container-xxl" style="font-family: 'Poppins', sans-serif">
-                  <!-- Left Column -->
-                  <div class="mx-auto text-center img-hero left-column d-flex justify-content-center">
-                      <div class="container-xxl">
-                          @foreach($anggota as $item)
-                          <div class="mb-3 card">
-                              <div class="row g-0">
-                                  <div class="col-md-3">
-                                      @if($item->userPiki->photo_profile)
-                                      <img src="{{ url('/storage/assets/user/profile/'.$item->userPiki->photo_profile) }}" class="img-fluid rounded-start" alt="...">
-                                      @else
-                                      <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
-                                      @endif
-                                  </div>
-                                  <div class="mt-4 col-md-8">
-                                      <div class="card-body">
-                                          <h5 class="card-title">{{ $item->name }}</h5>
-                                          <small class="text-muted">{{ $item->jabatan_piki_sumut }}</small>
-                                          <p class="card-text">{{ $item->job }}</p>
+              <div class="container text-center">
+                  <div class="row">
+                      <div class="col-lg-8">
+                          <!-- Left Column -->
+                          <div class="container-xxl">
+                              @foreach($anggota as $item)
+                              <div class="mb-3 card">
+                                  <div class="row g-0">
+                                      <div class="col-md-3">
+                                          @if($item->userPiki->photo_profile)
+                                          <img src="{{ url('/storage/assets/user/profile/'.$item->userPiki->photo_profile) }}" class="img-fluid rounded-start" alt="...">
+                                          @else
+                                          <img src="/images/avatar.png" class="img-fluid rounded-start" alt="...">
+                                          @endif
+                                      </div>
+                                      <div class="mt-4 col-md-8">
+                                          <div class="card-body">
+                                              <h5 class="card-title">{{ $item->name }}</h5>
+                                              <small class="text-muted">{{ ucwords($item->jabatan_piki_sumut) }}</small>
+                                              <p class="card-text">{{ $item->job }}</p>
+                                          </div>
                                       </div>
                                   </div>
                               </div>
+                              @endforeach
                           </div>
-                          @endforeach
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="card text-bg-dark">
+                              @if($sponsorShipSatu->picture_path ?? '')
+                              <a href="{{ $sponsorShipSatu->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshipsatu/'.$sponsorShipSatu->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
+                          <div class="mt-1 card text-bg-dark">
+                              @if($sponsorShipDua->picture_path ?? '')
+                              <a href="{{ $sponsorShipDua->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshipdua/'.$sponsorShipDua->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
                       </div>
                   </div>
+              </div>
+
           </div>
       </section>
       <!-- Ruang Sponsor-->
-          <div class="header-anggota">
-          <h1 class="mb-3 text-center fs-1">{{ ucwords('Community Partners') }}</h1>
+      <div id="artikel" class="header-anggota">
+          <h1 class="mb-3 text-center fs-1">{{ ucwords('artikel') }}</h1>
       </div>
-      <section class="h1-00 w-100 bg-piki-3" style="box-sizing: border-box">
-          <style>
-              @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-              .content-sponsor .btn:focus,
-              .content-sponsor .btn:active {
-                  outline: none !important;
-              }
-
-              .content-sponsor {
-                  padding: 5rem 2rem;
-              }
-
-              .content-sponsor .img-hero {
-                  width: 100%;
-                  margin-bottom: 3rem;
-              }
-
-              .content-sponsor .right-column {
-                  width: 100%;
-              }
-
-              .content-sponsor .title-text {
-                  font: 600 1.875rem/2.25rem Poppins, sans-serif;
-                  margin-bottom: 2.5rem;
-                  letter-spacing: -0.025em;
-                  color: #121212;
-              }
-
-              .content-sponsor .title-caption {
-                  font: 500 1.5rem/2rem Poppins, sans-serif;
-                  margin-bottom: 1.25rem;
-                  color: #121212;
-              }
-
-              .content-sponsor .circle {
-                  font: 500 1.25rem/1.75rem Poppins, sans-serif;
-                  height: 3rem;
-                  width: 3rem;
-                  margin-bottom: 1.25rem;
-                  border-radius: 9999px;
-                  background-color: #61c7ff;
-              }
-
-              .content-sponsor .text-caption {
-                  font: 400 1rem/1.75rem Poppins, sans-serif;
-                  letter-spacing: 0.025em;
-                  color: #565656;
-              }
-
-              .content-sponsor .btn-learn-agenda {
-                  font: 600 1rem/1.5rem Poppins, sans-serif;
-                  padding: 1rem 2.5rem;
-                  background-color: #0d8aff;
-                  transition: 0.3s;
-                  letter-spacing: 0.025em;
-                  border-radius: 0.75rem;
-              }
-
-              .content-sponsor .btn:hover {
-                  background-color: #45dbb2;
-                  transition: 0.3s;
-              }
-
-              @media only screen and (max-width: 480px) {
-                  .content-sponsor .title-text {
-                      margin-top: -175px !important;
-                      font: 600 1.875rem/2.25rem Poppins, sans-serif;
-                      background-color: #f7f7f7;
-                      margin-left: -350px !important;
-                      min-width: 1024px !important;
-                  }
-
-                  .content-sponsor .left-column {
-                      min-width: 410px !important;
-                      margin-top: -40px !important;
-                      margin-left: -1px !important;
-                      margin-right: 0px !important;
-                  }
-
-                  .content-sponsor .right-column {
-                      min-width: 410px !important;
-                      margin-top: 0px !important;
-                  }
-
-                  .content-sponsor .isi-konten-sponsor {
-                      margin-bottom: -500px !important;
-                  }
-              }
-
-              @media (min-width: 768px) {
-                  h2 {
-                      margin-top: -70px !important;
-                  }
-
-                  .content-sponsor .title-text {
-                      font: 600 2.25rem/2.5rem Poppins, sans-serif;
-                  }
-
-                  .content-sponsor .left-column {
-                      width: 52%;
-                      margin-left: -40px !important;
-                  }
-
-                  .content-sponsor .isi-konten-partner {
-                      height: 350px;
-                      width: 50%;
-                      margin-left: -10px !important;
-                  }
-              }
-
-              @media (min-width: 992px) {
-                  .content-sponsor .right-column {
-                      width: 100%;
-                  }
-
-                  .content-sponsor .circle {
-                      margin-right: 1.25rem;
-                      margin-bottom: 0;
-                  }
-              }
-
-          </style>
-          <div class="mx-auto content-sponsor container-xxl position-relative" style="font-family: 'Poppins', sans-serif">
-              <h2 class="text-center title-text text-slate-500">Community Partners</h2>
-              <div class="d-flex flex-lg-row flex-column align-items-center">
-                  @foreach($sponsor as $item)
-
-                  <!-- Left Column -->
-                  <div class="text-center container-fluid left-column d-flex">
-                      <div class="">
-                          <div class="card bg-dark">
-                              <img src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}" class="object-fill card-img" alt="...">
+      <div class="container-xxl">
+          <div class="row">
+              <div class="col-8">
+                  <div class="row g-0">
+                      @foreach($sponsor as $item)
+                      <div class="col-lg-6">
+                          <img src="{{ url('/storage/assets/artikel/'.$item->picture_path) }}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="mt-5 col-lg-5 ms-5 ">
+                          <div class="card-body">
+                              <a href="{{ route('read.more.artikel.web.view', $item->judul) }}" class="judul-berita text-decoration-none">{{ $item->judul }}</a>
+                              <br>
+                              <a class="text-secondary fs-6">{{ $item->penulis }}</a>
+                              <br>
+                              <a class="text-secondary fs-6 text-decoration-none">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
                           </div>
                       </div>
+                      <hr>
+                      @endforeach
                   </div>
-
-                  <!-- Right Column -->
-                  <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start">
-                      <ul style="padding: 0; margin: 0">
-                          <div class="container-fluid">
-                              <div class="card card-body d-lg-none isi-konten-sponsor">
-                                  {!! str()->limit($item->konten_sponsor, 250) !!}.
-                                  <br />
-                                  <a href="#" class="read-more text-sky-400">Read More...</a>
-                              </div>
-                          </div>
-                          <!-- tampilan web -->
-                          <div class="container-fluid justify-content-center d-flex">
-                              <div class="d-none d-sm-block d-block card card-body isi-konten-partner">
-                                  {!! str()->limit($item->konten_sponsor, 1080) !!}.
-                                  <br />
-                                  <a href="" class="read-more text-sky-400">Read More...</a>
-                              </div>
-                          </div>
-                      </ul>
-                  </div>
-                  @endforeach
-
+              </div>
+              <div class="col-4">
+                  <ul class="list-group">
+                      <li class="list-group-item active" aria-current="true">{{ ucwords('artikel lainnya') }}</li>
+                      @foreach($sponsorLainnya as $key => $lainnya)
+                      <a href="{{ route('read.more.artikel.web.view', $item->judul) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
+                          {{ $lainnya->judul }}
+                      </a>
+                      @endforeach
+                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="{{ url('/artikel/Lainnya/webView/') }}">{{ ucwords('Lihat lebih banyak artikel') }}</a>
+                  </ul>
               </div>
           </div>
-      </section>
+      </div>
 
       <!-- Faq's-->
       <section class="faq-container" id="faq" class="collapse">

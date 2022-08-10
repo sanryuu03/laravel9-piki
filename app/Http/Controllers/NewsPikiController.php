@@ -71,6 +71,8 @@ class NewsPikiController extends Controller
 
         // upload file
         $file->move($tujuan_upload, $nama_file);
+        $data['picture_path'] = $nama_file;
+
 
         NewsPiki::create($data);
 

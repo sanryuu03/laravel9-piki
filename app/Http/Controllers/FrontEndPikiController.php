@@ -17,6 +17,10 @@ use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
 use App\Models\BackendFaq;
+use App\Models\PartnerShip;
+use App\Models\SponsorShipDua;
+use App\Models\SponsorShipSatu;
+use App\Models\SponsorShipTiga;
 
 class FrontEndPikiController extends Controller
 {
@@ -30,7 +34,7 @@ class FrontEndPikiController extends Controller
         $header = HeaderPiki::latest()->first();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->take(3)->get();
-        $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
+        $beritaLainnya = NewsPiki::latest()->skip(3)->take(6)->get();
         $categoryNews = CategoryNews::all();
         $beritaSejenis = NewsPiki::latest()->take(5)->get();
         // return Carbon::parse(Carbon::now())->timestamp;
@@ -40,8 +44,13 @@ class FrontEndPikiController extends Controller
         $anggota = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')->get();
         // return $anggota;
         $user = User::all();
-        $sponsor = SponsorPiki::take(7)->get();
+        $sponsor = SponsorPiki::latest()->take(3)->get();
+        $sponsorLainnya = SponsorPiki::take(5)->latest()->get();
         $backendFaq = BackendFaq::get();
+        $partnerShip = PartnerShip::latest()->first();
+        $sponsorShipSatu = SponsorShipSatu::latest()->first();
+        $sponsorShipDua = SponsorShipDua::latest()->first();
+        $sponsorShipTiga = SponsorShipTiga::latest()->first();
         return view('/index', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
@@ -57,7 +66,12 @@ class FrontEndPikiController extends Controller
             "anggota" => $anggota,
             "user" => $user,
             "sponsor" => $sponsor,
+            "sponsorLainnya" => $sponsorLainnya,
             "backendFaq" => $backendFaq,
+            "partnerShip" => $partnerShip,
+            "sponsorShipSatu" => $sponsorShipSatu,
+            "sponsorShipDua" => $sponsorShipDua,
+            "sponsorShipTiga" => $sponsorShipTiga,
         ]);
     }
 
@@ -145,6 +159,26 @@ class FrontEndPikiController extends Controller
         ]);
     }
 
+    public function artikelWebView($judul)
+    {
+        $sponsorPiki = SponsorPiki::where('judul', $judul)->first();
+        return view('/artikelWebView', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "SponsorPiki" => $sponsorPiki,
+        ]);
+    }
+
+
+    public function artikelLainnya()
+    {
+        $sponsorPiki = SponsorPiki::latest()->get();
+        return view('/artikelWebViewLainnya', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "sponsorPiki" => $sponsorPiki,
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

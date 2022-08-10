@@ -204,7 +204,7 @@
     @foreach($sponsor as $item)
 
     <div class="card" style="width: 100%;">
-        <img src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}" class="card-img-top" alt="...">
+        <img src="{{ url('/storage/assets/artikel/'.$item->picture_path) }}" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">{!! str()->limit($item->konten_sponsor, 250) !!}</p>
         </div>

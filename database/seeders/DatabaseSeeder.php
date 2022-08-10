@@ -14,6 +14,7 @@ use App\Models\DataBankIuran;
 use App\Models\DataRekening;
 use App\Models\DynamicForm;
 use App\Models\DynamicTable;
+use App\Models\HeaderPiki;
 use App\Models\HeaderPikiMobile;
 use App\Models\jenisPemasukan;
 use App\Models\JenisSetoran;
@@ -41,6 +42,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        HeaderPiki::create([
+            'picture_path' => '1660096147_header web.png',
+            'created_at' => Carbon::parse(Carbon::now())->timestamp,
+        ]);
 
         HeaderPikiMobile::create([
             'picture_path' => '1659926313_mobile device cut cover.png',
@@ -234,7 +240,7 @@ class DatabaseSeeder extends Seeder
         CategoryNews::create([
             'name' => 'Budaya',
             'slug' => 'north-sumatra',
-            'picture_path_kategori_berita' => '1659933729_unsplash Tjong A Fie.jpe',
+            'picture_path_kategori_berita' => '1659933729_unsplash Tjong A Fie.jpeg',
         ]);
 
         AgendaPiki::create([
@@ -582,22 +588,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         SponsorPiki::create([
+            'judul' => 'Komitmen Pertamina terhadap Program Keberlanjutan',
             'picture_path' => '1659943232_sponsor.jpeg',
-            'konten_sponsor' => 'Komitmen Pertamina terhadap Program Keberlanjutan.
-
-            JAKARTA – Pertamina berkomitmen untuk program keberlanjutan atau sustainability. Hal ini disampaikan oleh Vice President Investor Relation Juferson Mangempis dalam forum Malaysia Technology Expo (MTE) 2022.
-
-            Ia mengatakan ambisi Pertamina adalah menjadi perusahaan Energi Global yang terkemuka dan bereputasi baik serta diakui sebagai Perusahaan Ramah Lingkungan, Perusahaan yang Bertanggung Jawab Sosial, dan Perusahaan Tata Kelola yang Baik.
-
-            “Strategi keberlanjutan kami diterjemahkan ke dalam 10 Fokus Keberlanjutan, masing-masing selaras dengan SDGs dan memiliki target utamanya. Perubahan iklim tidak. Satu prioritas dalam fokus kami. Strategi kami dijalankan melalui inisiatif prioritas, antara lain mengembangkan Net Zero Roadmap, Dekarbonisasi, dan Meningkatkan Kapasitas EBT,” ujarnya.
-
-            Pertamina mengalokasikan CAPEX sebesar 14% untuk Energi Bersih, Baru, dan Terbarukan. Komitmen Pertamina ini sejalan dengan upaya pemanfaatan sumber daya dalam negeri untuk memasok energi dalam negeri menuju pembangunan hijau dan dekarbonisasi.
-
-            “Mendukung Decarbonization Roadmap 2030,  Pertamina telah menetapkan target pengurangan emisi 30% pada tahun 2030, dibandingkan dengan baseline 2010 kami (lingkup 1 + 2). Kami saat ini mengevaluasi target pengurangan emisi yang lebih ambisius, mungkin sekitar 38% vs baseline 2010. Ke depan, kami sedang mengembangkan Strategi Net Zero kami,” tambahnya.
-
-            Pertamina telah mengurangi 27% emisi pada 2010-2020 untuk mendukung Kontribusi Nasional Indonesia. Pertamina juga melibatkan mitra nasional maupun internasional untuk mengeksplorasi kemitraan untuk dekarbonisasi dan mempercepat pertumbuhan EBT.
-
-            “Kita melakukan kolaborasi dan melibatkan mitra nasional dan internasional untuk mempercepat net zero emission. Semoga kerja keras ini bisa berjalan dengan baik,” tutupnya',
+            'konten' => '<div>Komitmen Pertamina terhadap Program Keberlanjutan.&nbsp;<br>JAKARTA – Pertamina berkomitmen untuk program keberlanjutan atau sustainability. Hal ini disampaikan oleh Vice President Investor Relation Juferson Mangempis dalam forum Malaysia Technology Expo (MTE) 2022. Ia mengatakan ambisi Pertamina adalah menjadi perusahaan Energi Global yang terkemuka dan bereputasi baik serta diakui sebagai Perusahaan Ramah Lingkungan, Perusahaan yang Bertanggung Jawab Sosial, dan Perusahaan Tata Kelola yang Baik. “Strategi keberlanjutan kami diterjemahkan ke dalam 10 Fokus Keberlanjutan, masing-masing selaras dengan SDGs dan memiliki target utamanya. Perubahan iklim tidak. Satu prioritas dalam fokus kami.&nbsp;<br><br>Strategi kami dijalankan melalui inisiatif prioritas, antara lain mengembangkan Net Zero Roadmap, Dekarbonisasi, dan Meningkatkan Kapasitas EBT,” ujarnya. Pertamina mengalokasikan CAPEX sebesar 14% untuk Energi Bersih, Baru, dan Terbarukan. Komitmen Pertamina ini sejalan dengan upaya pemanfaatan sumber daya dalam negeri untuk memasok energi dalam negeri menuju pembangunan hijau dan dekarbonisasi. “Mendukung Decarbonization Roadmap 2030, Pertamina telah menetapkan target pengurangan emisi 30% pada tahun 2030, dibandingkan dengan baseline 2010 kami (lingkup 1 + 2). Kami saat ini mengevaluasi target pengurangan emisi yang lebih ambisius, mungkin sekitar 38% vs baseline 2010. Ke depan, kami sedang mengembangkan Strategi Net Zero kami,” tambahnya.&nbsp;<br><br>Pertamina telah mengurangi 27% emisi pada 2010-2020 untuk mendukung Kontribusi Nasional Indonesia. Pertamina juga melibatkan mitra nasional maupun internasional untuk mengeksplorasi kemitraan untuk dekarbonisasi dan mempercepat pertumbuhan EBT. “Kita melakukan kolaborasi dan melibatkan mitra nasional dan internasional untuk mempercepat net zero emission. Semoga kerja keras ini bisa berjalan dengan baik,” tutupnya</div>',
+            'penulis' => ucwords('arnold'),
         ]);
 
         DataRekening::create([

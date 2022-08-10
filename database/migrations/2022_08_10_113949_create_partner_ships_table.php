@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sponsor_pikis', function (Blueprint $table) {
+        Schema::create('partner_ships', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('judul');
             $table->text('picture_path');
-            $table->text('konten');
-            $table->text('penulis');
+            $table->text('link_web');
             $table->string('post_by')->nullable();
             $table->string('edited_by')->nullable();
             $table->timestamps();
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsor_pikis');
+        Schema::dropIfExists('partner_ships');
     }
 };

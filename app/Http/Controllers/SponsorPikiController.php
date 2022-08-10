@@ -18,7 +18,7 @@ class SponsorPikiController extends Controller
         $user = auth()->user()->id;
         return view('admin/communitypartners', [
             "title" => "PIKI - SUMUT",
-            "menu" => "Community Partners",
+            "menu" => ucwords('artikel'),
             "creator" => $user,
             "sponsor" => $sponsor,
         ]);
@@ -43,28 +43,26 @@ class SponsorPikiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'judul' => 'required',
             'picture_path' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'konten_sponsor' => 'required',
+            'konten' => 'required',
+            'penulis' => 'required',
 
         ]);
-
-        // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('picture_path');
         // dd($request->file('picture_path'));
         $nama_file = time() . "_" . $file->getClientOriginalName();
 
         // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'storage/assets/sponsor/';
+        $tujuan_upload = 'storage/assets/artikel/';
 
         // upload file
         $file->move($tujuan_upload, $nama_file);
+        $data['picture_path'] = $nama_file;
+// return $data;
+        SponsorPiki::create($data);
 
-        SponsorPiki::create([
-            "konten_sponsor" => $data['konten_sponsor'],
-            'picture_path' => $nama_file,
-        ]);
-
-        return redirect()->back();
+        return redirect()->back()->with('success', ucwords('artikel telah ditambahkan'));
     }
 
     /**
@@ -89,7 +87,7 @@ class SponsorPikiController extends Controller
         $sponsorPiki = SponsorPiki::find($id);
         return view('admin/editcommunitypartners', [
             "title" => "PIKI - SUMUT",
-            "menu" => "Community Partners",
+            "menu" => ucwords('artikel'),
             "creator" => "San",
             "item" => $sponsorPiki,
         ]);
@@ -102,7 +100,7 @@ class SponsorPikiController extends Controller
      * @param  \App\Models\SponsorPiki  $sponsorPiki
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SponsorPiki $sponsorPiki)
+    public function update(Request $request)
     {
         if ($request->file('picture_path')) {
             // menyimpan data file yang diupload ke variabel $file
@@ -111,7 +109,7 @@ class SponsorPikiController extends Controller
             $nama_file = time() . "_" . $file->getClientOriginalName();
 
             // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'storage/assets/sponsor/';
+            $tujuan_upload = 'storage/assets/artikel/';
 
             // upload file
             $file->move($tujuan_upload, $nama_file);
@@ -123,7 +121,9 @@ class SponsorPikiController extends Controller
         }
         SponsorPiki::where('id', $request->id)
             ->update([
-                'konten_sponsor' => $request->konten_sponsor,
+                'judul' => $request->judul,
+                'konten' => $request->konten,
+                'penulis' => $request->penulis,
             ]);
 
 

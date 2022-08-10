@@ -95,7 +95,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{  url('/admin/communitypartners') }}">
                     <i class="fas fa-fw fa-handshake"></i>
-                    <span>Community Partners</span>
+                    <span>{{ ucwords('artikel') }}</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -108,6 +108,12 @@
                 <a class="nav-link" href="{{  url('/admin/faq') }}">
                     <i class="fas fa-fw fa-circle-question"></i>
                     <span>FAQ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/partnerShip') }}">
+                    <i class="fa-solid fa-archway"></i>
+                    <span>{{ ucwords('sponsorship') }}</span>
                 </a>
             </li>
             @endif

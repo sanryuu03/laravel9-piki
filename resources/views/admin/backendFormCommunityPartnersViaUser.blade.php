@@ -42,7 +42,7 @@
 
                   <div class="form-group">
                       <label>Foto Community Partners</label>
-                      <input type="file" name="picture_path" class="form-control" value="{{ old(url('/storage/assets/sponsor/'.$sponsorPiki->picture_path)) }}">
+                      <input type="file" name="picture_path" class="form-control" value="{{ old(url('/storage/assets/artikel/'.$sponsorPiki->picture_path)) }}">
                   </div>
                   <div class="form-group">
                       <label>Keterangan Community Partners</label>

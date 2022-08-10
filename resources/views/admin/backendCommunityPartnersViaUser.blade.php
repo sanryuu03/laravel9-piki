@@ -71,7 +71,7 @@
               <tbody>
                   @foreach($sponsor as $item)
                   <tr>
-                      <td><img width="150px" src="{{ url('/storage/assets/sponsor/'.$item->picture_path) }}"></td>
+                      <td><img width="150px" src="{{ url('/storage/assets/artikel/'.$item->picture_path) }}"></td>
                       <td class="text-white">{!! $item->konten_sponsor !!}</td>
                       <td class="text-white">{{ $item->created_at }}</td>
                       <td class="text-white">{{ $item->updated_at }}</td>
