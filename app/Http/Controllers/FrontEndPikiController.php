@@ -109,7 +109,7 @@ class FrontEndPikiController extends Controller
         ]);
     }
 
-    public function news(NewsPiki $newsPiki)
+    public function newsWebView(NewsPiki $newsPiki)
     {
         // return $newsPiki;
         // return $newsPiki->categoryNews;
@@ -120,7 +120,27 @@ class FrontEndPikiController extends Controller
         // return
         $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
 
-        return view('/news', [
+        return view('/newsWebView', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "news" => $newsPiki,
+            "category" => $categoryNews[0]->name,
+            "categoryNews" => $listberita,
+        ]);
+    }
+
+    public function newsMobileView(NewsPiki $newsPiki)
+    {
+        // return $newsPiki;
+        // return $newsPiki->categoryNews;
+        // return $newsPiki->judul_berita;
+        // return $newsPiki->categoryNews->name;
+        $categoryNewsId = CategoryNews::where('name', $newsPiki->categoryNews->name)->get();
+        $listberita = $newsPiki->where('category_news_id',$newsPiki->category_news_id)->get();
+        // return
+        $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
+
+        return view('/newsMobileView', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "news" => $newsPiki,
@@ -149,10 +169,20 @@ class FrontEndPikiController extends Controller
         ]);
     }
 
-    public function beritaLainnya()
+    public function beritaLainnyaWebView()
     {
         $newsPiki = NewsPiki::latest()->get();
-        return view('/beritaLainnya', [
+        return view('/beritaLainnyaWebView', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "newsPiki" => $newsPiki,
+        ]);
+    }
+
+    public function beritaLainnyaMobileView()
+    {
+        $newsPiki = NewsPiki::latest()->get();
+        return view('/beritaLainnyaMobileView', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "newsPiki" => $newsPiki,

@@ -36,9 +36,9 @@
     <div class="mt-2 card" style="width: 100% ">
         <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="..." style="width:100%;height: 100%;">
         <div class="card-body">
-            <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-decoration-none fs-3">{{ $berita->judul_berita }}</a>
+            <a href="{{ route('read.more.berita.mobile.view', $berita->slug) }}" class="text-decoration-none fs-3">{{ $berita->judul_berita }}</a>
             <br />
-            <a href="{{ route('read.more.berita', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
+            <a href="{{ route('read.more.berita.mobile.view', $berita->slug) }}" class="text-secondary fs-6">{{ $berita->categoryNews->name }}</a>
             <p class="card-text fs-6">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</p>
         </div>
     </div>
@@ -82,12 +82,12 @@
                 @foreach($beritaLainnya as $key => $item)
                 <?php $no++ ;?>
                 <h4 class="list-group">
-                    <a href="{{ route('read.more.berita', $item->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
+                    <a href="{{ route('read.more.berita.mobile.view', $item->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
                         {{ $item->judul_berita }}
                     </a>
                 </h4>
                 @endforeach
-                <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
+                <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/mobileView/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
             </div>
         </div>
     </div>

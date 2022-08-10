@@ -93,8 +93,10 @@ Route::get('/login', [RegisterController::class, 'login'])->middleware('guest')-
 Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 // halaman single berita
-Route::get('/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'news'])->name('read.more.berita');
-Route::get('/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnya']);
+Route::get('/webView/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'newsWebView'])->name('read.more.berita');
+Route::get('/mobileView/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'newsMobileView'])->name('read.more.berita.mobile.view');
+Route::get('/webView/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnyaWebView']);
+Route::get('/mobileView/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnyaMobileView']);
 // halaman single program
 Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
 Route::get('/artikel/webView/{judul}', [FrontEndPikiController::class, 'artikelWebView'])->name('read.more.artikel.web.view');
@@ -114,7 +116,7 @@ Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
-// Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');

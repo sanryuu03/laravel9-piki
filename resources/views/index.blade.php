@@ -80,7 +80,7 @@
                           {{ $lainnya->judul_berita }}
                       </a>
                       @endforeach
-                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
+                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/webView/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
                   </ul>
                   <!-- ITDev Academy Start-->
                   <div class="mt-1 card text-bg-dark">
