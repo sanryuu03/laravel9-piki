@@ -214,9 +214,6 @@
     </div>
     @endforeach
     {{-- faq --}}
-    <div class="p-0 container-fluid header-program">
-        <h1 class="mb-3 text-center fs-1">{{ ucwords('FAQ') }}</h1>
-    </div>
       <section class="faq-container" id="faq" class="collapse">
       <div id="accordion">
 
