@@ -36,7 +36,7 @@ class FrontEndPikiController extends Controller
         $berita = NewsPiki::latest()->take(3)->get();
         $beritaLainnya = NewsPiki::latest()->skip(3)->take(6)->get();
         $categoryNews = CategoryNews::all();
-        $beritaSejenis = NewsPiki::latest()->take(5)->get();
+        $beritaSejenis = NewsPiki::latest()->get();
         // return Carbon::parse(Carbon::now())->timestamp;
         $program = ProgramPiki::take(3)->get();
         $agenda = AgendaPiki::orderBy('id', 'desc')->take(4)->get();

@@ -111,11 +111,15 @@
                   </a>
                   <ul class="list-group">
                       <li class="list-group-item bg-primary d-flex align-items-center justify-content-center" aria-current="true">{{ ucwords('berita sejenis') }}</li>
+                      @php $count=0; @endphp
                       @foreach($beritaSejenis as $key => $sejenis)
                       @if($kategori->id == $sejenis->category_news_id)
+                      @php $count+=1; @endphp
+                      @if ($count <= 5)
                       <a href="{{ route('read.more.berita', $sejenis->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
                           {{ $sejenis->judul_berita }}
                       </a>
+                      @endif
                       @endif
                       @endforeach
                   </ul>
