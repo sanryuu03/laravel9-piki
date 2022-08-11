@@ -20,6 +20,7 @@ use App\Models\jenisPemasukan;
 use App\Models\JenisSetoran;
 use App\Models\MasterMenuNavbar;
 use App\Models\ProgramPiki;
+use App\Models\SponsorshipBeforeFaq;
 use App\Models\StaticField;
 use Illuminate\Database\Seeder;
 use Database\Seeders\IndoRegionSeeder;
@@ -717,6 +718,15 @@ class DatabaseSeeder extends Seeder
         BackendFaq::create([
             'pertanyaan' => 'question 3',
             'jawaban' => 'answer 3',
+        ]);
+
+        SponsorshipBeforeFaq::create([
+            'iklan_1' => '',
+            'link_web_1' => '',
+            'iklan_2' => '',
+            'link_web_2' => '',
+            'iklan_3' => '',
+            'link_web_3' => '',
         ]);
     }
 }

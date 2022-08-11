@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PartnerShip;
+use App\Models\SponsorshipBeforeFaq;
 use App\Models\SponsorShipDua;
 use App\Models\SponsorShipSatu;
 use App\Models\SponsorShipTiga;
@@ -21,6 +22,7 @@ class PartnerShipController extends Controller
         $sponsorShipSatu = SponsorShipSatu::latest()->first();
         $sponsorShipDua = SponsorShipDua::latest()->first();
         $sponsorShipTiga = SponsorShipTiga::latest()->first();
+        $sponsorshipBeforeFaq = SponsorshipBeforeFaq::get();
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/partnership', [
@@ -31,6 +33,7 @@ class PartnerShipController extends Controller
             "sponsorShipSatu" => $sponsorShipSatu,
             "sponsorShipDua" => $sponsorShipDua,
             "sponsorShipTiga" => $sponsorShipTiga,
+            "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
             "action" => 'add',
             "namaUser" => $namaUser,
         ]);

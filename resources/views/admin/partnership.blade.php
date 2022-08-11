@@ -19,6 +19,7 @@
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">{{ ucwords('sponsorship') }}</button>
               <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">{{ ucwords('partnership') }}</button>
+              <button class="nav-link" id="nav-faq-tab" data-toggle="tab" data-target="#nav-faq" type="button" role="tab" aria-controls="nav-faq" aria-selected="false">{{ ucwords('sponsorship di atas FAQ') }}</button>
           </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
@@ -297,6 +298,201 @@
                   </div>
               </div>
               <!--Table PartnerShip End-->
+          </div>
+          <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+              <!-- SponsorShip Before Faq Start-->
+              <div class="mx-3 my-3 card">
+                  <div class="card-body">
+                      <div class="container-fluid">
+                          <form method="post" action="{{ route('sponsorShipBeforeFaq.store') }}" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <div class="form-group">
+                                  <label>{{ ucwords('foto flyer sponsor ship 4') }}</label>
+                                  <input type="file" name="iklan_1" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <label>{{ ucwords('link web') }}</label>
+                                  <input type="text" name="link_web_1" class="form-control @error('link_web_1') is-invalid @enderror" value="{{ old('link_web_1') }}">
+                                  @error('link_web_1')
+                                  <div class="invalid-feedback">
+                                      {{ $message }}
+                                  </div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  @if($action == "add")
+                                  <label>Di Posting Oleh</label>
+                                  <input type="text" readonly name="post_by" class="form-control" value="{{ old('post_by', $namaUser) }}">
+                                  @else
+                                  <label>Di Edit Oleh</label>
+                                  <input type="text" readonly name="edited_by" class="form-control" value="{{ old('edited_by', $namaUser) }}">
+                                  @endif
+                              </div>
+
+
+                              <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <!-- SponsorShip Before Faq End-->
+              <!-- SponsorShip Before Faq Start-->
+              <div class="mx-3 my-3 card">
+                  <div class="card-body">
+                      <div class="container-fluid">
+                          <form method="post" action="{{ route('sponsorShipBeforeFaq.store') }}" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <div class="form-group">
+                                  <label>{{ ucwords('foto flyer sponsor ship 5') }}</label>
+                                  <input type="file" name="iklan_2" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <label>{{ ucwords('link web') }}</label>
+                                  <input type="text" name="link_web_2" class="form-control @error('link_web_2') is-invalid @enderror" value="{{ old('link_web_2') }}">
+                                  @error('link_web_2')
+                                  <div class="invalid-feedback">
+                                      {{ $message }}
+                                  </div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  @if($action == "add")
+                                  <label>Di Posting Oleh</label>
+                                  <input type="text" readonly name="post_by" class="form-control" value="{{ old('post_by', $namaUser) }}">
+                                  @else
+                                  <label>Di Edit Oleh</label>
+                                  <input type="text" readonly name="edited_by" class="form-control" value="{{ old('edited_by', $namaUser) }}">
+                                  @endif
+                              </div>
+
+
+                              <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <!-- SponsorShip Before Faq End-->
+              <!-- SponsorShip Before Faq Start-->
+              <div class="mx-3 my-3 card">
+                  <div class="card-body">
+                      <div class="container-fluid">
+                          <form method="post" action="{{ route('sponsorShipBeforeFaq.store') }}" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <div class="form-group">
+                                  <label>{{ ucwords('foto flyer sponsor ship 6') }}</label>
+                                  <input type="file" name="iklan_3" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <label>{{ ucwords('link web') }}</label>
+                                  <input type="text" name="link_web_3" class="form-control @error('link_web_3') is-invalid @enderror" value="{{ old('link_web_3') }}">
+                                  @error('link_web_3')
+                                  <div class="invalid-feedback">
+                                      {{ $message }}
+                                  </div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  @if($action == "add")
+                                  <label>Di Posting Oleh</label>
+                                  <input type="text" readonly name="post_by" class="form-control" value="{{ old('post_by', $namaUser) }}">
+                                  @else
+                                  <label>Di Edit Oleh</label>
+                                  <input type="text" readonly name="edited_by" class="form-control" value="{{ old('edited_by', $namaUser) }}">
+                                  @endif
+                              </div>
+
+
+                              <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <!-- SponsorShip Before Faq End-->
+              <!--Table SponsorShip Before Faq Start-->
+              <div class="container-fluid">
+                  <div class="card-body table-responsive">
+                      <table class="table table-bordered table-striped">
+                          <thead>
+                              <tr>
+                                  <th width="1px">{{ ucwords('sponsor ship') }}</th>
+                                  <th width="1px">{{ ucwords('foto gambar') }}</th>
+                                  <th width="1px">{{ ucwords('link web') }}</th>
+                                  <th width="1px">Created At</th>
+                                  <th width="1px">Updated At</th>
+                                  <th width="0.01%">OPSI</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>{{ ucwords('sponsor ship 4') }}</td>
+                                  @if($sponsorshipBeforeFaq[0]->iklan_1 ?? '')
+                                  <td><img width="150px" src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq[0]->iklan_1) }}"></td>
+                                  @else
+                                  <td></td>
+                                  @endif
+                                  <td>{{ $sponsorshipBeforeFaq[0]->link_web_1 }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->created_at ?? '' }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->updated_at ?? '' }}</td>
+                                  <td>
+                                      <form action="{{ route('sponsorShipBeforeFaq.destroy', [1,'iklan'=>'iklan_1', 'link_web'=>'link_web_1'] ?? '') }}" method="POST" class="d-inline">
+                                          {!! method_field('delete') . csrf_field() !!}
+                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
+                                              <i class="fa-solid fa-trash-can"></i>
+                                          </button>
+                                      </form>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>{{ ucwords('sponsor ship 5') }}</td>
+                                  @if($sponsorshipBeforeFaq[0]->iklan_2 ?? '')
+                                  <td><img width="150px" src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq[0]->iklan_2) }}"></td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->link_web_2 }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->created_at ?? '' }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->updated_at ?? '' }}</td>
+                                  <td>
+                                      <form action="{{ route('sponsorShipBeforeFaq.destroy', [1,'iklan'=>'iklan_2', 'link_web'=>'link_web_2'] ?? '') }}" method="POST" class="d-inline">
+                                          {!! method_field('delete') . csrf_field() !!}
+                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
+                                              <i class="fa-solid fa-trash-can"></i>
+                                          </button>
+                                      </form>
+                                  </td>
+                                  @else
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  @endif
+                              </tr>
+                              <tr>
+                                  <td>{{ ucwords('sponsor ship 6') }}</td>
+                                  @if($sponsorshipBeforeFaq[0]->iklan_3 ?? '')
+                                  <td><img width="150px" src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq[0]->iklan_3) }}"></td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->link_web_3 }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->created_at ?? '' }}</td>
+                                  <td>{{ $sponsorshipBeforeFaq[0]->updated_at ?? '' }}</td>
+                                  <td>
+                                      <form action="{{ route('sponsorShipBeforeFaq.destroy', [1,'iklan'=>'iklan_3', 'link_web'=>'link_web_3'] ?? '') }}" method="POST" class="d-inline">
+                                          {!! method_field('delete') . csrf_field() !!}
+                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
+                                              <i class="fa-solid fa-trash-can"></i>
+                                          </button>
+                                      </form>
+                                  </td>
+                                  @else
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  @endif
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <!--Table SponsorShip Before Faq End-->
           </div>
       </div>
 

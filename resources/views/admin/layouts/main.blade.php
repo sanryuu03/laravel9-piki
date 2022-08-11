@@ -13,7 +13,6 @@
     <link href="{{ asset('img/logo/logo.png') }}" rel="icon">
     <title>{{ $title }} - Dashboard</title>
     <link href="{{ asset('register/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('register/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('register/css/ruang-admin.min.css') }}" rel="stylesheet">
     <!-- DataTable -->
@@ -449,8 +448,9 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>
+        @stack('custom-scripts')
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('register/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <!-- include summernote js start -->
@@ -467,8 +467,6 @@
         <script src="{{ asset('js/mainPosAnggaran.js') }}"></script>
         <script src="{{ asset('js/mainPendapatan.js') }}"></script>
         <script src="{{ asset('js/mainCustomForm.js') }}"></script>
-        @stack('custom-scripts')
-
 </body>
 
 </html>

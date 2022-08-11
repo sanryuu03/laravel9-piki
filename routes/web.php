@@ -33,6 +33,7 @@ use App\Http\Controllers\DinamisUrlNavbarKeuanganController;
 use App\Http\Controllers\DynamicFormController;
 use App\Http\Controllers\MasterMenuNavbarController;
 use App\Http\Controllers\PartnerShipController;
+use App\Http\Controllers\SponsorshipBeforeFaqController;
 use App\Http\Controllers\SponsorShipDuaController;
 use App\Http\Controllers\SponsorShipSatuController;
 use App\Http\Controllers\SponsorShipTigaController;
@@ -156,6 +157,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
 
     Route::resource('/admin/backendTentang', BackendTentangController::class);
     Route::resource('/admin/backendDokumen', BackendDokumenController::class);
+    Route::resource('/admin/sponsorShipBeforeFaq', SponsorshipBeforeFaqController::class);
 
 });
 
