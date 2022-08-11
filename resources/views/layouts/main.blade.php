@@ -37,7 +37,7 @@
                         <a class="nav-link" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang</a>
+                        <a class="nav-link" href="{{ url('/tentang/webView') }}">Tentang</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('index') }}#program" class="block text-white nav-link">Program</a>

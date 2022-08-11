@@ -14,10 +14,13 @@
     <title>{{ $title }} - Dashboard</title>
     <link href="{{ asset('register/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('register/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('register/css/ruang-admin.min.css') }}" rel="stylesheet">
     <!-- DataTable -->
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
+    <!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
     <style>
         .landingpage-anggota {
@@ -56,6 +59,12 @@
                 Features
             </div>
             @if(auth()->user()->level=='super-admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{  url('/admin/backendTentang') }}">
+                    <i class="far fa-fw fa-window-maximize"></i>
+                    <span>{{ ucwords('tentang') }}</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{  url('/admin/landingpageheader') }}">
                     <i class="far fa-fw fa-window-maximize"></i>
@@ -441,7 +450,12 @@
         </a>
 
         <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="{{ asset('register/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- include summernote js start -->
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+        <!-- summernote js end -->
         <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
         <!-- DataTable -->
@@ -453,6 +467,7 @@
         <script src="{{ asset('js/mainPosAnggaran.js') }}"></script>
         <script src="{{ asset('js/mainPendapatan.js') }}"></script>
         <script src="{{ asset('js/mainCustomForm.js') }}"></script>
+        @stack('custom-scripts')
 </body>
 
 </html>

@@ -12,10 +12,21 @@ if (title) {
             .then((data) => (slug.value = data.slug));
     });
 }
-
+// trix start
 document.addEventListener("trix-file-accept", (event) => {
     event.preventDefault();
 });
+// trix end
+// summer note start
+$('#summernote').summernote({
+    placeholder: 'Hello Bootstrap 4',
+    tabsize: 2,
+    height: 300,
+    minHeight: null,             // set minimum height of editor
+    maxHeight: null,             // set maximum height of editor
+    focus: true
+  });
+// summer note end
 
 $(document).ready(function () {
     var table = $("#table_id").DataTable();

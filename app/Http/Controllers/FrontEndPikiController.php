@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
 use App\Models\BackendFaq;
+use App\Models\BackendTentang;
 use App\Models\PartnerShip;
 use App\Models\SponsorShipDua;
 use App\Models\SponsorShipSatu;
@@ -207,6 +208,26 @@ class FrontEndPikiController extends Controller
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "sponsorPiki" => $sponsorPiki,
+        ]);
+    }
+
+    public function tentangWebView()
+    {
+        $backendTentang = BackendTentang::get();
+        return view('/tentangWebView', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "backendTentang" => $backendTentang,
+        ]);
+    }
+
+    public function tentangMobileView()
+    {
+        $newsPiki = NewsPiki::latest()->get();
+        return view('/beritaLainnyaMobileView', [
+            "title" => "PIKI - SUMUT",
+            "creator" => "San",
+            "newsPiki" => $newsPiki,
         ]);
     }
     /**

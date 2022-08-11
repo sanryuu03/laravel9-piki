@@ -84,9 +84,11 @@
                   </ul>
                   <!-- ITDev Academy Start-->
                   <div class="mt-1 card text-bg-dark">
+                              @if($partnerShip->link_web ?? '')
                       <a href="{{ $partnerShip->link_web }}">
                           <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="card-img" alt="..." style="width:100%; heigh: 100%;">
                       </a>
+                      @endif
                   </div>
                   <!-- ITDev Academy End-->
               </div>

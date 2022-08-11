@@ -10,6 +10,7 @@ use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\AnggotaPikiController;
 use App\Http\Controllers\BackendFaqController;
 use App\Http\Controllers\BackendPikiController;
+use App\Http\Controllers\BackendTentangController;
 use App\Http\Controllers\PosAnggaranController;
 use App\Http\Controllers\ProgramPikiController;
 use App\Http\Controllers\SponsorPikiController;
@@ -102,6 +103,10 @@ Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name(
 Route::get('/artikel/webView/{judul}', [FrontEndPikiController::class, 'artikelWebView'])->name('read.more.artikel.web.view');
 Route::get('/artikel/Lainnya/webView/', [FrontEndPikiController::class, 'artikelLainnya']);
 
+// tentang
+Route::get('/tentang/webView', [FrontEndPikiController::class, 'tentangWebView']);
+Route::get('/tentang/mobileView', [FrontEndPikiController::class, 'tentangMobileView']);
+
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
 
@@ -116,7 +121,7 @@ Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
-Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+// Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
@@ -147,6 +152,8 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::resource('/admin/sponsorShipSatu', SponsorShipSatuController::class);
     Route::resource('/admin/sponsorShipDua', SponsorShipDuaController::class);
     Route::resource('/admin/sponsorShipTiga', SponsorShipTigaController::class);
+
+    Route::resource('/admin/backendTentang', BackendTentangController::class);
 
 });
 
