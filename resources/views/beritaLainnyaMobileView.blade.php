@@ -26,7 +26,7 @@
           <div class="col-md-10">
               @foreach($newsPiki as $news)
               <h1 class="mb-3 fs-6">
-              <a href="/mobileView/berita/{{ $news->slug }}" class="read-more text-sky-400">
+              <a href="/berita/mobileView/{{ $news->slug }}" class="read-more text-sky-400">
                   {{ $news->judul_berita }}
               </a>
               </h1>

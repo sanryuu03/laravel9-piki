@@ -152,9 +152,33 @@ body .header .content .button-header .btn-listing {
     padding-top: 0px !important;
 }
 
+/* kategori berita */
+.header-kategori-berita {
+    margin-top: -10px !important;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+}
+
+.header-kategori-berita h1 {
+    padding-top: 15px !important;
+    padding-bottom: 20px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    text-align: center;
+    font-weight:400;
+    font-size: 25px !important;
+    width: 100% !important;
+    /* background-color: #f7f7f7; */
+    background-color: #61c7ff;
+}
+.kategori-berita {
+    margin-top: 60px !important;
+}
+
 /* agenda */
 .content-3-2-agenda {
-    padding-top: 2.5rem;
+    padding-top: 3.0rem;
 }
 
 .content-3-2-agenda .title-text {
@@ -165,7 +189,7 @@ body .header .content .button-header .btn-listing {
 
 /* anggota */
 .header-anggota {
-    margin-top: 0px !important;
+    margin-top: 5px !important;
     width: 100%;
 }
 .header-anggota h1 {

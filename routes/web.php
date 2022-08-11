@@ -93,10 +93,10 @@ Route::get('/login', [RegisterController::class, 'login'])->middleware('guest')-
 Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 // halaman single berita
-Route::get('/webView/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'newsWebView'])->name('read.more.berita');
-Route::get('/mobileView/berita/{newsPiki:slug}', [FrontEndPikiController::class, 'newsMobileView'])->name('read.more.berita.mobile.view');
-Route::get('/webView/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnyaWebView']);
-Route::get('/mobileView/beritaLainnya', [FrontEndPikiController::class, 'beritaLainnyaMobileView']);
+Route::get('/berita/webView/{newsPiki:slug}', [FrontEndPikiController::class, 'newsWebView'])->name('read.more.berita');
+Route::get('/berita/mobileView/{newsPiki:slug}', [FrontEndPikiController::class, 'newsMobileView'])->name('read.more.berita.mobile.view');
+Route::get('/beritaLainnya/webView', [FrontEndPikiController::class, 'beritaLainnyaWebView']);
+Route::get('/beritaLainnya/mobileView', [FrontEndPikiController::class, 'beritaLainnyaMobileView']);
 // halaman single program
 Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
 Route::get('/artikel/webView/{judul}', [FrontEndPikiController::class, 'artikelWebView'])->name('read.more.artikel.web.view');

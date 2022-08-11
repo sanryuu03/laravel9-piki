@@ -80,7 +80,7 @@
                           {{ $lainnya->judul_berita }}
                       </a>
                       @endforeach
-                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/webView/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
+                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/beritaLainnya/webView">{{ ucwords('Lihat lebih banyak berita') }}</a>
                   </ul>
                   <!-- ITDev Academy Start-->
                   <div class="mt-1 card text-bg-dark">
@@ -94,10 +94,10 @@
       </div>
       <!-- Berita End-->
       <!-- Kategory Berita Start-->
-      <div class="header-berita">
+      <div class="header-kategori-berita">
           <h1 class="mb-3 text-center fs-1">{{ ucwords('kategori berita') }}</h1>
       </div>
-      <div class="container-fluid">
+      <div class="kategori-berita container-xxl">
           <div class="row">
               @foreach($categoryNews as $kategori)
               <div class="mb-3 col-md-4">
@@ -139,7 +139,7 @@
                           <div class="card bg-dark">
                               <img src="{{ url('/storage/assets/agenda/'.$itemAgenda->picture_path) }}" class="flayer_agenda card-img" alt="..." style="width:100%;height: 100%;">
                           </div>
-                          <div class="mt-3 card card-body">
+                          <div class="mt-3 card card-body keterangan_agenda">
                               {!! $itemAgenda->keterangan_agenda !!}
                           </div>
                       </div>

@@ -87,7 +87,7 @@
                     </a>
                 </h4>
                 @endforeach
-                <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/mobileView/beritaLainnya">{{ ucwords('Lihat lebih banyak berita') }}</a>
+                <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="/beritaLainnya/mobileView">{{ ucwords('Lihat lebih banyak berita') }}</a>
             </div>
         </div>
     </div>
