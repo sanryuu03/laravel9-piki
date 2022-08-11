@@ -52,7 +52,7 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
+
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>
@@ -88,7 +88,7 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
+
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>
@@ -124,7 +124,7 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
+
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>
@@ -254,7 +254,7 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
+
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>

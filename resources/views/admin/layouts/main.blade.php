@@ -468,6 +468,7 @@
         <script src="{{ asset('js/mainPendapatan.js') }}"></script>
         <script src="{{ asset('js/mainCustomForm.js') }}"></script>
         @stack('custom-scripts')
+
 </body>
 
 </html>

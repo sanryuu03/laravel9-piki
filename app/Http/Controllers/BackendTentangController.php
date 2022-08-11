@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BackendDokumen;
 use App\Models\BackendTentang;
 use Illuminate\Http\Request;
 class BackendTentangController extends Controller
@@ -14,6 +15,7 @@ class BackendTentangController extends Controller
     public function index()
     {
         $backendTentang = BackendTentang::get();
+        $backendDokumen = BackendDokumen::get();
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/backendTentang', [
@@ -21,6 +23,7 @@ class BackendTentangController extends Controller
             "menu" => ucwords('backend tentang'),
             "creator" => $user,
             "backendTentang" => $backendTentang,
+            "backendDokumen" => $backendDokumen,
             "action" => 'add',
             "namaUser" => $namaUser,
         ]);

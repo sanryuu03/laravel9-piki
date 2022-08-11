@@ -403,5 +403,97 @@
       </section>
       <!-- End Faq's-->
   </div>
+{{-- footer --}}
+<div style="background-color: #688eb1;" class="text-white">
+<div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-3">
+        <h5><i class="fa fa-map-marker"></i></h5>
+        <p>Komplek Ruko Gardenia No. 1 <br>Jl. Jamin Ginting , Medan</p>
 
+        <div class="my-3"></div>
+
+        <h5><i class="fa fa-phone"></i></h5>
+        <p>0862xxxx</p>
+
+        <div class="my-3"></div>
+
+        <h5><i class="fa fa-envelope"></i></h5>
+        <p>itdev@gmail.com</p>
+
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-facebook fs-3"></i></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-youtube fs-3"></i></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-instagram fs-3"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-2">
+        <h5>Menu</h5>
+        <ul class="nav flex-column">
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Home</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Tentang</a></li>
+          <!-- <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Produk</a></li> -->
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Customer</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Pengalaman</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Harga</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Produk</h5>
+        <ul class="nav flex-column">
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Sistem Informasi</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Aplikasi e-Gov</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Mobile Apps</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Pembuatan Website</a></li>
+          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Integrasi Sistem</a></li>
+        </ul>
+      </div>
+
+
+
+      <div class="col-4 offset-1">
+        <!-- <form method="post" enctype="multipart/form-data"> -->
+          <h5>Buat Testimoni</h5>
+          <p>Berikan testimoni anda atas produk dan layanan ITDev Academy.</p>
+
+          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Berikan Testimoni</button>
+          <!-- <div>
+            <label for="newsletter1">Nama</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
+          </div>
+          <div>
+            <label for="newsletter1">Email</label>
+            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" required>
+          </div>
+          <div>
+            <label for="newsletter1">Jabatan</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
+          </div>
+          <div>
+            <label for="newsletter1">Foto (optional)</label>
+            <input id="newsletter1" type="file" class="form-control" placeholder="Email address" required>
+          </div>
+          <div>
+            <label for="newsletter1">Komentar</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
+          </div>
+          <button class="mt-2 btn btn-primary" type="button">Kirim</button> -->
+        <!-- </form> -->
+      </div>
+    </div>
+
+    <div class="py-4 my-4 d-flex justify-content-between border-top">
+      <p>&copy; 2022 ITDev Academy</p>
+      <!-- <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-facebook fs-3"></i></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-youtube fs-3"></i></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-instagram fs-3"></i></a></li>
+      </ul> -->
+    </div>
+  </footer>
+</div>
+</div>
   @endsection

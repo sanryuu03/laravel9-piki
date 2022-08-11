@@ -23,22 +23,37 @@
       <h1 class="mb-3 text-center fs-1">{{ ucwords('tentang') }}</h1>
   </div>
   <div class="container-xxl">
-      <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              @foreach($backendTentang as $key => $tentang)
-              <button class="nav-link {{ $key == 0 ? 'active' : '' }} {{ $key % 2 == 0 ? 'text-dark' : 'text-info' }}" id="{{ 'nav-'.$key.'-tab' }}" data-bs-toggle="tab" data-bs-target="{{ '#nav-'.$key }}" type="button" role="tab" aria-controls="{{ 'nav-'.$key }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ ucwords($tentang->judul) }}</button>
-              @endforeach
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+      <div class="row g-0">
+          <div class="ms-5 me-5 col-sm-6 col-md-7">
+              <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      @foreach($backendTentang as $key => $tentang)
+                      <button class="nav-link {{ $key == 0 ? 'active' : '' }} {{ $key % 2 == 0 ? 'text-dark' : 'text-info' }}" id="{{ 'nav-'.$key.'-tab' }}" data-bs-toggle="tab" data-bs-target="{{ '#nav-'.$key }}" type="button" role="tab" aria-controls="{{ 'nav-'.$key }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ ucwords($tentang->judul) }}</button>
+                      @endforeach
+                      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                  </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                  @foreach($backendTentang as $key => $tentang)
+                  <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="{{ 'nav-'.$key }}" role="tabpanel" aria-labelledby="{{ 'nav-'.$key.'-tab' }}" tabindex="0">
+                      {!! $tentang->keterangan !!}
+                  </div>
+                  @endforeach
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">genap</div>
+              </div>
           </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-          @foreach($backendTentang as $key => $tentang)
-          <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="{{ 'nav-'.$key }}" role="tabpanel" aria-labelledby="{{ 'nav-'.$key.'-tab' }}" tabindex="0">
-          {!! $tentang->keterangan !!}
+          <div class="col-6 col-md-4">
+              <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                      {{ ucwords('dokumen') }}
+                  </a>
+                  @foreach($backendDokumen as $key => $dokumen)
+                  <a href="{{ $dokumen->link_web }}" class="list-group-item list-group-item-action">{{ ucwords($dokumen->judul) }}</a>
+                  @endforeach
+              </div>
           </div>
-          @endforeach
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">genap</div>
       </div>
+
       {{-- <div class="row justify-content-center">
           <div class="col-md-10">
               @foreach($backendTentang as $tentang)

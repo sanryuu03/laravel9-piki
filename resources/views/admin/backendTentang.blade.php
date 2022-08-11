@@ -23,7 +23,7 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-              <!-- SponsorShip Start-->
+              <!-- Informasi Start-->
               <div class="mx-3 my-3 card">
                   <div class="card-body">
                       <div class="container-fluid">
@@ -52,14 +52,13 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>
                   </div>
               </div>
-              <!-- SponsorShip End-->
-              <!--Table SponsorShip Start-->
+              <!-- Informasi End-->
+              <!--Table Informasi Start-->
               <div class="container-fluid">
                   <div class="card-body table-responsive">
                       <table class="table table-bordered table-striped">
@@ -97,19 +96,28 @@
                       </table>
                   </div>
               </div>
-              <!--Table SponsorShip End-->
+              <!--Table Informasi End-->
           </div>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <!-- PartnerShip Start-->
+              <!-- Dokumen Start-->
               <div class="mx-3 my-3 card">
                   <div class="card-body">
                       <div class="container-fluid">
-                          <form method="post" action="{{ route('partnerShip.store') }}" enctype="multipart/form-data">
+                          <form method="post" action="{{ route('backendDokumen.store') }}" enctype="multipart/form-data">
                               {{ csrf_field() }}
                               <div class="form-group">
-                                  <label>{{ ucwords('judul visi') }}</label>
+                                  <label>{{ ucwords('judul') }}</label>
                                   <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul') }}">
                                   @error('judul')
+                                  <div class="invalid-feedback">
+                                      {{ $message }}
+                                  </div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  <label>{{ ucwords('link dokumen') }}</label>
+                                  <input type="text" name="link_web" class="form-control @error('link_web') is-invalid @enderror" value="{{ old('link_web') }}">
+                                  @error('link_web')
                                   <div class="invalid-feedback">
                                       {{ $message }}
                                   </div>
@@ -125,20 +133,19 @@
                                   @endif
                               </div>
 
-                              <a class="mt-3 btn btn-danger" href="{{ route('backend.keuangan') }}">Back</a>
                               <button type="submit" class="mt-3 btn btn-primary" name="action" value="{{ $action }}">Save</button>
                           </form>
                       </div>
                   </div>
               </div>
-              <!-- PartnerShip End-->
-              <!--Table PartnerShip Start-->
+              <!-- Dokumen End-->
+              <!--Table Dokumen Start-->
               <div class="container-fluid">
                   <div class="card-body table-responsive">
                       <table class="table table-bordered table-striped">
                           <thead>
                               <tr>
-                                  <th width="1px">{{ ucwords('foto gambar') }}</th>
+                                  <th width="1px">{{ ucwords('judul') }}</th>
                                   <th width="1px">{{ ucwords('link web') }}</th>
                                   <th width="1px">Created At</th>
                                   <th width="1px">Updated At</th>
@@ -146,11 +153,29 @@
                               </tr>
                           </thead>
                           <tbody>
+                              <tr>
+                              @foreach($backendDokumen as $key => $dokumen)
+                                  <td width="1px">{{ ucwords($dokumen->judul) }}</td>
+                                  <td width="1px">{{ ucwords($dokumen->link_web) }}</td>
+                                  <td width="1px">{{ $dokumen->created_at }}</td>
+                                  <td width="1px">{{ $dokumen->updated_at }}</td>
+                                  <td width="0.01%">
+                                    <a href="{{ route('backendDokumen.edit', $dokumen->id) }}" class="mb-1 btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                                      <form action="{{ route('backendDokumen.destroy', $dokumen->id) }}" method="POST" class="d-inline">
+                                          @method('delete')
+                                          @csrf
+                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">
+                                              <i class="fa-solid fa-trash"></i>
+                                          </button>
+                                      </form>
+                                  </td>
+                              @endforeach
+                              </tr>
                           </tbody>
                       </table>
                   </div>
               </div>
-              <!--Table PartnerShip End-->
+              <!--Table Dokumen End-->
           </div>
       </div>
   </div>

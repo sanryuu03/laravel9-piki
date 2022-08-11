@@ -16,6 +16,7 @@ use App\Models\FrontEndPiki;
 use Illuminate\Http\Request;
 use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
+use App\Models\BackendDokumen;
 use App\Models\BackendFaq;
 use App\Models\BackendTentang;
 use App\Models\PartnerShip;
@@ -214,10 +215,12 @@ class FrontEndPikiController extends Controller
     public function tentangWebView()
     {
         $backendTentang = BackendTentang::get();
+        $backendDokumen = BackendDokumen::get();
         return view('/tentangWebView', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "backendTentang" => $backendTentang,
+            "backendDokumen" => $backendDokumen,
         ]);
     }
 

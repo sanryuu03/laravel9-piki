@@ -8,6 +8,7 @@ use App\Http\Controllers\AgendaPikiController;
 use App\Http\Controllers\HeaderPikiController;
 use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\AnggotaPikiController;
+use App\Http\Controllers\BackendDokumenController;
 use App\Http\Controllers\BackendFaqController;
 use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\BackendTentangController;
@@ -154,6 +155,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::resource('/admin/sponsorShipTiga', SponsorShipTigaController::class);
 
     Route::resource('/admin/backendTentang', BackendTentangController::class);
+    Route::resource('/admin/backendDokumen', BackendDokumenController::class);
 
 });
 
