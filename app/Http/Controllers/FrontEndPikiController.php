@@ -20,6 +20,7 @@ use App\Models\BackendDokumen;
 use App\Models\BackendFaq;
 use App\Models\BackendTentang;
 use App\Models\PartnerShip;
+use App\Models\SponsorshipBeforeFaq;
 use App\Models\SponsorShipDua;
 use App\Models\SponsorShipSatu;
 use App\Models\SponsorShipTiga;
@@ -53,6 +54,7 @@ class FrontEndPikiController extends Controller
         $sponsorShipSatu = SponsorShipSatu::latest()->first();
         $sponsorShipDua = SponsorShipDua::latest()->first();
         $sponsorShipTiga = SponsorShipTiga::latest()->first();
+        $sponsorshipBeforeFaq = SponsorshipBeforeFaq::first();
         return view('/index', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
@@ -74,6 +76,7 @@ class FrontEndPikiController extends Controller
             "sponsorShipSatu" => $sponsorShipSatu,
             "sponsorShipDua" => $sponsorShipDua,
             "sponsorShipTiga" => $sponsorShipTiga,
+            "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
         ]);
     }
 

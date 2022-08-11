@@ -274,6 +274,45 @@
           </div>
       </div>
 
+      <!-- sponsorship before faq start-->
+      <div class="container text-center">
+  <div class="row">
+    <div class="col">
+    @if($sponsorshipBeforeFaq->link_web_1 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_1 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_1) }}" class="img-fluid" alt="...">
+    </a>
+    @else
+    <a href="https://itdevacademy.com/">
+      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+    </a>
+    @endif
+    </div>
+    <div class="col">
+          @if($sponsorshipBeforeFaq->link_web_2 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_2 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_2) }}" class="img-fluid" alt="...">
+    </a>
+    @else
+    <a href="https://itdevacademy.com/">
+      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+    </a>
+    @endif
+    </div>
+    <div class="col">
+                @if($sponsorshipBeforeFaq->link_web_3 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_3 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_3) }}" class="img-fluid" alt="...">
+    </a>
+    @else
+    <a href="https://itdevacademy.com/">
+      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+    </a>
+    @endif
+    </div>
+  </div>
+</div>
+      <!-- sponsorship before faq end-->
       <!-- Faq's-->
       <section class="faq-container" id="faq" class="collapse">
           <style>
