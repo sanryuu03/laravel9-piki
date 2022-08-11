@@ -61,6 +61,11 @@ Route::get('/bersihkan', function () {
     return response()->json('optimize');
 });
 
+Route::get('/r', function () {
+    Artisan::call('config:clear');
+    return response()->json('config:clear');
+});
+
 Route::get('/foo', function () {
     Artisan::call('storage:link');
     return response()->json('storage');
