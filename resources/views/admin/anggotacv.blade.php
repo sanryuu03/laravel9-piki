@@ -143,6 +143,8 @@
                                             </div>
 
                                             <div class="col-md-4">
+                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->sekolah }}" placeholder="Email" />
+                                                <input disabled class="form-control" type="text" name="email" value="{{ $item->university }}" placeholder="Email" />
                                             @if($item->status_anggota == "diterima")
                                                 <p class="font-weight-normal">Status Anggota: <span class="text-success font-weight-bolder text-uppercase">{{ $item->status_anggota }}</span></p>
                                             @else
