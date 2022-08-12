@@ -412,7 +412,7 @@
           </style>
           <div id="accordion">
 
-              <div class="card faq-card">
+              <div class="mt-3 card faq-card">
                   <div class="text-center card-header">
                       {{-- <a class="card-link" data-bs-toggle="collapse" href="#collapseOne">
                         FAQ's

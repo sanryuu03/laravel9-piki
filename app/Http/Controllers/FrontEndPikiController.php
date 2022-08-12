@@ -22,6 +22,7 @@ use App\Models\BackendTentang;
 use App\Models\PartnerShip;
 use App\Models\SponsorshipBeforeFaq;
 use App\Models\SponsorShipDua;
+use App\Models\SponsorshipNews;
 use App\Models\SponsorShipSatu;
 use App\Models\SponsorShipTiga;
 
@@ -124,6 +125,12 @@ class FrontEndPikiController extends Controller
         $listberita = $newsPiki->where('category_news_id',$newsPiki->category_news_id)->get();
         // return
         $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
+        $beritaSejenis = NewsPiki::latest()->get();
+        $sponsorshipNews1 = SponsorshipNews::where('posisi', 1)->latest()->first();
+        $sponsorshipNews2 = SponsorshipNews::where('posisi', 2)->latest()->first();
+        $sponsorshipNews3 = SponsorshipNews::where('posisi', 3)->latest()->first();
+        $sponsorshipNews4 = SponsorshipNews::where('posisi', 4)->latest()->first();
+        $sponsorshipNews5 = SponsorshipNews::where('posisi', 5)->latest()->first();
 
         return view('/newsWebView', [
             "title" => "PIKI - SUMUT",
@@ -131,6 +138,12 @@ class FrontEndPikiController extends Controller
             "news" => $newsPiki,
             "category" => $categoryNews[0]->name,
             "categoryNews" => $listberita,
+            "beritaSejenis" => $beritaSejenis,
+            "sponsorshipNews1" => $sponsorshipNews1,
+            "sponsorshipNews2" => $sponsorshipNews2,
+            "sponsorshipNews3" => $sponsorshipNews3,
+            "sponsorshipNews4" => $sponsorshipNews4,
+            "sponsorshipNews5" => $sponsorshipNews5,
         ]);
     }
 

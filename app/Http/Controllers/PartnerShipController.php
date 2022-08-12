@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PartnerShip;
 use App\Models\SponsorshipBeforeFaq;
 use App\Models\SponsorShipDua;
+use App\Models\SponsorshipNews;
 use App\Models\SponsorShipSatu;
 use App\Models\SponsorShipTiga;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class PartnerShipController extends Controller
         $sponsorShipDua = SponsorShipDua::latest()->first();
         $sponsorShipTiga = SponsorShipTiga::latest()->first();
         $sponsorshipBeforeFaq = SponsorshipBeforeFaq::get();
+        $sponsorshipNews = SponsorshipNews::get();
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/partnership', [
@@ -34,6 +36,7 @@ class PartnerShipController extends Controller
             "sponsorShipDua" => $sponsorShipDua,
             "sponsorShipTiga" => $sponsorShipTiga,
             "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
+            "sponsorshipNews" => $sponsorshipNews,
             "action" => 'add',
             "namaUser" => $namaUser,
         ]);

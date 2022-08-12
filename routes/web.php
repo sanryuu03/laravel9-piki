@@ -35,6 +35,7 @@ use App\Http\Controllers\MasterMenuNavbarController;
 use App\Http\Controllers\PartnerShipController;
 use App\Http\Controllers\SponsorshipBeforeFaqController;
 use App\Http\Controllers\SponsorShipDuaController;
+use App\Http\Controllers\SponsorshipNewsController;
 use App\Http\Controllers\SponsorShipSatuController;
 use App\Http\Controllers\SponsorShipTigaController;
 use App\Http\Controllers\SubKategoriAnggotaController;
@@ -128,7 +129,7 @@ Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
-Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::get('provinces', [DependantDropdownController::class, 'wilayah'])->name('provinces');
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');
@@ -163,6 +164,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::resource('/admin/backendTentang', BackendTentangController::class);
     Route::resource('/admin/backendDokumen', BackendDokumenController::class);
     Route::resource('/admin/sponsorShipBeforeFaq', SponsorshipBeforeFaqController::class);
+    Route::resource('/admin/sponsorShipNews', SponsorshipNewsController::class);
 
 });
 
