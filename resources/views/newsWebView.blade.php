@@ -46,9 +46,10 @@
                   {!! $news->isi_berita !!}
               </article>
               <hr class="mt-1">
-              <p>
+              <div>
               {{ ucwords('share:') }}
-              <div id="share"></div>
+              <p id="share">
+              </div>
               </p>
               <a class="mt-1 btn btn-danger" href="{{ url('/mobile#berita-lainnya') }}">Back to News</a>
           </div>
@@ -93,7 +94,45 @@
           </div>
       </div>
   </div>
-
+{{-- iklan start--}}
+<div class="text-center container-xxl">
+  <div class="row">
+    <div class="col">
+                    @if(isset($sponsorshipNews4))
+              <a href="{{ $sponsorshipNews4->link_web }}">
+              <img src="{{ url('/storage/assets/sponsorshipnews/'.$sponsorshipNews4->picture_path) }}" class="mt-1 img-fluid" alt="..." style="height:100%; width:100%;">
+              </a>
+              @else
+              <a href="https://mitradesakmd.com/">
+              <img src="/images/mitradesa.jpeg" class="mt-1 img-fluid" alt="...">
+              </a>
+              @endif
+    </div>
+    <div class="col">
+                          @if(isset($sponsorshipNews5))
+              <a href="{{ $sponsorshipNews5->link_web }}">
+              <img src="{{ url('/storage/assets/sponsorshipnews/'.$sponsorshipNews5->picture_path) }}" class="mt-1 img-fluid" alt="..." style="height:100%; width:100%;">
+              </a>
+              @else
+              <a href="https://mitradesakmd.com/">
+              <img src="/images/mitradesa.jpeg" class="mt-1 img-fluid" alt="...">
+              </a>
+              @endif
+    </div>
+    <div class="col">
+                                @if(isset($sponsorshipNews6))
+              <a href="{{ $sponsorshipNews6->link_web }}">
+              <img src="{{ url('/storage/assets/sponsorshipnews/'.$sponsorshipNews6->picture_path) }}" class="mt-1 img-fluid" alt="..." style="height:100%; width:100%;">
+              </a>
+              @else
+              <a href="https://mitradesakmd.com/">
+              <img src="/images/mitradesa.jpeg" class="mt-1 img-fluid" alt="...">
+              </a>
+              @endif
+    </div>
+  </div>
+</div>
+{{-- iklan end--}}
   {{-- kategori berita sejenis --}}
   <div class="p-0 container-fluid list-kategori-berita">
       <h1 class="text-center fs-1 text-primary">{{ ucwords('berita ') }}{{ $category }}{{ ucwords(' lainnya') }}</h1>

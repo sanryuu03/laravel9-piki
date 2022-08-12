@@ -131,6 +131,7 @@ class FrontEndPikiController extends Controller
         $sponsorshipNews3 = SponsorshipNews::where('posisi', 3)->latest()->first();
         $sponsorshipNews4 = SponsorshipNews::where('posisi', 4)->latest()->first();
         $sponsorshipNews5 = SponsorshipNews::where('posisi', 5)->latest()->first();
+        $sponsorshipNews6 = SponsorshipNews::where('posisi', 6)->latest()->first();
 
         return view('/newsWebView', [
             "title" => "PIKI - SUMUT",
@@ -144,6 +145,7 @@ class FrontEndPikiController extends Controller
             "sponsorshipNews3" => $sponsorshipNews3,
             "sponsorshipNews4" => $sponsorshipNews4,
             "sponsorshipNews5" => $sponsorshipNews5,
+            "sponsorshipNews6" => $sponsorshipNews6,
         ]);
     }
 
