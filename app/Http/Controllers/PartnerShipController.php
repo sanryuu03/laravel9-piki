@@ -6,6 +6,7 @@ use App\Models\PartnerShip;
 use App\Models\SponsorshipBeforeFaq;
 use App\Models\SponsorShipDua;
 use App\Models\SponsorshipNews;
+use App\Models\SponsorshipNewsCategories;
 use App\Models\SponsorShipSatu;
 use App\Models\SponsorShipTiga;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class PartnerShipController extends Controller
         $sponsorShipTiga = SponsorShipTiga::latest()->first();
         $sponsorshipBeforeFaq = SponsorshipBeforeFaq::get();
         $sponsorshipNews = SponsorshipNews::get();
+        $sponsorshipNewsCategories = SponsorshipNewsCategories::get();
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
         return view('admin/partnership', [
@@ -37,6 +39,7 @@ class PartnerShipController extends Controller
             "sponsorShipTiga" => $sponsorShipTiga,
             "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
             "sponsorshipNews" => $sponsorshipNews,
+            "sponsorshipNewsCategories" => $sponsorshipNewsCategories,
             "action" => 'add',
             "namaUser" => $namaUser,
         ]);

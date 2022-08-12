@@ -448,7 +448,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        @stack('custom-scripts')
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('register/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -456,6 +455,7 @@
         <!-- include summernote js start -->
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
         <!-- summernote js end -->
+        @stack('custom-scripts')
         <script src="{{ asset('register/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('register/js/ruang-admin.min.js') }}"></script>
         <!-- DataTable -->

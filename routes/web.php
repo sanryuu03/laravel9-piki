@@ -35,6 +35,7 @@ use App\Http\Controllers\MasterMenuNavbarController;
 use App\Http\Controllers\PartnerShipController;
 use App\Http\Controllers\SponsorshipBeforeFaqController;
 use App\Http\Controllers\SponsorShipDuaController;
+use App\Http\Controllers\SponsorshipNewsCategoriesController;
 use App\Http\Controllers\SponsorshipNewsController;
 use App\Http\Controllers\SponsorShipSatuController;
 use App\Http\Controllers\SponsorShipTigaController;
@@ -165,6 +166,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::resource('/admin/backendDokumen', BackendDokumenController::class);
     Route::resource('/admin/sponsorShipBeforeFaq', SponsorshipBeforeFaqController::class);
     Route::resource('/admin/sponsorShipNews', SponsorshipNewsController::class);
+    Route::resource('/admin/sponsorShipNewsCategories', SponsorshipNewsCategoriesController::class);
 
 });
 

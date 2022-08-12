@@ -17,7 +17,6 @@ return new class extends Migration
             $table->increments('id');
             $table->string('picture_path')->nullable();
             $table->string('link_web')->nullable();
-            $table->string('posisi')->nullable();
             $table->string('post_by')->nullable();
             $table->string('edited_by')->nullable();
             $table->timestamps();

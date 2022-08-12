@@ -30,7 +30,7 @@
                       @foreach($backendTentang as $key => $tentang)
                       <button class="nav-link {{ $key == 0 ? 'active' : '' }} {{ $key % 2 == 0 ? 'text-dark' : 'text-info' }}" id="{{ 'nav-'.$key.'-tab' }}" data-bs-toggle="tab" data-bs-target="{{ '#nav-'.$key }}" type="button" role="tab" aria-controls="{{ 'nav-'.$key }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ ucwords($tentang->judul) }}</button>
                       @endforeach
-                      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                      {{-- <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button> --}}
                   </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
@@ -39,7 +39,7 @@
                       {!! $tentang->keterangan !!}
                   </div>
                   @endforeach
-                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">genap</div>
+                  {{-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">genap</div> --}}
               </div>
           </div>
           <div class="col-6 col-md-4">

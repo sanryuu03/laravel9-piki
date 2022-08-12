@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryNews;
+use App\Models\SponsorshipNewsCategories;
 use Illuminate\Http\Request;
 
 class CategoryNewsController extends Controller
@@ -53,12 +54,14 @@ class CategoryNewsController extends Controller
     public function show(CategoryNews $categoryNews)
     {
         // return $categoryNews;
+        $sponsorshipNewsCategories = SponsorshipNewsCategories::get();
         return view('listcategorynews', [
             "title" => $categoryNews->name,
             "menu" => "Kategori Berita",
             "creator" => "San",
             'posts' => $categoryNews->newsPiki,
             'category' => $categoryNews->name,
+            "sponsorshipNewsCategories" => $sponsorshipNewsCategories,
         ]);
     }
 

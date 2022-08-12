@@ -125,7 +125,7 @@ class FrontEndPikiController extends Controller
         $listberita = $newsPiki->where('category_news_id',$newsPiki->category_news_id)->get();
         // return
         $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
-        $beritaSejenis = NewsPiki::latest()->get();
+        $beritaSejenis = NewsPiki::latest()->take(6)->get();
         $sponsorshipNews1 = SponsorshipNews::where('posisi', 1)->latest()->first();
         $sponsorshipNews2 = SponsorshipNews::where('posisi', 2)->latest()->first();
         $sponsorshipNews3 = SponsorshipNews::where('posisi', 3)->latest()->first();

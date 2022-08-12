@@ -90,7 +90,6 @@
               <img src="/images/mitradesa.jpeg" class="mt-1 img-fluid" alt="...">
               </a>
               @endif
-              <img src="/images/page 1a.jpg" class="mt-1 img-fluid" alt="...">
           </div>
       </div>
   </div>
