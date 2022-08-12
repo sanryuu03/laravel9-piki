@@ -92,8 +92,25 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-Route::get('/', [FrontEndPikiController::class, 'index'])->name('index');
-Route::get('/mobile', [FrontEndPikiController::class, 'mobile']);
+Route::controller(FrontEndPikiController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/mobile', 'mobile');
+    // halaman single berita
+    Route::get('/berita/webView/{newsPiki:slug}', 'newsWebView')->name('read.more.berita');
+    Route::get('/berita/mobileView/{newsPiki:slug}', 'newsMobileView')->name('read.more.berita.mobile.view');
+    Route::get('/beritaLainnya/webView', 'beritaLainnyaWebView');
+    Route::get('/beritaLainnya/mobileView', 'beritaLainnyaMobileView');
+    // halaman single program
+    Route::get('/program/{slug}', 'program')->name('read.more.program');
+    Route::get('/artikel/webView/{judul}', 'artikelWebView')->name('read.more.artikel.web.view');
+    Route::get('/artikel/Lainnya/webView/', 'artikelLainnya');
+    // tentang
+    Route::get('/tentang/webView', 'tentangWebView');
+    Route::get('/tentang/mobileView', 'tentangMobileView');
+    // community partners
+    Route::get('/communityPartners/{id}', 'communityPartners');
+});
+
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');
 
 Route::get('/daftar', [RegisterController::class, 'index'])->middleware('guest')->name('register');
@@ -102,19 +119,6 @@ Route::post('/daftar', [RegisterController::class, 'store'])->name('register.act
 Route::get('/login', [RegisterController::class, 'login'])->middleware('guest')->name('admin.login');
 Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
-// halaman single berita
-Route::get('/berita/webView/{newsPiki:slug}', [FrontEndPikiController::class, 'newsWebView'])->name('read.more.berita');
-Route::get('/berita/mobileView/{newsPiki:slug}', [FrontEndPikiController::class, 'newsMobileView'])->name('read.more.berita.mobile.view');
-Route::get('/beritaLainnya/webView', [FrontEndPikiController::class, 'beritaLainnyaWebView']);
-Route::get('/beritaLainnya/mobileView', [FrontEndPikiController::class, 'beritaLainnyaMobileView']);
-// halaman single program
-Route::get('/program/{slug}', [FrontEndPikiController::class, 'program'])->name('read.more.program');
-Route::get('/artikel/webView/{judul}', [FrontEndPikiController::class, 'artikelWebView'])->name('read.more.artikel.web.view');
-Route::get('/artikel/Lainnya/webView/', [FrontEndPikiController::class, 'artikelLainnya']);
-
-// tentang
-Route::get('/tentang/webView', [FrontEndPikiController::class, 'tentangWebView']);
-Route::get('/tentang/mobileView', [FrontEndPikiController::class, 'tentangMobileView']);
 
 Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
 Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
@@ -122,8 +126,6 @@ Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 's
 Route::post('/selectAgenda', [AgendaPikiController::class, 'selectAgenda']);
 Route::get('/moreAgenda', [AgendaPikiController::class, 'moreAgenda']);
 Route::get('/isiMoreAgenda/{id}', [AgendaPikiController::class, 'isiMoreAgenda']);
-// community partners
-Route::get('/communityPartners/{id}', [FrontEndPikiController::class, 'communityPartners']);
 
 Route::get('/sumbanganPiki', [SumbanganPikiController::class, 'index'])->name('sumbangan.frontend');
 Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('save.form.sumbangan.frontend');
