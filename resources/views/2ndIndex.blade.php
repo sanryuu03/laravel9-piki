@@ -155,7 +155,7 @@
     </div>
     {{-- Community Partners --}}
     <div class="p-0 container-fluid header-program">
-        <h1 class="mb-3 text-center fs-1">{{ ucwords('Community Partners') }}</h1>
+        <h1 class="mb-3 text-center fs-1">{{ ucwords('artikel') }}</h1>
     </div>
     @foreach($sponsor as $item)
 
