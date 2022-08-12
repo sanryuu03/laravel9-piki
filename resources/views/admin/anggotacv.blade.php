@@ -173,6 +173,7 @@
                                     <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">{{ ucwords('approve') }}</a>
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showProsesPendaftarBaruModal">{{ ucwords('tidak sesuai') }}</button>
                                     @elseif($action == 'showUserTidakSesuai')
+                                    <a class="btn btn-success" href="{{ route('menu.dalam.proses.approve.pendaftarBaru.cv', $item->id) }}">{{ ucwords('approve') }}</a>
                                     <a class="btn btn-danger" href="{{ route('diTolak') }}">Back</a>
                                     @else
                                     <a class="btn btn-danger" href="{{ route('anggota.index') }}">Back</a>
