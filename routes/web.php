@@ -128,7 +128,7 @@ Route::post('/sumbanganPiki', [SumbanganPikiController::class, 'store'])->name('
 
 Route::get('/wilayah', [DependantDropdownController::class, 'wilayah'])->name('wilayah');
 // halaman wilayah
-// Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
 Route::post('/cities', [DependantDropdownController::class, 'cities'])->name('cities');
 Route::post('/districts', [DependantDropdownController::class, 'districts'])->name('districts');
 Route::post('/villages', [DependantDropdownController::class, 'villages'])->name('villages');

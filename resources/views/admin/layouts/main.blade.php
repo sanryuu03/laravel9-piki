@@ -240,7 +240,7 @@
                 <!-- TopBar -->
                 <nav class="mb-4 navbar navbar-expand navbar-light bg-navbar topbar static-top">
                     <button id="sidebarToggleTop" class="mr-3 btn btn-link rounded-circle">
-                        <i class="fa fa-bars"></i>
+                        <i class="text-white fa fa-bars"></i>
                     </button>
                     <ul class="ml-auto navbar-nav">
                         <div class="topbar-divider d-none d-sm-block"></div>
