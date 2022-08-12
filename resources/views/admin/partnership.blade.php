@@ -567,7 +567,7 @@
                                   <td>{{ $iklanBerita->created_at }}</td>
                                   <td>{{ $iklanBerita->updated_at }}</td>
                                   <td>
-                                      <a href="{{ route('sponsorShipNews.edit', $iklanBerita->id) }}" class="mb-1 btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
+                                      {{-- <a href="{{ route('sponsorShipNews.edit', $iklanBerita->id) }}" class="mb-1 btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a> --}}
                                       <form action="{{ route('sponsorShipNews.destroy', $iklanBerita->id) }}" method="POST" class="d-inline">
                                           {!! method_field('delete') . csrf_field() !!}
                                           <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Hapus Data ?')">

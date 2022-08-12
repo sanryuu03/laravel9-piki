@@ -121,8 +121,15 @@ class SponsorshipNewsController extends Controller
      * @param  \App\Models\SponsorshipNews  $sponsorshipNews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SponsorshipNews $sponsorshipNews)
+    public function destroy($id)
     {
-        //
+        $data = ['deleted_by' => auth()->user()->name];
+        // return request();
+        // return $id;
+        SponsorshipNews::where('id', $id)
+        ->update($data);
+        $sponsorshipNews = SponsorshipNews::find($id);
+        $sponsorshipNews->delete();
+        return redirect()->back()->with('success', 'Sponsorship News telah dihapus');
     }
 }
