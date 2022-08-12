@@ -36,7 +36,9 @@
           </div>
           <div class="text-center col-4">
               @foreach($sponsorshipNewsCategories as $iklanKategoriBerita)
-              <img src="{{ url('/storage/assets/sponsorshipnewscategories/'.$iklanKategoriBerita->picture_path) }}" class="img-fluid" alt="...">
+              <a href="{{ $iklanKategoriBerita->link_web }}">
+                  <img src="{{ url('/storage/assets/sponsorshipnewscategories/'.$iklanKategoriBerita->picture_path) }}" class="mt-1 img-fluid" alt="...">
+              </a>
               @endforeach
           </div>
       </div>
