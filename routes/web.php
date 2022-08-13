@@ -78,9 +78,9 @@ Route::get('/seed', function () {
     return response()->json('migrate:fresh --seed');
 });
 
-Route::get('/storage', function () {
-    return view('storage');
-});
+Route::get('/welcome', fn () =>
+    view('welcome')
+);
 
 Route::get('/indoregion', function () {
     Artisan::call('db:seed --class=IndoRegionSeeder');
