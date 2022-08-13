@@ -656,7 +656,7 @@
 			if (this.isInline)
 				return this;
 			var calendarWidth = this.picker.outerWidth(),
-				calendarHeight = this.picker.outerHeight(),
+				calendarheight = this.picker.outerheight(),
 				visualPadding = 10,
 				container = $(this.o.container),
 				windowWidth = container.width(),
@@ -670,7 +670,7 @@
 			});
 			var zIndex = Math.max.apply(Math, parentsZindex) + this.o.zIndexOffset;
 			var offset = this.component ? this.component.parent().offset() : this.element.offset();
-			var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(false);
+			var height = this.component ? this.component.outerheight(true) : this.element.outerheight(false);
 			var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(false);
 			var left = offset.left - appendOffset.left;
 			var top = offset.top - appendOffset.top;
@@ -716,13 +716,13 @@
 			var yorient = this.o.orientation.y,
 				top_overflow;
 			if (yorient === 'auto'){
-				top_overflow = -scrollTop + top - calendarHeight;
+				top_overflow = -scrollTop + top - calendarheight;
 				yorient = top_overflow < 0 ? 'bottom' : 'top';
 			}
 
 			this.picker.addClass('datepicker-orient-' + yorient);
 			if (yorient === 'top')
-				top -= calendarHeight + parseInt(this.picker.css('padding-top'));
+				top -= calendarheight + parseInt(this.picker.css('padding-top'));
 			else
 				top += height;
 

@@ -234,7 +234,7 @@
     "desc":     "Enable fetching YouTube/Vimeo/Vzaar videos."
   },
   {
-    "name":     "videoHeight",
+    "name":     "videoheight",
     "type":     "Number/Boolean",
     "Default":  "false",
     "desc":     "Set height for videos."

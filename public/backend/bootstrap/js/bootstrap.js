@@ -169,7 +169,7 @@
       return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
     },
     reflow: function reflow(element) {
-      return element.offsetHeight;
+      return element.offsetheight;
     },
     triggerTransitionEnd: function triggerTransitionEnd(element) {
       $__default["default"](element).trigger(TRANSITION_END);
@@ -1176,7 +1176,7 @@
   var CLASS_NAME_COLLAPSING = 'collapsing';
   var CLASS_NAME_COLLAPSED = 'collapsed';
   var DIMENSION_WIDTH = 'width';
-  var DIMENSION_HEIGHT = 'height';
+  var DIMENSION_height = 'height';
   var EVENT_SHOW$4 = "show" + EVENT_KEY$7;
   var EVENT_SHOWN$4 = "shown" + EVENT_KEY$7;
   var EVENT_HIDE$4 = "hide" + EVENT_KEY$7;
@@ -1388,7 +1388,7 @@
 
     _proto._getDimension = function _getDimension() {
       var hasWidth = $__default["default"](this._element).hasClass(DIMENSION_WIDTH);
-      return hasWidth ? DIMENSION_WIDTH : DIMENSION_HEIGHT;
+      return hasWidth ? DIMENSION_WIDTH : DIMENSION_height;
     };
 
     _proto._getParent = function _getParent() {
@@ -2215,7 +2215,7 @@
         return;
       }
 
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       if (!isModalOverflowing) {
         this._element.style.overflowY = 'hidden';
@@ -2442,7 +2442,7 @@
     ;
 
     _proto._adjustDialog = function _adjustDialog() {
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       if (!this._isBodyOverflowing && isModalOverflowing) {
         this._element.style.paddingLeft = this._scrollbarWidth + "px";
@@ -3668,7 +3668,7 @@
       this._offsets = [];
       this._targets = [];
       this._activeTarget = null;
-      this._scrollHeight = 0;
+      this._scrollheight = 0;
       $__default["default"](this._scrollElement).on(EVENT_SCROLL, function (event) {
         return _this._process(event);
       });
@@ -3689,7 +3689,7 @@
       var offsetBase = offsetMethod === METHOD_POSITION ? this._getScrollTop() : 0;
       this._offsets = [];
       this._targets = [];
-      this._scrollHeight = this._getScrollHeight();
+      this._scrollheight = this._getScrollheight();
       var targets = [].slice.call(document.querySelectorAll(this._selector));
       targets.map(function (element) {
         var target;
@@ -3730,7 +3730,7 @@
       this._offsets = null;
       this._targets = null;
       this._activeTarget = null;
-      this._scrollHeight = null;
+      this._scrollheight = null;
     } // Private
     ;
 
@@ -3756,22 +3756,22 @@
       return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
     };
 
-    _proto._getScrollHeight = function _getScrollHeight() {
-      return this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    _proto._getScrollheight = function _getScrollheight() {
+      return this._scrollElement.scrollheight || Math.max(document.body.scrollheight, document.documentElement.scrollheight);
     };
 
-    _proto._getOffsetHeight = function _getOffsetHeight() {
-      return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+    _proto._getOffsetheight = function _getOffsetheight() {
+      return this._scrollElement === window ? window.innerheight : this._scrollElement.getBoundingClientRect().height;
     };
 
     _proto._process = function _process() {
       var scrollTop = this._getScrollTop() + this._config.offset;
 
-      var scrollHeight = this._getScrollHeight();
+      var scrollheight = this._getScrollheight();
 
-      var maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
+      var maxScroll = this._config.offset + scrollheight - this._getOffsetheight();
 
-      if (this._scrollHeight !== scrollHeight) {
+      if (this._scrollheight !== scrollheight) {
         this.refresh();
       }
 

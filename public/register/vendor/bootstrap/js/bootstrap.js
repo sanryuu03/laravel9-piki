@@ -173,7 +173,7 @@
       return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
     },
     reflow: function reflow(element) {
-      return element.offsetHeight;
+      return element.offsetheight;
     },
     triggerTransitionEnd: function triggerTransitionEnd(element) {
       $(element).trigger(TRANSITION_END);
@@ -1177,7 +1177,7 @@
   };
   var Dimension = {
     WIDTH: 'width',
-    HEIGHT: 'height'
+    height: 'height'
   };
   var Selector$3 = {
     ACTIVES: '.show, .collapsing',
@@ -1384,7 +1384,7 @@
 
     _proto._getDimension = function _getDimension() {
       var hasWidth = $(this._element).hasClass(Dimension.WIDTH);
-      return hasWidth ? Dimension.WIDTH : Dimension.HEIGHT;
+      return hasWidth ? Dimension.WIDTH : Dimension.height;
     };
 
     _proto._getParent = function _getParent() {
@@ -2436,7 +2436,7 @@
     ;
 
     _proto._adjustDialog = function _adjustDialog() {
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       if (!this._isBodyOverflowing && isModalOverflowing) {
         this._element.style.paddingLeft = this._scrollbarWidth + "px";
@@ -3702,7 +3702,7 @@
       this._offsets = [];
       this._targets = [];
       this._activeTarget = null;
-      this._scrollHeight = 0;
+      this._scrollheight = 0;
       $(this._scrollElement).on(Event$8.SCROLL, function (event) {
         return _this._process(event);
       });
@@ -3723,7 +3723,7 @@
       var offsetBase = offsetMethod === OffsetMethod.POSITION ? this._getScrollTop() : 0;
       this._offsets = [];
       this._targets = [];
-      this._scrollHeight = this._getScrollHeight();
+      this._scrollheight = this._getScrollheight();
       var targets = [].slice.call(document.querySelectorAll(this._selector));
       targets.map(function (element) {
         var target;
@@ -3764,7 +3764,7 @@
       this._offsets = null;
       this._targets = null;
       this._activeTarget = null;
-      this._scrollHeight = null;
+      this._scrollheight = null;
     } // Private
     ;
 
@@ -3790,22 +3790,22 @@
       return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
     };
 
-    _proto._getScrollHeight = function _getScrollHeight() {
-      return this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    _proto._getScrollheight = function _getScrollheight() {
+      return this._scrollElement.scrollheight || Math.max(document.body.scrollheight, document.documentElement.scrollheight);
     };
 
-    _proto._getOffsetHeight = function _getOffsetHeight() {
-      return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+    _proto._getOffsetheight = function _getOffsetheight() {
+      return this._scrollElement === window ? window.innerheight : this._scrollElement.getBoundingClientRect().height;
     };
 
     _proto._process = function _process() {
       var scrollTop = this._getScrollTop() + this._config.offset;
 
-      var scrollHeight = this._getScrollHeight();
+      var scrollheight = this._getScrollheight();
 
-      var maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
+      var maxScroll = this._config.offset + scrollheight - this._getOffsetheight();
 
-      if (this._scrollHeight !== scrollHeight) {
+      if (this._scrollheight !== scrollheight) {
         this.refresh();
       }
 

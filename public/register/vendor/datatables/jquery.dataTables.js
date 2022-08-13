@@ -5240,7 +5240,7 @@
 		// If the scrollbar visibility has changed from the last draw, we need to
 		// adjust the column sizes as the table width will have changed to account
 		// for the scrollbar
-		var scrollBarVis = divBodyEl.scrollHeight > divBodyEl.clientHeight;
+		var scrollBarVis = divBodyEl.scrollheight > divBodyEl.clientheight;
 		
 		if ( settings.scrollBarVis !== scrollBarVis && settings.scrollBarVis !== undefined ) {
 			settings.scrollBarVis = scrollBarVis;
@@ -5304,7 +5304,7 @@
 			// IE7 will make the width of the table when 100% include the scrollbar
 			// - which is shouldn't. When there is a scrollbar we need to take this
 			// into account.
-			if ( ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
+			if ( ie67 && (table.find('tbody').height() > divBodyEl.offsetheight ||
 				divBody.css('overflow-y') == "scroll")
 			) {
 				tableStyle.width = _fnStringToCss( table.outerWidth() - barWidth);
@@ -5392,14 +5392,14 @@
 		if ( table.outerWidth() < sanityWidth )
 		{
 			// The min width depends upon if we have a vertical scrollbar visible or not */
-			correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight ||
+			correction = ((divBodyEl.scrollheight > divBodyEl.offsetheight ||
 				divBody.css('overflow-y') == "scroll")) ?
 					sanityWidth+barWidth :
 					sanityWidth;
 	
 			// IE6/7 are a law unto themselves...
-			if ( ie67 && (divBodyEl.scrollHeight >
-				divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
+			if ( ie67 && (divBodyEl.scrollheight >
+				divBodyEl.offsetheight || divBody.css('overflow-y') == "scroll")
 			) {
 				tableStyle.width = _fnStringToCss( correction-barWidth );
 			}
@@ -5432,7 +5432,7 @@
 			 * set the height in order to sort this. Don't want to do it in any other browsers.
 			 */
 			if ( ie67 ) {
-				divBodyStyle.height = _fnStringToCss( tableEl.offsetHeight+barWidth );
+				divBodyStyle.height = _fnStringToCss( tableEl.offsetheight+barWidth );
 			}
 		}
 	
@@ -5443,7 +5443,7 @@
 	
 		// Figure out if there are scrollbar present - if so then we need a the header and footer to
 		// provide a bit more space to allow "overflow" scrolling (i.e. past the scrollbar)
-		var bScrolling = table.height() > divBodyEl.clientHeight || divBody.css('overflow-y') == "scroll";
+		var bScrolling = table.height() > divBodyEl.clientheight || divBody.css('overflow-y') == "scroll";
 		var padding = 'padding' + (browser.bScrollbarLeft ? 'Left' : 'Right' );
 		divHeaderInnerStyle[ padding ] = bScrolling ? barWidth+"px" : "0px";
 	

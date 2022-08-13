@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
-    <link href="{{ asset('css/customStyle.css') }}" rel="stylesheet">
+    <link href="/css/customStyle.css" rel="stylesheet">
     <link href="{{ asset('OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css') }}" rel="stylesheet">
     <!-- DataTable -->
@@ -46,7 +46,7 @@
                         <a href="{{ route('index') }}#program" class="block text-white nav-link">Program</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#berita" class="block text-white nav-link">Berita</a>
+                        <a href="{{ route('index') }}#berita" class="block text-white nav-link">Berita</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('sumbangan.frontend') }}" class="block text-white nav-link">Donasi</a>

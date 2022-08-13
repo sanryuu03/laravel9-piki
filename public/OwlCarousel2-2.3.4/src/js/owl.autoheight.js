@@ -1,5 +1,5 @@
 /**
- * AutoHeight Plugin
+ * Autoheight Plugin
  * @version 2.3.4
  * @author Bartosz Wojciechowski
  * @author David Deutsch
@@ -9,10 +9,10 @@
 
 	/**
 	 * Creates the auto height plugin.
-	 * @class The Auto Height Plugin
+	 * @class The Auto height Plugin
 	 * @param {Owl} carousel - The Owl Carousel
 	 */
-	var AutoHeight = function(carousel) {
+	var Autoheight = function(carousel) {
 		/**
 		 * Reference to the core.
 		 * @protected
@@ -20,7 +20,7 @@
 		 */
 		this._core = carousel;
 
-		this._previousHeight = null;
+		this._previousheight = null;
 
 		/**
 		 * All event handlers.
@@ -29,17 +29,17 @@
 		 */
 		this._handlers = {
 			'initialized.owl.carousel refreshed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight) {
+				if (e.namespace && this._core.settings.autoheight) {
 					this.update();
 				}
 			}, this),
 			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight && e.property.name === 'position'){
+				if (e.namespace && this._core.settings.autoheight && e.property.name === 'position'){
 					this.update();
 				}
 			}, this),
 			'loaded.owl.lazy': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight
+				if (e.namespace && this._core.settings.autoheight
 					&& e.element.closest('.' + this._core.settings.itemClass).index() === this._core.current()) {
 					this.update();
 				}
@@ -47,7 +47,7 @@
 		};
 
 		// set default options
-		this._core.options = $.extend({}, AutoHeight.Defaults, this._core.options);
+		this._core.options = $.extend({}, Autoheight.Defaults, this._core.options);
 
 		// register event handlers
 		this._core.$element.on(this._handlers);
@@ -57,7 +57,7 @@
 		// These changes have been taken from a PR by gavrochelegnou proposed in #1575
 		// and have been made compatible with the latest jQuery version
 		$(window).on('load', function() {
-			if (refThis._core.settings.autoHeight) {
+			if (refThis._core.settings.autoheight) {
 				refThis.update();
 			}
 		});
@@ -66,7 +66,7 @@
 		// When carousel has images, the height is dependent on the width
 		// and should also change on resize
 		$(window).resize(function() {
-			if (refThis._core.settings.autoHeight) {
+			if (refThis._core.settings.autoheight) {
 				if (refThis._intervalId != null) {
 					clearTimeout(refThis._intervalId);
 				}
@@ -83,15 +83,15 @@
 	 * Default options.
 	 * @public
 	 */
-	AutoHeight.Defaults = {
-		autoHeight: false,
-		autoHeightClass: 'owl-height'
+	Autoheight.Defaults = {
+		autoheight: false,
+		autoheightClass: 'owl-height'
 	};
 
 	/**
 	 * Updates the view.
 	 */
-	AutoHeight.prototype.update = function() {
+	Autoheight.prototype.update = function() {
 		var start = this._core._current,
 			end = start + this._core.settings.items,
 			lazyLoadEnabled = this._core.settings.lazyLoad,
@@ -105,18 +105,18 @@
 
 		maxheight = Math.max.apply(null, heights);
 
-		if (maxheight <= 1 && lazyLoadEnabled && this._previousHeight) {
-			maxheight = this._previousHeight;
+		if (maxheight <= 1 && lazyLoadEnabled && this._previousheight) {
+			maxheight = this._previousheight;
 		}
 
-		this._previousHeight = maxheight;
+		this._previousheight = maxheight;
 
 		this._core.$stage.parent()
 			.height(maxheight)
-			.addClass(this._core.settings.autoHeightClass);
+			.addClass(this._core.settings.autoheightClass);
 	};
 
-	AutoHeight.prototype.destroy = function() {
+	Autoheight.prototype.destroy = function() {
 		var handler, property;
 
 		for (handler in this._handlers) {
@@ -127,6 +127,6 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
+	$.fn.owlCarousel.Constructor.Plugins.Autoheight = Autoheight;
 
 })(window.Zepto || window.jQuery, window, document);

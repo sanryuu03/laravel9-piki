@@ -120,8 +120,11 @@ Route::get('/login', [RegisterController::class, 'login'])->middleware('guest')-
 Route::post('/login', [RegisterController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 
-Route::get('/categories', [CategoryNewsController::class, 'index'])->name('kategori.berita');
-Route::get('/categories/{categoryNews:slug}', [CategoryNewsController::class, 'show'])->name('isi.kategori');
+Route::controller(CategoryNewsController::class)->group(fn() => [
+    Route::get('/categories', 'index')->name('kategori.berita'),
+    Route::get('/categories/{categoryNews:slug}', 'show')->name('isi.kategori'),
+    ]
+);
 
 Route::post('/selectAgenda', [AgendaPikiController::class, 'selectAgenda']);
 Route::get('/moreAgenda', [AgendaPikiController::class, 'moreAgenda']);

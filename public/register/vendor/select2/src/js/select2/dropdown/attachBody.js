@@ -155,17 +155,17 @@ define([
 
     var offset = this.$container.offset();
 
-    offset.bottom = offset.top + this.$container.outerHeight(false);
+    offset.bottom = offset.top + this.$container.outerheight(false);
 
     var container = {
-      height: this.$container.outerHeight(false)
+      height: this.$container.outerheight(false)
     };
 
     container.top = offset.top;
     container.bottom = offset.top + container.height;
 
     var dropdown = {
-      height: this.$dropdown.outerHeight(false)
+      height: this.$dropdown.outerheight(false)
     };
 
     var viewport = {

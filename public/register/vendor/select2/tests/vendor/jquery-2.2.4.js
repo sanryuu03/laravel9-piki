@@ -5910,7 +5910,7 @@ function setPositiveNumber( elem, value, subtract ) {
 		value;
 }
 
-function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
+function augmentWidthOrheight( elem, name, extra, isBorderBox, styles ) {
 	var i = extra === ( isBorderBox ? "border" : "content" ) ?
 
 		// If we already have the right measurement, avoid augmentation
@@ -5954,11 +5954,11 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	return val;
 }
 
-function getWidthOrHeight( elem, name, extra ) {
+function getWidthOrheight( elem, name, extra ) {
 
 	// Start with offset property, which is equivalent to the border-box value
 	var valueIsBorderBox = true,
-		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
+		val = name === "width" ? elem.offsetWidth : elem.offsetheight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
@@ -5989,7 +5989,7 @@ function getWidthOrHeight( elem, name, extra ) {
 
 	// Use the active box-sizing model to add/subtract irrelevant styles
 	return ( val +
-		augmentWidthOrHeight(
+		augmentWidthOrheight(
 			elem,
 			name,
 			extra || ( isBorderBox ? "border" : "content" ),
@@ -6084,7 +6084,7 @@ jQuery.extend( {
 		"flexGrow": true,
 		"flexShrink": true,
 		"fontWeight": true,
-		"lineHeight": true,
+		"lineheight": true,
 		"opacity": true,
 		"order": true,
 		"orphans": true,
@@ -6212,16 +6212,16 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 					elem.offsetWidth === 0 ?
 						swap( elem, cssShow, function() {
-							return getWidthOrHeight( elem, name, extra );
+							return getWidthOrheight( elem, name, extra );
 						} ) :
-						getWidthOrHeight( elem, name, extra );
+						getWidthOrheight( elem, name, extra );
 			}
 		},
 
 		set: function( elem, value, extra ) {
 			var matches,
 				styles = extra && getStyles( elem ),
-				subtract = extra && augmentWidthOrHeight(
+				subtract = extra && augmentWidthOrheight(
 					elem,
 					name,
 					extra,
@@ -6539,7 +6539,7 @@ function defaultPrefilter( elem, props, opts ) {
 		} );
 	}
 
-	// Height/width overflow pass
+	// height/width overflow pass
 	if ( elem.nodeType === 1 && ( "height" in props || "width" in props ) ) {
 
 		// Make sure that nothing sneaks out
@@ -8906,10 +8906,10 @@ jQuery.expr.filters.hidden = function( elem ) {
 jQuery.expr.filters.visible = function( elem ) {
 
 	// Support: Opera <= 12.12
-	// Opera reports offsetWidths and offsetHeights less than zero on some elements
+	// Opera reports offsetWidths and offsetheights less than zero on some elements
 	// Use OR instead of AND as the element is not visible if either is true
 	// See tickets #10406 and #13132
-	return elem.offsetWidth > 0 || elem.offsetHeight > 0 || elem.getClientRects().length > 0;
+	return elem.offsetWidth > 0 || elem.offsetheight > 0 || elem.getClientRects().length > 0;
 };
 
 
@@ -9686,12 +9686,12 @@ jQuery.each( [ "top", "left" ], function( i, prop ) {
 } );
 
 
-// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+// Create innerheight, innerWidth, height, width, outerheight and outerWidth methods
+jQuery.each( { height: "height", Width: "width" }, function( name, type ) {
 	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
 		function( defaultExtra, funcName ) {
 
-		// Margin is only for outerHeight, outerWidth
+		// Margin is only for outerheight, outerWidth
 		jQuery.fn[ funcName ] = function( margin, value ) {
 			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
 				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
@@ -9711,7 +9711,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				if ( elem.nodeType === 9 ) {
 					doc = elem.documentElement;
 
-					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
+					// Either scroll[Width/height] or offset[Width/height] or client[Width/height],
 					// whichever is greatest
 					return Math.max(
 						elem.body[ "scroll" + name ], doc[ "scroll" + name ],

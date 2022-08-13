@@ -830,7 +830,7 @@ function getDimensions( elem ) {
 	}
 	return {
 		width: elem.outerWidth(),
-		height: elem.outerHeight(),
+		height: elem.outerheight(),
 		offset: elem.offset()
 	};
 }
@@ -868,7 +868,7 @@ $.position = {
 			hasOverflowX = overflowX === "scroll" ||
 				( overflowX === "auto" && within.width < within.element[ 0 ].scrollWidth ),
 			hasOverflowY = overflowY === "scroll" ||
-				( overflowY === "auto" && within.height < within.element[ 0 ].scrollHeight );
+				( overflowY === "auto" && within.height < within.element[ 0 ].scrollheight );
 		return {
 			width: hasOverflowY ? $.position.scrollbarWidth() : 0,
 			height: hasOverflowX ? $.position.scrollbarWidth() : 0
@@ -887,7 +887,7 @@ $.position = {
 			scrollLeft: withinElement.scrollLeft(),
 			scrollTop: withinElement.scrollTop(),
 			width: withinElement.outerWidth(),
-			height: withinElement.outerHeight()
+			height: withinElement.outerheight()
 		};
 	}
 };
@@ -900,7 +900,7 @@ $.fn.position = function( options ) {
 	// Make a copy, we don't want to modify arguments
 	options = $.extend( {}, options );
 
-	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
+	var atOffset, targetWidth, targetheight, targetOffset, basePosition, dimensions,
 
 		// Make sure string options are treated as CSS selectors
 		target = typeof options.of === "string" ?
@@ -919,7 +919,7 @@ $.fn.position = function( options ) {
 		options.at = "left top";
 	}
 	targetWidth = dimensions.width;
-	targetHeight = dimensions.height;
+	targetheight = dimensions.height;
 	targetOffset = dimensions.offset;
 
 	// Clone to reuse original targetOffset later
@@ -969,12 +969,12 @@ $.fn.position = function( options ) {
 	}
 
 	if ( options.at[ 1 ] === "bottom" ) {
-		basePosition.top += targetHeight;
+		basePosition.top += targetheight;
 	} else if ( options.at[ 1 ] === "center" ) {
-		basePosition.top += targetHeight / 2;
+		basePosition.top += targetheight / 2;
 	}
 
-	atOffset = getOffsets( offsets.at, targetWidth, targetHeight );
+	atOffset = getOffsets( offsets.at, targetWidth, targetheight );
 	basePosition.left += atOffset[ 0 ];
 	basePosition.top += atOffset[ 1 ];
 
@@ -982,15 +982,15 @@ $.fn.position = function( options ) {
 		var collisionPosition, using,
 			elem = $( this ),
 			elemWidth = elem.outerWidth(),
-			elemHeight = elem.outerHeight(),
+			elemheight = elem.outerheight(),
 			marginLeft = parseCss( this, "marginLeft" ),
 			marginTop = parseCss( this, "marginTop" ),
 			collisionWidth = elemWidth + marginLeft + parseCss( this, "marginRight" ) +
 				scrollInfo.width,
-			collisionHeight = elemHeight + marginTop + parseCss( this, "marginBottom" ) +
+			collisionheight = elemheight + marginTop + parseCss( this, "marginBottom" ) +
 				scrollInfo.height,
 			position = $.extend( {}, basePosition ),
-			myOffset = getOffsets( offsets.my, elem.outerWidth(), elem.outerHeight() );
+			myOffset = getOffsets( offsets.my, elem.outerWidth(), elem.outerheight() );
 
 		if ( options.my[ 0 ] === "right" ) {
 			position.left -= elemWidth;
@@ -999,9 +999,9 @@ $.fn.position = function( options ) {
 		}
 
 		if ( options.my[ 1 ] === "bottom" ) {
-			position.top -= elemHeight;
+			position.top -= elemheight;
 		} else if ( options.my[ 1 ] === "center" ) {
-			position.top -= elemHeight / 2;
+			position.top -= elemheight / 2;
 		}
 
 		position.left += myOffset[ 0 ];
@@ -1016,12 +1016,12 @@ $.fn.position = function( options ) {
 			if ( $.ui.position[ collision[ i ] ] ) {
 				$.ui.position[ collision[ i ] ][ dir ]( position, {
 					targetWidth: targetWidth,
-					targetHeight: targetHeight,
+					targetheight: targetheight,
 					elemWidth: elemWidth,
-					elemHeight: elemHeight,
+					elemheight: elemheight,
 					collisionPosition: collisionPosition,
 					collisionWidth: collisionWidth,
-					collisionHeight: collisionHeight,
+					collisionheight: collisionheight,
 					offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
 					my: options.my,
 					at: options.at,
@@ -1038,21 +1038,21 @@ $.fn.position = function( options ) {
 				var left = targetOffset.left - position.left,
 					right = left + targetWidth - elemWidth,
 					top = targetOffset.top - position.top,
-					bottom = top + targetHeight - elemHeight,
+					bottom = top + targetheight - elemheight,
 					feedback = {
 						target: {
 							element: target,
 							left: targetOffset.left,
 							top: targetOffset.top,
 							width: targetWidth,
-							height: targetHeight
+							height: targetheight
 						},
 						element: {
 							element: elem,
 							left: position.left,
 							top: position.top,
 							width: elemWidth,
-							height: elemHeight
+							height: elemheight
 						},
 						horizontal: right < 0 ? "left" : left > 0 ? "right" : "center",
 						vertical: bottom < 0 ? "top" : top > 0 ? "bottom" : "middle"
@@ -1060,7 +1060,7 @@ $.fn.position = function( options ) {
 				if ( targetWidth < elemWidth && abs( left + right ) < targetWidth ) {
 					feedback.horizontal = "center";
 				}
-				if ( targetHeight < elemHeight && abs( top + bottom ) < targetHeight ) {
+				if ( targetheight < elemheight && abs( top + bottom ) < targetheight ) {
 					feedback.vertical = "middle";
 				}
 				if ( max( abs( left ), abs( right ) ) > max( abs( top ), abs( bottom ) ) ) {
@@ -1125,18 +1125,18 @@ $.ui.position = {
 		top: function( position, data ) {
 			var within = data.within,
 				withinOffset = within.isWindow ? within.scrollTop : within.offset.top,
-				outerHeight = data.within.height,
+				outerheight = data.within.height,
 				collisionPosTop = position.top - data.collisionPosition.marginTop,
 				overTop = withinOffset - collisionPosTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
+				overBottom = collisionPosTop + data.collisionheight - outerheight - withinOffset,
 				newOverBottom;
 
 			// Element is taller than within
-			if ( data.collisionHeight > outerHeight ) {
+			if ( data.collisionheight > outerheight ) {
 
 				// Element is initially over the top of within
 				if ( overTop > 0 && overBottom <= 0 ) {
-					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight -
+					newOverBottom = position.top + overTop + data.collisionheight - outerheight -
 						withinOffset;
 					position.top += overTop - newOverBottom;
 
@@ -1147,7 +1147,7 @@ $.ui.position = {
 				// Element is initially over both top and bottom of within
 				} else {
 					if ( overTop > overBottom ) {
-						position.top = withinOffset + outerHeight - data.collisionHeight;
+						position.top = withinOffset + outerheight - data.collisionheight;
 					} else {
 						position.top = withinOffset;
 					}
@@ -1207,28 +1207,28 @@ $.ui.position = {
 		top: function( position, data ) {
 			var within = data.within,
 				withinOffset = within.offset.top + within.scrollTop,
-				outerHeight = within.height,
+				outerheight = within.height,
 				offsetTop = within.isWindow ? within.scrollTop : within.offset.top,
 				collisionPosTop = position.top - data.collisionPosition.marginTop,
 				overTop = collisionPosTop - offsetTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
+				overBottom = collisionPosTop + data.collisionheight - outerheight - offsetTop,
 				top = data.my[ 1 ] === "top",
 				myOffset = top ?
-					-data.elemHeight :
+					-data.elemheight :
 					data.my[ 1 ] === "bottom" ?
-						data.elemHeight :
+						data.elemheight :
 						0,
 				atOffset = data.at[ 1 ] === "top" ?
-					data.targetHeight :
+					data.targetheight :
 					data.at[ 1 ] === "bottom" ?
-						-data.targetHeight :
+						-data.targetheight :
 						0,
 				offset = -2 * data.offset[ 1 ],
 				newOverTop,
 				newOverBottom;
 			if ( overTop < 0 ) {
-				newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight -
-					outerHeight - withinOffset;
+				newOverBottom = position.top + myOffset + atOffset + offset + data.collisionheight -
+					outerheight - withinOffset;
 				if ( newOverBottom < 0 || newOverBottom < abs( overTop ) ) {
 					position.top += myOffset + atOffset + offset;
 				}
@@ -2340,7 +2340,7 @@ if ( $.uiBackCompat !== false ) {
 			// Wrap the element
 			var props = {
 					width: element.outerWidth( true ),
-					height: element.outerHeight( true ),
+					height: element.outerheight( true ),
 					"float": element.css( "float" )
 				},
 				wrapper = $( "<div></div>" )
@@ -2446,7 +2446,7 @@ $.extend( $.effects, {
 			return {
 				height: 0,
 				width: 0,
-				outerHeight: 0,
+				outerheight: 0,
 				outerWidth: 0
 			};
 		}
@@ -2457,7 +2457,7 @@ $.extend( $.effects, {
 		return {
 			height: element.height() * y,
 			width: element.width() * x,
-			outerHeight: element.outerHeight() * y,
+			outerheight: element.outerheight() * y,
 			outerWidth: element.outerWidth() * x
 		};
 
@@ -2559,7 +2559,7 @@ $.extend( $.effects, {
 			marginRight: element.css( "marginRight" )
 		} )
 		.outerWidth( element.outerWidth() )
-		.outerHeight( element.outerHeight() );
+		.outerheight( element.outerheight() );
 
 		if ( /^(static|relative)/.test( cssPosition ) ) {
 			cssPosition = "absolute";
@@ -2581,7 +2581,7 @@ $.extend( $.effects, {
 				"float": element.css( "float" )
 			} )
 			.outerWidth( element.outerWidth() )
-			.outerHeight( element.outerHeight() )
+			.outerheight( element.outerheight() )
 			.addClass( "ui-effects-placeholder" );
 
 			element.data( dataSpace + "placeholder", placeholder );
@@ -2880,7 +2880,7 @@ $.fn.extend( {
 			animation = {
 				top: endPosition.top - fixTop,
 				left: endPosition.left - fixLeft,
-				height: target.innerHeight(),
+				height: target.innerheight(),
 				width: target.innerWidth()
 			},
 			startPosition = element.offset(),
@@ -2892,7 +2892,7 @@ $.fn.extend( {
 			.css( {
 				top: startPosition.top - fixTop,
 				left: startPosition.left - fixLeft,
-				height: element.innerHeight(),
+				height: element.innerheight(),
 				width: element.innerWidth(),
 				position: targetFixed ? "fixed" : "absolute"
 			} )
@@ -2907,14 +2907,14 @@ $.fn.extend( {
 
 function parseClip( str, element ) {
 		var outerWidth = element.outerWidth(),
-			outerHeight = element.outerHeight(),
+			outerheight = element.outerheight(),
 			clipRegex = /^rect\((-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto)\)$/,
-			values = clipRegex.exec( str ) || [ "", 0, outerWidth, outerHeight, 0 ];
+			values = clipRegex.exec( str ) || [ "", 0, outerWidth, outerheight, 0 ];
 
 		return {
 			top: parseFloat( values[ 1 ] ) || 0,
 			right: values[ 2 ] === "auto" ? outerWidth : parseFloat( values[ 2 ] ),
-			bottom: values[ 3 ] === "auto" ? outerHeight : parseFloat( values[ 3 ] ),
+			bottom: values[ 3 ] === "auto" ? outerheight : parseFloat( values[ 3 ] ),
 			left: parseFloat( values[ 4 ] ) || 0
 		};
 }
@@ -3095,7 +3095,7 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 
 	// Default distance for the BIGGEST bounce is the outer Distance / 3
 	if ( !distance ) {
-		distance = element[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
+		distance = element[ ref === "top" ? "outerheight" : "outerWidth" ]() / 3;
 	}
 
 	if ( show ) {
@@ -3227,7 +3227,7 @@ var effectsEffectDrop = $.effects.define( "drop", "hide", function( options, don
 	$.effects.createPlaceholder( element );
 
 	distance = options.distance ||
-		element[ ref === "top" ? "outerHeight" : "outerWidth" ]( true ) / 2;
+		element[ ref === "top" ? "outerheight" : "outerWidth" ]( true ) / 2;
 
 	animation[ ref ] = motion + distance;
 
@@ -3280,7 +3280,7 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 
 		// Width and height of a piece
 		width = Math.ceil( element.outerWidth() / cells ),
-		height = Math.ceil( element.outerHeight() / rows ),
+		height = Math.ceil( element.outerheight() / rows ),
 		pieces = [];
 
 	// Children animate complete:
@@ -3579,12 +3579,12 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 	// Adjust the position properties based on the provided origin points
 	if ( origin ) {
 		baseline = $.effects.getBaseline( origin, original );
-		from.top = ( original.outerHeight - from.outerHeight ) * baseline.y + pos.top;
+		from.top = ( original.outerheight - from.outerheight ) * baseline.y + pos.top;
 		from.left = ( original.outerWidth - from.outerWidth ) * baseline.x + pos.left;
-		to.top = ( original.outerHeight - to.outerHeight ) * baseline.y + pos.top;
+		to.top = ( original.outerheight - to.outerheight ) * baseline.y + pos.top;
 		to.left = ( original.outerWidth - to.outerWidth ) * baseline.x + pos.left;
 	}
-	delete from.outerHeight;
+	delete from.outerheight;
 	delete from.outerWidth;
 	element.css( from );
 
@@ -3602,13 +3602,13 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 				childFrom = {
 					height: childOriginal.height * factor.from.y,
 					width: childOriginal.width * factor.from.x,
-					outerHeight: childOriginal.outerHeight * factor.from.y,
+					outerheight: childOriginal.outerheight * factor.from.y,
 					outerWidth: childOriginal.outerWidth * factor.from.x
 				},
 				childTo = {
 					height: childOriginal.height * factor.to.y,
 					width: childOriginal.width * factor.to.x,
-					outerHeight: childOriginal.height * factor.to.y,
+					outerheight: childOriginal.height * factor.to.y,
 					outerWidth: childOriginal.width * factor.to.x
 				};
 
@@ -3874,7 +3874,7 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
 		positiveMotion = ( direction === "up" || direction === "left" ),
 		distance = options.distance ||
-			element[ ref === "top" ? "outerHeight" : "outerWidth" ]( true ),
+			element[ ref === "top" ? "outerheight" : "outerWidth" ]( true ),
 		animation = {};
 
 	$.effects.createPlaceholder( element );
@@ -4620,7 +4620,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	},
 
 	_refresh: function() {
-		var maxHeight,
+		var maxheight,
 			options = this.options,
 			heightStyle = options.heightStyle,
 			parent = this.element.parent();
@@ -4677,7 +4677,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._setupEvents( options.event );
 
 		if ( heightStyle === "fill" ) {
-			maxHeight = parent.height();
+			maxheight = parent.height();
 			this.element.siblings( ":visible" ).each( function() {
 				var elem = $( this ),
 					position = elem.css( "position" );
@@ -4685,33 +4685,33 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 				if ( position === "absolute" || position === "fixed" ) {
 					return;
 				}
-				maxHeight -= elem.outerHeight( true );
+				maxheight -= elem.outerheight( true );
 			} );
 
 			this.headers.each( function() {
-				maxHeight -= $( this ).outerHeight( true );
+				maxheight -= $( this ).outerheight( true );
 			} );
 
 			this.headers.next()
 				.each( function() {
-					$( this ).height( Math.max( 0, maxHeight -
-						$( this ).innerHeight() + $( this ).height() ) );
+					$( this ).height( Math.max( 0, maxheight -
+						$( this ).innerheight() + $( this ).height() ) );
 				} )
 				.css( "overflow", "auto" );
 		} else if ( heightStyle === "auto" ) {
-			maxHeight = 0;
+			maxheight = 0;
 			this.headers.next()
 				.each( function() {
 					var isVisible = $( this ).is( ":visible" );
 					if ( !isVisible ) {
 						$( this ).show();
 					}
-					maxHeight = Math.max( maxHeight, $( this ).css( "height", "" ).height() );
+					maxheight = Math.max( maxheight, $( this ).css( "height", "" ).height() );
 					if ( !isVisible ) {
 						$( this ).hide();
 					}
 				} )
-				.height( maxHeight );
+				.height( maxheight );
 		}
 	},
 
@@ -4892,7 +4892,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			return toHide.animate( this.hideProps, duration, easing, complete );
 		}
 
-		total = toShow.show().outerHeight();
+		total = toShow.show().outerheight();
 		toHide.animate( this.hideProps, {
 			duration: duration,
 			easing: easing,
@@ -4913,7 +4913,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 							adjust += fx.now;
 						}
 					} else if ( that.options.heightStyle !== "content" ) {
-						fx.now = Math.round( total - toHide.outerHeight() - adjust );
+						fx.now = Math.round( total - toHide.outerheight() - adjust );
 						adjust = 0;
 					}
 				}
@@ -5387,19 +5387,19 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	_scrollIntoView: function( item ) {
-		var borderTop, paddingTop, offset, scroll, elementHeight, itemHeight;
+		var borderTop, paddingTop, offset, scroll, elementheight, itemheight;
 		if ( this._hasScroll() ) {
 			borderTop = parseFloat( $.css( this.activeMenu[ 0 ], "borderTopWidth" ) ) || 0;
 			paddingTop = parseFloat( $.css( this.activeMenu[ 0 ], "paddingTop" ) ) || 0;
 			offset = item.offset().top - this.activeMenu.offset().top - borderTop - paddingTop;
 			scroll = this.activeMenu.scrollTop();
-			elementHeight = this.activeMenu.height();
-			itemHeight = item.outerHeight();
+			elementheight = this.activeMenu.height();
+			itemheight = item.outerheight();
 
 			if ( offset < 0 ) {
 				this.activeMenu.scrollTop( scroll + offset );
-			} else if ( offset + itemHeight > elementHeight ) {
-				this.activeMenu.scrollTop( scroll + offset - elementHeight + itemHeight );
+			} else if ( offset + itemheight > elementheight ) {
+				this.activeMenu.scrollTop( scroll + offset - elementheight + itemheight );
 			}
 		}
 	},
@@ -5576,11 +5576,11 @@ var widgetsMenu = $.widget( "ui.menu", {
 		}
 		if ( this._hasScroll() ) {
 			base = this.active.offset().top;
-			height = this.element.innerHeight();
+			height = this.element.innerheight();
 
-			// jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
+			// jQuery 3.2 doesn't include scrollbars in innerheight, add it back.
 			if ( $.fn.jquery.indexOf( "3.2." ) === 0 ) {
-				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
+				height += this.element[ 0 ].offsetheight - this.element.outerheight();
 			}
 
 			this.active.nextAll( ".ui-menu-item" ).each( function() {
@@ -5606,11 +5606,11 @@ var widgetsMenu = $.widget( "ui.menu", {
 		}
 		if ( this._hasScroll() ) {
 			base = this.active.offset().top;
-			height = this.element.innerHeight();
+			height = this.element.innerheight();
 
-			// jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
+			// jQuery 3.2 doesn't include scrollbars in innerheight, add it back.
 			if ( $.fn.jquery.indexOf( "3.2." ) === 0 ) {
-				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
+				height += this.element[ 0 ].offsetheight - this.element.outerheight();
 			}
 
 			this.active.prevAll( ".ui-menu-item" ).each( function() {
@@ -5625,7 +5625,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	_hasScroll: function() {
-		return this.element.outerHeight() < this.element.prop( "scrollHeight" );
+		return this.element.outerheight() < this.element.prop( "scrollheight" );
 	},
 
 	select: function( event ) {
@@ -7637,7 +7637,7 @@ $.extend( Datepicker.prototype, {
 	 * @return the manager object
 	 */
 	_dialogDatepicker: function( input, date, onSelect, settings, pos ) {
-		var id, browserWidth, browserHeight, scrollX, scrollY,
+		var id, browserWidth, browserheight, scrollX, scrollY,
 			inst = this._dialogInst; // internal instance
 
 		if ( !inst ) {
@@ -7658,11 +7658,11 @@ $.extend( Datepicker.prototype, {
 		this._pos = ( pos ? ( pos.length ? pos : [ pos.pageX, pos.pageY ] ) : null );
 		if ( !this._pos ) {
 			browserWidth = document.documentElement.clientWidth;
-			browserHeight = document.documentElement.clientHeight;
+			browserheight = document.documentElement.clientheight;
 			scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
 			scrollY = document.documentElement.scrollTop || document.body.scrollTop;
 			this._pos = // should use actual width/height below
-				[ ( browserWidth / 2 ) - 100 + scrollX, ( browserHeight / 2 ) - 150 + scrollY ];
+				[ ( browserWidth / 2 ) - 100 + scrollX, ( browserheight / 2 ) - 150 + scrollY ];
 		}
 
 		// Move input on screen for focus, but hidden behind dialog
@@ -8084,7 +8084,7 @@ $.extend( Datepicker.prototype, {
 		}
 		if ( !$.datepicker._pos ) { // position below input
 			$.datepicker._pos = $.datepicker._findPos( input );
-			$.datepicker._pos[ 1 ] += input.offsetHeight; // add the height
+			$.datepicker._pos[ 1 ] += input.offsetheight; // add the height
 		}
 
 		isFixed = false;
@@ -8189,21 +8189,21 @@ $.extend( Datepicker.prototype, {
 	/* Check positioning to remain on screen. */
 	_checkOffset: function( inst, offset, isFixed ) {
 		var dpWidth = inst.dpDiv.outerWidth(),
-			dpHeight = inst.dpDiv.outerHeight(),
+			dpheight = inst.dpDiv.outerheight(),
 			inputWidth = inst.input ? inst.input.outerWidth() : 0,
-			inputHeight = inst.input ? inst.input.outerHeight() : 0,
+			inputheight = inst.input ? inst.input.outerheight() : 0,
 			viewWidth = document.documentElement.clientWidth + ( isFixed ? 0 : $( document ).scrollLeft() ),
-			viewHeight = document.documentElement.clientHeight + ( isFixed ? 0 : $( document ).scrollTop() );
+			viewheight = document.documentElement.clientheight + ( isFixed ? 0 : $( document ).scrollTop() );
 
 		offset.left -= ( this._get( inst, "isRTL" ) ? ( dpWidth - inputWidth ) : 0 );
 		offset.left -= ( isFixed && offset.left === inst.input.offset().left ) ? $( document ).scrollLeft() : 0;
-		offset.top -= ( isFixed && offset.top === ( inst.input.offset().top + inputHeight ) ) ? $( document ).scrollTop() : 0;
+		offset.top -= ( isFixed && offset.top === ( inst.input.offset().top + inputheight ) ) ? $( document ).scrollTop() : 0;
 
 		// Now check if datepicker is showing outside window viewport - move to a better place if so.
 		offset.left -= Math.min( offset.left, ( offset.left + dpWidth > viewWidth && viewWidth > dpWidth ) ?
 			Math.abs( offset.left + dpWidth - viewWidth ) : 0 );
-		offset.top -= Math.min( offset.top, ( offset.top + dpHeight > viewHeight && viewHeight > dpHeight ) ?
-			Math.abs( dpHeight + inputHeight ) : 0 );
+		offset.top -= Math.min( offset.top, ( offset.top + dpheight > viewheight && viewheight > dpheight ) ?
+			Math.abs( dpheight + inputheight ) : 0 );
 
 		return offset;
 	},
@@ -9885,7 +9885,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				.css( "position", "absolute" )
 				.appendTo( iframe.parent() )
 				.outerWidth( iframe.outerWidth() )
-				.outerHeight( iframe.outerHeight() )
+				.outerheight( iframe.outerheight() )
 				.offset( iframe.offset() )[ 0 ];
 		} );
 	},
@@ -10243,7 +10243,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_cacheHelperProportions: function() {
 		this.helperProportions = {
 			width: this.helper.outerWidth(),
-			height: this.helper.outerHeight()
+			height: this.helper.outerheight()
 		};
 	},
 
@@ -10267,7 +10267,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				$( window ).scrollLeft() + $( window ).width() -
 					this.helperProportions.width - this.margins.left,
 				$( window ).scrollTop() +
-					( $( window ).height() || document.body.parentNode.scrollHeight ) -
+					( $( window ).height() || document.body.parentNode.scrollheight ) -
 					this.helperProportions.height - this.margins.top
 			];
 			return;
@@ -10278,7 +10278,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				0,
 				0,
 				$( document ).width() - this.helperProportions.width - this.margins.left,
-				( $( document ).height() || document.body.parentNode.scrollHeight ) -
+				( $( document ).height() || document.body.parentNode.scrollheight ) -
 					this.helperProportions.height - this.margins.top
 			];
 			return;
@@ -10313,7 +10313,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				this.helperProportions.width -
 				this.margins.left -
 				this.margins.right,
-			( isUserScrollable ? Math.max( ce.scrollHeight, ce.offsetHeight ) : ce.offsetHeight ) -
+			( isUserScrollable ? Math.max( ce.scrollheight, ce.offsetheight ) : ce.offsetheight ) -
 				( parseInt( c.css( "borderBottomWidth" ), 10 ) || 0 ) -
 				( parseInt( c.css( "paddingBottom" ), 10 ) || 0 ) -
 				this.helperProportions.height -
@@ -10782,7 +10782,7 @@ $.ui.plugin.add( "draggable", "scroll", {
 
 		if ( scrollParent !== document && scrollParent.tagName !== "HTML" ) {
 			if ( !o.axis || o.axis !== "x" ) {
-				if ( ( i.overflowOffset.top + scrollParent.offsetHeight ) - event.pageY <
+				if ( ( i.overflowOffset.top + scrollParent.offsetheight ) - event.pageY <
 						o.scrollSensitivity ) {
 					scrollParent.scrollTop = scrolled = scrollParent.scrollTop + o.scrollSpeed;
 				} else if ( event.pageY - i.overflowOffset.top < o.scrollSensitivity ) {
@@ -10846,7 +10846,7 @@ $.ui.plugin.add( "draggable", "snap", {
 				if ( this !== i.element[ 0 ] ) {
 					i.snapElements.push( {
 						item: this,
-						width: $t.outerWidth(), height: $t.outerHeight(),
+						width: $t.outerWidth(), height: $t.outerheight(),
 						top: $o.top, left: $o.left
 					} );
 				}
@@ -11045,9 +11045,9 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		grid: false,
 		handles: "e,s,se",
 		helper: false,
-		maxHeight: null,
+		maxheight: null,
 		maxWidth: null,
-		minHeight: 10,
+		minheight: 10,
 		minWidth: 10,
 
 		// See #7960
@@ -11118,7 +11118,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 					overflow: "hidden",
 					position: this.element.css( "position" ),
 					width: this.element.outerWidth(),
-					height: this.element.outerHeight(),
+					height: this.element.outerheight(),
 					top: this.element.css( "top" ),
 					left: this.element.css( "left" )
 				} )
@@ -11203,7 +11203,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			this.originalElement.css( {
 				position: wrapper.css( "position" ),
 				width: wrapper.outerWidth(),
-				height: wrapper.outerHeight(),
+				height: wrapper.outerheight(),
 				top: wrapper.css( "top" ),
 				left: wrapper.css( "left" )
 			} ).insertAfter( wrapper );
@@ -11298,7 +11298,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 					axis = $( this.handles[ i ], this.element );
 
 					padWrapper = /sw|ne|nw|se|n|s/.test( i ) ?
-						axis.outerHeight() :
+						axis.outerheight() :
 						axis.outerWidth();
 
 					padPos = [ "padding",
@@ -11385,7 +11385,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 		this.originalSize = this._helper ? {
 				width: el.outerWidth(),
-				height: el.outerHeight()
+				height: el.outerheight()
 			} : {
 				width: el.width(),
 				height: el.height()
@@ -11393,7 +11393,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 		this.sizeDiff = {
 			width: el.outerWidth() - el.width(),
-			height: el.outerHeight() - el.height()
+			height: el.outerheight() - el.height()
 		};
 
 		this.originalPosition = { left: curleft, top: curtop };
@@ -11535,33 +11535,33 @@ $.widget( "ui.resizable", $.ui.mouse, {
 	},
 
 	_updateVirtualBoundaries: function( forceAspectRatio ) {
-		var pMinWidth, pMaxWidth, pMinHeight, pMaxHeight, b,
+		var pMinWidth, pMaxWidth, pMinheight, pMaxheight, b,
 			o = this.options;
 
 		b = {
 			minWidth: this._isNumber( o.minWidth ) ? o.minWidth : 0,
 			maxWidth: this._isNumber( o.maxWidth ) ? o.maxWidth : Infinity,
-			minHeight: this._isNumber( o.minHeight ) ? o.minHeight : 0,
-			maxHeight: this._isNumber( o.maxHeight ) ? o.maxHeight : Infinity
+			minheight: this._isNumber( o.minheight ) ? o.minheight : 0,
+			maxheight: this._isNumber( o.maxheight ) ? o.maxheight : Infinity
 		};
 
 		if ( this._aspectRatio || forceAspectRatio ) {
-			pMinWidth = b.minHeight * this.aspectRatio;
-			pMinHeight = b.minWidth / this.aspectRatio;
-			pMaxWidth = b.maxHeight * this.aspectRatio;
-			pMaxHeight = b.maxWidth / this.aspectRatio;
+			pMinWidth = b.minheight * this.aspectRatio;
+			pMinheight = b.minWidth / this.aspectRatio;
+			pMaxWidth = b.maxheight * this.aspectRatio;
+			pMaxheight = b.maxWidth / this.aspectRatio;
 
 			if ( pMinWidth > b.minWidth ) {
 				b.minWidth = pMinWidth;
 			}
-			if ( pMinHeight > b.minHeight ) {
-				b.minHeight = pMinHeight;
+			if ( pMinheight > b.minheight ) {
+				b.minheight = pMinheight;
 			}
 			if ( pMaxWidth < b.maxWidth ) {
 				b.maxWidth = pMaxWidth;
 			}
-			if ( pMaxHeight < b.maxHeight ) {
-				b.maxHeight = pMaxHeight;
+			if ( pMaxheight < b.maxheight ) {
+				b.maxheight = pMaxheight;
 			}
 		}
 		this._vBoundaries = b;
@@ -11612,9 +11612,9 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		var o = this._vBoundaries,
 			a = this.axis,
 			ismaxw = this._isNumber( data.width ) && o.maxWidth && ( o.maxWidth < data.width ),
-			ismaxh = this._isNumber( data.height ) && o.maxHeight && ( o.maxHeight < data.height ),
+			ismaxh = this._isNumber( data.height ) && o.maxheight && ( o.maxheight < data.height ),
 			isminw = this._isNumber( data.width ) && o.minWidth && ( o.minWidth > data.width ),
-			isminh = this._isNumber( data.height ) && o.minHeight && ( o.minHeight > data.height ),
+			isminh = this._isNumber( data.height ) && o.minheight && ( o.minheight > data.height ),
 			dw = this.originalPosition.left + this.originalSize.width,
 			dh = this.originalPosition.top + this.originalSize.height,
 			cw = /sw|nw|w/.test( a ), ch = /nw|ne|n/.test( a );
@@ -11622,13 +11622,13 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			data.width = o.minWidth;
 		}
 		if ( isminh ) {
-			data.height = o.minHeight;
+			data.height = o.minheight;
 		}
 		if ( ismaxw ) {
 			data.width = o.maxWidth;
 		}
 		if ( ismaxh ) {
-			data.height = o.maxHeight;
+			data.height = o.maxheight;
 		}
 
 		if ( isminw && cw ) {
@@ -11638,10 +11638,10 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			data.left = dw - o.maxWidth;
 		}
 		if ( isminh && ch ) {
-			data.top = dh - o.minHeight;
+			data.top = dh - o.minheight;
 		}
 		if ( ismaxh && ch ) {
-			data.top = dh - o.maxHeight;
+			data.top = dh - o.maxheight;
 		}
 
 		// Fixing jump error on top/left - bug #2330
@@ -11722,7 +11722,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			this._addClass( this.helper, this._helper );
 			this.helper.css( {
 				width: this.element.outerWidth(),
-				height: this.element.outerHeight(),
+				height: this.element.outerheight(),
 				position: "absolute",
 				left: this.elementOffset.left + "px",
 				top: this.elementOffset.top + "px",
@@ -11878,7 +11878,7 @@ $.ui.plugin.add( "resizable", "containment", {
 				left: 0,
 				top: 0,
 				width: $( document ).width(),
-				height: $( document ).height() || document.body.parentNode.scrollHeight
+				height: $( document ).height() || document.body.parentNode.scrollheight
 			};
 		} else {
 			element = $( ce );
@@ -11890,7 +11890,7 @@ $.ui.plugin.add( "resizable", "containment", {
 			that.containerOffset = element.offset();
 			that.containerPosition = element.position();
 			that.containerSize = {
-				height: ( element.innerHeight() - p[ 3 ] ),
+				height: ( element.innerheight() - p[ 3 ] ),
 				width: ( element.innerWidth() - p[ 1 ] )
 			};
 
@@ -11898,7 +11898,7 @@ $.ui.plugin.add( "resizable", "containment", {
 			ch = that.containerSize.height;
 			cw = that.containerSize.width;
 			width = ( that._hasScroll( ce, "left" ) ? ce.scrollWidth : cw );
-			height = ( that._hasScroll( ce ) ? ce.scrollHeight : ch );
+			height = ( that._hasScroll( ce ) ? ce.scrollheight : ch );
 
 			that.parentData = {
 				element: ce,
@@ -12008,7 +12008,7 @@ $.ui.plugin.add( "resizable", "containment", {
 			helper = $( that.helper ),
 			ho = helper.offset(),
 			w = helper.outerWidth() - that.sizeDiff.width,
-			h = helper.outerHeight() - that.sizeDiff.height;
+			h = helper.outerheight() - that.sizeDiff.height;
 
 		if ( that._helper && !o.animate && ( /relative/ ).test( ce.css( "position" ) ) ) {
 			$( this ).css( {
@@ -12145,50 +12145,50 @@ $.ui.plugin.add( "resizable", "grid", {
 			ox = Math.round( ( cs.width - os.width ) / gridX ) * gridX,
 			oy = Math.round( ( cs.height - os.height ) / gridY ) * gridY,
 			newWidth = os.width + ox,
-			newHeight = os.height + oy,
+			newheight = os.height + oy,
 			isMaxWidth = o.maxWidth && ( o.maxWidth < newWidth ),
-			isMaxHeight = o.maxHeight && ( o.maxHeight < newHeight ),
+			isMaxheight = o.maxheight && ( o.maxheight < newheight ),
 			isMinWidth = o.minWidth && ( o.minWidth > newWidth ),
-			isMinHeight = o.minHeight && ( o.minHeight > newHeight );
+			isMinheight = o.minheight && ( o.minheight > newheight );
 
 		o.grid = grid;
 
 		if ( isMinWidth ) {
 			newWidth += gridX;
 		}
-		if ( isMinHeight ) {
-			newHeight += gridY;
+		if ( isMinheight ) {
+			newheight += gridY;
 		}
 		if ( isMaxWidth ) {
 			newWidth -= gridX;
 		}
-		if ( isMaxHeight ) {
-			newHeight -= gridY;
+		if ( isMaxheight ) {
+			newheight -= gridY;
 		}
 
 		if ( /^(se|s|e)$/.test( a ) ) {
 			that.size.width = newWidth;
-			that.size.height = newHeight;
+			that.size.height = newheight;
 		} else if ( /^(ne)$/.test( a ) ) {
 			that.size.width = newWidth;
-			that.size.height = newHeight;
+			that.size.height = newheight;
 			that.position.top = op.top - oy;
 		} else if ( /^(sw)$/.test( a ) ) {
 			that.size.width = newWidth;
-			that.size.height = newHeight;
+			that.size.height = newheight;
 			that.position.left = op.left - ox;
 		} else {
-			if ( newHeight - gridY <= 0 || newWidth - gridX <= 0 ) {
+			if ( newheight - gridY <= 0 || newWidth - gridX <= 0 ) {
 				outerDimensions = that._getPaddingPlusBorderDimensions( this );
 			}
 
-			if ( newHeight - gridY > 0 ) {
-				that.size.height = newHeight;
+			if ( newheight - gridY > 0 ) {
+				that.size.height = newheight;
 				that.position.top = op.top - oy;
 			} else {
-				newHeight = gridY - outerDimensions.height;
-				that.size.height = newHeight;
-				that.position.top = op.top + os.height - newHeight;
+				newheight = gridY - outerDimensions.height;
+				that.size.height = newheight;
+				that.position.top = op.top + os.height - newheight;
 			}
 			if ( newWidth - gridX > 0 ) {
 				that.size.width = newWidth;
@@ -12240,9 +12240,9 @@ $.widget( "ui.dialog", {
 		draggable: true,
 		hide: null,
 		height: "auto",
-		maxHeight: null,
+		maxheight: null,
 		maxWidth: null,
-		minHeight: 150,
+		minheight: 150,
 		minWidth: 150,
 		modal: false,
 		position: {
@@ -12280,17 +12280,17 @@ $.widget( "ui.dialog", {
 	sizeRelatedOptions: {
 		buttons: true,
 		height: true,
-		maxHeight: true,
+		maxheight: true,
 		maxWidth: true,
-		minHeight: true,
+		minheight: true,
 		minWidth: true,
 		width: true
 	},
 
 	resizableRelatedOptions: {
-		maxHeight: true,
+		maxheight: true,
 		maxWidth: true,
-		minHeight: true,
+		minheight: true,
 		minWidth: true
 	},
 
@@ -12298,8 +12298,8 @@ $.widget( "ui.dialog", {
 		this.originalCss = {
 			display: this.element[ 0 ].style.display,
 			width: this.element[ 0 ].style.width,
-			minHeight: this.element[ 0 ].style.minHeight,
-			maxHeight: this.element[ 0 ].style.maxHeight,
+			minheight: this.element[ 0 ].style.minheight,
+			maxheight: this.element[ 0 ].style.maxheight,
 			height: this.element[ 0 ].style.height
 		};
 		this.originalPosition = {
@@ -12778,9 +12778,9 @@ $.widget( "ui.dialog", {
 			containment: "document",
 			alsoResize: this.element,
 			maxWidth: options.maxWidth,
-			maxHeight: options.maxHeight,
+			maxheight: options.maxheight,
 			minWidth: options.minWidth,
-			minHeight: this._minHeight(),
+			minheight: this._minheight(),
 			handles: resizeHandles,
 			start: function( event, ui ) {
 				that._addClass( $( this ), "ui-dialog-resizing" );
@@ -12842,12 +12842,12 @@ $.widget( "ui.dialog", {
 		return instances;
 	},
 
-	_minHeight: function() {
+	_minheight: function() {
 		var options = this.options;
 
 		return options.height === "auto" ?
-			options.minHeight :
-			Math.min( options.minHeight, options.height );
+			options.minheight :
+			Math.min( options.minheight, options.height );
 	},
 
 	_position: function() {
@@ -12957,14 +12957,14 @@ $.widget( "ui.dialog", {
 
 		// If the user has resized the dialog, the .ui-dialog and .ui-dialog-content
 		// divs will both have width and height set, so we need to reset them
-		var nonContentHeight, minContentHeight, maxContentHeight,
+		var nonContentheight, minContentheight, maxContentheight,
 			options = this.options;
 
 		// Reset content sizing
 		this.element.show().css( {
 			width: "auto",
-			minHeight: 0,
-			maxHeight: "none",
+			minheight: 0,
+			maxheight: "none",
 			height: 0
 		} );
 
@@ -12974,28 +12974,28 @@ $.widget( "ui.dialog", {
 
 		// Reset wrapper sizing
 		// determine the height of all the non-content elements
-		nonContentHeight = this.uiDialog.css( {
+		nonContentheight = this.uiDialog.css( {
 			height: "auto",
 			width: options.width
 		} )
-			.outerHeight();
-		minContentHeight = Math.max( 0, options.minHeight - nonContentHeight );
-		maxContentHeight = typeof options.maxHeight === "number" ?
-			Math.max( 0, options.maxHeight - nonContentHeight ) :
+			.outerheight();
+		minContentheight = Math.max( 0, options.minheight - nonContentheight );
+		maxContentheight = typeof options.maxheight === "number" ?
+			Math.max( 0, options.maxheight - nonContentheight ) :
 			"none";
 
 		if ( options.height === "auto" ) {
 			this.element.css( {
-				minHeight: minContentHeight,
-				maxHeight: maxContentHeight,
+				minheight: minContentheight,
+				maxheight: maxContentheight,
 				height: "auto"
 			} );
 		} else {
-			this.element.height( Math.max( 0, options.height - nonContentHeight ) );
+			this.element.height( Math.max( 0, options.height - nonContentheight ) );
 		}
 
 		if ( this.uiDialog.is( ":data(ui-resizable)" ) ) {
-			this.uiDialog.resizable( "option", "minHeight", this._minHeight() );
+			this.uiDialog.resizable( "option", "minheight", this._minheight() );
 		}
 	},
 
@@ -13007,7 +13007,7 @@ $.widget( "ui.dialog", {
 				.css( {
 					position: "absolute",
 					width: iframe.outerWidth(),
-					height: iframe.outerHeight()
+					height: iframe.outerheight()
 				} )
 				.appendTo( iframe.parent() )
 				.offset( iframe.offset() )[ 0 ];
@@ -13189,7 +13189,7 @@ $.widget( "ui.droppable", {
 					proportions :
 					proportions = {
 						width: this.element[ 0 ].offsetWidth,
-						height: this.element[ 0 ].offsetHeight
+						height: this.element[ 0 ].offsetheight
 					};
 			}
 		};
@@ -13463,7 +13463,7 @@ $.ui.ddmanager = {
 			m[ i ].offset = m[ i ].element.offset();
 			m[ i ].proportions( {
 				width: m[ i ].element[ 0 ].offsetWidth,
-				height: m[ i ].element[ 0 ].offsetHeight
+				height: m[ i ].element[ 0 ].offsetheight
 			} );
 
 		}
@@ -13836,7 +13836,7 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 					left: pos.left,
 					top: pos.top,
 					right: pos.left + $this.outerWidth(),
-					bottom: pos.top + $this.outerHeight(),
+					bottom: pos.top + $this.outerheight(),
 					startselected: false,
 					selected: $this.hasClass( "ui-selected" ),
 					selecting: $this.hasClass( "ui-selecting" ),
@@ -14918,7 +14918,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 
 		this.elementSize = {
 			width: this.element.outerWidth(),
-			height: this.element.outerHeight()
+			height: this.element.outerheight()
 		};
 		this.elementOffset = this.element.offset();
 
@@ -15821,7 +15821,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				this.scrollParent[ 0 ].tagName !== "HTML" ) {
 
-			if ( ( this.overflowOffset.top + this.scrollParent[ 0 ].offsetHeight ) -
+			if ( ( this.overflowOffset.top + this.scrollParent[ 0 ].offsetheight ) -
 					event.pageY < o.scrollSensitivity ) {
 				this.scrollParent[ 0 ].scrollTop =
 					scrolled = this.scrollParent[ 0 ].scrollTop + o.scrollSpeed;
@@ -16118,11 +16118,11 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			b = t + item.height,
 			dyClick = this.offset.click.top,
 			dxClick = this.offset.click.left,
-			isOverElementHeight = ( this.options.axis === "x" ) || ( ( y1 + dyClick ) > t &&
+			isOverElementheight = ( this.options.axis === "x" ) || ( ( y1 + dyClick ) > t &&
 				( y1 + dyClick ) < b ),
 			isOverElementWidth = ( this.options.axis === "y" ) || ( ( x1 + dxClick ) > l &&
 				( x1 + dxClick ) < r ),
-			isOverElement = isOverElementHeight && isOverElementWidth;
+			isOverElement = isOverElementheight && isOverElementWidth;
 
 		if ( this.options.tolerance === "pointer" ||
 			this.options.forcePointerForContainers ||
@@ -16143,13 +16143,13 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	_intersectsWithPointer: function( item ) {
 		var verticalDirection, horizontalDirection,
-			isOverElementHeight = ( this.options.axis === "x" ) ||
+			isOverElementheight = ( this.options.axis === "x" ) ||
 				this._isOverAxis(
 					this.positionAbs.top + this.offset.click.top, item.top, item.height ),
 			isOverElementWidth = ( this.options.axis === "y" ) ||
 				this._isOverAxis(
 					this.positionAbs.left + this.offset.click.left, item.left, item.width ),
-			isOverElement = isOverElementHeight && isOverElementWidth;
+			isOverElement = isOverElementheight && isOverElementWidth;
 
 		if ( !isOverElement ) {
 			return false;
@@ -16331,7 +16331,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 			if ( !fast ) {
 				item.width = t.outerWidth();
-				item.height = t.outerHeight();
+				item.height = t.outerheight();
 			}
 
 			p = t.offset();
@@ -16363,7 +16363,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				this.containers[ i ].containerCache.width =
 					this.containers[ i ].element.outerWidth();
 				this.containers[ i ].containerCache.height =
-					this.containers[ i ].element.outerHeight();
+					this.containers[ i ].element.outerheight();
 			}
 		}
 
@@ -16424,7 +16424,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 					if ( !p.height() || ( o.forcePlaceholderSize &&
 							( nodeName === "tbody" || nodeName === "tr" ) ) ) {
 						p.height(
-							that.currentItem.innerHeight() -
+							that.currentItem.innerheight() -
 							parseInt( that.currentItem.css( "paddingTop" ) || 0, 10 ) -
 							parseInt( that.currentItem.css( "paddingBottom" ) || 0, 10 ) );
 					}
@@ -16698,7 +16698,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 	_cacheHelperProportions: function() {
 		this.helperProportions = {
 			width: this.helper.outerWidth(),
-			height: this.helper.outerHeight()
+			height: this.helper.outerheight()
 		};
 	},
 
@@ -16717,8 +16717,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 					this.document.width() :
 					this.window.width() - this.helperProportions.width - this.margins.left,
 				( o.containment === "document" ?
-					( this.document.height() || document.body.parentNode.scrollHeight ) :
-					this.window.height() || this.document[ 0 ].body.parentNode.scrollHeight
+					( this.document.height() || document.body.parentNode.scrollheight ) :
+					this.window.height() || this.document[ 0 ].body.parentNode.scrollheight
 				) - this.helperProportions.height - this.margins.top
 			];
 		}
@@ -16737,7 +16737,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 					( parseInt( $( ce ).css( "borderLeftWidth" ), 10 ) || 0 ) -
 					( parseInt( $( ce ).css( "paddingRight" ), 10 ) || 0 ) -
 					this.helperProportions.width - this.margins.left,
-				co.top + ( over ? Math.max( ce.scrollHeight, ce.offsetHeight ) : ce.offsetHeight ) -
+				co.top + ( over ? Math.max( ce.scrollheight, ce.offsetheight ) : ce.offsetheight ) -
 					( parseInt( $( ce ).css( "borderTopWidth" ), 10 ) || 0 ) -
 					( parseInt( $( ce ).css( "paddingBottom" ), 10 ) || 0 ) -
 					this.helperProportions.height - this.margins.top
@@ -17924,7 +17924,7 @@ $.widget( "ui.tabs", {
 		}
 
 		if ( key === "heightStyle" ) {
-			this._setupHeightStyle( value );
+			this._setupheightStyle( value );
 		}
 	},
 
@@ -17975,7 +17975,7 @@ $.widget( "ui.tabs", {
 	_refresh: function() {
 		this._setOptionDisabled( this.options.disabled );
 		this._setupEvents( this.options.event );
-		this._setupHeightStyle( this.options.heightStyle );
+		this._setupheightStyle( this.options.heightStyle );
 
 		this.tabs.not( this.active ).attr( {
 			"aria-selected": "false",
@@ -18169,13 +18169,13 @@ $.widget( "ui.tabs", {
 		this._hoverable( this.tabs );
 	},
 
-	_setupHeightStyle: function( heightStyle ) {
-		var maxHeight,
+	_setupheightStyle: function( heightStyle ) {
+		var maxheight,
 			parent = this.element.parent();
 
 		if ( heightStyle === "fill" ) {
-			maxHeight = parent.height();
-			maxHeight -= this.element.outerHeight() - this.element.height();
+			maxheight = parent.height();
+			maxheight -= this.element.outerheight() - this.element.height();
 
 			this.element.siblings( ":visible" ).each( function() {
 				var elem = $( this ),
@@ -18184,23 +18184,23 @@ $.widget( "ui.tabs", {
 				if ( position === "absolute" || position === "fixed" ) {
 					return;
 				}
-				maxHeight -= elem.outerHeight( true );
+				maxheight -= elem.outerheight( true );
 			} );
 
 			this.element.children().not( this.panels ).each( function() {
-				maxHeight -= $( this ).outerHeight( true );
+				maxheight -= $( this ).outerheight( true );
 			} );
 
 			this.panels.each( function() {
-				$( this ).height( Math.max( 0, maxHeight -
-					$( this ).innerHeight() + $( this ).height() ) );
+				$( this ).height( Math.max( 0, maxheight -
+					$( this ).innerheight() + $( this ).height() ) );
 			} )
 				.css( "overflow", "auto" );
 		} else if ( heightStyle === "auto" ) {
-			maxHeight = 0;
+			maxheight = 0;
 			this.panels.each( function() {
-				maxHeight = Math.max( maxHeight, $( this ).height( "" ).height() );
-			} ).height( maxHeight );
+				maxheight = Math.max( maxheight, $( this ).height( "" ).height() );
+			} ).height( maxheight );
 		}
 	},
 

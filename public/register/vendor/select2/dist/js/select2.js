@@ -730,7 +730,7 @@ S2.define('select2/utils',[
       return true;
     }
 
-    return ($el.innerHeight() < el.scrollHeight ||
+    return ($el.innerheight() < el.scrollheight ||
       $el.innerWidth() < el.scrollWidth);
   };
 
@@ -1238,8 +1238,8 @@ S2.define('select2/results',[
       $next.trigger('mouseenter');
 
       var currentOffset = self.$results.offset().top +
-        self.$results.outerHeight(false);
-      var nextBottom = $next.offset().top + $next.outerHeight(false);
+        self.$results.outerheight(false);
+      var nextBottom = $next.offset().top + $next.outerheight(false);
       var nextOffset = self.$results.scrollTop() + nextBottom - currentOffset;
 
       if (nextIndex === 0) {
@@ -1261,7 +1261,7 @@ S2.define('select2/results',[
       this.$results.on('mousewheel', function (e) {
         var top = self.$results.scrollTop();
 
-        var bottom = self.$results.get(0).scrollHeight - top + e.deltaY;
+        var bottom = self.$results.get(0).scrollheight - top + e.deltaY;
 
         var isAtTop = e.deltaY > 0 && top - e.deltaY <= 0;
         var isAtBottom = e.deltaY < 0 && bottom <= self.$results.height();
@@ -1273,7 +1273,7 @@ S2.define('select2/results',[
           e.stopPropagation();
         } else if (isAtBottom) {
           self.$results.scrollTop(
-            self.$results.get(0).scrollHeight - self.$results.height()
+            self.$results.get(0).scrollheight - self.$results.height()
           );
 
           e.preventDefault();
@@ -1348,11 +1348,11 @@ S2.define('select2/results',[
     var nextOffset = this.$results.scrollTop() + (nextTop - currentOffset);
 
     var offsetDelta = nextTop - currentOffset;
-    nextOffset -= $highlighted.outerHeight(false) * 2;
+    nextOffset -= $highlighted.outerheight(false) * 2;
 
     if (currentIndex <= 2) {
       this.$results.scrollTop(0);
-    } else if (offsetDelta > this.$results.outerHeight() || offsetDelta < 0) {
+    } else if (offsetDelta > this.$results.outerheight() || offsetDelta < 0) {
       this.$results.scrollTop(nextOffset);
     }
   };
@@ -4282,9 +4282,9 @@ S2.define('select2/dropdown/infiniteScroll',[
     }
 
     var currentOffset = this.$results.offset().top +
-      this.$results.outerHeight(false);
+      this.$results.outerheight(false);
     var loadingMoreOffset = this.$loadingMore.offset().top +
-      this.$loadingMore.outerHeight(false);
+      this.$loadingMore.outerheight(false);
 
     if (currentOffset + 50 >= loadingMoreOffset) {
       this.loadMore();
@@ -4479,17 +4479,17 @@ S2.define('select2/dropdown/attachBody',[
 
     var offset = this.$container.offset();
 
-    offset.bottom = offset.top + this.$container.outerHeight(false);
+    offset.bottom = offset.top + this.$container.outerheight(false);
 
     var container = {
-      height: this.$container.outerHeight(false)
+      height: this.$container.outerheight(false)
     };
 
     container.top = offset.top;
     container.bottom = offset.top + container.height;
 
     var dropdown = {
-      height: this.$dropdown.outerHeight(false)
+      height: this.$dropdown.outerheight(false)
     };
 
     var viewport = {

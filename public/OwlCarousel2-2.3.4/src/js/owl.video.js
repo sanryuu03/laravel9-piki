@@ -92,7 +92,7 @@
 	 */
 	Video.Defaults = {
 		video: false,
-		videoHeight: false,
+		videoheight: false,
 		videoWidth: false
 	};
 
@@ -114,7 +114,7 @@
 				})(),
 				id = target.attr('data-vimeo-id') || target.attr('data-youtube-id') || target.attr('data-vzaar-id'),
 				width = target.attr('data-width') || this._core.settings.videoWidth,
-				height = target.attr('data-height') || this._core.settings.videoHeight,
+				height = target.attr('data-height') || this._core.settings.videoheight,
 				url = target.attr('href');
 
 		if (url) {

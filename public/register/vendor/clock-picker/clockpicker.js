@@ -384,7 +384,7 @@
 			popover = this.popover,
 			offset = element.offset(),
 			width = element.outerWidth(),
-			height = element.outerHeight(),
+			height = element.outerheight(),
 			placement = this.options.placement,
 			align = this.options.align,
 			styles = {},
@@ -401,7 +401,7 @@
 				styles.left = offset.left + width;
 				break;
 			case 'top':
-				styles.top = offset.top - popover.outerHeight();
+				styles.top = offset.top - popover.outerheight();
 				break;
 			case 'left':
 				styles.left = offset.left - popover.outerWidth();
@@ -420,7 +420,7 @@
 				styles.top = offset.top;
 				break;
 			case 'bottom':
-				styles.top = offset.top + height - popover.outerHeight();
+				styles.top = offset.top + height - popover.outerheight();
 				break;
 		}
 

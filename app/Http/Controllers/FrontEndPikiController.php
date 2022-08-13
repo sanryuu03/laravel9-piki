@@ -83,9 +83,8 @@ class FrontEndPikiController extends Controller
 
     public function mobile()
     {
-        $header = HeaderPiki::latest()->get();
         $headerMobile = HeaderPikiMobile::latest()->first();
-        $berita = NewsPiki::latest()->take(3)->get();
+        $berita = NewsPiki::latest()->take(3)->get()->load('categoryNews');
         $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
         $categoryNews = CategoryNews::all();
         // return Carbon::parse(Carbon::now())->timestamp;
@@ -94,13 +93,17 @@ class FrontEndPikiController extends Controller
         $item = AgendaPiki::latest()->first();
         $anggota = AnggotaPiki::where('tampilkan_anggota_dilandingpage', 'ya')->get();
         // return $anggota;
-        $user = User::all();
         $sponsor = SponsorPiki::take(7)->get();
         $backendFaq = BackendFaq::get();
+        $partnerShip = PartnerShip::latest()->first();
+        $sponsorShipSatu = SponsorShipSatu::latest()->first();
+        $sponsorShipDua = SponsorShipDua::latest()->first();
+        $sponsorShipTiga = SponsorShipTiga::latest()->first();
+        $sponsorLainnya = SponsorPiki::take(5)->latest()->get();
+        $sponsorshipBeforeFaq = SponsorshipBeforeFaq::first();
         return view('/2ndIndex', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
-            'header' => $header,
             'headerMobile' => $headerMobile,
             "news" => $berita,
             "beritaLainnya" => $beritaLainnya,
@@ -109,9 +112,14 @@ class FrontEndPikiController extends Controller
             "agenda" => $agenda,
             "agendaItem" => $item,
             "anggota" => $anggota,
-            "user" => $user,
             "sponsor" => $sponsor,
             "backendFaq" => $backendFaq,
+            "partnerShip" => $partnerShip,
+            "sponsorShipSatu" => $sponsorShipSatu,
+            "sponsorShipDua" => $sponsorShipDua,
+            "sponsorShipTiga" => $sponsorShipTiga,
+            "sponsorLainnya" => $sponsorLainnya,
+            "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
         ]);
     }
 

@@ -230,7 +230,7 @@ define([
       return true;
     }
 
-    return ($el.innerHeight() < el.scrollHeight ||
+    return ($el.innerheight() < el.scrollheight ||
       $el.innerWidth() < el.scrollWidth);
   };
 

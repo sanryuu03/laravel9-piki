@@ -207,6 +207,7 @@ return [
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
     ],
 
     /*
@@ -227,6 +228,7 @@ return [
     'aliases' => [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        'Clockwork' => Clockwork\Support\Laravel\Facade::class,
     ],
 
 ];

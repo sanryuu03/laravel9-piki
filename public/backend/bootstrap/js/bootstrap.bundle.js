@@ -168,7 +168,7 @@
       return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
     },
     reflow: function reflow(element) {
-      return element.offsetHeight;
+      return element.offsetheight;
     },
     triggerTransitionEnd: function triggerTransitionEnd(element) {
       $__default["default"](element).trigger(TRANSITION_END);
@@ -1853,7 +1853,7 @@
   }
 
   function getSize(axis, body, html, computedStyle) {
-    return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+    return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'height' ? 'Bottom' : 'Right')]) : 0);
   }
 
   function getWindowSizes(document) {
@@ -1862,7 +1862,7 @@
     var computedStyle = isIE(10) && getComputedStyle(html);
 
     return {
-      height: getSize('Height', body, html, computedStyle),
+      height: getSize('height', body, html, computedStyle),
       width: getSize('Width', body, html, computedStyle)
     };
   }
@@ -1975,10 +1975,10 @@
     // subtract scrollbar size from sizes
     var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
     var width = sizes.width || element.clientWidth || result.width;
-    var height = sizes.height || element.clientHeight || result.height;
+    var height = sizes.height || element.clientheight || result.height;
 
     var horizScrollbar = element.offsetWidth - width;
-    var vertScrollbar = element.offsetHeight - height;
+    var vertScrollbar = element.offsetheight - height;
 
     // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
     // we make this check conditional for performance reasons
@@ -2052,7 +2052,7 @@
     var html = element.ownerDocument.documentElement;
     var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
     var width = Math.max(html.clientWidth, window.innerWidth || 0);
-    var height = Math.max(html.clientHeight, window.innerHeight || 0);
+    var height = Math.max(html.clientheight, window.innerheight || 0);
 
     var scrollTop = !excludeScroll ? getScroll(html) : 0;
     var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
@@ -2232,7 +2232,7 @@
     var filteredAreas = sortedAreas.filter(function (_ref2) {
       var width = _ref2.width,
           height = _ref2.height;
-      return width >= popper.clientWidth && height >= popper.clientHeight;
+      return width >= popper.clientWidth && height >= popper.clientheight;
     });
 
     var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
@@ -2273,7 +2273,7 @@
     var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
     var result = {
       width: element.offsetWidth + y,
-      height: element.offsetHeight + x
+      height: element.offsetheight + x
     };
     return result;
   }
@@ -2826,7 +2826,7 @@
       // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
       // and not the bottom of the html element
       if (offsetParent.nodeName === 'HTML') {
-        top = -offsetParent.clientHeight + offsets.bottom;
+        top = -offsetParent.clientheight + offsets.bottom;
       } else {
         top = -offsetParentRect.height + offsets.bottom;
       }
@@ -3222,7 +3222,7 @@
       // if is a vh or vw, we calculate the size based on the viewport
       var size = void 0;
       if (unit === 'vh') {
-        size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        size = Math.max(document.documentElement.clientheight, window.innerheight || 0);
       } else {
         size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       }
@@ -3251,7 +3251,7 @@
     // Use height if placement is left or right and index is 0 otherwise use width
     // in this way the first offset will use an axis and the second one
     // will use the other one
-    var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+    var useheight = ['right', 'left'].indexOf(basePlacement) !== -1;
 
     // Split the offset string to obtain a list of values and operands
     // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
@@ -3277,7 +3277,7 @@
     // Convert the values with units to absolute pixels to allow our computations
     ops = ops.map(function (op, index) {
       // Most of the units rely on the orientation of the popper
-      var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+      var measurement = (index === 1 ? !useheight : useheight) ? 'height' : 'width';
       var mergeWithPrevious = false;
       return op
       // This aggregates any `+` or `-` sign that aren't considered operators
@@ -4106,7 +4106,7 @@
    * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
    * @property {number} data.clientWidth
    * An ES6 getter that will return the width of the virtual reference element.
-   * @property {number} data.clientHeight
+   * @property {number} data.clientheight
    * An ES6 getter that will return the height of the virtual reference element.
    */
 
@@ -4830,7 +4830,7 @@
         return;
       }
 
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       if (!isModalOverflowing) {
         this._element.style.overflowY = 'hidden';
@@ -5057,7 +5057,7 @@
     ;
 
     _proto._adjustDialog = function _adjustDialog() {
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       if (!this._isBodyOverflowing && isModalOverflowing) {
         this._element.style.paddingLeft = this._scrollbarWidth + "px";
@@ -6283,7 +6283,7 @@
       this._offsets = [];
       this._targets = [];
       this._activeTarget = null;
-      this._scrollHeight = 0;
+      this._scrollheight = 0;
       $__default["default"](this._scrollElement).on(EVENT_SCROLL, function (event) {
         return _this._process(event);
       });
@@ -6304,7 +6304,7 @@
       var offsetBase = offsetMethod === METHOD_POSITION ? this._getScrollTop() : 0;
       this._offsets = [];
       this._targets = [];
-      this._scrollHeight = this._getScrollHeight();
+      this._scrollheight = this._getScrollheight();
       var targets = [].slice.call(document.querySelectorAll(this._selector));
       targets.map(function (element) {
         var target;
@@ -6345,7 +6345,7 @@
       this._offsets = null;
       this._targets = null;
       this._activeTarget = null;
-      this._scrollHeight = null;
+      this._scrollheight = null;
     } // Private
     ;
 
@@ -6371,22 +6371,22 @@
       return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
     };
 
-    _proto._getScrollHeight = function _getScrollHeight() {
-      return this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    _proto._getScrollheight = function _getScrollheight() {
+      return this._scrollElement.scrollheight || Math.max(document.body.scrollheight, document.documentElement.scrollheight);
     };
 
-    _proto._getOffsetHeight = function _getOffsetHeight() {
-      return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+    _proto._getOffsetheight = function _getOffsetheight() {
+      return this._scrollElement === window ? window.innerheight : this._scrollElement.getBoundingClientRect().height;
     };
 
     _proto._process = function _process() {
       var scrollTop = this._getScrollTop() + this._config.offset;
 
-      var scrollHeight = this._getScrollHeight();
+      var scrollheight = this._getScrollheight();
 
-      var maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
+      var maxScroll = this._config.offset + scrollheight - this._getOffsetheight();
 
-      if (this._scrollHeight !== scrollHeight) {
+      if (this._scrollheight !== scrollheight) {
         this.refresh();
       }
 

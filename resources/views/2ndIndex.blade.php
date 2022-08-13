@@ -43,6 +43,16 @@
         </div>
     </div>
     @endforeach
+    {{-- iklan itdev --}}
+    @if(isset($partnerShip))
+        <a href="{{ $partnerShip->link_web }}">
+    <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="img-fluid" alt="..." style="width:100%;height: 100%;">
+        </a>
+    @else
+            <a href="https://itdevacademy.com/">
+      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="..." style="width:100%;height: 100%;">
+    </a>
+    @endif
     {{-- news category --}}
     <div class="p-0 container-fluid header-program">
         <h1 class="mb-3 text-center fs-1">{{ ucwords('kategori berita') }}</h1>
@@ -150,6 +160,27 @@
                     </div>
                 </div>
             </div>
+                                      <div class="card text-bg-dark">
+                              @if($sponsorShipSatu->picture_path ?? '')
+                              <a href="{{ $sponsorShipSatu->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshipsatu/'.$sponsorShipSatu->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
+                          <div class="mt-1 card text-bg-dark">
+                              @if($sponsorShipDua->picture_path ?? '')
+                              <a href="{{ $sponsorShipDua->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshipdua/'.$sponsorShipDua->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
+                          <div class="mt-1 mb-1 card text-bg-dark">
+                              @if($sponsorShipTiga->picture_path ?? '')
+                              <a href="{{ $sponsorShipTiga->link_web }}">
+                                  <img src="{{ url('/storage/assets/sponsorshiptiga/'.$sponsorShipTiga->picture_path) }}" class="card-img" alt="...">
+                              </a>
+                              @endif
+                          </div>
         </div>
         @endforeach
     </div>
@@ -162,13 +193,54 @@
     <div class="card" style="width: 100%;">
         <img src="{{ url('/storage/assets/artikel/'.$item->picture_path) }}" class="card-img-top" alt="...">
         <div class="card-body">
-            <p class="card-text">{!! str()->limit($item->konten_sponsor, 250) !!}</p>
-        </div>
-        <div class="card-body">
-            <a href="#" class="card-link">{{ ucwords('read more') }}</a>
+                                      <a href="{{ route('read.more.artikel.web.view', $item->judul) }}" class="judul-berita text-decoration-none">{{ $item->judul }}</a>
+                              <br>
+                              <a class="text-secondary fs-6">{{ $item->penulis }}</a>
+                              <br>
+                              <a class="text-secondary fs-6 text-decoration-none">{{ date('d-M-y H:i', strtotime($berita->created_at)) }} WIB</a>
         </div>
     </div>
     @endforeach
+                      <ul class="list-group">
+                      <li class="list-group-item active" aria-current="true">{{ ucwords('artikel lainnya') }}</li>
+                      @foreach($sponsorLainnya as $key => $lainnya)
+                      <a href="{{ route('read.more.artikel.web.view', $item->judul) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
+                          {{ $lainnya->judul }}
+                      </a>
+                      @endforeach
+                      <a class="text-center text-white btn btn-info d-flex align-items-center justify-content-center" href="{{ url('/artikel/Lainnya/webView/') }}">{{ ucwords('Lihat lebih banyak artikel') }}</a>
+                  </ul>
+                        <!-- sponsorship before faq start-->
+      <div class="container text-center">
+    @if($sponsorshipBeforeFaq->link_web_1 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_1 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_1) }}" class="mt-1 img-fluid" alt="...">
+    </a>
+    @else
+    <a href="https://itdevacademy.com/">
+      <img src="{{ asset('/images/hitmbiru.png') }}" class="mt-1 img-fluid" alt="...">
+    </a>
+    @endif
+          @if($sponsorshipBeforeFaq->link_web_2 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_2 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_2) }}" class="mt-1 img-fluid" alt="...">
+    </a>
+    @else
+              <a href="https://play.google.com/store/apps/details?id=id.pt.rpn.kede">
+              <img src="/images/hehe.jpg" class="mt-1 img-fluid" alt="...">
+              </a>
+    @endif
+                @if($sponsorshipBeforeFaq->link_web_3 != '')
+    <a href="{{ $sponsorshipBeforeFaq->link_web_3 }}">
+      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_3) }}" class="mt-1 img-fluid" alt="...">
+    </a>
+    @else
+              <a href="https://mitradesakmd.com/">
+              <img src="/images/mitradesa.jpeg" class="mt-1 img-fluid" alt="...">
+              </a>
+    @endif
+</div>
+      <!-- sponsorship before faq end-->
     {{-- faq --}}
       <section class="faq-container" id="faq" class="collapse">
       <div id="accordion">

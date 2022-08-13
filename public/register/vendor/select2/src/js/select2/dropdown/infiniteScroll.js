@@ -51,9 +51,9 @@ define([
     }
 
     var currentOffset = this.$results.offset().top +
-      this.$results.outerHeight(false);
+      this.$results.outerheight(false);
     var loadingMoreOffset = this.$loadingMore.offset().top +
-      this.$loadingMore.outerHeight(false);
+      this.$loadingMore.outerheight(false);
 
     if (currentOffset + 50 >= loadingMoreOffset) {
       this.loadMore();

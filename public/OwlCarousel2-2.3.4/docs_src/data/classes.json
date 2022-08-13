@@ -72,7 +72,7 @@
     "desc":     "Dots container class."
   },
   {
-    "name":     "autoHeightClass",
+    "name":     "autoheightClass",
     "type":     "String",
     "Default":  "owl-height",
     "desc":     "Auto height class."

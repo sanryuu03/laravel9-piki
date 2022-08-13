@@ -2542,7 +2542,7 @@ defaults._set('global', {
 	defaultFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
 	defaultFontSize: 12,
 	defaultFontStyle: 'normal',
-	defaultLineHeight: 1.2,
+	defaultLineheight: 1.2,
 	showLines: true
 });
 
@@ -2574,13 +2574,13 @@ function toFontString(font) {
 var helpers_options = {
 	/**
 	 * Converts the given line height `value` in pixels for a specific font `size`.
-	 * @param {number|string} value - The lineHeight to parse (eg. 1.6, '14px', '75%', '1.6em').
+	 * @param {number|string} value - The lineheight to parse (eg. 1.6, '14px', '75%', '1.6em').
 	 * @param {number} size - The font size (in pixels) used to resolve relative `value`.
 	 * @returns {number} The effective line height in pixels (size * 1.2 if value is invalid).
 	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
 	 * @since 2.7.0
 	 */
-	toLineHeight: function(value, size) {
+	toLineheight: function(value, size) {
 		var matches = ('' + value).match(/^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/);
 		if (!matches || matches[1] === 'normal') {
 			return size * 1.2;
@@ -2642,7 +2642,7 @@ var helpers_options = {
 		var size = valueOrDefault(options.fontSize, globalDefaults.defaultFontSize);
 		var font = {
 			family: valueOrDefault(options.fontFamily, globalDefaults.defaultFontFamily),
-			lineHeight: helpers_core.options.toLineHeight(valueOrDefault(options.lineHeight, globalDefaults.defaultLineHeight), size),
+			lineheight: helpers_core.options.toLineheight(valueOrDefault(options.lineheight, globalDefaults.defaultLineheight), size),
 			size: size,
 			style: valueOrDefault(options.fontStyle, globalDefaults.defaultFontStyle),
 			weight: null,
@@ -4561,8 +4561,8 @@ var controller_doughnut = core_datasetController.extend({
 		var chartArea = chart.chartArea;
 		var opts = chart.options;
 		var availableWidth = chartArea.right - chartArea.left;
-		var availableHeight = chartArea.bottom - chartArea.top;
-		var minSize = Math.min(availableWidth, availableHeight);
+		var availableheight = chartArea.bottom - chartArea.top;
+		var minSize = Math.min(availableWidth, availableheight);
 		var offset = {x: 0, y: 0};
 		var meta = me.getMeta();
 		var arcs = meta.data;
@@ -4586,7 +4586,7 @@ var controller_doughnut = core_datasetController.extend({
 			var min = {x: contains180 ? -1 : Math.min(start.x * (start.x < 0 ? 1 : cutout), end.x * (end.x < 0 ? 1 : cutout)), y: contains270 ? -1 : Math.min(start.y * (start.y < 0 ? 1 : cutout), end.y * (end.y < 0 ? 1 : cutout))};
 			var max = {x: contains0 ? 1 : Math.max(start.x * (start.x > 0 ? 1 : cutout), end.x * (end.x > 0 ? 1 : cutout)), y: contains90 ? 1 : Math.max(start.y * (start.y > 0 ? 1 : cutout), end.y * (end.y > 0 ? 1 : cutout))};
 			var size = {width: (max.x - min.x) * 0.5, height: (max.y - min.y) * 0.5};
-			minSize = Math.min(availableWidth / size.width, availableHeight / size.height);
+			minSize = Math.min(availableWidth / size.width, availableheight / size.height);
 			offset = {x: (max.x + min.x) * -0.5, y: (max.y + min.y) * -0.5};
 		}
 
@@ -6203,7 +6203,7 @@ core_defaults._set('global', {
  * @prop {function} update - Takes two parameters: width and height. Returns size of item
  * @prop {function} getPadding -  Returns an object with padding on the edges
  * @prop {number} width - Width of item. Must be valid after update()
- * @prop {number} height - Height of item. Must be valid after update()
+ * @prop {number} height - height of item. Must be valid after update()
  * @prop {number} left - Left edge of the item. Set by layout system and cannot be used in update
  * @prop {number} top - Top edge of the item. Set by layout system and cannot be used in update
  * @prop {number} right - Right edge of the item. Set by layout system and cannot be used in update
@@ -6341,7 +6341,7 @@ var core_layouts = {
 
 		// Step 1
 		var chartWidth = width - leftPadding - rightPadding;
-		var chartHeight = height - topPadding - bottomPadding;
+		var chartheight = height - topPadding - bottomPadding;
 		var chartAreaWidth = chartWidth / 2; // min 50%
 
 		// Step 2
@@ -6349,11 +6349,11 @@ var core_layouts = {
 
 		// Step 3
 		// TODO re-limit horizontal axis height (this limit has affected only padding calculation since PR 1837)
-		// var horizontalBoxHeight = (height - chartAreaHeight) / horizontalBoxes.length;
+		// var horizontalBoxheight = (height - chartAreaheight) / horizontalBoxes.length;
 
 		// Step 4
 		var maxChartAreaWidth = chartWidth;
-		var maxChartAreaHeight = chartHeight;
+		var maxChartAreaheight = chartheight;
 		var outerBoxSizes = {top: topPadding, left: leftPadding, bottom: bottomPadding, right: rightPadding};
 		var minBoxSizes = [];
 		var maxPadding;
@@ -6363,10 +6363,10 @@ var core_layouts = {
 			var isHorizontal = box.isHorizontal();
 
 			if (isHorizontal) {
-				minSize = box.update(box.fullWidth ? chartWidth : maxChartAreaWidth, chartHeight / 2);
-				maxChartAreaHeight -= minSize.height;
+				minSize = box.update(box.fullWidth ? chartWidth : maxChartAreaWidth, chartheight / 2);
+				maxChartAreaheight -= minSize.height;
 			} else {
-				minSize = box.update(verticalBoxWidth, maxChartAreaHeight);
+				minSize = box.update(verticalBoxWidth, maxChartAreaheight);
 				maxChartAreaWidth -= minSize.width;
 			}
 
@@ -6382,7 +6382,7 @@ var core_layouts = {
 		// If a horizontal box has padding, we move the left boxes over to avoid ugly charts (see issue #2478)
 		maxPadding = findMaxPadding(outerBoxes);
 
-		// At this point, maxChartAreaHeight and maxChartAreaWidth are the size the chart area could
+		// At this point, maxChartAreaheight and maxChartAreaWidth are the size the chart area could
 		// be if the axes are drawn at their minimum sizes.
 		// Steps 5 & 6
 
@@ -6403,9 +6403,9 @@ var core_layouts = {
 
 					// Don't use min size here because of label rotation. When the labels are rotated, their rotation highly depends
 					// on the margin. Sometimes they need to increase in size slightly
-					box.update(box.fullWidth ? chartWidth : maxChartAreaWidth, chartHeight / 2, scaleMargin);
+					box.update(box.fullWidth ? chartWidth : maxChartAreaWidth, chartheight / 2, scaleMargin);
 				} else {
-					box.update(minBoxSize.width, maxChartAreaHeight);
+					box.update(minBoxSize.width, maxChartAreaheight);
 				}
 			}
 		}
@@ -6431,7 +6431,7 @@ var core_layouts = {
 			};
 
 			if (minBoxSize) {
-				box.update(minBoxSize.width, maxChartAreaHeight, scaleMargin);
+				box.update(minBoxSize.width, maxChartAreaheight, scaleMargin);
 			}
 		}
 
@@ -6454,12 +6454,12 @@ var core_layouts = {
 		// Figure out if our chart area changed. This would occur if the dataset layout label rotation
 		// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to do
 		// without calling `fit` again
-		var newMaxChartAreaHeight = height - outerBoxSizes.top - outerBoxSizes.bottom;
+		var newMaxChartAreaheight = height - outerBoxSizes.top - outerBoxSizes.bottom;
 		var newMaxChartAreaWidth = width - outerBoxSizes.left - outerBoxSizes.right;
 
-		if (newMaxChartAreaWidth !== maxChartAreaWidth || newMaxChartAreaHeight !== maxChartAreaHeight) {
+		if (newMaxChartAreaWidth !== maxChartAreaWidth || newMaxChartAreaheight !== maxChartAreaheight) {
 			helpers$1.each(verticalBoxes, function(box) {
-				box.height = newMaxChartAreaHeight;
+				box.height = newMaxChartAreaheight;
 			});
 
 			helpers$1.each(horizontalBoxes, function(box) {
@@ -6468,7 +6468,7 @@ var core_layouts = {
 				}
 			});
 
-			maxChartAreaHeight = newMaxChartAreaHeight;
+			maxChartAreaheight = newMaxChartAreaheight;
 			maxChartAreaWidth = newMaxChartAreaWidth;
 		}
 
@@ -6491,7 +6491,7 @@ var core_layouts = {
 				box.left = left;
 				box.right = left + box.width;
 				box.top = outerBoxSizes.top;
-				box.bottom = outerBoxSizes.top + maxChartAreaHeight;
+				box.bottom = outerBoxSizes.top + maxChartAreaheight;
 
 				// Move to next point
 				left = box.right;
@@ -6502,7 +6502,7 @@ var core_layouts = {
 
 		// Account for chart width and height
 		left += maxChartAreaWidth;
-		top += maxChartAreaHeight;
+		top += maxChartAreaheight;
 
 		helpers$1.each(rightBoxes, placeBox);
 		helpers$1.each(bottomBoxes, placeBox);
@@ -6512,7 +6512,7 @@ var core_layouts = {
 			left: outerBoxSizes.left,
 			top: outerBoxSizes.top,
 			right: outerBoxSizes.left + maxChartAreaWidth,
-			bottom: outerBoxSizes.top + maxChartAreaHeight
+			bottom: outerBoxSizes.top + maxChartAreaheight
 		};
 
 		// Step 9
@@ -6522,7 +6522,7 @@ var core_layouts = {
 			box.right = chart.chartArea.right;
 			box.bottom = chart.chartArea.bottom;
 
-			box.update(maxChartAreaWidth, maxChartAreaHeight);
+			box.update(maxChartAreaWidth, maxChartAreaheight);
 		});
 	}
 };
@@ -6614,13 +6614,13 @@ function initCanvas(canvas, config) {
 
 	// NOTE(SB) canvas.getAttribute('width') !== canvas.width: in the first case it
 	// returns null or '' if no explicit value has been set to the canvas attribute.
-	var renderHeight = canvas.getAttribute('height');
+	var renderheight = canvas.getAttribute('height');
 	var renderWidth = canvas.getAttribute('width');
 
 	// Chart.js modifies some canvas values that we want to restore on destroy
 	canvas[EXPANDO_KEY] = {
 		initial: {
-			height: renderHeight,
+			height: renderheight,
 			width: renderWidth,
 			style: {
 				display: style.display,
@@ -6642,16 +6642,16 @@ function initCanvas(canvas, config) {
 		}
 	}
 
-	if (renderHeight === null || renderHeight === '') {
+	if (renderheight === null || renderheight === '') {
 		if (canvas.style.height === '') {
 			// If no explicit render height and style height, let's apply the aspect ratio,
 			// which one can be specified by the user but also by charts as default option
 			// (i.e. options.aspectRatio). If not specified, use canvas aspect ratio of 2.
 			canvas.height = canvas.width / (config.options.aspectRatio || 2);
 		} else {
-			var displayHeight = readUsedSize(canvas, 'height');
+			var displayheight = readUsedSize(canvas, 'height');
 			if (displayWidth !== undefined) {
-				canvas.height = displayHeight;
+				canvas.height = displayheight;
 			}
 		}
 	}
@@ -8040,7 +8040,7 @@ var exports$3 = core_element.extend({
 			var i, len;
 			for (i = 0, len = title.length; i < len; ++i) {
 				ctx.fillText(title[i], pt.x, pt.y);
-				pt.y += titleFontSize + titleSpacing; // Line Height and spacing
+				pt.y += titleFontSize + titleSpacing; // Line height and spacing
 
 				if (i + 1 === title.length) {
 					pt.y += vm.titleMarginBottom - titleSpacing; // If Last, add margin, remove spacing
@@ -8523,22 +8523,22 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 
 		// Set to 0 instead of canvas.size because the size defaults to 300x150 if the element is collapsed
 		var newWidth = Math.max(0, Math.floor(helpers$1.getMaximumWidth(canvas)));
-		var newHeight = Math.max(0, Math.floor(aspectRatio ? newWidth / aspectRatio : helpers$1.getMaximumHeight(canvas)));
+		var newheight = Math.max(0, Math.floor(aspectRatio ? newWidth / aspectRatio : helpers$1.getMaximumheight(canvas)));
 
-		if (me.width === newWidth && me.height === newHeight) {
+		if (me.width === newWidth && me.height === newheight) {
 			return;
 		}
 
 		canvas.width = me.width = newWidth;
-		canvas.height = me.height = newHeight;
+		canvas.height = me.height = newheight;
 		canvas.style.width = newWidth + 'px';
-		canvas.style.height = newHeight + 'px';
+		canvas.style.height = newheight + 'px';
 
 		helpers$1.retinaScale(me, options.devicePixelRatio);
 
 		if (!silent) {
 			// Notify any plugins about the resize
-			var newSize = {width: newWidth, height: newHeight};
+			var newSize = {width: newWidth, height: newheight};
 			core_plugins.notify(me, 'resize', [newSize]);
 
 			// Notify of resize
@@ -9785,8 +9785,8 @@ var core_helpers = function() {
 		return getConstraintDimension(domNode, 'max-width', 'clientWidth');
 	};
 	// returns Number or undefined if no constraint
-	helpers$1.getConstraintHeight = function(domNode) {
-		return getConstraintDimension(domNode, 'max-height', 'clientHeight');
+	helpers$1.getConstraintheight = function(domNode) {
+		return getConstraintDimension(domNode, 'max-height', 'clientheight');
 	};
 	/**
 	 * @private
@@ -9820,18 +9820,18 @@ var core_helpers = function() {
 		var cw = helpers$1.getConstraintWidth(domNode);
 		return isNaN(cw) ? w : Math.min(w, cw);
 	};
-	helpers$1.getMaximumHeight = function(domNode) {
+	helpers$1.getMaximumheight = function(domNode) {
 		var container = helpers$1._getParentNode(domNode);
 		if (!container) {
-			return domNode.clientHeight;
+			return domNode.clientheight;
 		}
 
-		var clientHeight = container.clientHeight;
-		var paddingTop = helpers$1._calculatePadding(container, 'padding-top', clientHeight);
-		var paddingBottom = helpers$1._calculatePadding(container, 'padding-bottom', clientHeight);
+		var clientheight = container.clientheight;
+		var paddingTop = helpers$1._calculatePadding(container, 'padding-top', clientheight);
+		var paddingBottom = helpers$1._calculatePadding(container, 'padding-bottom', clientheight);
 
-		var h = clientHeight - paddingTop - paddingBottom;
-		var ch = helpers$1.getConstraintHeight(domNode);
+		var h = clientheight - paddingTop - paddingBottom;
+		var ch = helpers$1.getConstraintheight(domNode);
 		return isNaN(ch) ? h : Math.min(h, ch);
 	};
 	helpers$1.getStyle = function(el, property) {
@@ -10287,7 +10287,7 @@ var core_scale = core_element.extend({
 		helpers$1.callback(this.options.beforeUpdate, [this]);
 	},
 
-	update: function(maxWidth, maxHeight, margins) {
+	update: function(maxWidth, maxheight, margins) {
 		var me = this;
 		var i, ilen, labels, label, ticks, tick;
 
@@ -10296,7 +10296,7 @@ var core_scale = core_element.extend({
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
-		me.maxHeight = maxHeight;
+		me.maxheight = maxheight;
 		me.margins = helpers$1.extend({
 			left: 0,
 			right: 0,
@@ -10395,7 +10395,7 @@ var core_scale = core_element.extend({
 			me.left = 0;
 			me.right = me.width;
 		} else {
-			me.height = me.maxHeight;
+			me.height = me.maxheight;
 
 			// Reset position before calculating rotation
 			me.top = 0;
@@ -10482,7 +10482,7 @@ var core_scale = core_element.extend({
 				cosRotation = Math.cos(angleRadians);
 				sinRotation = Math.sin(angleRadians);
 
-				if (sinRotation * originalLabelWidth > me.maxHeight) {
+				if (sinRotation * originalLabelWidth > me.maxheight) {
 					// go back one step
 					labelRotation--;
 					break;
@@ -10538,31 +10538,31 @@ var core_scale = core_element.extend({
 		if (isHorizontal) {
 			minSize.height = display && gridLineOpts.drawTicks ? tickMarkLength : 0;
 		} else {
-			minSize.height = me.maxHeight; // fill all the height
+			minSize.height = me.maxheight; // fill all the height
 		}
 
 		// Are we showing a title for the scale?
 		if (scaleLabelOpts.display && display) {
 			var scaleLabelFont = parseFont(scaleLabelOpts);
 			var scaleLabelPadding = helpers$1.options.toPadding(scaleLabelOpts.padding);
-			var deltaHeight = scaleLabelFont.lineHeight + scaleLabelPadding.height;
+			var deltaheight = scaleLabelFont.lineheight + scaleLabelPadding.height;
 
 			if (isHorizontal) {
-				minSize.height += deltaHeight;
+				minSize.height += deltaheight;
 			} else {
-				minSize.width += deltaHeight;
+				minSize.width += deltaheight;
 			}
 		}
 
 		// Don't bother fitting the ticks if we are not showing the labels
 		if (tickOpts.display && display) {
 			var largestTextWidth = helpers$1.longestText(me.ctx, tickFont.string, labels, me.longestTextCache);
-			var tallestLabelHeightInLines = helpers$1.numberOfLabelLines(labels);
+			var tallestLabelheightInLines = helpers$1.numberOfLabelLines(labels);
 			var lineSpace = tickFont.size * 0.5;
 			var tickPadding = me.options.ticks.padding;
 
 			// Store max number of lines and widest label for _autoSkip
-			me._maxLabelLines = tallestLabelHeightInLines;
+			me._maxLabelLines = tallestLabelheightInLines;
 			me.longestLabelWidth = largestTextWidth;
 
 			if (isHorizontal) {
@@ -10571,11 +10571,11 @@ var core_scale = core_element.extend({
 				var sinRotation = Math.sin(angleRadians);
 
 				// TODO - improve this calculation
-				var labelHeight = (sinRotation * largestTextWidth)
-					+ (tickFont.lineHeight * tallestLabelHeightInLines)
+				var labelheight = (sinRotation * largestTextWidth)
+					+ (tickFont.lineheight * tallestLabelheightInLines)
 					+ lineSpace; // padding
 
-				minSize.height = Math.min(me.maxHeight, minSize.height + labelHeight + tickPadding);
+				minSize.height = Math.min(me.maxheight, minSize.height + labelheight + tickPadding);
 
 				me.ctx.font = tickFont.string;
 				var firstLabelWidth = computeTextSize(me.ctx, labels[0], tickFont.string);
@@ -10713,8 +10713,8 @@ var core_scale = core_element.extend({
 			finalVal += me.isFullWidth() ? me.margins.left : 0;
 			return finalVal;
 		}
-		var innerHeight = me.height - (me.paddingTop + me.paddingBottom);
-		return me.top + (index * (innerHeight / (me._ticks.length - 1)));
+		var innerheight = me.height - (me.paddingTop + me.paddingBottom);
+		return me.top + (index * (innerheight / (me._ticks.length - 1)));
 	},
 
 	/**
@@ -10816,7 +10816,7 @@ var core_scale = core_element.extend({
 		var w = (me.longestLabelWidth + padding) || 0;
 
 		var tickFont = helpers$1.options._parseFont(optionTicks);
-		var h = (me._maxLabelLines * tickFont.lineHeight + padding) || 0;
+		var h = (me._maxLabelLines * tickFont.lineheight + padding) || 0;
 
 		// Calculate space needed for 1 tick in axis direction.
 		return isHorizontal
@@ -10880,7 +10880,7 @@ var core_scale = core_element.extend({
 		var ticks = optionTicks.display && optionTicks.autoSkip ? me._autoSkip(me.getTicks()) : me.getTicks();
 		var tickFontColor = valueOrDefault$9(optionTicks.fontColor, defaultFontColor);
 		var tickFont = parseFont(optionTicks);
-		var lineHeight = tickFont.lineHeight;
+		var lineheight = tickFont.lineheight;
 		var majorTickFontColor = valueOrDefault$9(optionMajorTicks.fontColor, defaultFontColor);
 		var majorTickFont = parseFont(optionMajorTicks);
 		var tickPadding = optionTicks.padding;
@@ -10960,13 +10960,13 @@ var core_scale = core_element.extend({
 				if (position === 'top') {
 					y1 = alignPixel(chart, chartArea.top, axisWidth) + axisWidth / 2;
 					y2 = chartArea.bottom;
-					textOffset = ((!isRotated ? 0.5 : 1) - labelCount) * lineHeight;
+					textOffset = ((!isRotated ? 0.5 : 1) - labelCount) * lineheight;
 					textAlign = !isRotated ? 'center' : 'left';
 					labelY = me.bottom - labelYOffset;
 				} else {
 					y1 = chartArea.top;
 					y2 = alignPixel(chart, chartArea.bottom, axisWidth) - axisWidth / 2;
-					textOffset = (!isRotated ? 0.5 : 0) * lineHeight;
+					textOffset = (!isRotated ? 0.5 : 0) * lineheight;
 					textAlign = !isRotated ? 'center' : 'right';
 					labelY = me.top + labelYOffset;
 				}
@@ -10981,7 +10981,7 @@ var core_scale = core_element.extend({
 				tx2 = tickEnd;
 				ty1 = ty2 = y1 = y2 = alignPixel(chart, lineValue, lineWidth);
 				labelY = me.getPixelForTick(index) + labelOffset;
-				textOffset = (1 - labelCount) * lineHeight / 2;
+				textOffset = (1 - labelCount) * lineheight / 2;
 
 				if (position === 'left') {
 					x1 = alignPixel(chart, chartArea.left, axisWidth) + axisWidth / 2;
@@ -11065,7 +11065,7 @@ var core_scale = core_element.extend({
 					for (var i = 0; i < label.length; ++i) {
 						// We just make sure the multiline element is a string here..
 						context.fillText('' + label[i], 0, y);
-						y += lineHeight;
+						y += lineheight;
 					}
 				} else {
 					context.fillText(label, 0, y);
@@ -11079,18 +11079,18 @@ var core_scale = core_element.extend({
 			var scaleLabelX;
 			var scaleLabelY;
 			var rotation = 0;
-			var halfLineHeight = scaleLabelFont.lineHeight / 2;
+			var halfLineheight = scaleLabelFont.lineheight / 2;
 
 			if (isHorizontal) {
 				scaleLabelX = me.left + ((me.right - me.left) / 2); // midpoint of the width
 				scaleLabelY = position === 'bottom'
-					? me.bottom - halfLineHeight - scaleLabelPadding.bottom
-					: me.top + halfLineHeight + scaleLabelPadding.top;
+					? me.bottom - halfLineheight - scaleLabelPadding.bottom
+					: me.top + halfLineheight + scaleLabelPadding.top;
 			} else {
 				var isLeft = position === 'left';
 				scaleLabelX = isLeft
-					? me.left + halfLineHeight + scaleLabelPadding.top
-					: me.right - halfLineHeight - scaleLabelPadding.top;
+					? me.left + halfLineheight + scaleLabelPadding.top
+					: me.right - halfLineheight - scaleLabelPadding.top;
 				scaleLabelY = me.top + ((me.bottom - me.top) / 2);
 				rotation = isLeft ? -0.5 * Math.PI : 0.5 * Math.PI;
 			}
@@ -11218,11 +11218,11 @@ var scale_category = core_scale.extend({
 
 			return me.left + widthOffset;
 		}
-		var valueHeight = me.height / offsetAmt;
-		var heightOffset = (valueHeight * (index - me.minIndex));
+		var valueheight = me.height / offsetAmt;
+		var heightOffset = (valueheight * (index - me.minIndex));
 
 		if (offset) {
-			heightOffset += (valueHeight / 2);
+			heightOffset += (valueheight / 2);
 		}
 
 		return me.top + heightOffset;
@@ -11630,7 +11630,7 @@ var scale_linear = scale_linearbase.extend({
 			return Math.ceil(me.width / 40);
 		}
 		tickFont = helpers$1.options._parseFont(me.options.ticks);
-		return Math.ceil(me.height / tickFont.lineHeight);
+		return Math.ceil(me.height / tickFont.lineheight);
 	},
 
 	// Called after the ticks are built. We need
@@ -12084,7 +12084,7 @@ function getValueCount(scale) {
 	return opts.angleLines.display || opts.pointLabels.display ? scale.chart.data.labels.length : 0;
 }
 
-function getTickBackdropHeight(opts) {
+function getTickBackdropheight(opts) {
 	var tickOpts = opts.ticks;
 
 	if (tickOpts.display && opts.display) {
@@ -12093,17 +12093,17 @@ function getTickBackdropHeight(opts) {
 	return 0;
 }
 
-function measureLabelSize(ctx, lineHeight, label) {
+function measureLabelSize(ctx, lineheight, label) {
 	if (helpers$1.isArray(label)) {
 		return {
 			w: helpers$1.longestText(ctx, ctx.font, label),
-			h: label.length * lineHeight
+			h: label.length * lineheight
 		};
 	}
 
 	return {
 		w: ctx.measureText(label).width,
-		h: lineHeight
+		h: lineheight
 	};
 }
 
@@ -12176,7 +12176,7 @@ function fitWithPointLabels(scale) {
 	var valueCount = getValueCount(scale);
 	for (i = 0; i < valueCount; i++) {
 		pointPosition = scale.getPointPosition(i, scale.drawingArea + 5);
-		textSize = measureLabelSize(scale.ctx, plFont.lineHeight, scale.pointLabels[i] || '');
+		textSize = measureLabelSize(scale.ctx, plFont.lineheight, scale.pointLabels[i] || '');
 		scale._pointLabelSizes[i] = textSize;
 
 		// Add quarter circle to make degree 0 mean top of circle
@@ -12219,21 +12219,21 @@ function getTextAlignForAngle(angle) {
 	return 'right';
 }
 
-function fillText(ctx, text, position, lineHeight) {
-	var y = position.y + lineHeight / 2;
+function fillText(ctx, text, position, lineheight) {
+	var y = position.y + lineheight / 2;
 	var i, ilen;
 
 	if (helpers$1.isArray(text)) {
 		for (i = 0, ilen = text.length; i < ilen; ++i) {
 			ctx.fillText(text[i], position.x, y);
-			y += lineHeight;
+			y += lineheight;
 		}
 	} else {
 		ctx.fillText(text, position.x, y);
 	}
 }
 
-function adjustPointPositionForLabelHeight(angle, textSize, position) {
+function adjustPointPositionForLabelheight(angle, textSize, position) {
 	if (angle === 90 || angle === 270) {
 		position.y -= (textSize.h / 2);
 	} else if (angle > 270 || angle < 90) {
@@ -12249,7 +12249,7 @@ function drawPointLabels(scale) {
 	var pointLabelOpts = opts.pointLabels;
 	var lineWidth = valueOrDefault$b(angleLineOpts.lineWidth, gridLineOpts.lineWidth);
 	var lineColor = valueOrDefault$b(angleLineOpts.color, gridLineOpts.color);
-	var tickBackdropHeight = getTickBackdropHeight(opts);
+	var tickBackdropheight = getTickBackdropheight(opts);
 
 	ctx.save();
 	ctx.lineWidth = lineWidth;
@@ -12278,7 +12278,7 @@ function drawPointLabels(scale) {
 
 		if (pointLabelOpts.display) {
 			// Extra pixels out for some label spacing
-			var extra = (i === 0 ? tickBackdropHeight / 2 : 0);
+			var extra = (i === 0 ? tickBackdropheight / 2 : 0);
 			var pointLabelPosition = scale.getPointPosition(i, outerDistance + extra + 5);
 
 			// Keep this in loop since we may support array properties here
@@ -12288,8 +12288,8 @@ function drawPointLabels(scale) {
 			var angleRadians = scale.getIndexAngle(i);
 			var angle = helpers$1.toDegrees(angleRadians);
 			ctx.textAlign = getTextAlignForAngle(angle);
-			adjustPointPositionForLabelHeight(angle, scale._pointLabelSizes[i], pointLabelPosition);
-			fillText(ctx, scale.pointLabels[i] || '', pointLabelPosition, plFont.lineHeight);
+			adjustPointPositionForLabelheight(angle, scale._pointLabelSizes[i], pointLabelPosition);
+			fillText(ctx, scale.pointLabels[i] || '', pointLabelPosition, plFont.lineheight);
 		}
 	}
 	ctx.restore();
@@ -12344,8 +12344,8 @@ var scale_radialLinear = scale_linearbase.extend({
 
 		// Set the unconstrained dimension before label rotation
 		me.width = me.maxWidth;
-		me.height = me.maxHeight;
-		me.paddingTop = getTickBackdropHeight(me.options) / 2;
+		me.height = me.maxheight;
+		me.paddingTop = getTickBackdropheight(me.options) / 2;
 		me.xCenter = Math.floor(me.width / 2);
 		me.yCenter = Math.floor((me.height - me.paddingTop) / 2);
 		me.drawingArea = Math.min(me.height - me.paddingTop, me.width) / 2;
@@ -12382,7 +12382,7 @@ var scale_radialLinear = scale_linearbase.extend({
 
 	// Returns the maximum number of ticks based on the scale dimension
 	_computeTickLimit: function() {
-		return Math.ceil(this.drawingArea / getTickBackdropHeight(this.options));
+		return Math.ceil(this.drawingArea / getTickBackdropheight(this.options));
 	},
 
 	convertTicksToLabels: function() {
@@ -18414,7 +18414,7 @@ var Legend = core_element.extend({
 	// Any function can be extended by the legend type
 
 	beforeUpdate: noop$1,
-	update: function(maxWidth, maxHeight, margins) {
+	update: function(maxWidth, maxheight, margins) {
 		var me = this;
 
 		// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
@@ -18422,7 +18422,7 @@ var Legend = core_element.extend({
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
-		me.maxHeight = maxHeight;
+		me.maxheight = maxheight;
 		me.margins = margins;
 
 		// Dimensions
@@ -18457,7 +18457,7 @@ var Legend = core_element.extend({
 			me.left = 0;
 			me.right = me.width;
 		} else {
-			me.height = me.maxHeight;
+			me.height = me.maxheight;
 
 			// Reset position before calculating rotation
 			me.top = 0;
@@ -18525,7 +18525,7 @@ var Legend = core_element.extend({
 			minSize.height = display ? 10 : 0;
 		} else {
 			minSize.width = display ? 10 : 0;
-			minSize.height = me.maxHeight; // fill all the height
+			minSize.height = me.maxheight; // fill all the height
 		}
 
 		// Increase sizes here
@@ -18537,7 +18537,7 @@ var Legend = core_element.extend({
 
 				// Width of each line of legend boxes. Labels wrap onto multiple lines when there are too many to fit on one
 				var lineWidths = me.lineWidths = [0];
-				var totalHeight = 0;
+				var totalheight = 0;
 
 				ctx.textAlign = 'left';
 				ctx.textBaseline = 'top';
@@ -18547,7 +18547,7 @@ var Legend = core_element.extend({
 					var width = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
 
 					if (i === 0 || lineWidths[lineWidths.length - 1] + width + labelOpts.padding > minSize.width) {
-						totalHeight += fontSize + labelOpts.padding;
+						totalheight += fontSize + labelOpts.padding;
 						lineWidths[lineWidths.length - (i > 0 ? 0 : 1)] = labelOpts.padding;
 					}
 
@@ -18562,32 +18562,32 @@ var Legend = core_element.extend({
 					lineWidths[lineWidths.length - 1] += width + labelOpts.padding;
 				});
 
-				minSize.height += totalHeight;
+				minSize.height += totalheight;
 
 			} else {
 				var vPadding = labelOpts.padding;
 				var columnWidths = me.columnWidths = [];
 				var totalWidth = labelOpts.padding;
 				var currentColWidth = 0;
-				var currentColHeight = 0;
-				var itemHeight = fontSize + vPadding;
+				var currentColheight = 0;
+				var itemheight = fontSize + vPadding;
 
 				helpers$1.each(me.legendItems, function(legendItem, i) {
 					var boxWidth = getBoxWidth(labelOpts, fontSize);
 					var itemWidth = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
 
 					// If too tall, go to new column
-					if (i > 0 && currentColHeight + itemHeight > minSize.height - vPadding) {
+					if (i > 0 && currentColheight + itemheight > minSize.height - vPadding) {
 						totalWidth += currentColWidth + labelOpts.padding;
 						columnWidths.push(currentColWidth); // previous column width
 
 						currentColWidth = 0;
-						currentColHeight = 0;
+						currentColheight = 0;
 					}
 
 					// Get max width
 					currentColWidth = Math.max(currentColWidth, itemWidth);
-					currentColHeight += itemHeight;
+					currentColheight += itemheight;
 
 					// Store the hitbox width and height here. Final position will be updated in `draw`
 					hitboxes[i] = {
@@ -18717,7 +18717,7 @@ var Legend = core_element.extend({
 				};
 			}
 
-			var itemHeight = fontSize + labelOpts.padding;
+			var itemheight = fontSize + labelOpts.padding;
 			helpers$1.each(me.legendItems, function(legendItem, i) {
 				var textWidth = ctx.measureText(legendItem.text).width;
 				var width = boxWidth + (fontSize / 2) + textWidth;
@@ -18729,11 +18729,11 @@ var Legend = core_element.extend({
 				// may have been changed since me.minSize was calculated
 				if (isHorizontal) {
 					if (i > 0 && x + width + labelOpts.padding > me.left + me.minSize.width) {
-						y = cursor.y += itemHeight;
+						y = cursor.y += itemheight;
 						cursor.line++;
 						x = cursor.x = me.left + ((legendWidth - lineWidths[cursor.line]) / 2) + labelOpts.padding;
 					}
-				} else if (i > 0 && y + itemHeight > me.top + me.minSize.height) {
+				} else if (i > 0 && y + itemheight > me.top + me.minSize.height) {
 					x = cursor.x = x + me.columnWidths[cursor.line] + labelOpts.padding;
 					y = cursor.y = me.top + labelOpts.padding;
 					cursor.line++;
@@ -18750,7 +18750,7 @@ var Legend = core_element.extend({
 				if (isHorizontal) {
 					cursor.x += width + labelOpts.padding;
 				} else {
-					cursor.y += itemHeight;
+					cursor.y += itemheight;
 				}
 
 			});
@@ -18915,7 +18915,7 @@ var Title = core_element.extend({
 	// These methods are ordered by lifecycle. Utilities then follow.
 
 	beforeUpdate: noop$2,
-	update: function(maxWidth, maxHeight, margins) {
+	update: function(maxWidth, maxheight, margins) {
 		var me = this;
 
 		// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
@@ -18923,7 +18923,7 @@ var Title = core_element.extend({
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
-		me.maxHeight = maxHeight;
+		me.maxheight = maxheight;
 		me.margins = margins;
 
 		// Dimensions
@@ -18959,7 +18959,7 @@ var Title = core_element.extend({
 			me.left = 0;
 			me.right = me.width;
 		} else {
-			me.height = me.maxHeight;
+			me.height = me.maxheight;
 
 			// Reset position before calculating rotation
 			me.top = 0;
@@ -18996,14 +18996,14 @@ var Title = core_element.extend({
 		var minSize = me.minSize;
 		var lineCount = helpers$1.isArray(opts.text) ? opts.text.length : 1;
 		var fontOpts = helpers$1.options._parseFont(opts);
-		var textSize = display ? (lineCount * fontOpts.lineHeight) + (opts.padding * 2) : 0;
+		var textSize = display ? (lineCount * fontOpts.lineheight) + (opts.padding * 2) : 0;
 
 		if (me.isHorizontal()) {
 			minSize.width = me.maxWidth; // fill all the width
 			minSize.height = textSize;
 		} else {
 			minSize.width = textSize;
-			minSize.height = me.maxHeight; // fill all the height
+			minSize.height = me.maxheight; // fill all the height
 		}
 
 		me.width = minSize.width;
@@ -19026,8 +19026,8 @@ var Title = core_element.extend({
 
 		if (opts.display) {
 			var fontOpts = helpers$1.options._parseFont(opts);
-			var lineHeight = fontOpts.lineHeight;
-			var offset = lineHeight / 2 + opts.padding;
+			var lineheight = fontOpts.lineheight;
+			var offset = lineheight / 2 + opts.padding;
 			var rotation = 0;
 			var top = me.top;
 			var left = me.left;
@@ -19061,7 +19061,7 @@ var Title = core_element.extend({
 				var y = 0;
 				for (var i = 0; i < text.length; ++i) {
 					ctx.fillText(text[i], 0, y, maxWidth);
-					y += lineHeight;
+					y += lineheight;
 				}
 			} else {
 				ctx.fillText(text, 0, 0, maxWidth);

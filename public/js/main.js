@@ -22,8 +22,8 @@ $('#summernote').summernote({
     placeholder: 'Hello Bootstrap 4',
     tabsize: 2,
     height: 300,
-    minHeight: null,             // set minimum height of editor
-    maxHeight: null,             // set maximum height of editor
+    minheight: null,             // set minimum height of editor
+    maxheight: null,             // set maximum height of editor
     focus: true
   });
 // summer note end

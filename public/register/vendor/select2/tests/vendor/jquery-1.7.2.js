@@ -1536,7 +1536,7 @@ jQuery.support = (function() {
 	// Run tests that need a body at doc ready
 	jQuery(function() {
 		var container, outer, inner, table, td, offsetSupport,
-			marginDiv, conMarginTop, style, html, positionTopLeftWidthHeight,
+			marginDiv, conMarginTop, style, html, positionTopLeftWidthheight,
 			paddingMarginBorderVisibility, paddingMarginBorder,
 			body = document.getElementsByTagName("body")[0];
 
@@ -1547,9 +1547,9 @@ jQuery.support = (function() {
 
 		conMarginTop = 1;
 		paddingMarginBorder = "padding:0;margin:0;border:";
-		positionTopLeftWidthHeight = "position:absolute;top:0;left:0;width:1px;height:1px;";
+		positionTopLeftWidthheight = "position:absolute;top:0;left:0;width:1px;height:1px;";
 		paddingMarginBorderVisibility = paddingMarginBorder + "0;visibility:hidden;";
-		style = "style='" + positionTopLeftWidthHeight + paddingMarginBorder + "5px solid #000;";
+		style = "style='" + positionTopLeftWidthheight + paddingMarginBorder + "5px solid #000;";
 		html = "<div " + style + "display:block;'><div style='" + paddingMarginBorder + "0;display:block;overflow:hidden;'></div></div>" +
 			"<table " + style + "' cellpadding='0' cellspacing='0'>" +
 			"<tr><td></td></tr></table>";
@@ -1562,23 +1562,23 @@ jQuery.support = (function() {
 		div = document.createElement("div");
 		container.appendChild( div );
 
-		// Check if table cells still have offsetWidth/Height when they are set
+		// Check if table cells still have offsetWidth/height when they are set
 		// to display:none and there are still other visible table cells in a
-		// table row; if so, offsetWidth/Height are not reliable for use when
+		// table row; if so, offsetWidth/height are not reliable for use when
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
 		// hidden; don safety goggles and see bug #4512 for more information).
 		// (only IE 8 fails this test)
 		div.innerHTML = "<table><tr><td style='" + paddingMarginBorder + "0;display:none'></td><td>t</td></tr></table>";
 		tds = div.getElementsByTagName( "td" );
-		isSupported = ( tds[ 0 ].offsetHeight === 0 );
+		isSupported = ( tds[ 0 ].offsetheight === 0 );
 
 		tds[ 0 ].style.display = "";
 		tds[ 1 ].style.display = "none";
 
-		// Check if empty table cells still have offsetWidth/Height
+		// Check if empty table cells still have offsetWidth/height
 		// (IE <= 8 fail this test)
-		support.reliableHiddenOffsets = isSupported && ( tds[ 0 ].offsetHeight === 0 );
+		support.reliableHiddenOffsets = isSupported && ( tds[ 0 ].offsetheight === 0 );
 
 		// Check if div with explicit width and no margin-right incorrectly
 		// gets computed margin-right based on width of container. For more
@@ -1617,7 +1617,7 @@ jQuery.support = (function() {
 			support.shrinkWrapBlocks = ( div.offsetWidth !== 3 );
 		}
 
-		div.style.cssText = positionTopLeftWidthHeight + paddingMarginBorderVisibility;
+		div.style.cssText = positionTopLeftWidthheight + paddingMarginBorderVisibility;
 		div.innerHTML = html;
 
 		outer = div.firstChild;
@@ -6600,7 +6600,7 @@ jQuery.extend({
 	cssNumber: {
 		"fillOpacity": true,
 		"fontWeight": true,
-		"lineHeight": true,
+		"lineheight": true,
 		"opacity": true,
 		"orphans": true,
 		"widows": true,
@@ -6790,10 +6790,10 @@ if ( document.documentElement.currentStyle ) {
 
 curCSS = getComputedStyle || currentStyle;
 
-function getWidthOrHeight( elem, name, extra ) {
+function getWidthOrheight( elem, name, extra ) {
 
 	// Start with offset property
-	var val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
+	var val = name === "width" ? elem.offsetWidth : elem.offsetheight,
 		i = name === "width" ? 1 : 0,
 		len = 4;
 
@@ -6849,10 +6849,10 @@ jQuery.each([ "height", "width" ], function( i, name ) {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 				if ( elem.offsetWidth !== 0 ) {
-					return getWidthOrHeight( elem, name, extra );
+					return getWidthOrheight( elem, name, extra );
 				} else {
 					return jQuery.swap( elem, cssShow, function() {
-						return getWidthOrHeight( elem, name, extra );
+						return getWidthOrheight( elem, name, extra );
 					});
 				}
 			}
@@ -6930,7 +6930,7 @@ jQuery(function() {
 if ( jQuery.expr && jQuery.expr.filters ) {
 	jQuery.expr.filters.hidden = function( elem ) {
 		var width = elem.offsetWidth,
-			height = elem.offsetHeight;
+			height = elem.offsetheight;
 
 		return ( width === 0 && height === 0 ) || (!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display) || jQuery.css( elem, "display" )) === "none");
 	};
@@ -9307,13 +9307,13 @@ function getWindow( elem ) {
 
 
 
-// Create width, height, innerHeight, innerWidth, outerHeight and outerWidth methods
-jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+// Create width, height, innerheight, innerWidth, outerheight and outerWidth methods
+jQuery.each( { height: "height", Width: "width" }, function( name, type ) {
 	var clientProp = "client" + name,
 		scrollProp = "scroll" + name,
 		offsetProp = "offset" + name;
 
-	// innerHeight and innerWidth
+	// innerheight and innerWidth
 	jQuery.fn[ "inner" + name ] = function() {
 		var elem = this[0];
 		return elem ?
@@ -9323,7 +9323,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 			null;
 	};
 
-	// outerHeight and outerWidth
+	// outerheight and outerWidth
 	jQuery.fn[ "outer" + name ] = function( margin ) {
 		var elem = this[0];
 		return elem ?
@@ -9347,12 +9347,12 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 
 			// Get document width or height
 			if ( elem.nodeType === 9 ) {
-				// Either scroll[Width/Height] or offset[Width/Height], whichever is greater
+				// Either scroll[Width/height] or offset[Width/height], whichever is greater
 				doc = elem.documentElement;
 
-				// when a window > document, IE6 reports a offset[Width/Height] > client[Width/Height]
-				// so we can't use max, as it'll choose the incorrect offset[Width/Height]
-				// instead we use the correct client[Width/Height]
+				// when a window > document, IE6 reports a offset[Width/height] > client[Width/height]
+				// so we can't use max, as it'll choose the incorrect offset[Width/height]
+				// instead we use the correct client[Width/height]
 				// support:IE6
 				if ( doc[ clientProp ] >= doc[ scrollProp ] ) {
 					return doc[ clientProp ];

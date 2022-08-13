@@ -513,9 +513,9 @@
         $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1);
       }
 
-      this._fixHeight();
+      this._fixheight();
 
-      this._fixScrollHeight();
+      this._fixScrollheight();
 
       $__default["default"](this._element).trigger($__default["default"].Event(EVENT_EXPANDED$2));
     };
@@ -550,21 +550,21 @@
         $__default["default"](SELECTOR_CONTROL_SIDEBAR).hide();
       }
 
-      this._fixHeight();
+      this._fixheight();
 
-      this._fixScrollHeight();
+      this._fixScrollheight();
 
       $__default["default"](window).resize(function () {
-        _this2._fixHeight();
+        _this2._fixheight();
 
-        _this2._fixScrollHeight();
+        _this2._fixScrollheight();
       });
       $__default["default"](window).scroll(function () {
         var $body = $__default["default"]('body');
-        var shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
+        var shouldFixheight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
 
-        if (shouldFixHeight) {
-          _this2._fixScrollHeight();
+        if (shouldFixheight) {
+          _this2._fixScrollheight();
         }
       });
     };
@@ -579,7 +579,7 @@
       return $body.hasClass(CLASS_NAME_FOOTER_FIXED) || $body.hasClass(CLASS_NAME_FOOTER_SM_FIXED) || $body.hasClass(CLASS_NAME_FOOTER_MD_FIXED) || $body.hasClass(CLASS_NAME_FOOTER_LG_FIXED) || $body.hasClass(CLASS_NAME_FOOTER_XL_FIXED);
     };
 
-    _proto._fixScrollHeight = function _fixScrollHeight() {
+    _proto._fixScrollheight = function _fixScrollheight() {
       var $body = $__default["default"]('body');
       var $controlSidebar = $__default["default"](this._config.target);
 
@@ -590,8 +590,8 @@
       var heights = {
         scroll: $__default["default"](document).height(),
         window: $__default["default"](window).height(),
-        header: $__default["default"](SELECTOR_HEADER$1).outerHeight(),
-        footer: $__default["default"](SELECTOR_FOOTER$1).outerHeight()
+        header: $__default["default"](SELECTOR_HEADER$1).outerheight(),
+        footer: $__default["default"](SELECTOR_FOOTER$1).outerheight()
       };
       var positions = {
         bottom: Math.abs(heights.window + $__default["default"](window).scrollTop() - heights.scroll),
@@ -638,7 +638,7 @@
       }
     };
 
-    _proto._fixHeight = function _fixHeight() {
+    _proto._fixheight = function _fixheight() {
       var $body = $__default["default"]('body');
       var $controlSidebar = $__default["default"](this._config.target + " " + SELECTOR_CONTROL_SIDEBAR_CONTENT$1);
 
@@ -649,16 +649,16 @@
 
       var heights = {
         window: $__default["default"](window).height(),
-        header: $__default["default"](SELECTOR_HEADER$1).outerHeight(),
-        footer: $__default["default"](SELECTOR_FOOTER$1).outerHeight()
+        header: $__default["default"](SELECTOR_HEADER$1).outerheight(),
+        footer: $__default["default"](SELECTOR_FOOTER$1).outerheight()
       };
-      var sidebarHeight = heights.window - heights.header;
+      var sidebarheight = heights.window - heights.header;
 
       if (this._isFooterFixed() && $__default["default"](SELECTOR_FOOTER$1).css('position') === 'fixed') {
-        sidebarHeight = heights.window - heights.header - heights.footer;
+        sidebarheight = heights.window - heights.header - heights.footer;
       }
 
-      $controlSidebar.css('height', sidebarHeight);
+      $controlSidebar.css('height', sidebarheight);
 
       if (typeof $__default["default"].fn.overlayScrollbars !== 'undefined') {
         $controlSidebar.overlayScrollbars({
@@ -1379,7 +1379,7 @@
 
       $__default["default"](SELECTOR_TAB_NAVBAR_NAV + " .active").tab('dispose').removeClass('active');
 
-      this._fixHeight();
+      this._fixheight();
 
       $item.tab('show');
       $item.parents('li').addClass('active');
@@ -1448,7 +1448,7 @@
 
       $__default["default"](window).trigger('resize');
 
-      this._fixHeight(true);
+      this._fixheight(true);
     } // Private
     ;
 
@@ -1457,7 +1457,7 @@
 
       this._setupListeners();
 
-      this._fixHeight(true);
+      this._fixheight(true);
 
       if (usingDefTab) {
         var $el = $__default["default"]("" + SELECTOR_TAB_PANE).first(); // eslint-disable-next-line no-console
@@ -1492,7 +1492,7 @@
 
       $__default["default"](window).on('resize', function () {
         setTimeout(function () {
-          _this3._fixHeight();
+          _this3._fixheight();
         }, 1);
       });
 
@@ -1604,27 +1604,27 @@
       });
     };
 
-    _proto._fixHeight = function _fixHeight(tabEmpty) {
+    _proto._fixheight = function _fixheight(tabEmpty) {
       if (tabEmpty === void 0) {
         tabEmpty = false;
       }
 
       if ($__default["default"]('body').hasClass(CLASS_NAME_FULLSCREEN_MODE)) {
-        var windowHeight = $__default["default"](window).height();
-        var navbarHeight = $__default["default"](SELECTOR_TAB_NAV).outerHeight();
-        $__default["default"](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING + ", " + SELECTOR_CONTENT_IFRAME).height(windowHeight - navbarHeight);
-        $__default["default"](SELECTOR_CONTENT_WRAPPER).height(windowHeight);
+        var windowheight = $__default["default"](window).height();
+        var navbarheight = $__default["default"](SELECTOR_TAB_NAV).outerheight();
+        $__default["default"](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING + ", " + SELECTOR_CONTENT_IFRAME).height(windowheight - navbarheight);
+        $__default["default"](SELECTOR_CONTENT_WRAPPER).height(windowheight);
       } else {
-        var contentWrapperHeight = parseFloat($__default["default"](SELECTOR_CONTENT_WRAPPER).css('height'));
+        var contentWrapperheight = parseFloat($__default["default"](SELECTOR_CONTENT_WRAPPER).css('height'));
 
-        var _navbarHeight = $__default["default"](SELECTOR_TAB_NAV).outerHeight();
+        var _navbarheight = $__default["default"](SELECTOR_TAB_NAV).outerheight();
 
         if (tabEmpty == true) {
           setTimeout(function () {
-            $__default["default"](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING).height(contentWrapperHeight - _navbarHeight);
+            $__default["default"](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING).height(contentWrapperheight - _navbarheight);
           }, 50);
         } else {
-          $__default["default"](SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight - _navbarHeight);
+          $__default["default"](SELECTOR_CONTENT_IFRAME).height(contentWrapperheight - _navbarheight);
         }
       }
     } // Static
@@ -1710,10 +1710,10 @@
   var Default$6 = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'l',
-    panelAutoHeight: true,
-    panelAutoHeightMode: 'min-height',
+    panelAutoheight: true,
+    panelAutoheightMode: 'min-height',
     preloadDuration: 200,
-    loginRegisterAutoHeight: true
+    loginRegisterAutoheight: true
   };
   /**
    * Class Definition
@@ -1729,7 +1729,7 @@
 
     var _proto = Layout.prototype;
 
-    _proto.fixLayoutHeight = function fixLayoutHeight(extra) {
+    _proto.fixLayoutheight = function fixLayoutheight(extra) {
       if (extra === void 0) {
         extra = null;
       }
@@ -1738,20 +1738,20 @@
       var controlSidebar = 0;
 
       if ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
-        controlSidebar = $__default["default"](SELECTOR_CONTROL_SIDEBAR_CONTENT).outerHeight();
+        controlSidebar = $__default["default"](SELECTOR_CONTROL_SIDEBAR_CONTENT).outerheight();
       }
 
       var heights = {
         window: $__default["default"](window).height(),
-        header: $__default["default"](SELECTOR_HEADER).length > 0 ? $__default["default"](SELECTOR_HEADER).outerHeight() : 0,
-        footer: $__default["default"](SELECTOR_FOOTER).length > 0 ? $__default["default"](SELECTOR_FOOTER).outerHeight() : 0,
+        header: $__default["default"](SELECTOR_HEADER).length > 0 ? $__default["default"](SELECTOR_HEADER).outerheight() : 0,
+        footer: $__default["default"](SELECTOR_FOOTER).length > 0 ? $__default["default"](SELECTOR_FOOTER).outerheight() : 0,
         sidebar: $__default["default"](SELECTOR_SIDEBAR$1).length > 0 ? $__default["default"](SELECTOR_SIDEBAR$1).height() : 0,
         controlSidebar: controlSidebar
       };
 
       var max = this._max(heights);
 
-      var offset = this._config.panelAutoHeight;
+      var offset = this._config.panelAutoheight;
 
       if (offset === true) {
         offset = 0;
@@ -1761,15 +1761,15 @@
 
       if (offset !== false) {
         if (max === heights.controlSidebar) {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
+          $contentSelector.css(this._config.panelAutoheightMode, max + offset);
         } else if (max === heights.window) {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header - heights.footer);
+          $contentSelector.css(this._config.panelAutoheightMode, max + offset - heights.header - heights.footer);
         } else {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header);
+          $contentSelector.css(this._config.panelAutoheightMode, max + offset - heights.header);
         }
 
         if (this._isFooterFixed()) {
-          $contentSelector.css(this._config.panelAutoHeightMode, parseFloat($contentSelector.css(this._config.panelAutoHeightMode)) + heights.footer);
+          $contentSelector.css(this._config.panelAutoheightMode, parseFloat($contentSelector.css(this._config.panelAutoheightMode)) + heights.footer);
         }
       }
 
@@ -1791,7 +1791,7 @@
       }
     };
 
-    _proto.fixLoginRegisterHeight = function fixLoginRegisterHeight() {
+    _proto.fixLoginRegisterheight = function fixLoginRegisterheight() {
       var $body = $__default["default"]('body');
       var $selector = $__default["default"](SELECTOR_LOGIN_BOX + ", " + SELECTOR_REGISTER_BOX);
 
@@ -1803,10 +1803,10 @@
         $body.css('height', 'auto');
         $__default["default"]('html').css('height', 'auto');
       } else {
-        var boxHeight = $selector.height();
+        var boxheight = $selector.height();
 
-        if ($body.css(this._config.panelAutoHeightMode) !== boxHeight) {
-          $body.css(this._config.panelAutoHeightMode, boxHeight);
+        if ($body.css(this._config.panelAutoheightMode) !== boxheight) {
+          $body.css(this._config.panelAutoheightMode, boxheight);
         }
       }
     } // Private
@@ -1816,34 +1816,34 @@
       var _this = this;
 
       // Activate layout height watcher
-      this.fixLayoutHeight();
+      this.fixLayoutheight();
 
-      if (this._config.loginRegisterAutoHeight === true) {
-        this.fixLoginRegisterHeight();
-      } else if (this._config.loginRegisterAutoHeight === parseInt(this._config.loginRegisterAutoHeight, 10)) {
-        setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight);
+      if (this._config.loginRegisterAutoheight === true) {
+        this.fixLoginRegisterheight();
+      } else if (this._config.loginRegisterAutoheight === parseInt(this._config.loginRegisterAutoheight, 10)) {
+        setInterval(this.fixLoginRegisterheight, this._config.loginRegisterAutoheight);
       }
 
       $__default["default"](SELECTOR_SIDEBAR$1).on('collapsed.lte.treeview expanded.lte.treeview', function () {
-        _this.fixLayoutHeight();
+        _this.fixLayoutheight();
       });
       $__default["default"](SELECTOR_MAIN_SIDEBAR).on('mouseenter mouseleave', function () {
         if ($__default["default"]('body').hasClass(CLASS_NAME_SIDEBAR_COLLAPSED$1)) {
-          _this.fixLayoutHeight();
+          _this.fixLayoutheight();
         }
       });
       $__default["default"](SELECTOR_PUSHMENU_BTN).on('collapsed.lte.pushmenu shown.lte.pushmenu', function () {
         setTimeout(function () {
-          _this.fixLayoutHeight();
+          _this.fixLayoutheight();
         }, 300);
       });
       $__default["default"](SELECTOR_CONTROL_SIDEBAR_BTN).on('collapsed.lte.controlsidebar', function () {
-        _this.fixLayoutHeight();
+        _this.fixLayoutheight();
       }).on('expanded.lte.controlsidebar', function () {
-        _this.fixLayoutHeight('control_sidebar');
+        _this.fixLayoutheight('control_sidebar');
       });
       $__default["default"](window).resize(function () {
-        _this.fixLayoutHeight();
+        _this.fixLayoutheight();
       });
       setTimeout(function () {
         $__default["default"]('body.hold-transition').removeClass('hold-transition');
@@ -1893,7 +1893,7 @@
 
         if (config === 'init' || config === '') {
           data._init();
-        } else if (config === 'fixLayoutHeight' || config === 'fixLoginRegisterHeight') {
+        } else if (config === 'fixLayoutheight' || config === 'fixLoginRegisterheight') {
           data[config]();
         }
       });
@@ -2598,7 +2598,7 @@
     icon: null,
     image: null,
     imageAlt: null,
-    imageHeight: '25px',
+    imageheight: '25px',
     title: null,
     subtitle: null,
     close: true,
@@ -2640,8 +2640,8 @@
       if (this._config.image != null) {
         var toastImage = $__default["default"]('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt);
 
-        if (this._config.imageHeight != null) {
-          toastImage.height(this._config.imageHeight).width('auto');
+        if (this._config.imageheight != null) {
+          toastImage.height(this._config.imageheight).width('auto');
         }
 
         toastHeader.append(toastImage);

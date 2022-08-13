@@ -31,7 +31,7 @@ You can discuss the roadmap here: [#1756](https://github.com/OwlCarousel2/OwlCar
 
  - [ ] worker cleanup
  - [ ] clone computation fix (and provide consistent access to slides)
- - [ ] [#1575](https://github.com/OwlCarousel2/OwlCarousel2/issues/1575) & [#1621](https://github.com/OwlCarousel2/OwlCarousel2/issues/1621) - AutoHeight fixes
+ - [ ] [#1575](https://github.com/OwlCarousel2/OwlCarousel2/issues/1575) & [#1621](https://github.com/OwlCarousel2/OwlCarousel2/issues/1621) - Autoheight fixes
  - [ ] [#1511](https://github.com/OwlCarousel2/OwlCarousel2/issues/1511) - do not disable nav when center = true & length == items
 
 ## 2.6 - cleanup, code style, repo cleanup

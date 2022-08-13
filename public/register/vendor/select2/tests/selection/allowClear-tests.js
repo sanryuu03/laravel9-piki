@@ -360,7 +360,7 @@ test('clear button doesnt visually break selected options', function (assert) {
     text: '1'
   }]);
 
-  var singleHeight = $container.height();
+  var singleheight = $container.height();
 
   selection.update([
     {
@@ -373,7 +373,7 @@ test('clear button doesnt visually break selected options', function (assert) {
     }
   ]);
 
-  var doubleHeight = $container.height();
+  var doubleheight = $container.height();
 
   selection.update([
     {
@@ -387,14 +387,14 @@ test('clear button doesnt visually break selected options', function (assert) {
   ]);
 
   assert.notEqual(
-    singleHeight,
-    doubleHeight,
+    singleheight,
+    doubleheight,
     'The height of the two different rows should be different'
   );
 
   assert.equal(
     $container.height(),
-    doubleHeight,
+    doubleheight,
     'There should be two full lines of selections'
   );
 });

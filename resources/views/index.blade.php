@@ -51,7 +51,7 @@
       <div class="header-berita">
           <h1 class="mb-3 text-center fs-1">{{ ucwords('berita') }}</h1>
       </div>
-      <div class="mt-5 container-xxl">
+      <div id="berita" class="mt-5 container-xxl">
           <div class="row">
               <div class="col-8">
                   <div class="row g-0">
@@ -86,7 +86,7 @@
                   <div class="mt-1 card text-bg-dark">
                               @if($partnerShip->link_web ?? '')
                       <a href="{{ $partnerShip->link_web }}">
-                          <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="card-img" alt="..." style="width:100%; heigh: 100%;">
+                          <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="card-img" alt="..." style="width:100%; height: 100%;">
                       </a>
                       @endif
                   </div>
