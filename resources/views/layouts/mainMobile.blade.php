@@ -50,6 +50,7 @@
     @yield('menuContent')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1c25dfe63a.js" crossorigin="anonymous"></script>
     @stack('custom')
     <script src="{{ asset('js/mainAgendaFrontEnd.js') }}"></script>
     <script src="{{ asset('js/mainFaq.js') }}"></script>

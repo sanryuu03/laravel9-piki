@@ -1,6 +1,5 @@
   @extends('layouts.mainMobile')
 @prepend('styles')
-        <script src="https:/kit.fontawesome.com/1c25dfe63a.js" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
 @endprepend
