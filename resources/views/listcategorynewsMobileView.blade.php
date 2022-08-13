@@ -30,7 +30,7 @@
               @endforeach
               @foreach($posts as $berita)
               <h1 class="mb-3 fs-6">
-                  <a href="/berita/webView/{{ $berita->slug }}" class="read-more text-sky-400">
+                  <a href="/berita/mobileView/{{ $berita->slug }}" class="read-more text-sky-400">
                       {{ $berita->judul_berita }}
                   </a>
               </h1>

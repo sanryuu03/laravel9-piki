@@ -167,13 +167,18 @@ class FrontEndPikiController extends Controller
         $listberita = $newsPiki->where('category_news_id',$newsPiki->category_news_id)->get();
         // return
         $categoryNews = CategoryNews::where('id', $categoryNewsId[0]->id)->get();
-
+        $sponsorshipNews4 = SponsorshipNews::where('posisi', 4)->latest()->first();
+        $sponsorshipNews5 = SponsorshipNews::where('posisi', 5)->latest()->first();
+        $sponsorshipNews6 = SponsorshipNews::where('posisi', 6)->latest()->first();
         return view('/newsMobileView', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "news" => $newsPiki,
             "category" => $categoryNews[0]->name,
             "categoryNews" => $listberita,
+            "sponsorshipNews4" => $sponsorshipNews4,
+            "sponsorshipNews5" => $sponsorshipNews5,
+            "sponsorshipNews6" => $sponsorshipNews6,
         ]);
     }
 
