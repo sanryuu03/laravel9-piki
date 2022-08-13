@@ -123,6 +123,7 @@ Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 Route::controller(CategoryNewsController::class)->group(fn() => [
     Route::get('/categories', 'index')->name('kategori.berita'),
     Route::get('/categories/{categoryNews:slug}', 'show')->name('isi.kategori'),
+    Route::get('/categories/mobileView/{categoryNews:slug}', 'categoriesMobileViews')->name('isi.kategori.mobile.view'),
     ]
 );
 

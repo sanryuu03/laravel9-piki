@@ -192,4 +192,18 @@ class CategoryNewsController extends Controller
         }
 
     }
+
+    public function categoriesMobileViews(CategoryNews $categoryNews)
+    {
+        // return $categoryNews;
+        $sponsorshipNewsCategories = SponsorshipNewsCategories::latest()->get();
+        return view('listcategorynewsMobileView', [
+            "title" => $categoryNews->name,
+            "menu" => "Kategori Berita",
+            "creator" => "San",
+            'posts' => $categoryNews->newsPiki,
+            'category' => $categoryNews->name,
+            "sponsorshipNewsCategories" => $sponsorshipNewsCategories,
+        ]);
+    }
 }
