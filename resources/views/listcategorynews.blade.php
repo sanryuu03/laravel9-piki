@@ -27,7 +27,7 @@
           <div class="col-8">
               @foreach($posts as $berita)
               <h1 class="mb-3 fs-6">
-                  <a href="/berita/webView/{{ $berita->slug }}" class="read-more text-sky-400">
+                  <a href="/berita/webView/{{ $berita->slug }}" class="read-more text-sky-400 text-decoration-none">
                       {{ $berita->judul_berita }}
                   </a>
               </h1>

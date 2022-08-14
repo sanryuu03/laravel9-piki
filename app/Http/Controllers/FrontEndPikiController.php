@@ -35,6 +35,10 @@ class FrontEndPikiController extends Controller
      */
     public function index()
     {
+        // if (str_contains(request()->header('User-Agent'), 'Android')) { // Is Android.
+        //     return "heheh";
+        // }
+        // return request()->header('User-Agent');
         $header = HeaderPiki::latest()->first();
         $headerMobile = HeaderPikiMobile::latest()->get();
         $berita = NewsPiki::latest()->take(3)->get();
@@ -83,6 +87,9 @@ class FrontEndPikiController extends Controller
 
     public function mobile()
     {
+        // if (str_contains(request()->header('User-Agent'), 'android')) { // Is Android.
+        //     return "heheh";
+        // }
         $headerMobile = HeaderPikiMobile::latest()->first();
         $berita = NewsPiki::latest()->take(3)->get()->load('categoryNews');
         $beritaLainnya = NewsPiki::latest()->skip(3)->take(10)->get();
