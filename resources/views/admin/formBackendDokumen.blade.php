@@ -29,12 +29,12 @@
   <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
-              <form method="post" action="{{ route('backendTentang.store') }}" enctype="multipart/form-data">
+              <form method="post" action="{{ route('backendDokumen.store') }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <div class="form-group">
-                      <input type="hidden" name="id" class="form-control" value="{{ $backendTentang->id ?? '' }}">
+                      <input type="hidden" name="id" class="form-control" value="{{ $backendDokumen->id ?? '' }}">
                       <label>{{ ucwords('judul') }}</label>
-                      <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul',$backendTentang->judul ?? '') }}">
+                      <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul',$backendDokumen->judul ?? '') }}">
                       @error('judul')
                       <div class="invalid-feedback">
                           {{ $message }}
@@ -42,8 +42,13 @@
                       @enderror
                   </div>
                   <div class="form-group">
-                      <label>{{ ucwords('keterangan') }}</label>
-                      <textarea id="summernote" name="keterangan"></textarea>
+                      <label>{{ ucwords('link web') }}</label>
+                      <input type="text" name="link_web" class="form-control @error('link_web') is-invalid @enderror" value="{{ old('link_web',$backendDokumen->link_web ?? '') }}">
+                      @error('link_web')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
                   </div>
 
                   <div class="form-group">
@@ -69,7 +74,7 @@
                       <script>
                       /**
                       */
-                      var HTMLstring = '{!! $backendTentang->keterangan !!}';
+                      var HTMLstring = '{!! $backendDokumen->keterangan !!}';
                       $('#summernote').summernote('code', HTMLstring);
                   </script>
 @endpush

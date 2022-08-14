@@ -84,7 +84,7 @@ class BackendTentangController extends Controller
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
-        // return $backendTentang;
+        // dd($backendTentang);
         return view('admin/formBackendTentang', [
             "title" => "PIKI - SUMUT",
             "menu" => ucwords('backend tentang'),

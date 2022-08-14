@@ -72,7 +72,6 @@
                               </tr>
                           </thead>
                           <tbody>
-                              <tr>
                                   @foreach($backendTentang as $tentang)
                               <tr>
                                   <td>{{ $tentang->judul }}</td>
@@ -91,7 +90,6 @@
                                   </td>
                               </tr>
                               @endforeach
-                              </tr>
                           </tbody>
                       </table>
                   </div>
@@ -153,8 +151,8 @@
                               </tr>
                           </thead>
                           <tbody>
-                              <tr>
                               @foreach($backendDokumen as $key => $dokumen)
+                              <tr>
                                   <td width="1px">{{ ucwords($dokumen->judul) }}</td>
                                   <td width="1px">{{ ucwords($dokumen->link_web) }}</td>
                                   <td width="1px">{{ $dokumen->created_at }}</td>
@@ -169,8 +167,8 @@
                                           </button>
                                       </form>
                                   </td>
-                              @endforeach
                               </tr>
+                              @endforeach
                           </tbody>
                       </table>
                   </div>

@@ -265,11 +265,36 @@ class FrontEndPikiController extends Controller
     public function tentangMobileView()
     {
         $newsPiki = NewsPiki::latest()->get();
-        return view('/beritaLainnyaMobileView', [
+        $backendTentang = BackendTentang::get();
+        $backendDokumen = BackendDokumen::get();
+        return view('/tentangMobileView', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
             "newsPiki" => $newsPiki,
+            "backendTentang" => $backendTentang,
+            "backendDokumen" => $backendDokumen,
         ]);
+    }
+
+    public function tentangMobileViewPost(Request $request)
+    {
+        if ($request->judulTentang) {
+            $tentang = BackendTentang::where('judul', $request->judulTentang)->first();
+            // return $tentang;
+            echo json_encode($tentang);
+        } else {
+            $backendDokumen = BackendDokumen::get();
+            // return $backendDokumen;
+            $option = "";
+            foreach($backendDokumen as $dokumen){
+                $option .= "<div class='mt-1 card card-body keterangan_tentang'>
+                <a href='$dokumen->link_web'>$dokumen->judul</a>
+                </div>";
+                // $option .= $dokumen->judul;
+            }
+            echo $option;
+        }
+
     }
     /**
      * Show the form for creating a new resource.

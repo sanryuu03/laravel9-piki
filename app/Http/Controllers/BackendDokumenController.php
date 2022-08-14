@@ -68,9 +68,19 @@ class BackendDokumenController extends Controller
      * @param  \App\Models\BackendDokumen  $backendDokumen
      * @return \Illuminate\Http\Response
      */
-    public function edit(BackendDokumen $backendDokumen)
+    public function edit(BackendDokumen $backendDokumen, $id)
     {
-        //
+        $user = auth()->user()->id;
+        $namaUser = auth()->user()->name;
+        // dd($id);
+        return view('admin/formBackendDokumen', [
+            "title" => "PIKI - SUMUT",
+            "menu" => ucwords('backend dokumen'),
+            "creator" => $user,
+            "backendDokumen" => $backendDokumen->find($id),
+            "action" => 'edit',
+            "namaUser" => $namaUser,
+        ]);
     }
 
     /**
@@ -91,8 +101,14 @@ class BackendDokumenController extends Controller
      * @param  \App\Models\BackendDokumen  $backendDokumen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BackendDokumen $backendDokumen)
+    public function destroy(BackendDokumen $backendDokumen, $id)
     {
-        //
+        // return $backendDokumen;//
+        $data = ['deleted_by' => auth()->user()->name];
+        // return $partnerShip;
+        $backendDokumen->where('id', $id)
+        ->update($data);
+        $backendDokumen->find($id)->delete();
+        return redirect()->back()->with('success', 'Informasi telah dihapus');
     }
 }

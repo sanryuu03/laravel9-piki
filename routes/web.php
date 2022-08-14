@@ -107,6 +107,7 @@ Route::controller(FrontEndPikiController::class)->group(function() {
     // tentang
     Route::get('/tentang/webView', 'tentangWebView');
     Route::get('/tentang/mobileView', 'tentangMobileView');
+    Route::post('/tentang/mobileView', 'tentangMobileViewPost');
     // community partners
     Route::get('/communityPartners/{id}', 'communityPartners');
 });
