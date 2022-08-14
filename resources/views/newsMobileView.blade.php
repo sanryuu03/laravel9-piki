@@ -35,6 +35,10 @@
       .jumper-berita {
         margin-top: 15px !important;
       }
+
+      .backToNews {
+        margin-top: -20px;
+      }
   </style>
   <div class="pt-5 container-fluid">
       <div class="row justify-content-center">
@@ -58,7 +62,7 @@
               <p id="share">
               </p>
               </div>
-              <a class="mt-1 btn btn-danger" href="{{ url('/mobile#berita-lainnya') }}">Back to News</a>
+              <a class="btn btn-danger backToNews" href="{{ url('/mobile#berita-lainnya') }}">Back to News</a>
           </div>
       </div>
   </div>
@@ -110,7 +114,7 @@
           <div class="col-md-10">
               @foreach($categoryNews as $berita)
               <h1 class="fs-6">
-              <a href="/berita/mobileView/{{ $berita->slug }}" class="read-more text-sky-400">
+              <a href="/berita/mobileView/{{ $berita->slug }}" class="read-more text-sky-400 text-decoration-none">
                   {{ $berita->judul_berita }}
               </a>
               </h1>
@@ -122,14 +126,14 @@
   <!-- Berita End-->
 
 <div class="jumper-berita">
-<a type="button" class="mb-1 btn btn-outline-primary" href="/categories/indonesia-flag">{{ ucwords('nasional') }}</a>
-<a type="button" class="mb-1 btn btn-outline-secondary" href="/categories/region">{{ ucwords('daerah') }}</a>
-<a type="button" class="mb-1 btn btn-outline-success" href="/categories/campus">{{ ucwords('kampus') }}</a>
-<a type="button" class="mb-1 btn btn-outline-danger" href="/categories/church">{{ ucwords('gereja') }}</a>
-<a type="button" class="mb-1 btn btn-outline-warning" href="/categories/economy">{{ ucwords('ekonomi') }}</a>
-<a type="button" class="mb-1 btn btn-outline-info" href="/categories/bendera-indonesia">{{ ucwords('politik') }}</a>
-<a type="button" class="mb-1 btn btn-outline-dark" href="/categories/computer">{{ ucwords('teknologi') }}</a>
-<a type="button" class="mb-1 btn btn-outline-dark" href="/categories/north-sumatra">{{ ucwords('budaya') }}</a>
+<a type="button" class="mb-1 btn btn-outline-primary" href="/categories/mobileView/indonesia-flag">{{ ucwords('nasional') }}</a>
+<a type="button" class="mb-1 btn btn-outline-secondary" href="/categories/mobileView/region">{{ ucwords('daerah') }}</a>
+<a type="button" class="mb-1 btn btn-outline-success" href="/categories/mobileView/campus">{{ ucwords('kampus') }}</a>
+<a type="button" class="mb-1 btn btn-outline-danger" href="/categories/mobileView/church">{{ ucwords('gereja') }}</a>
+<a type="button" class="mb-1 btn btn-outline-warning" href="/categories/mobileView/economy">{{ ucwords('ekonomi') }}</a>
+<a type="button" class="mb-1 btn btn-outline-info" href="/categories/mobileView/bendera-indonesia">{{ ucwords('politik') }}</a>
+<a type="button" class="mb-1 btn btn-outline-dark" href="/categories/mobileView/computer">{{ ucwords('teknologi') }}</a>
+<a type="button" class="mb-1 btn btn-outline-dark" href="/categories/mobileView/north-sumatra">{{ ucwords('budaya') }}</a>
 </div>
   @push('custom')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
