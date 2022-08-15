@@ -36,9 +36,7 @@ $(document).ready(function () {
         console.log(`ini search ${search}`);
         console.log(`======================================`);
         table.search(provinsiFilter).draw();
-        table.search("");
     });
-
     $(".filter-kota").on("change", function () {
         let kotaFilter = $(".filter-kota :selected").text();
         let search = this.value;
@@ -46,7 +44,6 @@ $(document).ready(function () {
         console.log(`ini search ${search}`);
         console.log(`######################################`);
         table.search(kotaFilter).draw();
-        table.search("");
     });
 });
 $(function () {
