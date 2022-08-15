@@ -257,6 +257,7 @@ Route::group(['middleware' => ['CekLevel:super-admin,organisasi']], function () 
     Route::get('/admin/pilihAnggotaYangDitampilkan', [AnggotaPikiController::class, 'pilihAnggotaYangDitampilkan'])->name('pilih.anggota.yang.ditampilkan');
     Route::post('/admin/pilihAnggotaYangDitampilkan/{id}', [AnggotaPikiController::class, 'pilihAnggotaYangDitampilkan'])->name('pilih.anggota.ini.yang.ditampilkan');
     Route::match(['get', 'post'], '/admin/jadikanAnggotaYangDitampilkan/{id}', [AnggotaPikiController::class, 'jadikanAnggotaYangDitampilkan'])->name('jadikan.anggota.yang.ditampilkan');
+    Route::match(['get', 'post'], '/admin/hapusAnggotaYangDitampilkan/{id}', [AnggotaPikiController::class, 'hapusAnggotaYangDitampilkan'])->name('hapus.anggota.yang.ditampilkan');
 
     Route::get('/admin/kategorianggota', [KategoriAnggotaController::class, 'index'])->name('kategori.anggota');
     Route::get('/admin/addkategorianggota', [KategoriAnggotaController::class, 'addKategoriAnggota'])->name('add.kategori.anggota');

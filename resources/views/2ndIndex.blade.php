@@ -63,7 +63,7 @@
           <div class="carousel-item {{ $key==0?'active':'' }}">
               <a href="/categories/mobileView/{{ $berita->slug }}">
                   <div class="text-white card bg-dark">
-                      <img src="{{ url('/storage/assets/categorynews/'.$berita->picture_path_kategori_berita) }}" class="card-img img-fluid" alt="{{ $berita->name }}" style="width:500px; height:395px;">
+                      <img src="{{ url('/storage/assets/categorynews/'.$berita->picture_path_kategori_berita) }}" class="card-img img-fluid" alt="{{ $berita->name }}" style="width:100%; height:210px;">
                       <div class="p-0 card-img-overlay d-flex align-items-center">
                           <h5 class="p-4 text-center card-title flex-fill fs-3" style="background-color:rgba(0,0,0,0.7)">{{ $berita->name }}</h5>
                       </div>

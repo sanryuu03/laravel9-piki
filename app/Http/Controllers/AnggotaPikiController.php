@@ -293,6 +293,33 @@ class AnggotaPikiController extends Controller
         }
         return redirect()->route('anggota.yang.ditampilkan')->with('error', 'maksimal 3 anggota yang dapat di tampilkan');
     }
+
+    public function hapusAnggotaYangDitampilkan(Request $request)
+    {
+
+        $anggotaPiki = AnggotaPiki::where('id', $request->id)->first();
+
+        $data = [
+            'users_id' => $anggotaPiki->users_id,
+            'name' => $anggotaPiki->name,
+            'province' => $anggotaPiki->province,
+            'city' => $anggotaPiki->city,
+            'district' => $anggotaPiki->district,
+            'village' => $anggotaPiki->village,
+            'job' => $anggotaPiki->job,
+            'address' => $anggotaPiki->address,
+            'phone_number' => $anggotaPiki->phone_number,
+            'status_anggota' => 'diterima',
+            'jabatan_piki_sumut' => $request->jabatan_piki_sumut,
+            'tampilkan_anggota_dilandingpage' => 'tidak',
+        ];
+        TempAnggota::create($data);
+
+        AnggotaPiki::where('id', $request->id)
+        ->update(['tampilkan_anggota_dilandingpage' => 'tidak']);
+
+        return redirect()->route('anggota.yang.ditampilkan')->with('success', 'Anggota berhasil di hapus di landing page');
+    }
     /**
      * Show the form for creating a new resource.
      *

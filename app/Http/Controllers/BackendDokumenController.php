@@ -105,7 +105,6 @@ class BackendDokumenController extends Controller
     {
         // return $backendDokumen;//
         $data = ['deleted_by' => auth()->user()->name];
-        // return $partnerShip;
         $backendDokumen->where('id', $id)
         ->update($data);
         $backendDokumen->find($id)->delete();
