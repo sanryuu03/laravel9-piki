@@ -10,8 +10,8 @@
 
   </style>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">{{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">{{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $menu }}</li>
@@ -26,6 +26,11 @@
   @if(session()->has('success'))
   <div class="alert alert-success" role="alert">
       {{ session('success') }}
+  </div>
+  @endif
+  @if(session()->has('error'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('error') }}
   </div>
   @endif
 

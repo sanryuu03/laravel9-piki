@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryNews;
+use App\Models\NewsPiki;
 use App\Models\SponsorshipNewsCategories;
 use Illuminate\Http\Request;
 
@@ -94,11 +95,19 @@ class CategoryNewsController extends Controller
      * @param  \App\Models\CategoryNews  $categoryNews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryNews $categoryNews, $id)
+    public function destroy($id)
     {
-        $categoryNews = CategoryNews::find($id);
-        $categoryNews->delete();
-        return redirect()->back()->with('success', 'Kategori Berita berhasil di hapus');
+        // return $id;
+        $berita = NewsPiki::where('category_news_id', $id)->count();
+        $namaBerita = CategoryNews::find($id)->name;
+        if ($berita > 0) {
+            return redirect()->back()->with('error', 'Kategori '.$namaBerita. ' memiliki beberapa berita, kosongkan berita tersebut terlebih dahulu');
+        } else {
+            $categoryNews = CategoryNews::find($id);
+            $categoryNews->delete();
+            return redirect()->back()->with('success', 'Kategori Berita berhasil di hapus');
+        }
+
     }
 
     public function kategoriberita()
