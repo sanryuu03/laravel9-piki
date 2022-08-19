@@ -14,7 +14,8 @@ class SponsorPikiController extends Controller
      */
     public function index()
     {
-        $sponsor = SponsorPiki::take(7)->get();
+        // $sponsor = SponsorPiki::take(7)->get();
+        $sponsor = SponsorPiki::latest()->get();
         $user = auth()->user()->id;
         return view('admin/communitypartners', [
             "title" => "PIKI - SUMUT",

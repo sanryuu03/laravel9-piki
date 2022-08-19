@@ -9,8 +9,8 @@
 
   </style>
   <div class="container-fluid" id="container-wrapper">
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Landing Page {{ $menu }}</h1>
+      <div class="mb-4 d-sm-flex align-items-center justify-content-between">
+          <h1 class="mb-0 text-gray-800 h3">Landing Page {{ $menu }}</h1>
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Landing {{ $menu }}</li>
@@ -27,7 +27,7 @@
   <!-- notice End-->
 
   <!-- Header Start-->
-  <div class="card mx-3 my-3">
+  <div class="mx-3 my-3 card">
       <div class="card-body">
           <div class="container-fluid">
               <form method="post" action="{{ route('agenda.post') }}" enctype="multipart/form-data">
@@ -47,7 +47,7 @@
                       <trix-editor input="body"></trix-editor>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mt-3">Save</button>
+                  <button type="submit" class="mt-3 btn btn-primary">Save</button>
               </form>
           </div>
       </div>
@@ -61,7 +61,7 @@
                   <tr>
                       <th width="1%">Foto Agenda</th>
                       <th width="1%">Nama Agenda</th>
-                      <th width="1%">Keterangan Agenda</th>
+                      {{-- <th width="1%">Keterangan Agenda</th> --}}
                       <th width="1%">Created At</th>
                       <th width="1%">Updated At</th>
                       <th width="1%">OPSI</th>
@@ -72,7 +72,7 @@
                   <tr>
                       <td><img width="150px" src="{{ url('/storage/assets/agenda/'.$item->picture_path) }}"></td>
                       <td>{{ $item->nama_agenda }}</td>
-                      <td>{!! $item->keterangan_agenda !!}</td>
+                      {{-- <td>{!! $item->keterangan_agenda !!}</td> --}}
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->updated_at }}</td>
                       <td>

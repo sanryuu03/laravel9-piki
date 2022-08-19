@@ -73,7 +73,19 @@
                   </div>
               </div>
               <div class="col-4">
-                  <ul class="list-group">
+                  <!-- Topbar Search -->
+                  <form method="post" action="{{ route('search') }}" class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
+                  @csrf
+                      <div class="input-group">
+                          <input type="text" name="search" class="border-100 form-control bg-info small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                              <button class="btn btn-primary" type="submit">
+                                  <i class="fas fa-search fa-sm"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+                  <ul class="mt-2 list-group">
                       <li class="list-group-item active" aria-current="true">{{ ucwords('berita lainnya') }}</li>
                       @foreach($beritaLainnya as $key => $lainnya)
                       <a href="{{ route('read.more.berita', $lainnya->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
@@ -84,7 +96,7 @@
                   </ul>
                   <!-- ITDev Academy Start-->
                   <div class="mt-1 card text-bg-dark">
-                              @if($partnerShip->link_web ?? '')
+                      @if($partnerShip->link_web ?? '')
                       <a href="{{ $partnerShip->link_web }}">
                           <img src="{{ url('/storage/assets/partnership/'.$partnerShip->picture_path) }}" class="card-img" alt="..." style="width:100%; height: 100%;">
                       </a>
@@ -117,13 +129,12 @@
                       @foreach($beritaSejenis as $key => $sejenis)
                       @if($kategori->id == $sejenis->category_news_id)
                       @php $count+=1; @endphp
-                      @if ($count <= 5)
-                      <a href="{{ route('read.more.berita', $sejenis->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
+                      @if ($count <= 5) <a href="{{ route('read.more.berita', $sejenis->slug) }}" class='list-group-item list-group-item-action list-group-item-primary fs-6' style='text-decoration: none;'>
                           {{ $sejenis->judul_berita }}
-                      </a>
-                      @endif
-                      @endif
-                      @endforeach
+                          </a>
+                          @endif
+                          @endif
+                          @endforeach
                   </ul>
               </div>
               @endforeach
@@ -276,42 +287,42 @@
 
       <!-- sponsorship before faq start-->
       <div class="container text-center">
-  <div class="row">
-    <div class="col">
-    @if($sponsorshipBeforeFaq->link_web_1 != '')
-    <a href="{{ $sponsorshipBeforeFaq->link_web_1 }}">
-      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_1) }}" class="img-fluid" alt="...">
-    </a>
-    @else
-    <a href="https://itdevacademy.com/">
-      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
-    </a>
-    @endif
-    </div>
-    <div class="col">
-          @if($sponsorshipBeforeFaq->link_web_2 != '')
-    <a href="{{ $sponsorshipBeforeFaq->link_web_2 }}">
-      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_2) }}" class="img-fluid" alt="...">
-    </a>
-    @else
-    <a href="https://itdevacademy.com/">
-      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
-    </a>
-    @endif
-    </div>
-    <div class="col">
-                @if($sponsorshipBeforeFaq->link_web_3 != '')
-    <a href="{{ $sponsorshipBeforeFaq->link_web_3 }}">
-      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_3) }}" class="img-fluid" alt="...">
-    </a>
-    @else
-    <a href="https://itdevacademy.com/">
-      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
-    </a>
-    @endif
-    </div>
-  </div>
-</div>
+          <div class="row">
+              <div class="col">
+                  @if($sponsorshipBeforeFaq->link_web_1 != '')
+                  <a href="{{ $sponsorshipBeforeFaq->link_web_1 }}">
+                      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_1) }}" class="img-fluid" alt="...">
+                  </a>
+                  @else
+                  <a href="https://itdevacademy.com/">
+                      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+                  </a>
+                  @endif
+              </div>
+              <div class="col">
+                  @if($sponsorshipBeforeFaq->link_web_2 != '')
+                  <a href="{{ $sponsorshipBeforeFaq->link_web_2 }}">
+                      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_2) }}" class="img-fluid" alt="...">
+                  </a>
+                  @else
+                  <a href="https://itdevacademy.com/">
+                      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+                  </a>
+                  @endif
+              </div>
+              <div class="col">
+                  @if($sponsorshipBeforeFaq->link_web_3 != '')
+                  <a href="{{ $sponsorshipBeforeFaq->link_web_3 }}">
+                      <img src="{{ url('/storage/assets/sponsorshipBeforeFaq/'.$sponsorshipBeforeFaq->iklan_3) }}" class="img-fluid" alt="...">
+                  </a>
+                  @else
+                  <a href="https://itdevacademy.com/">
+                      <img src="{{ asset('/images/hitmbiru.png') }}" class="img-fluid" alt="...">
+                  </a>
+                  @endif
+              </div>
+          </div>
+      </div>
       <!-- sponsorship before faq end-->
       <!-- Faq's-->
       <section class="faq-container" id="faq" class="collapse">
@@ -442,97 +453,53 @@
       </section>
       <!-- End Faq's-->
   </div>
-{{-- footer --}}
-<div style="background-color: #688eb1;" class="text-white">
-<div class="container">
-  <footer class="py-5">
-    <div class="row">
-      <div class="col-3">
-        <h5><i class="fa fa-map-marker"></i></h5>
-        <p>Komplek Ruko Gardenia No. 1 <br>Jl. Jamin Ginting , Medan</p>
+  {{-- footer --}}
+  <div style="background-color: #688eb1;" class="text-white">
+      <div class="container">
+          <footer class="py-5">
+              <div class="row">
+                  <div class="col-3">
+                      <h5><i class="fa fa-map-marker"></i></h5>
+                      <p>{{ $backendFooter->alamat ?? '' }}</p>
 
-        <div class="my-3"></div>
+                      <div class="my-3"></div>
 
-        <h5><i class="fa fa-phone"></i></h5>
-        <p>0862xxxx</p>
+                      <h5><i class="fa fa-phone"></i></h5>
+                      <p>{{ $backendFooter->telepon ?? '' }}</p>
 
-        <div class="my-3"></div>
+                      <div class="my-3"></div>
 
-        <h5><i class="fa fa-envelope"></i></h5>
-        <p>itdev@gmail.com</p>
+                      <h5><i class="fa fa-envelope"></i></h5>
+                      <p>{{ $backendFooter->email ?? '' }}</p>
 
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-facebook fs-3"></i></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-youtube fs-3"></i></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-instagram fs-3"></i></a></li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <h5>Menu</h5>
-        <ul class="nav flex-column">
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Home</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Tentang</a></li>
-          <!-- <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Produk</a></li> -->
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Customer</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Pengalaman</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Harga</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">FAQs</a></li>
-        </ul>
-      </div>
+                      <ul class="list-unstyled d-flex">
+                          <li class="ms-3"><a class="link-dark" href="{{ $backendFooter->fb ?? '' }}"><i class="fa fa-facebook fs-3"></i></a></li>
+                          <li class="ms-3"><a class="link-dark" href="{{ $backendFooter->yt ?? '' }}"><i class="fa fa-youtube fs-3"></i></a></li>
+                          <li class="ms-3"><a class="link-dark" href="{{ $backendFooter->ig ?? '' }}"><i class="fa fa-instagram fs-3"></i></a></li>
+                      </ul>
+                  </div>
+                  <div class="col-2">
+                      <h5>Menu</h5>
+                      <ul class="nav flex-column">
+                          <li class="mb-2 nav-item"><a href="{{ route('index') }}" class="p-0 text-white nav-link">Home</a></li>
+                          <li class="mb-2 nav-item"><a href="{{ url('/tentang/webView') }}" class="p-0 text-white nav-link">Tentang</a></li>
+                          <li class="mb-2 nav-item"><a href="{{ url('/#program') }}" class="p-0 text-white nav-link">Program</a></li>
+                          <li class="mb-2 nav-item"><a href="{{ url('/#berita') }}" class="p-0 text-white nav-link">Berita</a></li>
+                          <li class="mb-2 nav-item"><a href="{{ url('/sumbanganPiki') }}" class="p-0 text-white nav-link">Donasi</a></li>
+                      </ul>
+                  </div>
 
-      <div class="col-2">
-        <h5>Produk</h5>
-        <ul class="nav flex-column">
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Sistem Informasi</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Aplikasi e-Gov</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Mobile Apps</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Pembuatan Website</a></li>
-          <li class="mb-2 nav-item"><a href="#" class="p-0 text-white nav-link">Integrasi Sistem</a></li>
-        </ul>
-      </div>
+              </div>
 
-
-
-      <div class="col-4 offset-1">
-        <!-- <form method="post" enctype="multipart/form-data"> -->
-          <h5>Buat Testimoni</h5>
-          <p>Berikan testimoni anda atas produk dan layanan ITDev Academy.</p>
-
-          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Berikan Testimoni</button>
-          <!-- <div>
-            <label for="newsletter1">Nama</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
-          </div>
-          <div>
-            <label for="newsletter1">Email</label>
-            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" required>
-          </div>
-          <div>
-            <label for="newsletter1">Jabatan</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
-          </div>
-          <div>
-            <label for="newsletter1">Foto (optional)</label>
-            <input id="newsletter1" type="file" class="form-control" placeholder="Email address" required>
-          </div>
-          <div>
-            <label for="newsletter1">Komentar</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address" required>
-          </div>
-          <button class="mt-2 btn btn-primary" type="button">Kirim</button> -->
-        <!-- </form> -->
-      </div>
-    </div>
-
-    <div class="py-4 my-4 d-flex justify-content-between border-top">
-      <p>&copy; 2022 ITDev Academy</p>
-      <!-- <ul class="list-unstyled d-flex">
+              <div class="py-4 my-4 d-flex justify-content-between border-top">
+                  <p>&copy; 2022 {{ $backendFooter->nama_perusahaan ?? '' }}</p>
+                  <!-- <ul class="list-unstyled d-flex">
         <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-facebook fs-3"></i></a></li>
         <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-youtube fs-3"></i></a></li>
         <li class="ms-3"><a class="link-dark" href="#"><i class="fa fa-instagram fs-3"></i></a></li>
       </ul> -->
-    </div>
-  </footer>
-</div>
-</div>
+              </div>
+          </footer>
+      </div>
+  </div>
   @endsection

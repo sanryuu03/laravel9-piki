@@ -739,7 +739,7 @@ class AnggotaPikiController extends Controller
             // return $regencies;
             $kota = Regency::where('id', $regencies)->first();
             $namaKota = $kota->name;
-            $user = User::where('city', $namaKota)->get();
+            $user = User::where('city', $namaKota)->where('status_anggota', 'diterima')->get();
             $item = $namaKota;
             // return $user;
             $pdf = Pdf::loadView('admin/table', compact('user', 'item'));
@@ -750,7 +750,7 @@ class AnggotaPikiController extends Controller
         {
             $province = Province::where('id', $province)->first();
             $namaProvince = $province->name;
-            $user = User::where('province', $namaProvince)->get();
+            $user = User::where('province', $namaProvince)->where('status_anggota', 'diterima')->get();
             $item = $namaProvince;
             // return $user;
             $pdf = Pdf::loadView('admin/table', compact('user', 'item'));

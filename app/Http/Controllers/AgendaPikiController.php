@@ -17,7 +17,7 @@ class AgendaPikiController extends Controller
      */
     public function index()
     {
-        $agenda = AgendaPiki::get();
+        $agenda = AgendaPiki::latest()->get();
         $user = auth()->user()->id;
         return view('admin/landingpageagenda', [
             "title" => "PIKI - SUMUT",

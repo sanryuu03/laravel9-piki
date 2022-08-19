@@ -69,16 +69,15 @@
                       @error('keterangan_foto')
                       <p class="text-danger">{{ $message }}</p>
                       @enderror
-                      <input id="keterangan" type="hidden" name="keterangan_foto" value="{{ old('keterangan_foto') }}">
-                      <trix-editor input="keterangan"></trix-editor>
+                      <textarea id="summernote" name="keterangan_foto"></textarea>
+
                   </div>
                   <div class="form-group">
                       <label>Isi Berita</label>
                       @error('isi_berita')
                       <p class="text-danger">{{ $message }}</p>
                       @enderror
-                      <input id="isi_berita" type="hidden" name="isi_berita" value="{{ old('isi_berita') }}">
-                      <trix-editor input="isi_berita"></trix-editor>
+                      <textarea id="isi_berita" name="isi_berita"></textarea>
                   </div>
                   <div class="mb-3">
                       <label>Kategori Berita</label>
@@ -107,8 +106,8 @@
                   <tr>
                       <th width="10px">Judul Berita</th>
                       <th width="10px">Foto Berita</th>
-                      <th width="10px">Keterangan Foto</th>
-                      <th width="10px">Isi Berita</th>
+                      {{-- <th width="10px">Keterangan Foto</th> --}}
+                      {{-- <th width="10px">Isi Berita</th> --}}
                       <th width="10px">Kategori Berita</th>
                       <th width="10px">Created At</th>
                       <th width="10px">Updated At</th>
@@ -120,8 +119,8 @@
                   <tr>
                       <td>{{ $item->judul_berita }}</td>
                       <td><img width="150px" src="{{ url('/storage/assets/news/'.$item->picture_path) }}"></td>
-                      <td>{!! $item->keterangan_foto !!}</td>
-                      <td>{!! $item->isi_berita !!}</td>
+                      {{-- <td>{!! $item->keterangan_foto !!}</td> --}}
+                      {{-- <td>{!! $item->isi_berita !!}</td> --}}
                       <td>{{ $item->categoryNews->name }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->updated_at }}</td>
@@ -143,3 +142,23 @@
   <!---Container Fluid-->
   @endsection
 
+  @push('scripts')
+  <script src="{{ asset('backend/summernote-image-attributes-master/summernote-image-attributes.js') }}"></script>
+  <script>
+      $('#isi_berita').summernote({
+          placeholder: 'Hello Bootstrap 4', tabsize: 2,
+          focus: true,
+          popover: {
+              image: [
+                  ['custom', ['imageAttributes']]
+                  , ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']]
+                  , ['float', ['floatLeft', 'floatRight', 'floatNone']]
+                  , ['remove', ['removeMedia']]
+              ], }, imageAttributes: {
+              icon: '<i class="note-icon-pencil"/>', removeEmpty: false, // true = remove attributes | false = leave empty if present
+              disableUpload: false // true = don't display Upload Options | Display Upload Options
+          }
+      });
+
+  </script>
+  @endpush

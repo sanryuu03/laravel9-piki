@@ -15,7 +15,8 @@ class ProgramPikiController extends Controller
      */
     public function index()
     {
-        $program = ProgramPiki::take(7)->get();
+        // $program = ProgramPiki::take(7)->get();
+        $program = ProgramPiki::latest()->get();
         $user = auth()->user()->id;
         return view('admin/program', [
             "title" => "PIKI - SUMUT",

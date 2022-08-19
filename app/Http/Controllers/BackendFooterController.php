@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BackendDokumen;
-use App\Models\BackendTentang;
+use App\Models\BackendFooter;
 use Illuminate\Http\Request;
-class BackendTentangController extends Controller
+
+class BackendFooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +14,14 @@ class BackendTentangController extends Controller
      */
     public function index()
     {
-        $backendTentang = BackendTentang::latest()->get();
-        $backendDokumen = BackendDokumen::latest()->get();
+        $backendFooter = BackendFooter::latest()->get();
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
-        return view('admin/backendTentang', [
+        return view('admin/backendFooter', [
             "title" => "PIKI - SUMUT",
-            "menu" => ucwords('backend tentang'),
+            "menu" => ucwords('backend footer'),
             "creator" => $user,
-            "backendTentang" => $backendTentang,
-            "backendDokumen" => $backendDokumen,
+            "backendFooter" => $backendFooter,
             "action" => 'add',
             "namaUser" => $namaUser,
         ]);
@@ -51,25 +49,25 @@ class BackendTentangController extends Controller
             // return request();
             $data = $request->except('_token');
 
-            BackendTentang::create($data);
-            return redirect()->route('backendTentang.index')->with('success', 'Informasi Berhasil Dilakukan, Terima Kasih !');
+            BackendFooter::create($data);
+            return redirect()->route('backendFooter.index')->with('success', 'informasi Berhasil Dilakukan, Terima Kasih !');
         }
         if ($request->action == "edit") {
             // return $request->id;
             $data = $request->except('_token', 'action');
 
-            BackendTentang::where('id', $request->id)->update($data);
-            return redirect()->route('backendTentang.index')->with('success', 'Informasi telah diedit');
+            BackendFooter::where('id', $request->id)->update($data);
+            return redirect()->route('backendFooter.index')->with('success', 'informasi telah diedit');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BackendTentang  $backendTentang
+     * @param  \App\Models\BackendFooter  $backendFooter
      * @return \Illuminate\Http\Response
      */
-    public function show(BackendTentang $backendTentang)
+    public function show(BackendFooter $backendFooter)
     {
         //
     }
@@ -77,19 +75,18 @@ class BackendTentangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BackendTentang  $backendTentang
+     * @param  \App\Models\BackendFooter  $backendFooter
      * @return \Illuminate\Http\Response
      */
-    public function edit(BackendTentang $backendTentang)
+    public function edit(BackendFooter $backendFooter)
     {
         $user = auth()->user()->id;
         $namaUser = auth()->user()->name;
-        // dd($backendTentang);
-        return view('admin/formBackendTentang', [
+        return view('admin/formBackendFooter', [
             "title" => "PIKI - SUMUT",
-            "menu" => ucwords('backend tentang'),
+            "menu" => ucwords('backend edit footer'),
             "creator" => $user,
-            "backendTentang" => $backendTentang,
+            "backendFooter" => $backendFooter,
             "action" => 'edit',
             "namaUser" => $namaUser,
         ]);
@@ -99,10 +96,10 @@ class BackendTentangController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BackendTentang  $backendTentang
+     * @param  \App\Models\BackendFooter  $backendFooter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BackendTentang $backendTentang)
+    public function update(Request $request, BackendFooter $backendFooter)
     {
         //
     }
@@ -110,17 +107,16 @@ class BackendTentangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BackendTentang  $backendTentang
+     * @param  \App\Models\BackendFooter  $backendFooter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BackendTentang $backendTentang)
+    public function destroy(BackendFooter $backendFooter)
     {
         $data = ['deleted_by' => auth()->user()->name];
-        // return $partnerShip;
-        BackendTentang::where('id', $backendTentang->id)
+        BackendFooter::where('id', $backendFooter->id)
         ->update($data);
-        $backendTentang->id;
-        $backendTentang->delete();
-        return redirect()->back()->with('success', 'Informasi telah dihapus');
+        $backendFooter->id;
+        $backendFooter->delete();
+        return redirect()->back()->with('success', 'footer telah dihapus');
     }
 }

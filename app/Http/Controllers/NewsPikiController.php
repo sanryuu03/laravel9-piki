@@ -17,7 +17,7 @@ class NewsPikiController extends Controller
      */
     public function index()
     {
-        $berita = NewsPiki::all();
+        $berita = NewsPiki::latest()->get();
         $categoryNews = CategoryNews::all();
         $user = auth()->user()->id;
         return view('admin/landingpageberita', [

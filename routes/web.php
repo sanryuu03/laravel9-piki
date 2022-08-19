@@ -10,6 +10,7 @@ use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\AnggotaPikiController;
 use App\Http\Controllers\BackendDokumenController;
 use App\Http\Controllers\BackendFaqController;
+use App\Http\Controllers\BackendFooterController;
 use App\Http\Controllers\BackendPikiController;
 use App\Http\Controllers\BackendTentangController;
 use App\Http\Controllers\PosAnggaranController;
@@ -110,6 +111,8 @@ Route::controller(FrontEndPikiController::class)->group(function() {
     Route::post('/tentang/mobileView', 'tentangMobileViewPost');
     // community partners
     Route::get('/communityPartners/{id}', 'communityPartners');
+    // search berita
+    Route::match(['get', 'post'],'/search', 'search')->name('search');
 });
 
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');
@@ -174,6 +177,7 @@ Route::group(['middleware' => ['CekLevel:super-admin']], function () {
     Route::resource('/admin/sponsorShipBeforeFaq', SponsorshipBeforeFaqController::class);
     Route::resource('/admin/sponsorShipNews', SponsorshipNewsController::class);
     Route::resource('/admin/sponsorShipNewsCategories', SponsorshipNewsCategoriesController::class);
+    Route::resource('/admin/backendFooter', BackendFooterController::class);
 
 });
 

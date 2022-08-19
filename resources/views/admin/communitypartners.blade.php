@@ -67,7 +67,7 @@
                       <th width="1%">{{ ucwords('judul') }}</th>
                       <th width="1%">{{ ucwords('penulis') }}</th>
                       <th width="1%">Foto Community Partners</th>
-                      <th width="1%">Keterangan Community Partners</th>
+                      {{-- <th width="1%">Keterangan Community Partners</th> --}}
                       <th width="1%">Created At</th>
                       <th width="1%">Updated At</th>
                       <th width="0.01%">OPSI</th>
@@ -79,7 +79,7 @@
                       <td>{{ $item->judul }}</td>
                       <td>{{ $item->penulis }}</td>
                       <td><img width="150px" src="{{ url('/storage/assets/artikel/'.$item->picture_path) }}"></td>
-                      <td>{!! $item->konten !!}</td>
+                      {{-- <td>{!! $item->konten !!}</td> --}}
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->updated_at }}</td>
                       <td>

@@ -18,6 +18,7 @@ use App\Models\HeaderPikiMobile;
 use App\Http\Controllers\Controller;
 use App\Models\BackendDokumen;
 use App\Models\BackendFaq;
+use App\Models\BackendFooter;
 use App\Models\BackendTentang;
 use App\Models\PartnerShip;
 use App\Models\SponsorshipBeforeFaq;
@@ -60,6 +61,7 @@ class FrontEndPikiController extends Controller
         $sponsorShipDua = SponsorShipDua::latest()->first();
         $sponsorShipTiga = SponsorShipTiga::latest()->first();
         $sponsorshipBeforeFaq = SponsorshipBeforeFaq::first();
+        $backendFooter = BackendFooter::latest()->first();
         return view('/index', [
             "title" => "PIKI - SUMUT",
             "creator" => "San",
@@ -82,6 +84,7 @@ class FrontEndPikiController extends Controller
             "sponsorShipDua" => $sponsorShipDua,
             "sponsorShipTiga" => $sponsorShipTiga,
             "sponsorshipBeforeFaq" => $sponsorshipBeforeFaq,
+            "backendFooter" => $backendFooter,
         ]);
     }
 
@@ -294,6 +297,43 @@ class FrontEndPikiController extends Controller
             }
             echo $option;
         }
+
+    }
+
+    public function search(Request $request)
+    {
+        $searchValues = $request->search;
+        // return $request->search;
+        if (str_contains($request->search, '"')) {
+            // echo 'true';
+            $withOutQuote = str_replace('"', "", $request->search);
+            $searchBerita = NewsPiki::where('judul_berita', 'like', "%{$withOutQuote}%")
+            ->orWhere('isi_berita', 'like', "%{$withOutQuote}%")->get();
+        //   return $searchBerita;
+            return view('/searchBeritaAndWebView', [
+              "title" => "PIKI - SUMUT",
+              "creator" => "San",
+              "searchValues" => $request->search,
+              "searchBerita" => $searchBerita,
+          ]);
+        }
+        else {
+            // echo 'false';
+            $searchValues = preg_split('/\s+/', $request->search, -1, PREG_SPLIT_NO_EMPTY);
+            // $searchBerita = NewsPiki::where('judul_berita', $request)->get();
+            $searchBerita = NewsPiki::where(function ($q) use ($searchValues) {
+                foreach ($searchValues as $value) {
+                    $q->orWhere('judul_berita', 'like', "%{$value}%");
+                }
+            })->pluck('judul_berita', 'slug');
+            return view('/searchBeritaWebView', [
+              "title" => "PIKI - SUMUT",
+              "creator" => "San",
+              "searchValues" => $request->search,
+              "searchBerita" => $searchBerita,
+          ]);
+        }
+        //   return $searchBerita;
 
     }
     /**
