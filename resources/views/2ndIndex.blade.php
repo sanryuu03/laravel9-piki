@@ -32,8 +32,20 @@
   <div class="p-0 container-fluid header-program">
       <h1 class="mb-3 text-center fs-1">{{ ucwords('berita terbaru') }}</h1>
   </div>
+                    <!-- Topbar Search -->
+                  <form method="post" action="{{ route('search.mobile') }}" class="mr-auto d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
+                  @csrf
+                      <div class="input-group">
+                          <input type="text" name="search" class="border-100 form-control bg-info small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                              <button class="btn btn-primary" type="submit">
+                                  <i class="fas fa-search fa-sm"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
   @foreach($news as $berita)
-  <div class="mt-2 card" style="width: 100% ">
+  <div class="card" style="width: 100% ">
       <img src="{{ url('/storage/assets/news/'.$berita->picture_path) }}" class="card-img-top" alt="..." style="width:100%;height: 100%;">
       <div class="card-body">
           <a href="{{ route('read.more.berita.mobile.view', $berita->slug) }}" class="text-decoration-none fs-3">{{ $berita->judul_berita }}</a>

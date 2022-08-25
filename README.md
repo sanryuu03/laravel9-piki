@@ -19,8 +19,6 @@ Laravel 9.
 
 Bootstrap 5.
 
-tailwindcss.
-
 ## Web Server
 
 PHP 8.1.1.

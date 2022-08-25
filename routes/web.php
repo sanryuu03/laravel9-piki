@@ -113,6 +113,7 @@ Route::controller(FrontEndPikiController::class)->group(function() {
     Route::get('/communityPartners/{id}', 'communityPartners');
     // search berita
     Route::match(['get', 'post'],'/search', 'search')->name('search');
+    Route::match(['get', 'post'],'/searchMobile', 'searchMobile')->name('search.mobile');
 });
 
 Route::get('/admin', [BackendPikiController::class, 'index'])->middleware('auth', 'CekLevel:super-admin,admin,bendahara,organisasi,infokom,media')->name('index.admin');

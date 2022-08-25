@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                       <label>Keterangan Poto</label>
-                      <textarea id="summernote" name="keterangan_foto"></textarea>
+                      <textarea id="summernote" name="keterangan_foto">{{ $newsPiki->keterangan_foto }}</textarea>
                   </div>
                   {{-- <div class="form-group">
                       <label>Excerpt</label>
@@ -55,7 +55,7 @@
                   </div> --}}
                   <div class="form-group">
                       <label>Isi Berita</label>
-                      <textarea id="isi_berita" name="isi_berita"></textarea>
+                      <textarea id="isi_berita" name="isi_berita">{{ $newsPiki->isi_berita }}</textarea>
                   </div>
                   <div class="mb-3">
                       <label>Kategori Berita</label>
@@ -83,25 +83,30 @@
   @push('scripts')
   <script src="{{ asset('backend/summernote-image-attributes-master/summernote-image-attributes.js') }}"></script>
   <script>
-      let HTMLstringFoto = '{!! $newsPiki->keterangan_foto ?? '' !!}';
-      $('#summernote').summernote('code', HTMLstringFoto);
+    //   let HTMLstringFoto = '{!! $newsPiki->keterangan_foto ?? '' !!}';
+    //   $('#summernote').summernote('code', HTMLstringFoto);
 
-      let HTMLstringIsi = '{!! $newsPiki->isi_berita ?? '' !!}';
+    //   $('#isi_berita').summernote({
+    //       placeholder: 'Hello Bootstrap 4', tabsize: 2,
+    //       focus: true,
+    //       popover: {
+    //           image: [
+    //               ['custom', ['imageAttributes']]
+    //               , ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']]
+    //               , ['float', ['floatLeft', 'floatRight', 'floatNone']]
+    //               , ['remove', ['removeMedia']]
+    //           ], }, imageAttributes: {
+    //           icon: '<i class="note-icon-pencil"/>', removeEmpty: false, // true = remove attributes | false = leave empty if present
+    //           disableUpload: false // true = don't display Upload Options | Display Upload Options
+    //       }
+    //   });
+
       $('#isi_berita').summernote({
-          placeholder: 'Hello Bootstrap 4', tabsize: 2,
-          focus: true,
-          popover: {
-              image: [
-                  ['custom', ['imageAttributes']]
-                  , ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']]
-                  , ['float', ['floatLeft', 'floatRight', 'floatNone']]
-                  , ['remove', ['removeMedia']]
-              ], }, imageAttributes: {
-              icon: '<i class="note-icon-pencil"/>', removeEmpty: false, // true = remove attributes | false = leave empty if present
-              disableUpload: false // true = don't display Upload Options | Display Upload Options
-          }
-      });
-      $('#isi_berita').summernote('code', HTMLstringIsi);
+    placeholder: 'Hello Bootstrap 4',
+    tabsize: 2,
+    // height: 200,
+    focus: true
+  });
 
   </script>
   @endpush

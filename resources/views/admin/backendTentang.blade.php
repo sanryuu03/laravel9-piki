@@ -40,7 +40,7 @@
                               </div>
                               <div class="form-group">
                                   <label>{{ ucwords('keterangan') }}</label>
-                                  <textarea id="summernote" name="keterangan"></textarea>
+                                  <textarea id="tentang" name="keterangan"></textarea>
                               </div>
                               <div class="form-group">
                                   @if($action == "add")
@@ -181,3 +181,24 @@
   </div>
   @endsection
 
+  @push('scripts')
+  <script src="{{ asset('backend/summernote-image-attributes-master/summernote-image-attributes.js') }}"></script>
+  <script>
+      $('#tentang').summernote({
+          placeholder: 'Hello Bootstrap 4', tabsize: 2,
+          focus: true,
+          popover: {
+              image: [
+                  ['custom', ['imageAttributes']]
+                  , ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']]
+                  , ['float', ['floatLeft', 'floatRight', 'floatNone']]
+                  , ['remove', ['removeMedia']]
+              ], }, imageAttributes: {
+              icon: '<i class="note-icon-pencil"/>', removeEmpty: false, // true = remove attributes | false = leave empty if present
+              disableUpload: false // true = don't display Upload Options | Display Upload Options
+          }
+      });
+
+
+  </script>
+  @endpush

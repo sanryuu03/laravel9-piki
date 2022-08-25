@@ -336,6 +336,43 @@ class FrontEndPikiController extends Controller
         //   return $searchBerita;
 
     }
+
+    public function searchMobile(Request $request)
+    {
+        $searchValues = $request->search;
+        // return $request->search;
+        if (str_contains($request->search, '"')) {
+            // echo 'true';
+            $withOutQuote = str_replace('"', "", $request->search);
+            $searchBerita = NewsPiki::where('judul_berita', 'like', "%{$withOutQuote}%")
+            ->orWhere('isi_berita', 'like', "%{$withOutQuote}%")->get();
+        //   return $searchBerita;
+            return view('/searchBeritaAndMobileView', [
+              "title" => "PIKI - SUMUT",
+              "creator" => "San",
+              "searchValues" => $request->search,
+              "searchBerita" => $searchBerita,
+          ]);
+        }
+        else {
+            // echo 'false';
+            $searchValues = preg_split('/\s+/', $request->search, -1, PREG_SPLIT_NO_EMPTY);
+            // $searchBerita = NewsPiki::where('judul_berita', $request)->get();
+            $searchBerita = NewsPiki::where(function ($q) use ($searchValues) {
+                foreach ($searchValues as $value) {
+                    $q->orWhere('judul_berita', 'like', "%{$value}%");
+                }
+            })->pluck('judul_berita', 'slug');
+            return view('/searchBeritaMobileView', [
+              "title" => "PIKI - SUMUT",
+              "creator" => "San",
+              "searchValues" => $request->search,
+              "searchBerita" => $searchBerita,
+          ]);
+        }
+        //   return $searchBerita;
+
+    }
     /**
      * Show the form for creating a new resource.
      *
