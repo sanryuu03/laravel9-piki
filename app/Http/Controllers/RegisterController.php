@@ -10,6 +10,7 @@ use App\Models\Village;
 use App\Models\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -108,114 +109,137 @@ class RegisterController extends Controller
         // return $namaDesa;
         // return request()->all();
         // return $request->file('photo_ktp')->store('storage/assets/user');
-        $data = $request->validate(
-            [
-                'username' => 'required|max:255',
-                'name' => 'required|max:255',
-                'birthplace' => 'required',
-                'date' => 'required',
-                'gender' => 'required',
-                'phone_number' => 'required',
-                'email' => 'required|email|unique:users',
-                'nik' => 'required|numeric|digits:16|unique:users',
-                'address' => 'required',
-                'provinsi' => 'required',
-                'kota' => 'required',
-                'kecamatan' => 'required',
-                'desa' => 'required',
-                'pendidikan' => 'required',
-                'sekolah' => 'required',
-                'university' => 'required',
-                'fakultas' => 'required',
-                'jurusan' => 'required',
-                'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-                'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-                'church' => 'required',
-                'password' => 'required|min:5|max:255',
-            ],
-            [
-                'nik.required' => 'NIK tidak boleh kosong.',
-                'nik.digits' => 'NIK wajib 16 digit.',
-            ]
-        );
-
-        $province = request()->input('provinsi');
-        if ($province) {
-            $province = Province::where('id', $province)->first();
-            $namaProvince = $province->name;
-            $data['province'] = $namaProvince;
+        $statusNik = User::where('nik', $request->nik)->first();
+        if ($statusNik) {
+            return redirect()->back()->with('alert', 'NIK sudah pernah digunakan');
         }
-
-        $regencies = request()->input('kota');
-        if ($regencies) {
-            $kota = Regency::where('id', $regencies)->first();
-            $namaKota = $kota->name;
-            $data['city'] = $namaKota;
+        if ($request->provinsi == '0') {
+            return redirect()->back()->with('alert', 'Provinsi Belum Dipilih');
         }
-
-        $districts = request()->input('kecamatan');
-        if ($districts) {
-            $kecamatan = District::where('id', $districts)->first();
-            $namaKecamatan = $kecamatan->name;
-            $data['district'] = $namaKecamatan;
+        if ($request->kota == '0') {
+            return redirect()->back()->with('alert', 'kabupaten/kota Belum Dipilih');
         }
-
-        $villages = request()->input('desa');
-        if ($villages) {
-            $desa = Village::where('id', $villages)->first();
-            $namaDesa = $desa->name;
-            $data['village'] = $namaDesa;
+        if ($request->kecamatan == '0') {
+            return redirect()->back()->with('alert', 'kecamatan Belum Dipilih');
         }
-
-        if (request()->input('pendidikan') === "Pilih-Pendidikan") {
-            $data['pendidikan'] = "Tidak Kuliah";
-            $data['university'] = NULL;
-            $data['fakultas'] = NULL;
-            $data['jurusan'] = NULL;
+        if ($request->desa == '0') {
+            return redirect()->back()->with('alert', 'kelurahan/desa Belum Dipilih');
         }
+        DB::beginTransaction();
+        try {
+            $data = $request->validate(
+                [
+                    'username' => 'required|max:255',
+                    'name' => 'required|max:255',
+                    'birthplace' => 'required',
+                    'date' => 'required',
+                    'gender' => 'required',
+                    'phone_number' => 'required',
+                    'email' => 'required|email|unique:users',
+                    'nik' => 'required|numeric|digits:16|unique:users',
+                    'address' => 'required',
+                    'provinsi' => 'required',
+                    'kota' => 'required',
+                    'kecamatan' => 'required',
+                    'desa' => 'required',
+                    'pendidikan' => 'required',
+                    'sekolah' => 'required',
+                    'university' => 'required',
+                    'fakultas' => 'required',
+                    'jurusan' => 'required',
+                    'photo_ktp' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+                    'photo_profile' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+                    'church' => 'required',
+                    'password' => 'required|min:5|max:255',
+                ],
+                [
+                    'nik.required' => 'NIK tidak boleh kosong.',
+                    'nik.digits' => 'NIK wajib 16 digit.',
+                ]
+            );
 
-        if (request()->input('pendidikan') === "Tidak-Kuliah") {
-            $data['university'] = NULL;
-            $data['fakultas'] = NULL;
-            $data['jurusan'] = NULL;
+            $province = request()->input('provinsi');
+            if ($province) {
+                $province = Province::where('id', $province)->first();
+                $namaProvince = $province->name;
+                $data['province'] = $namaProvince;
+            }
+
+            $regencies = request()->input('kota');
+            if ($regencies) {
+                $kota = Regency::where('id', $regencies)->first();
+                $namaKota = $kota->name;
+                $data['city'] = $namaKota;
+            }
+
+            $districts = request()->input('kecamatan');
+            if ($districts) {
+                $kecamatan = District::where('id', $districts)->first();
+                $namaKecamatan = $kecamatan->name;
+                $data['district'] = $namaKecamatan;
+            }
+
+            $villages = request()->input('desa');
+            if ($villages) {
+                $desa = Village::where('id', $villages)->first();
+                $namaDesa = $desa->name;
+                $data['village'] = $namaDesa;
+            }
+
+            if (request()->input('pendidikan') === "Pilih-Pendidikan") {
+                $data['pendidikan'] = "Tidak Kuliah";
+                $data['university'] = NULL;
+                $data['fakultas'] = NULL;
+                $data['jurusan'] = NULL;
+            }
+
+            if (request()->input('pendidikan') === "Tidak-Kuliah") {
+                $data['university'] = NULL;
+                $data['fakultas'] = NULL;
+                $data['jurusan'] = NULL;
+            }
+
+            // return $data;
+
+            if ($request->file('photo_ktp')) {
+                // menyimpan data file yang diupload ke variabel $file
+                $file = $request->file('photo_ktp');
+                $nama_file = time() . "_" . $file->getClientOriginalName();
+                // dd($nama_file);
+
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'storage/assets/user/ktp/';
+
+                // upload file
+                $file->move($tujuan_upload, $nama_file);
+
+                $data['photo_ktp'] = $nama_file;
+            }
+
+            if ($request->file('photo_profile')) {
+                // menyimpan data file yang diupload ke variabel $file
+                $file = $request->file('photo_profile');
+                $nama_file = time() . "_" . $file->getClientOriginalName();
+                // dd($nama_file);
+
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'storage/assets/user/profile/';
+
+                // upload file
+                $file->move($tujuan_upload, $nama_file);
+
+                $data['photo_profile'] = $nama_file;
+            }
+
+            $data['password'] = bcrypt($data['password']);
+            User::create($data);
+            DB::commit();
+            return redirect('/login')->with('success', 'Registration successfull! Please login');
+            // dd('registrasi berhasil');
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
         }
-
-        // return $data;
-
-        if ($request->file('photo_ktp')) {
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('photo_ktp');
-            $nama_file = time() . "_" . $file->getClientOriginalName();
-            // dd($nama_file);
-
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'storage/assets/user/ktp/';
-
-            // upload file
-            $file->move($tujuan_upload, $nama_file);
-
-            $data['photo_ktp'] = $nama_file;
-        }
-
-        if ($request->file('photo_profile')) {
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('photo_profile');
-            $nama_file = time() . "_" . $file->getClientOriginalName();
-            // dd($nama_file);
-
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'storage/assets/user/profile/';
-
-            // upload file
-            $file->move($tujuan_upload, $nama_file);
-
-            $data['photo_profile'] = $nama_file;
-        }
-
-        $data['password'] = bcrypt($data['password']);
-        User::create($data);
-        return redirect('/login')->with('success', 'Registration successfull! Please login');
-        // dd('registrasi berhasil');
     }
 
     /**
